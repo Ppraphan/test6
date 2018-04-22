@@ -62,8 +62,8 @@
 }
 
 .menushadow-edit {
-  box-shadow: 3px 0px 20px grey;
-  width: 100%;
+  box-shadow: 0px 0px 20px grey;
+
 }
 
 .multilevel-accordion-menu a:hover {
@@ -148,22 +148,21 @@
 
 .bgid {
   height: 100vh;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    background: url(../picture/pexels-photo-149369.jpeg) center center no-repeat;
-    background-size: cover;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  background: url(../picture/pexels-photo-149369.jpeg) center center no-repeat;
+  background-size: cover;
 }
-
 
 .animated-search-form[type=search] {
   width: 10rem;
@@ -179,4 +178,10 @@
 
 .animated-search-form[type=search]:focus {
   width: 25rem;
+}
+
+.bgforms {
+  background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("../picture/pexels-photo-256112.jpg");
+  width: 100%;
+  height: auto;
 }
