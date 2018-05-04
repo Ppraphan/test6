@@ -44,7 +44,7 @@
 }
 
 .multilevel-accordion-menu .menu>li:not(.menu-text)>a {
-  padding: 1.2rem 1rem;
+  padding: 1.2rem 2rem;
   color: #fefefe;
 }
 
@@ -130,7 +130,7 @@
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    text-align: left;
+    text-align: center;
   }
   .card-profile-stats .card-profile-stats-intro .card-profile-stats-intro-pic {
     margin: 0 1.25rem 0 0;
@@ -184,4 +184,25 @@
   background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("../picture/pexels-photo-256112.jpg");
   width: 100%;
   height: auto;
+}
+
+
+@media screen and (max-width: 39.9375em) {
+  .no-js .top-bar {
+    display: none;
+  }
+}
+
+@media print, screen and (min-width: 40em) {
+  .no-js .title-bar {
+    display: none;
+  }
+}
+
+[data-sticky] {
+  width: 100%;
+}
+
+.sticky-container {
+  z-index: 5;
 }

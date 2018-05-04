@@ -2,6 +2,20 @@
 var express = require('express');
 var app = express();
 
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+	host:"localhost",
+	user:"root",
+	password:"",
+	database:"test"
+});
+
+con.connect(function(err){
+	if(err)throw err;
+	console.log("Connedted!");
+});
+
 app.use(express.static(__dirname + '/public'));
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -23,4 +37,4 @@ app.get('/forms', function(req, res) {
 });
 
 app.listen(8080);
-console.log('8080 is the magic port');
+console.log('8080 is Running...');
