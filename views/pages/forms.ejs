@@ -1,59 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head >
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/zf/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/zf/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.js"></script>
+
+<link rel="stylesheet" href="css/forms.css">
+
+
+<script>
+$(document).ready(function() {
+  $('#example').DataTable();
+} );
+</script>
+
+<head>
   <% include ../partials/head %>
 </head>
 
 <body>
-  <div class="cell medium-auto medium-cell-block-container">
-    <div class="grid-x">
-      <header>
-        <% include ../partials/header %>
-      </header>
+  <div class="grid-x">
+    <header class="cell shrink">
+      <% include ../partials/header %>
+    </header>
+    <div class="cell auto">
       <div class="grid-y">
-        <!––บน––!>
-        <div class="cell small-6-container bgforms" align="center" style="height: 12.5rem;padding-top:1em">
+        <div id="demo">
+          <!––บน––!>
+          <div class="cell small-6-container full bgforms" align="center">
+            <br>
+            <br>
             <h1>แบบฟอร์ม</h1>
-            <input type="search" name="search" placeholder="Search.." class="animated-search-form">
             <div align="right" style="padding-right:1rem">
-              <button class="button secondary" href="#">อัพโหลดแบบฟอร์ม</button>
+              <a class="button secondary" href="#" data-open="mobile-ios-modal">อัพโหลดแบบฟอร์ม</a>
+              <a class="button alert" href="#" data-open="mobile-ios-modal2">ลบ</a>
             </div>
-        </div>
+            <div class="reveal mobile-ios-modal" id="mobile-ios-modal" data-reveal>
+              <form ref='uploadForm' encType="multipart/form-data" class="" action="/forms" method="post">
+                <div class="mobile-ios-modal-inner">
+                  <p>เพิ่มไฟล์ที่นี่</p>
+                  <input type="file" name="foo" accept=".pdf">
+                  <textarea v-model="message" placeholder="add multiple lines"></textarea>
+                </div>
+                <div class="mobile-ios-modal-options">
+                  <button data-close type="reset" class="button">Cancel</button>
+                  <input type="submit" name="" value="Upload" class="button">
+                </div>
+              </form>
+            </div>
 
-        <!––ล่าง––!>
-        <div class="cell small-6-container" style="padding:3em">
-          <h2>Independent scrolling body</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacus odio, accumsan id ullamcorper eget, varius nec erat. Nulla facilisi. Donec dui felis, euismod nec finibus vitae, dapibus quis arcu. Maecenas tempor et ipsum quis venenatis.
-            Ut posuere sed augue sit amet efficitur. Sed imperdiet, justo id tempus rhoncus, est est viverra turpis, non vulputate magna lectus et nisl. Pellentesque ultrices porttitor vehicula. Ut aliquet efficitur ligula, a consectetur felis. Proin
-            tristique ut augue nec luctus. Curabitur a sapien pretium, auctor elit a, efficitur erat. Donec tincidunt dui vel velit bibendum euismod. Cras vitae nibh dui. Aliquam erat volutpat. Etiam sit amet arcu a erat efficitur facilisis. Ut viverra
-            dapibus turpis, et ornare justo. Integer in dui cursus, dignissim tortor a, hendrerit risus.</p>
-          <p>Suspendisse pulvinar, massa iaculis feugiat lobortis, dolor sapien vestibulum nulla, vel cursus tellus leo in lorem. Aliquam eu placerat urna. Suspendisse sed viverra orci, ut mattis neque. Fusce non ultrices nisi. In sagittis varius mollis.
-            Quisque dolor quam, consectetur eu lacinia ac, ullamcorper vel arcu. Nullam mattis imperdiet nulla sed ornare. Praesent tristique, est id eleifend vestibulum, neque nibh condimentum ex, nec lobortis purus justo a libero. Phasellus id ex ac
-            nunc hendrerit hendrerit. Nullam urna ipsum, rutrum at fringilla vel, venenatis non purus. Maecenas egestas ex vitae venenatis molestie. Ut et odio egestas, accumsan neque et, viverra nisl. Sed faucibus nec nulla sed imperdiet. Fusce quis
-            sem ac urna semper tempor a id elit. Nulla fringilla vitae sapien a vehicula.</p>
-          <p>Nullam vestibulum lorem nec lectus egestas, nec ullamcorper diam maximus. Maecenas condimentum, nibh at blandit semper, ex erat tempus magna, id maximus neque velit accumsan nibh. Aenean dignissim lorem eu nisl laoreet vestibulum. Vivamus efficitur
-            et augue vitae tincidunt. Etiam et magna felis. Integer mattis, nisi aliquet scelerisque blandit, ex mi sodales ante, eget accumsan quam magna et ligula. Curabitur id tristique leo. Proin rutrum mi vitae enim rhoncus, at cursus neque eleifend.
-            Integer ultrices volutpat tellus ac porta. Fusce sollicitudin venenatis lacinia. Fusce ante lorem, gravida semper varius non, pharetra non erat. Sed dapibus arcu turpis, ac sollicitudin nibh lacinia vel. Nullam at enim porta, luctus metus
-            sit amet, rutrum odio. Cras tempor enim vel pellentesque sollicitudin. Maecenas ullamcorper, sem non accumsan volutpat, neque tortor pulvinar orci, ut ultrices ligula lorem ut risus.</p>
-          <p>Aliquam facilisis, nibh eget posuere suscipit, arcu sapien iaculis odio, in molestie dolor lectus vitae sem. Cras id nunc mollis mi rutrum dapibus. Quisque rutrum a augue at scelerisque. Praesent faucibus ac enim vitae gravida. Sed et sodales
-            elit. Duis magna lectus, interdum sit amet metus a, sagittis varius magna. Proin nibh lectus, egestas a luctus ut, dapibus et enim. Curabitur fringilla ipsum vitae nunc imperdiet consectetur eget non neque. Suspendisse ultricies odio quis
-            lorem vulputate, ac vulputate turpis feugiat. Maecenas posuere rhoncus orci, in ornare velit suscipit tempor. Curabitur pretium nisl id lorem placerat consequat. In quis quam eros. Nam mattis elit eu quam sagittis, in varius erat tempor.</p>
-          <p>Fusce felis magna, pellentesque eget mollis a, rutrum id eros. Curabitur auctor varius arcu a consequat. Phasellus quis pulvinar enim, eu ultricies justo. Pellentesque risus libero, dapibus at erat ultricies, gravida varius erat. Vestibulum
-            ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla tempus, justo ut laoreet mollis, nunc tellus convallis urna, vel pretium dui velit eget ligula. Aliquam semper sed nulla a molestie. Maecenas at egestas massa,
-            vitae aliquam mi. Fusce nec sem egestas, pretium lacus non, tincidunt sapien. Sed tristique odio at ultricies vulputate. Integer et convallis augue, eu aliquam enim. Mauris ut faucibus diam. Donec vulputate nunc sed congue accumsan. Etiam
-            lobortis nisi quis lacinia pharetra.
-          </p>
+            <div class="reveal mobile-ios-modal" id="mobile-ios-modal2" data-reveal>
+              <form >
+                <div class="mobile-ios-modal-inner">
+                  <p>ยืนยันการลบ</p>
+                </div>
+
+                <div class="mobile-ios-modal-options">
+                  <button data-close type="reset" class="button">Cancel</button>
+                  <input type="submit" id="button" class="button">
+                </div>
+              </form>
+            </div>
+
+          </div>
+          <div style="padding:2.5rem;">
+            <table id="example" class="hover unstriped ">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+            </tr>
+        </thead>
+
+        <tbody>
+          <% if(data.length){
+        for(var i = 0;i < data.length;i++) { %>
+            <tr>
+              <td>
+                <%=data[i].PicID%>
+              </td>
+              <td>
+                <%=data[i].Picpart%>
+              </td>
+            </tr>
+            <% }
+        }else{ %>
+              <tr>
+                <td colspan="3">No user</td>
+              </tr>
+              <% } %>
+        </tbody>
+
+        <!--<tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+            </tr>
+        </tfoot>-->
+
+    </table>
+
+          </div>
+
         </div>
       </div>
     </div>
+    <footer>
+      <% include ../partials/footer %>
+    </footer>
   </div>
-
-  <footer>
-    <% include ../partials/footer %>
-  </footer>
-
 </body>
-</div>
 
 </html>

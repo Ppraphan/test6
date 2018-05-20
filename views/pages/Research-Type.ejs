@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body>
+  <div class="grid-x">
+    <div class="cell shrink">
+      <% include ../partials/header %>
+    </div>
+
+    <div class="cell auto">
+      <div class="cell small-6-container full bgforms" align="center">
+        <h1 style="padding-top:2rem">จัดการหน่วยงานภายในระบบ</h1 >
+        </div>
+
+      <div>
+        <div class="grid-x">
+          <div class="cell auto" style="background-color:powderblue;">
+          </div>
+          <div class="cell auto" style="padding:2rem;">
+            <table id="example" class="hover unstriped ">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+            </tr>
+        </thead>
+
+        <tbody>
+          <% if(data.length){
+        for(var i = 0;i < data.length;i++) { %>
+            <tr>
+              <td>
+                <%=data[i].PicID%>
+              </td>
+              <td>
+                <%=data[i].Picpart%>
+              </td>
+            </tr>
+            <% }
+        }else{ %>
+              <tr>
+                <td colspan="3">No user</td>
+              </tr>
+              <% } %>
+        </tbody>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+</body>
+</html>
