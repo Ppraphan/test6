@@ -1,60 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/zf/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.css"
+/>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/zf/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.js"></script>
+
+<link rel="stylesheet" href="css/forms.css">
+
 <head>
-  <% include ../partials/head %>
+	<% include ../partials/head %>
 </head>
 
-<body>
-  <div class="grid-x">
-    <div class="cell shrink">
-      <% include ../partials/header %>
-    </div>
+<body style="background-color: #efefef;  height: 100vh;">
+	<div class="grid-x">
+		<header class="cell shrink">
+			<% include ../partials/header %>
+		</header>
+		<div class="cell auto">
+			<div class="grid-y">
+				<div id="demo">
+					<!––บน––!>
+					<div class="cell small-6-container full bgforms" align="center">
+						<br>
+						<br>
+						<h1>ประเภทงานวิจัย</h1>
+						<div class="reveal mobile-ios-modal" id="mobile-ios-modal2" data-reveal>
+							<form action="/forms">
+								<div class="mobile-ios-modal-inner">
+									<p>ยืนยันการลบ</p>
+								</div>
 
-    <div class="cell auto">
-      <div class="cell small-6-container full bgforms" align="center">
-        <h1 style="padding-top:2rem">จัดการหน่วยงานภายในระบบ</h1 >
-        </div>
+								<div class="mobile-ios-modal-options">
+									<button data-close type="reset" class="button secondary">Cancel</button>
+									<input type="submit" data-id="delb" class="button">
+								</div>
+							</form>
+						</div>
+					</div>
 
-      <div>
-        <div class="grid-x">
-          <div class="cell auto" style="background-color:powderblue;">
-          </div>
-          <div class="cell auto" style="padding:2rem;">
-            <table id="example" class="hover unstriped ">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-            </tr>
-        </thead>
+					<div class="grid-x">
+						<div class="grid-y small-6" >
+							<div class="cell small-6" id="666" style="padding:2.5rem;">
+								<form id="myform" ref='uploadForm' encType="multipart/form-data" class="" action="/research-type" method="post">
+									<h3>เพิ่มประเภทงานวิจัยใหม่</h3>
+									<form >
+										<div class="grid-x grid-padding-x">
+											<div class="small-3 cell">
+												<label for="middle-label" class="text-right middle"><b>ชื่อใหม่</b>่</label>
+											</div>
+											<div class="small-9 cell">
+												<input type="text" id="middle-label" placeholder="ชื่อประเภทงานวิจัยใหม่">
+											</div>
+										</div>
+										<input type="submit" id="register" value="เพิ่ม" class="button " disabled="disabled">
+									</form>
+								</form>
+							</div>
 
-        <tbody>
-          <% if(data.length){
-        for(var i = 0;i < data.length;i++) { %>
-            <tr>
-              <td>
-                <%=data[i].PicID%>
-              </td>
-              <td>
-                <%=data[i].Picpart%>
-              </td>
-            </tr>
-            <% }
-        }else{ %>
-              <tr>
-                <td colspan="3">No user</td>
-              </tr>
-              <% } %>
-        </tbody>
+							<div class="cell small-6 " style="padding:2.5rem;display: none;" id="555">
+								<form id="myform" ref='uploadForm' encType="multipart/form-data" class="" action="/research-type" method="post">
+									<h3>แก้ไขประเกทงานวิจัย</h3>
+									<form>
+										<div class="grid-x grid-padding-x">
+											<div class="small-3 cell">
+												<label for="middle-label" class="text-right middle"><b>ชื่อเดิม</b></label>
+												<label for="middle-label" class="text-right middle"><b>ชื่อใหม</b>่</label>
+											</div>
+											<div class="small-9 cell">
+												<label for="middle-label" class="text-left middle">ชื่อเดิม</label>
+												<input type="text" id="middle-label" placeholder="ชื่อประเภทงานวิจัยใหม่">
+											</div>
+										</div>
 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <footer>
-    <% include ../partials/footer %>
-  </footer>
+										<input type="submit" id="register" value="เพิ่ม" class="button" disabled="disabled">
+										<input type="submit" id="register" value="ยกเลิก" class="button alert" disabled="disabled">
+									</form>
+								</form>
+							</div>
+						</div>
+
+						<div class="cell small-6 ">
+							<div style="padding:2.5rem;">
+								<table id="example2" class="hover unstriped ">
+									<thead>
+										<tr>
+											<th></th>
+											<th>Name</th>
+											<th></th>
+											<th></th>
+										</tr>
+									</thead>
+
+									<tbody>
+										<% if(data.length){
+		                  for(var i = 0;i < data.length;i++) { %>
+											<tr class="showhim ">
+												<td></td>
+												<td>
+													<%=data[i].Name_researchType%>
+												</td>
+
+												<td><a class="small button warning showme" href="#"onclick="myFunction()" data-open="editType" >แก้ไข</a></td>
+												<td><a class="small button alert showme" href="research-type/delete/<%=data[i].idresearchType%>">ลบ</a></td>
+											</tr>
+											<% }
+		                }else{ %>
+												<tr>
+													<td colspan="3">No user</td>
+												</tr>
+												<% } %>
+									</tbody>
+
+									<!--<tfoot>
+		            <tr>
+		                <th>Name</th>
+		                <th>Position</th>
+		            </tr>
+		        </tfoot>-->
+
+								</table>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+			<footer>
+				<% include ../partials/footer %>
+			</footer>
+		</div>
 </body>
+
 </html>

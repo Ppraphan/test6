@@ -70,4 +70,4 @@ var demo = new Vue({
       { Filename: 'nut', Size: 7000 },
     ]
   }
-})
+});

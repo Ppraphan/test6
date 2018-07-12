@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/zf/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/zf/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.css"
+/>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/zf/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.js"></script>
 
 <link rel="stylesheet" href="css/forms.css">
-
-
-<script>
-$(document).ready(function() {
-  $('#example').DataTable();
-} );
-</script>
 
 <head>
   <% include ../partials/head %>
@@ -35,72 +29,83 @@ $(document).ready(function() {
             <h1>แบบฟอร์ม</h1>
             <div align="right" style="padding-right:1rem">
               <a class="button secondary" href="#" data-open="mobile-ios-modal">อัพโหลดแบบฟอร์ม</a>
-              <a class="button alert" href="#" data-open="mobile-ios-modal2">ลบ</a>
             </div>
+
             <div class="reveal mobile-ios-modal" id="mobile-ios-modal" data-reveal>
               <form ref='uploadForm' encType="multipart/form-data" class="" action="/forms" method="post">
+                <h3>เพิ่มไฟล์ที่นี่</h3>
                 <div class="mobile-ios-modal-inner">
-                  <p>เพิ่มไฟล์ที่นี่</p>
                   <input type="file" name="foo" accept=".pdf">
-                  <textarea v-model="message" placeholder="add multiple lines"></textarea>
                 </div>
+                <div class="floated-label-wrapper">
+                  <label for="full-name">ชื่อแบบฟอร์ม</label>
+                  <input type="text" id="full-name" name="fName" placeholder="ชื่อแบบฟอร์ม">
+                </div>
+                <textarea v-model="message" placeholder="add multiple lines" class="minh1"></textarea>
                 <div class="mobile-ios-modal-options">
-                  <button data-close type="reset" class="button">Cancel</button>
-                  <input type="submit" name="" value="Upload" class="button">
+                  <button data-close type="reset" class="button expanded">Cancel</button>
+                  <input type="submit" name="uploadbutton" value="Upload" class="button expanded" disabled="true">
                 </div>
               </form>
             </div>
 
             <div class="reveal mobile-ios-modal" id="mobile-ios-modal2" data-reveal>
-              <form >
+              <form action="/forms">
                 <div class="mobile-ios-modal-inner">
                   <p>ยืนยันการลบ</p>
                 </div>
 
                 <div class="mobile-ios-modal-options">
-                  <button data-close type="reset" class="button">Cancel</button>
-                  <input type="submit" id="button" class="button">
+                  <button data-close type="reset" class="button secondary">Cancel</button>
+                  <input type="submit" data-id="delb" class="button">
                 </div>
               </form>
             </div>
 
           </div>
           <div style="padding:2.5rem;">
+
             <table id="example" class="hover unstriped ">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-            </tr>
-        </thead>
+              <thead>
+                <tr>
+                  <th>NO</th>
+                  <th>Name</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
 
-        <tbody>
-          <% if(data.length){
-        for(var i = 0;i < data.length;i++) { %>
-            <tr>
-              <td>
-                <%=data[i].PicID%>
-              </td>
-              <td>
-                <%=data[i].Picpart%>
-              </td>
-            </tr>
-            <% }
-        }else{ %>
-              <tr>
-                <td colspan="3">No user</td>
-              </tr>
-              <% } %>
-        </tbody>
+              <tbody>
+                <% if(data.length){
+                  for(var i = 0;i < data.length;i++) { %>
+                  <tr class="showhim ">
+                    <td>
+                      <%=data[i].PicID%>
+                    </td>
+                    <td>
+                      <%=data[i].Picname%>
+                    </td>
+                    <td><a class="small button primary showme" href="/forms/download/<%=data[i].Picpart%>">ดาวน์โหลด</a></td>
+                    <td><a class="small button warning showme" href="#">แก้ไข</a></td>
+                    <td><a class="small button alert showme" href="forms/delete/<%=data[i].PicID%>">ลบ</a></td>
+                  </tr>
+                  <% }
+                }else{ %>
+                    <tr>
+                      <td colspan="3">No user</td>
+                    </tr>
+                    <% } %>
+              </tbody>
 
-        <!--<tfoot>
+              <!--<tfoot>
             <tr>
                 <th>Name</th>
                 <th>Position</th>
             </tr>
         </tfoot>-->
 
-    </table>
+            </table>
 
           </div>
 

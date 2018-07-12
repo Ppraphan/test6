@@ -1,3 +1,8 @@
+.fullw {
+  height: 100vh;
+  background: #4d5158;
+}
+
 .multilevel-accordion-menu .is-accordion-submenu-parent a {
   background: #4d5158;
 }
@@ -78,6 +83,7 @@
 }
 
 .card-profile-stats .card-profile-stats-intro {
+  margin: 0.50rem;
   text-align: center;
 }
 
@@ -193,8 +199,8 @@
 .bgindex {
   background: linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, .7)), url("../picture/pexels-photo-149369.jpeg");
   width: 100%;
-  background-repeat:no-repeat;
-  background-size:fixed;
+  background-repeat: no-repeat;
+  background-size: fixed;
   padding-top: 1em;
 }
 
@@ -224,12 +230,12 @@ th.active .arrow {
 }
 
 .mobile-ios-modal {
-  width: 22rem;
+  width: 50rem;
   min-height: 160px;
   height: auto;
   margin: 0;
-  padding: 0;
-  border-radius: 0.75rem;
+  padding: 2rem;
+  border-radius: 0.5rem;
   position: absolute;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -260,16 +266,6 @@ th.active .arrow {
   display: flex;
 }
 
-.mobile-ios-modal-options .button {
-  -webkit-flex: 1 0 0;
-  -ms-flex: 1 0 0px;
-  flex: 1 0 0;
-  margin-bottom: 0;
-  color: #1779ba;
-  background: transparent;
-  border-color: #e6e6e6;
-  border-bottom: 0;
-}
 
 .mobile-ios-modal-options-stacked .button {
   display: block;
@@ -282,4 +278,51 @@ th.active .arrow {
   background: transparent;
   border-color: #e6e6e6;
   border-bottom: 0;
+}
+
+
+.showme {
+  display: none;
+}
+
+.showhim:hover .showme {
+  display: block;
+}
+
+.minh1{
+  min-height: 15rem;
+}
+
+
+.floated-label-wrapper {
+  position: relative;
+}
+
+.floated-label-wrapper label {
+  background: #fefefe;
+  color: #1779ba;
+  font-size: 0.75rem;
+  font-weight: 600;
+  left: 0.75rem;
+  opacity: 0;
+  padding: 0 0.25rem;
+  position: absolute;
+  top: 2rem;
+  transition: all 0.15s ease-in;
+  z-index: -1;
+}
+
+.floated-label-wrapper label input[type=text],
+.floated-label-wrapper label input[type=email],
+.floated-label-wrapper label input[type=password] {
+  border-radius: 4px;
+  font-size: 1.75em;
+  padding: 0.5em;
+}
+
+.floated-label-wrapper label.show {
+  opacity: 1;
+  top: -0.85rem;
+  z-index: 1;
+  transition: all 0.15s ease-in;
 }
