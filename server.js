@@ -70,10 +70,29 @@ app.post('/research-type', function(req, res) {
   });
 });
 
-
-
 app.get('/research-type/delete/:id', function(req, res) {
   var query = "DELETE FROM tresearchtype WHERE idresearchType=" + req.params.id;
+  console.log(query);
+  con.query(query, function(err, rows) {
+    if (err)
+      console.log("Error Selecting : %s ", err);
+  });
+
+  res.redirect('/research-type');
+});
+
+app.post('/research-type/update', function(req, res) {
+  console.log(req.body.file_NameUpdate);
+  console.log(req.body.file_Nameold);
+
+  var sql = "UPDATE tresearchtype SET Name_researchType ='" +req.body.file_NameUpdate+ "' WHERE Name_researchType ='" +req.body.file_Nameold+ "' ";
+  console.log(sql);
+  con.query(sql, function(err, rows) {
+    if (err)
+      console.log("Error Selecting : %s ", err);
+  });
+
+  var query = "SELECT * FROM tresearchtype"
   console.log(query);
   con.query(query, function(err, rows) {
     if (err)

@@ -1,17 +1,27 @@
 $(document).foundation();
 
-
-function myFunction() {
+function myFunction(data) {
     var x = document.getElementById("555");
     var y = document.getElementById("666");
+
     if (x.style.display === "none") {
         x.style.display = "block";
         y.style.display = "none";
-    } else {
-        x.style.display = "none";
-        y.style.display = "block";
     }
-}
+    var x2 = document.getElementById("example2").value=data;
+    document.getElementById("12").innerHTML = x2;
+    document.getElementById("13").value  = x2;
+};
+
+function myFunction2() {
+    var x = document.getElementById("555");
+    var y = document.getElementById("666");
+
+    if (x.style.display === "block") {
+        y.style.display = "block";
+        x.style.display = "none";
+    }
+};
 
 $(document).ready(function() {
   $('#data').after('<ul id="nav" class="pagination text-center"></ul>');
@@ -67,10 +77,6 @@ $(document).ready(function() {
     ],
   });
 
-  $('#example tbody').on('click', 'button', function() {
-    var data = table.row($(this).parents('tr')).data();
-    alert(data[0] + "'s salary is: " + data[1]);
-  });
   $('#delb').click(function() {
     table.row('.selected').remove().draw(false);
   });
@@ -78,9 +84,6 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-
-
-
   var t = $('#example2').DataTable({
     "columns": [{
         "orderable": false
@@ -175,4 +178,51 @@ $('#myform > input').on('input', function() {
   } else {
     $('#register').removeAttr('disabled');
   }
+});
+
+$(document).ready(function(){
+    $('.sendButton').attr('disabled',true);
+
+    $('#message').keyup(function(){
+        if($(this).val().length !=0){
+            $('.sendButton').attr('disabled', false);
+        }
+        else
+        {
+            $('.sendButton').attr('disabled', true);
+        }
+    })
+});
+
+$(document).ready(function(){
+    $('.sendButton2').attr('disabled',true);
+
+    $('#message2').keyup(function(){
+        if($(this).val().length !=0){
+            $('.sendButton2').attr('disabled', false);
+        }
+        else
+        {
+            $('.sendButton2').attr('disabled', true);
+        }
+    })
+});
+
+
+$(document).ready(function() {
+    $('.field input').keyup(function() {
+
+        var empty = false;
+        $('.field input').each(function() {
+            if ($(this).val().length == 0) {
+                empty = true;
+            }
+        });
+
+        if (empty) {
+            $('.actions input').attr('disabled', 'disabled');
+        } else {
+            $('.actions input').removeAttr('disabled');
+        }
+    });
 });

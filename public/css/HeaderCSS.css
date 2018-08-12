@@ -1,0 +1,14 @@
+.accordion {
+  width: 100%;
+}
+
+ul.active {
+
+  border-left: 10px solid #b63b4d;
+}
+
+/*-------------Submenu-----------------------------*/
+
+li a.active {
+  border-left: 10px solid #b63b4d;
+}

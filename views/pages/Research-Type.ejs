@@ -27,6 +27,7 @@
 						<br>
 						<br>
 						<h1>ประเภทงานวิจัย</h1>
+
 						<div class="reveal mobile-ios-modal" id="mobile-ios-modal2" data-reveal>
 							<form action="/forms">
 								<div class="mobile-ios-modal-inner">
@@ -39,46 +40,47 @@
 								</div>
 							</form>
 						</div>
+
 					</div>
 
 					<div class="grid-x">
-						<div class="grid-y small-6" >
+						<div class="grid-y small-6">
 							<div class="cell small-6" id="666" style="padding:2.5rem;">
-								<form id="myform" ref='uploadForm' encType="multipart/form-data" class="" action="/research-type" method="post">
-									<h3>เพิ่มประเภทงานวิจัยใหม่</h3>
-									<form >
-										<div class="grid-x grid-padding-x">
-											<div class="small-3 cell">
-												<label for="middle-label" class="text-right middle"><b>ชื่อใหม่</b>่</label>
-											</div>
-											<div class="small-9 cell">
-												<input type="text" id="middle-label" placeholder="ชื่อประเภทงานวิจัยใหม่">
-											</div>
+								<h3>เพิ่มประเภทงานวิจัยใหม่</h3>
+								<form class="myform" ref='uploadForm' encType="multipart/form-data" action="/research-type" method="post">
+									<div class="grid-x grid-padding-x">
+										<div class="small-3 cell field">
+											<label for="middle-label" class="text-right middle"><b>ชื่อใหม่</b></label>
 										</div>
-										<input type="submit" id="register" value="เพิ่ม" class="button " disabled="disabled">
-									</form>
+										<div class="small-9 cell field">
+											<input type="text"  id="message"name="file_Name" placeholder="ชื่อประเภทงานวิจัยใหม่">
+										</div>
+									</div>
+									<input type="submit" value="เพิ่ม" class="button sendButton" disabled="disabled">
 								</form>
+
 							</div>
 
 							<div class="cell small-6 " style="padding:2.5rem;display: none;" id="555">
-								<form id="myform" ref='uploadForm' encType="multipart/form-data" class="" action="/research-type" method="post">
-									<h3>แก้ไขประเกทงานวิจัย</h3>
-									<form>
-										<div class="grid-x grid-padding-x">
-											<div class="small-3 cell">
-												<label for="middle-label" class="text-right middle"><b>ชื่อเดิม</b></label>
-												<label for="middle-label" class="text-right middle"><b>ชื่อใหม</b>่</label>
-											</div>
-											<div class="small-9 cell">
-												<label for="middle-label" class="text-left middle">ชื่อเดิม</label>
-												<input type="text" id="middle-label" placeholder="ชื่อประเภทงานวิจัยใหม่">
-											</div>
+								<h3>แก้ไขประเกทงานวิจัย</h3>
+
+								<form id="myform" ref='uploadForm' encType="multipart/form-data" class="form-fields" action="/research-type/update" method="post">
+									<div class="grid-x grid-padding-x">
+										<div class="small-3 cell">
+											<label for="middle-label" class="text-right middle"><b>ชื่อเดิม</b></label>
+											<label for="middle-label" class="text-right middle"><b>ชื่อใหม่</b></label>
 										</div>
 
-										<input type="submit" id="register" value="เพิ่ม" class="button" disabled="disabled">
-										<input type="submit" id="register" value="ยกเลิก" class="button alert" disabled="disabled">
-									</form>
+										<div class="small-9 cell">
+											<label for="middle-label" class="text-left middle" id="12"></label>
+											<input name="file_Nameold"  type="hidden" id="13" value="">
+											<input type="text"  id="message2"   name="file_NameUpdate" placeholder="ชื่อประเภทงานวิจัยใหม่">
+										</div>
+									</div>
+									<input type="submit" value="ยืนยัน" class="sendButton2 button" disabled="disabled">
+									<input type="reset"  onclick="myFunction2()" value="ยกเลิก" class="button alert">
 								</form>
+
 							</div>
 						</div>
 
@@ -102,8 +104,7 @@
 												<td>
 													<%=data[i].Name_researchType%>
 												</td>
-
-												<td><a class="small button warning showme" href="#"onclick="myFunction()" data-open="editType" >แก้ไข</a></td>
+												<td><a class="small button warning showme" href="#" onclick="myFunction('<%= data[i].Name_researchType %>')" data-open="editType">แก้ไข</a></td>
 												<td><a class="small button alert showme" href="research-type/delete/<%=data[i].idresearchType%>">ลบ</a></td>
 											</tr>
 											<% }
