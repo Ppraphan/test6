@@ -15,12 +15,13 @@
 </head>
 
 <body style="background-color: #efefef;  height: 100vh;">
-	<div class="grid-x">
-		<header class="cell shrink">
-			<% include ../partials/header %>
-		</header>
-		<div class="cell auto">
-			<div class="grid-y">
+	<div class="cell medium-auto medium-cell-block-container">
+		<div class="grid-x">
+			<div class="cell medium-cell-block-y shrink " style="width:17rem">
+				<% include ../partials/header %>
+			</div>
+
+			<div class="auto " style="width:100%">
 				<div id="demo">
 					<!––บน––!>
 					<div class="cell small-6-container full bgforms" align="center">
@@ -53,40 +54,35 @@
 											<label for="middle-label" class="text-right middle"><b>ชื่อใหม่</b></label>
 										</div>
 										<div class="small-9 cell field">
-											<input type="text"  id="message"name="file_Name" placeholder="ชื่อประเภทงานวิจัยใหม่">
+											<input type="text" id="message" name="file_Name" placeholder="ชื่อประเภทงานวิจัยใหม่">
 										</div>
 									</div>
 									<input type="submit" value="เพิ่ม" class="button sendButton" disabled="disabled">
 								</form>
-
 							</div>
 
 							<div class="cell small-6 " style="padding:2.5rem;display: none;" id="555">
 								<h3>แก้ไขประเกทงานวิจัย</h3>
-
 								<form id="myform" ref='uploadForm' encType="multipart/form-data" class="form-fields" action="/research-type/update" method="post">
 									<div class="grid-x grid-padding-x">
 										<div class="small-3 cell">
 											<label for="middle-label" class="text-right middle"><b>ชื่อเดิม</b></label>
 											<label for="middle-label" class="text-right middle"><b>ชื่อใหม่</b></label>
 										</div>
-
 										<div class="small-9 cell">
 											<label for="middle-label" class="text-left middle" id="12"></label>
-											<input name="file_Nameold"  type="hidden" id="13" value="">
-											<input type="text"  id="message2"   name="file_NameUpdate" placeholder="ชื่อประเภทงานวิจัยใหม่">
+											<input name="file_Nameold" type="hidden" id="13" value="">
+											<input type="text" id="message2" name="file_NameUpdate" placeholder="ชื่อประเภทงานวิจัยใหม่">
 										</div>
 									</div>
 									<input type="submit" value="ยืนยัน" class="sendButton2 button" disabled="disabled">
-									<input type="reset"  onclick="myFunction2()" value="ยกเลิก" class="button alert">
+									<input type="reset" onclick="myFunction2()" value="ยกเลิก" class="button alert">
 								</form>
-
 							</div>
 						</div>
-
 						<div class="cell small-6 ">
 							<div style="padding:2.5rem;">
-								<table id="example2" class="hover unstriped ">
+								<table id="researchtype-Table" class="hover unstriped ">
 									<thead>
 										<tr>
 											<th></th>
@@ -121,19 +117,20 @@
 		                <th>Position</th>
 		            </tr>
 		        </tfoot>-->
-
 								</table>
 							</div>
 						</div>
 
-
 					</div>
 				</div>
 			</div>
-			<footer>
-				<% include ../partials/footer %>
-			</footer>
 		</div>
+	</div>
+
 </body>
+
+<footer>
+	<% include ../partials/footer %>
+</footer>
 
 </html>

@@ -1,0 +1,19 @@
+.Dform {
+  width: 25rem;
+  min-height: 160px;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+
+
+canvas {
+  position: absolute;
+  background-color: #111;
+}
