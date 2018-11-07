@@ -17,7 +17,7 @@ var con = mysql.createConnection({
 });
 
 exports.signup = function(req, res) {
-    con.query('SELECT Dpment_ID,Dpment_Name FROM project.en_dpment', function(err, rows) {
+    con.query('SELECT departmentID,departmentName FROM project.department', function(err, rows) {
       console.log(rows);
       if (err)
         console.log("Error Selecting : %s ", err);

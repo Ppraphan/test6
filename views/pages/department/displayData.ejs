@@ -1,0 +1,57 @@
+<div class="cell small-12 " id="showDataElm">
+  <div style="padding:2.5rem;">
+    <table id="departmentTable" class="hover unstriped ">
+      <thead>
+        <tr>
+          <th>ชื่อหน่วยงานย่อย</th>
+          <th>หน่วยงานหลัก</th>
+          <th>คณะ</th>
+          <th>มหาวิทยาลัย</th>
+          <th>ประเทศ</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% if(data.length){
+          for(var i = 0;i < data.length;i++) { %>
+          <tr class="showhim ">
+            <td>
+              <%=data[i].Sub_Dpment_name%>
+            </td>
+            <td>
+              <%=data[i].departmentName%>
+            </td>
+            <td>
+              <%=data[i].facultyName%>
+            </td>
+            <td>
+              <%=data[i].uniName%>
+            </td>
+            <td>
+              <%=data[i].countryName%>
+            </td>
+            <td style="width:60px;"><a style="color:#ffae00;" class="showme" href="#" onclick="myFunctiondpment('<%= data[i].Sub_Dpment_name %>','<%= data[i].Dpment_Name %>',<%= data[i].Sub_Dpment_Parent %>)" data-open="editType">แก้ไข</a></td>
+            <td style="width:60px;"><a style="color:#cc4b37;" class="showme" href="Department/delete/<%=data[i].Sub_Dpment_ID %>">ลบ</a></td>
+          </tr>
+          <% }
+        }else{ %>
+            <tr>
+              <td colspan="3">No user</td>
+            </tr>
+            <% } %>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <th>ชื่อหน่วยงานย่อย</th>
+          <th>หน่วยงานหลัก</th>
+          <th>คณะ</th>
+          <th>มหาวิทยาลัย</th>
+          <th>ประเทศ</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

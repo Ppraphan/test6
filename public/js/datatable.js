@@ -1,6 +1,6 @@
-/*Department-table*/
+/*grantstable*/
 $(document).ready(function() {
-  $('#Department-table').DataTable({    
+  $('#grantstable').DataTable({
     initComplete: function() {
       this.api().columns().every(function() {
         var column = this;
@@ -26,6 +26,52 @@ $(document).ready(function() {
 
 
 });
+/*txtSearch-grants-table*/
+$(document).ready(function() {
+  $('#grantstable').DataTable();
+
+
+  $('#txtSearch').on('keyup', function() {
+    $('#grantstable')
+      .DataTable()
+      .search($('#txtSearch').val(), false, true)
+      .draw();
+  });
+});
+
+
+/*departmentTable*/
+$(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    $('#departmentTable tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" id="txtSearch" placeholder="Search '+title+'" />' );
+    } );
+});
+
+
+
+/*txtSearch departmentTable*/
+$(document).ready(function() {
+  $('#departmentTable').DataTable({
+    "searching": false,
+    "columnDefs": [
+    { "orderable": false, "targets": 5 },
+    { "orderable": false, "targets": 6 }
+  ]
+  });
+  $('#txtSearch').on('keyup', function() {
+    $('#departmentTable')
+      .DataTable()
+      .search($('#txtSearch').val(), false, true)
+      .draw();
+  });
+
+
+});
+
+
+
 
 /*researchtype-Table*/
 $(document).ready(function() {
@@ -81,4 +127,16 @@ $(document).ready(function() {
     table.row('.selected').remove().draw(false);
   });
 
+});
+/*txtSearch-form-Table*/
+$(document).ready(function() {
+  $('#form-Table').DataTable();
+
+
+  $('#txtSearch').on('keyup', function() {
+    $('#form-Table')
+      .DataTable()
+      .search($('#txtSearch').val(), false, true)
+      .draw();
+  });
 });

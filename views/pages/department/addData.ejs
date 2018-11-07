@@ -1,0 +1,72 @@
+<div class="cell small-12" id="666" style="padding:2.5rem;">
+  <h3>เพิ่มหน่วยงานใหม่</h3>
+  <form class="myform" ref='uploadForm' name="dpmentFormName"encType="multipart/form-data" action="/Department" method="post">
+    <div class="grid-y shink" style="margin-left:25rem;">
+
+
+      <div class="grid-x grid-padding-x">
+        <div class="small-2 cell field">
+          <label for="middle-label" class="text-left middle"><b>ประเทศ</b></label>
+        </div>
+        <div class="small-3 cell field">
+          <label>
+            <select name="Country" id="getCountry" style="margin:0px!important">
+              <% for (var i = 0; i < data.length; i++){ %>
+              <option value="<%= data[i].countryISOCode %>"><%=data[i].countryName %></option>
+              <% } %>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="grid-x grid-padding-x">
+        <div class="small-2 cell field">
+          <label for="middle-label" class="text-left middle"><b>มหาวิทยาลัย</b></label>
+        </div>
+        <div class="small-4 cell field">
+          <input type="text" placeholder="ค้นหา มหาวิทยาลัย" name="getUniName" id="getUni" class="getUniC" style="margin:0px!important"> </input>
+        </div>
+        <div class="small-3 cell field">
+          <a class="button primary disabled" id="addBtnUnityID" >เพิ่มมหาวิทยาลัยใหม่</a>
+        </div>
+      </div>
+
+      <div class="grid-x grid-padding-x">
+        <div class="small-2 cell field">
+          <label for="middle-label" class="text-left middle"><b>คณะ</b></label>
+        </div>
+        <div class="small-4 cell field">
+          <input type="text"  id="getFaculty" name="getFacultyname" class="getFacultyClass" placeholder="ค้นหา คณะ">
+        </div>
+        <div class="small-3 cell field">
+          <a class="button primary" id="addBtnFacultyID" >เพิ่มคณะใหม่</a>
+        </div>
+      </div>
+      <div class="grid-x grid-padding-x">
+        <div class="small-2 cell field">
+          <label for="middle-label" class="text-left middle"><b>หน่วยงานหลัก</b></label>
+        </div>
+        <div class="small-4 cell field">
+          <input type="text" id="message" name="dpmant_name"  placeholder="ชื่อหน่วยงานใหม่">
+        </div>
+        <div class="small-3 cell field">
+          <a class="button primary" href="#">Primary</a>
+        </div>
+      </div>
+      <div class="grid-x grid-padding-x">
+        <div class="small-2 cell field">
+          <label for="middle-label" class="text-left middle"><b>หน่วยงานย่อย</b></label>
+        </div>
+        <div class="small-4 cell field">
+          <input type="text" id="message" name="dpmant_name" placeholder="ชื่อหน่วยงานใหม่">
+        </div>
+        <div class="small-3 cell field">
+          <a class="button primary" href="#">Primary</a>
+        </div>
+      </div>
+
+    </div>
+    <input type="submit" value="เพิ่ม" class="button sendButton" disabled="disabled">
+  </form>
+
+</div>

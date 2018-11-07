@@ -1,147 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/zf/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.css"
-/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/zf/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.css" />
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/zf/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.js"></script>
 
-<link rel="stylesheet" href="css/forms.css">
 
 <head>
   <% include ../partials/head %>
 </head>
 
 <body style="background-color: #efefef;  height: 100vh;">
+
   <div class="cell medium-auto medium-cell-block-container">
     <div class="grid-x">
-      <div class="cell medium-cell-block-y shrink " style="width:17rem">
+      <div class="cell medium-cell-block-y " style="width:17rem">
         <% include ../partials/header %>
       </div>
 
-      <div class="auto " style="width:100%">
-        <div id="demo">
-          <!––บน––!>
+      <div class="cell medium-cell-block-y auto" style="width:100%">
           <div class="cell small-6-container full bgforms" align="center">
-            <br>
-            <br>
-            <h1>หน่วยงานในระบบ</h1>
-
-            <div class="reveal mobile-ios-modal" id="mobile-ios-modal2" data-reveal>
-              <form action="/forms">
-                <div class="mobile-ios-modal-inner">
-                  <p>ยืนยันการลบ</p>
-                </div>
-
-                <div class="mobile-ios-modal-options">
-                  <button data-close type="reset" class="button secondary">Cancel</button>
-                  <input type="submit" data-id="delb" class="button">
-                </div>
-              </form>
+            <div style="margin:35px;">
+              <h1>จัดการหน่วยงานในระบบ</h1>
+              <div align="right" style="padding-right:1rem">
+                <a class="button secondary" id="addDepmentBtn">เพิ่มหน่วยงานใหม่</a>
+              </div>
             </div>
           </div>
-
           <div class="grid-x">
-            <div class="grid-y small-6">
-              <div class="cell small-6" id="666" style="padding:2.5rem;">
-                <h3>เพิ่มหน่วยงานใหม่</h3>
-                <form class="myform" ref='uploadForm' encType="multipart/form-data" action="/Department" method="post">
-                  <div class="grid-x grid-padding-x">
-                    <div class="small-3 cell field">
-                      <label for="middle-label" class="text-right middle"><b>หน่วยงานหลัก</b></label>
-                      <label for="middle-label" class="text-right middle"><b>หน่วยงานใหม่</b></label>
-                    </div>
-                    <div class="small-9 cell field" id="777">
-                      <label>
-                        <select name="parent_Dpment">
-                          <option value="801">ภาควิชาวัสดุและโลหะการ</option>
-                          <option value="802">ภาควิชาวิศวกรรมเกษตร</option>
-                          <option value="803">ภาควิชาวิศวกรรมคอมพิวเตอร์</option>
-                          <option value="804">ภาควิชาวิศวกรรมเคมี</option>
-                          <option value="805">ภาควิชาวิศวกรรมเครื่องกล</option>
-                          <option value="806">ภาควิชาวิศวกรรมไฟฟ้า</option>
-                          <option value="807">ภาควิชาวิศวกรรมโยธา</option>
-                          <option value="808">ภาควิชาวิศวกรรมสิ่งทอ</option>
-                          <option value="809">ภาควิชาวิศวกรรมอิเล็กทรอนิกส์โทรคมนาคม</option>
-                          <option value="810">ภาควิชาวิศวกรรมอุตสาหการ</option>
-                        </select>
-                      </label>
-                      <input type="text" id="message" name="dpmant_name" placeholder="ชื่อหน่วยงานใหม่">
-                    </div>
-                  </div>
-                  <input type="submit" value="เพิ่ม" class="button sendButton" disabled="disabled">
-                </form>
-              </div>
-
-              <div class="cell small-6 " style="padding:2.5rem;display: none;" id="555">
-                <h3>แก้ไขชื่อหน่วยงาน</h3>
-                <form id="myform" ref='uploadForm' encType="multipart/form-data" class="form-fields" action="/Department/update" method="post">
-                  <div class="grid-x grid-padding-x">
-                    <div class="small-3 cell">
-                      <label for="middle-label" class="text-right middle"><b>ชื่อเดิม</b></label>
-                      <label for="middle-label" class="text-right middle"><b>หน่วยงานหลัก</b></label>
-                      <label for="middle-label" class="text-right middle"><b>ชื่อใหม่</b></label>
-                    </div>
-                    <div class="small-9 cell">
-                      <label for="middle-label" class="text-left middle" id="12"></label>
-                      <label for="middle-label" class="text-left middle" id="14" ></label>
-                      <input name="Sub_Dpment_Parent" type="hidden" id="15" value="">
-                      <input name="file_Nameold" type="hidden" id="13" value="">
-                      <input type="text" id="message2" name="file_NameUpdate" placeholder="ชื่อหน่วยงานใหม่">
-                    </div>
-                  </div>
-                  <input type="submit" value="ยืนยัน" class="sendButton2 button" disabled="disabled">
-                  <input type="reset" onclick="myFunction2()" value="ยกเลิก" class="button alert">
-                </form>
-              </div>
-            </div>
-            <div class="cell small-6 ">
-              <div style="padding:2.5rem;">
-                <table id="Department-table" class="hover unstriped ">
-                  <thead>
-                    <tr>
-                      <th>ชื่อหน่วยงานย่อย</th>
-                      <th>หน่วยงานหลัก</th>
-                      <th></th>
-                      <th></th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <% if(data.length){
-		                  for(var i = 0;i < data.length;i++) { %>
-                      <tr class="showhim ">
-                        <td>
-                          <%=data[i].Sub_Dpment_name%>
-                        </td>
-                        <td>
-                          <%=data[i].Dpment_Name%>
-                        </td>
-                        <td><a style="color:#ffae00;" class="showme" href="#" onclick="myFunctiondpment('<%= data[i].Sub_Dpment_name %>','<%= data[i].Dpment_Name %>',<%= data[i].Sub_Dpment_Parent %>)" data-open="editType">แก้ไข</a></td>
-                        <td><a style="color:#cc4b37;" class="showme" href="Department/delete/<%=data[i].Sub_Dpment_ID %>">ลบ</a></td>
-                      </tr>
-                      <% }
-		                }else{ %>
-                        <tr>
-                          <td colspan="3">No user</td>
-                        </tr>
-                        <% } %>
-                  </tbody>
-
-                  <tfoot>
-                    <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
-            </div>
-
+            <% include ../pages/department/displayData %>
+            <% include ../pages/department/editData %>
+            <% include ../pages/department/addData %>
           </div>
-        </div>
       </div>
     </div>
   </div>
@@ -149,6 +41,10 @@
 </body>
 
 <footer>
+  <script src="js/departmentJS.js"></script>
+
+  
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <% include ../partials/footer %>
 </footer>
 

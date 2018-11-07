@@ -24,6 +24,7 @@ var models = require("./models");
 //load passport strategies
 require('./config/passport/passport.js')(passport, models.user);
 require('./routes/signup.js')(app, passport);
+
 //---- configure passport.js to use the local strategy
 // passport.use(new LocalStrategy({
 //     usernameField: 'email'
@@ -62,9 +63,11 @@ require('./routes/signup.js')(app, passport);
 //---- add & configure middleware
 app.use(bodyParser.urlencoded({
   extended: true
-}))
+}));
+
 
 app.use(bodyParser.json());
+
 
 var options = {
     host: 'localhost',
@@ -75,6 +78,7 @@ var options = {
 };
 
 var sessionStore = new MySQLStore(options);
+
 
 app.use(session({
     key: 'session_cookie_name',
@@ -94,7 +98,7 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 
-app.use(bodyParser.json());
+
 
 // var con = mysql.createConnection({
 //   host: "localhost",
@@ -178,17 +182,18 @@ var authRoute = require('./routes/auth.js')(app, passport);
 
 
 app.get('/me', function(req, res) {
-  var data = req.user.id;
-  console.log(data);
+  var dataid = req.user.id;
+  var dataname = req.user.firstname;
+  // console.log(dataid,dataname);
   res.render('pages/me', {
-    data
+    dataid,dataname
   });
 });
 
 require('./routes/Department.js')(app);
 
 require('./routes/Research-Type.js')(app);
-
+require('./routes/grants.js')(app);
 require('./routes/forms.js')(app);
 //Sync Database
 models.sequelize.sync().then(function() {

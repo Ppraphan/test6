@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/zf/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.css"
+/>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/zf/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.js"></script> -->
+
+<link rel="stylesheet" href="css/forms.css">
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body style="background-color: #efefef;  height: 100vh;">
+  <div class="cell medium-auto medium-cell-block-container">
+    <div class="grid-x">
+      <div class="cell medium-cell-block-y shrink " style="width:17rem">
+        <% include ../partials/header %>
+      </div>
+      <div class="cell medium-cell-block-y auto">
+        <div class="cell auto">
+          <div class="grid-y">
+
+            <div id="demo">
+              <div class="cell small-6-container full bgforms" align="center">
+
+                <h1>จัดการทุนวิจัย</h1>
+                <input id="txtSearch" type="search" name="search" placeholder="ค้นหาข้อมูล" class="animated-search-form form-control">
+                <div align="right" style="padding-right:1rem">
+                  <a class="button secondary " id="addRT" href="#" onclick="myFunctiongrants()">เพิ่มทุนวิจัยในระบบ</a>
+                </div>
+              </div>
+
+              <div class="cell medium-cell-block-y auto">
+                <div style="padding:2.5rem;" id="pageShowAllGrants">
+                  <table id="grantstable" class="hover unstriped ">
+                    <thead>
+                      <tr>
+                        <th>ชื่อทุนวิจัย</th>
+                        <th>ประเภททุนวิจัย</th>
+                        <th>ปีงบประมาณ</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <% if(data.length){
+                  for(var i = 0;i < data.length;i++) { %>
+                        <tr class="showhim ">
+                          <td>
+                            <a class="nameRsearch" href="#" onclick="myFunctiongrants3('<%=data[i].idGrants%>')">
+                              <%=data[i].grants_Name%>
+                            </a>
+                          </td>
+                          <td>
+                            <%=data[i].grants_Type%>
+                          </td>
+                          <td>
+                            <%=data[i].grants_Years%>
+                          </td>
+                          <td>
+                            <a style="color:#ffae00;" class="showme" href="#" onclick="myFunctiongrants5('<%=data[i].idGrants%>')">แก้ไข</a>
+                          </td>
+                          <td>
+                            <a style="color:#cc4b37;" class="showme" href="grants/delete/<%=data[i].idGrants %>">ลบ</a>
+                          </td>
+                        </tr>
+                        <% }
+                }else{ %>
+                          <tr>
+                            <td colspan="3">No user</td>
+                          </tr>
+                          <% } %>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>ชื่อทุนวิจัย</th>
+                        <th>ประเภททุนวิจัย</th>
+                        <th>ปีงบประมาณ</th>
+
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+                <div style="padding:2.5rem;display:none;" id="pageNewGrants">
+                  <form method="post" action="/grants">
+                    <div class="cell small-6" style="padding:4rem;">
+
+                      <div class="grid-y ">
+
+                        <div class="grid-x ">
+
+                          <div class="cell small-12" style="padding:0.25rem;">
+                            <div class="grid-x ">
+
+                              <div class="cell small-6">
+                                <div class="grid-x grid-padding-x grid-padding-y">
+                                  <div class="cell small-3">
+                                    <label for="" class="text-left middle" style="margin:0px!important">ปีทุนวิจัย</label>
+                                  </div>
+                                  <div class="cell small-2">
+                                    <select name="grants_Years" style="margin:0px!important">
+                                    <option value="2008">2008</option>
+                                    <option value="2009">2009</option>
+                                    <option value="2010">2010</option>
+                                    <option value="2011">2011</option>
+                                    <option value="2012">2012</option>
+                                    <option value="2013">2013</option>
+                                    <option value="2014">2014</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                    <option value="2029">2029</option>
+                                    <option value="2030">2030</option>
+                                  </select>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="cell small-6">
+                                <div class="grid-x grid-padding-x grid-padding-y">
+                                  <div class="cell small-3">
+                                    <label for="" class="text-left middle" style="margin:0px!important">ประเภททุนวิจัย</label>
+                                  </div>
+                                  <div class="cell small-4">
+                                    <select name="grants_Type" style="margin:0px!important">
+                                    <option value="ทุนภายนอก">ทุนภายนอก</option>
+                                    <option value="ทุนภายใน">ทุนภายใน</option>
+                                  </select>
+                                  </div>
+                                </div>
+
+                              </div>
+
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="grid-x ">
+
+                          <div class="cell small-6" style="padding:0.25rem;">
+                            <div class="grid-x ">
+
+                              <div class="cell small-12">
+                                <div class="grid-x grid-padding-x grid-padding-y">
+                                  <div class="cell small-3">
+                                    <label class="text-left middle" style="margin:0px!important">ชื่อทุนวิจัย</label>
+                                  </div>
+                                  <div class="cell small-9">
+                                    <input name="grants_Name" style="margin:0px!important" type="text" />
+                                  </div>
+                                </div>
+                              </div>
+
+
+                            </div>
+                          </div>
+
+                          <div class="cell small-6" style="padding:0.25rem;">
+                            <div class="grid-x ">
+
+
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="grid-x ">
+
+                          <div class="cell small-6" style="bpadding:0.25rem;">
+                            <div class="grid-x ">
+
+                              <div class="cell small-12">
+                                <div class="grid-x grid-padding-x grid-padding-y">
+                                  <div class="cell small-3">
+                                    <label class="text-left middle" style="margin:0px!important">แหล่งทุนวิจัย</label>
+                                  </div>
+                                  <div class="cell small-9">
+                                    <input name="grants_Supporter" style="margin:0px!important" type="text" />
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+
+                          <div class="cell small-6" style="padding:0.25rem;">
+                            <div class="grid-x ">
+
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="grid-x " style="padding:1em;">
+                        </div>
+
+                        <div class="grid-x ">
+
+                          <div class="cell small-6" style=";padding:0.25rem;">
+                            <div class="grid-x ">
+
+                              <div class="cell small-12">
+                                <div class="grid-x grid-padding-x grid-padding-y">
+                                  <div class="cell small-3">
+                                    <label class="text-left middle" style="margin:0px!important">รายละเอียดทุนวิจัย</label>
+                                  </div>
+                                  <div class="cell small-9">
+                                    <textarea name="grants_detail" placeholder="รายละเอียดทุนวิจัย" class="minh1" style="min-width: 100%"></textarea>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+
+                          <div class="cell small-6" style="padding:0.25rem;">
+                            <div class="grid-x ">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="grid-x " style="padding:2em;">
+
+
+                        </div>
+
+                        <div class="grid-x ">
+
+                          <div class="cell small-12" style="padding:0.25rem;">
+                            <div class="grid-x ">
+
+                              <div class="cell small-6" style="vertical-align: middle;text-align: right;padding-right:0.25rem;">
+                                <input class="button primary" type="submit" value="ยืนยัน" />
+                              </div>
+                              <div class="cell small-6" style="vertical-align: middle;text-align: left;padding-left:0.25rem;">
+                                <input class="button alert" onclick="myFunctiongrants2()" type="reset" value="ยกเลิก" />
+                              </div>
+
+                            </div>
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </form>
+
+                </div>
+                <div style="padding:2.5rem;display:none;" id="pageEditGrantsDetail">
+                  <form method="post" action="/grants/update">
+                    <div class="cell small-6" >
+
+                      <div class="grid-y ">
+
+                        <div class="grid-x ">
+
+                          <div class="cell small-12" style="padding:0.25rem;">
+                            <div class="grid-x ">
+
+                              <div class="cell small-6" style="padding:0.25rem;">
+                                <div class="grid-x ">
+
+                                  <div class="cell small-12">
+                                    <div class="grid-x grid-padding-x grid-padding-y">
+                                      <div class="cell small-3">
+                                        <label class="text-left middle" style="margin:0px!important">รหัสทุนวิจัย</label>
+                                      </div>
+                                      <div class="cell small-9">
+                                        <input id="gIDEdit" name="grants_ID" style="margin:0px!important" type="text"/>
+                                      </div>
+                                    </div>
+                                  </div>
+
+
+                                </div>
+                              </div>
+
+                              <div class="cell small-6" style="padding:0.25rem;">
+                                <div class="grid-x ">
+
+
+                                </div>
+                              </div>
+
+                            </div>
+                            <div class="grid-x ">
+
+                              <div class="cell small-6">
+                                <div class="grid-x grid-padding-x grid-padding-y">
+                                  <div class="cell small-3">
+                                    <label for="" class="text-left middle" style="margin:0px!important">ปีทุนวิจัย</label>
+                                  </div>
+                                  <div class="cell small-2">
+                                    <select id="gYearIDEdit" name="grants_Years" style="margin:0px!important">
+                                    <option value="2008">2008</option>
+                                    <option value="2009">2009</option>
+                                    <option value="2010">2010</option>
+                                    <option value="2011">2011</option>
+                                    <option value="2012">2012</option>
+                                    <option value="2013">2013</option>
+                                    <option value="2014">2014</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                    <option value="2029">2029</option>
+                                    <option value="2030">2030</option>
+                                  </select>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="cell small-6">
+                                <div class="grid-x grid-padding-x grid-padding-y">
+                                  <div class="cell small-3">
+                                    <label for="" class="text-left middle" style="margin:0px!important">ประเภททุนวิจัย</label>
+                                  </div>
+                                  <div class="cell small-4">
+                                    <select id="gTypeIDEdit" name="grants_Type" style="margin:0px!important">
+                                    <option value="ทุนภายนอก">ทุนภายนอก</option>
+                                    <option value="ทุนภายใน">ทุนภายใน</option>
+                                  </select>
+                                  </div>
+                                </div>
+
+                              </div>
+
+                            </div>
+                          </div>
+
+                        </div>
+
+
+                        <div class="grid-x ">
+
+                          <div class="cell small-6" style="padding:0.25rem;">
+                            <div class="grid-x ">
+
+                              <div class="cell small-12">
+                                <div class="grid-x grid-padding-x grid-padding-y">
+                                  <div class="cell small-3">
+                                    <label class="text-left middle" style="margin:0px!important">ชื่อทุนวิจัย</label>
+                                  </div>
+                                  <div class="cell small-9">
+                                    <input id="gNameIDEdit" name="grants_Name" style="margin:0px!important" type="text" />
+                                  </div>
+                                </div>
+                              </div>
+
+
+                            </div>
+                          </div>
+
+                          <div class="cell small-6" style="padding:0.25rem;">
+                            <div class="grid-x ">
+
+
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="grid-x ">
+
+                          <div class="cell small-6" style="bpadding:0.25rem;">
+                            <div class="grid-x ">
+
+                              <div class="cell small-12">
+                                <div class="grid-x grid-padding-x grid-padding-y">
+                                  <div class="cell small-3">
+                                    <label class="text-left middle" style="margin:0px!important">แหล่งทุนวิจัย</label>
+                                  </div>
+                                  <div class="cell small-9">
+                                    <input id="gSupporterIDEdit" name="grants_Supporter" style="margin:0px!important" type="text" />
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+
+                          <div class="cell small-6" style="padding:0.25rem;">
+                            <div class="grid-x ">
+
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="grid-x " style="padding:1em;">
+                        </div>
+
+                        <div class="grid-x ">
+
+                          <div class="cell small-6" style=";padding:0.25rem;">
+                            <div class="grid-x ">
+
+                              <div class="cell small-12">
+                                <div class="grid-x grid-padding-x grid-padding-y">
+                                  <div class="cell small-3">
+                                    <label class="text-left middle" style="margin:0px!important">รายละเอียดทุนวิจัย</label>
+                                  </div>
+                                  <div class="cell small-9">
+                                    <textarea id="gDetailIDEdit" name="grants_detail" placeholder="รายละเอียดทุนวิจัย" class="minh1" style="min-width: 100%"></textarea>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+
+                          <div class="cell small-6" style="padding:0.25rem;">
+                            <div class="grid-x ">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="grid-x " style="padding:2em;">
+
+
+                        </div>
+
+                        <div class="grid-x ">
+
+                          <div class="cell small-12" style="padding:0.25rem;">
+                            <div class="grid-x ">
+
+                              <div class="cell small-6" style="vertical-align: middle;text-align: right;padding-right:0.25rem;">
+                                <input class="button primary" type="submit" value="ยืนยัน" />
+                              </div>
+                              <div class="cell small-6" style="vertical-align: middle;text-align: left;padding-left:0.25rem;">
+                                <input class="button alert" onclick="myFunctiongrants2()" type="reset" value="ยกเลิก" />
+                              </div>
+
+                            </div>
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </form>
+
+                </div>
+                <div style="padding:2.5rem;display:none;" id="pageGrantsDetail">
+                  <form method="post" action="/grants">
+                    <div class="cell small-6" style="padding:4rem;">
+
+                      <div class="grid-y ">
+
+                        <div class="grid-x ">
+
+                          <div class="cell small-12" style="padding:0.25rem;">
+                            <div class="grid-x ">
+
+                              <div class="cell small-6">
+                                <div class="grid-x grid-padding-x grid-padding-y">
+                                  <div class="cell small-3">
+                                    <label for="" class="text-left middle" style="margin:0px!important">ปีทุนวิจัย</label>
+                                  </div>
+                                  <div class="cell small-2">
+                                    <label id="gYearID" class="text-left middle" style="margin:0px!important;color:#1779ba;"></label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="cell small-6">
+                                <div class="grid-x grid-padding-x grid-padding-y">
+                                  <div class="cell small-3">
+                                    <label for="" class="text-left middle" style="margin:0px!important">ประเภททุนวิจัย</label>
+                                  </div>
+                                  <div class="cell small-4">
+                                    <label id="gTypeID" class="text-left middle" style="margin:0px!important;color:#1779ba;"></label>
+                                  </div>
+                                </div>
+
+                              </div>
+
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="grid-x ">
+
+                          <div class="cell small-6" style="padding:0.25rem;">
+                            <div class="grid-x ">
+
+                              <div class="cell small-12">
+                                <div class="grid-x grid-padding-x grid-padding-y">
+                                  <div class="cell small-3">
+                                    <label class="text-left middle" style="margin:0px!important">ชื่อทุนวิจัย</label>
+                                  </div>
+                                  <div class="cell small-9">
+                                    <label id="gNameID" class="text-left middle" style="margin:0px!important;color:#1779ba;"></label>
+                                  </div>
+                                </div>
+                              </div>
+
+
+                            </div>
+                          </div>
+
+                          <div class="cell small-6" style="padding:0.25rem;">
+                            <div class="grid-x ">
+
+
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="grid-x ">
+
+                          <div class="cell small-6" style="bpadding:0.25rem;">
+                            <div class="grid-x ">
+
+                              <div class="cell small-12">
+                                <div class="grid-x grid-padding-x grid-padding-y">
+                                  <div class="cell small-3">
+                                    <label class="text-left middle" style="margin:0px!important">แหล่งทุนวิจัย</label>
+                                  </div>
+                                  <div class="cell small-9">
+                                    <label id="gSupporterID" class="text-left middle" style="margin:0px!important;color:#1779ba;"></label>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+
+                          <div class="cell small-6" style="padding:0.25rem;">
+                            <div class="grid-x ">
+
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="grid-x " style="padding:1em;">
+                        </div>
+
+                        <div class="grid-x ">
+
+                          <div class="cell small-6" style=";padding:0.25rem;">
+                            <div class="grid-x ">
+
+                              <div class="cell small-12">
+                                <div class="grid-x grid-padding-x grid-padding-y">
+                                  <div class="cell small-3">
+                                    <label class="text-left middle" style="margin:0px!important">รายละเอียดทุนวิจัย</label>
+                                  </div>
+                                  <div class="cell small-9">
+                                    <label id="gDetailID" class="text-left middle" style="margin:0px!important;color:#1779ba;"></label>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+
+                          <div class="cell small-6" style="padding:0.25rem;">
+                            <div class="grid-x ">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="grid-x " style="padding:2em;">
+
+
+
+                        </div>
+                        <div class="grid-x ">
+
+                          <div class="cell small-12" style="padding:0.25rem;">
+                            <div class="grid-x ">
+
+                              <div class="cell small-1" style="vertical-align: middle;text-align: center;">
+                                <a class="button primary" href="#" onclick="myFunctiongrants4()">ตกลง</a>
+                              </div>
+                              <div class="cell small-1" style="vertical-align: middle;text-align: center;">
+                                <a class="button warning" href="#">แก้ไข</a>
+                              </div>
+                              <div class="cell small-1" style="vertical-align: middle;text-align: center;">
+                                <a class="button alert" href="#">ลบ</a>
+                              </div>
+
+                            </div>
+                          </div>
+
+                        </div>
+
+
+
+                      </div>
+
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <% include ../partials/footer %>
+    </footer>
+  </div>
+</body>
+
+</html>
