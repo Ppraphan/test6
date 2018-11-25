@@ -5,6 +5,13 @@ var fs = require('fs');
 var bodyParser = require("body-parser");
 var url = require('url');
 var querystring = require('querystring');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var app = express();
+var flash = require('connect-flash');
+
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -14,13 +21,17 @@ var con = mysql.createConnection({
 });
 
 module.exports = function(app) {
+  app.use(cookieParser());
+  app.use(flash()); // use connect-flash for flash messages stored in session
 
   app.get('/forms', function(req, res) {
     var query = con.query('SELECT * FROM tpicpart', function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
+      req.flash("msg", "Morning");
+      res.locals.messages = req.flash();
       res.render('pages/forms', {
-        data: rows
+        data: rows,
       });
     });
   });
@@ -40,7 +51,8 @@ module.exports = function(app) {
       if (err)
         console.log("Error Selecting : %s ", err);
     });
-
+    req.flash('msg', 'ลบข้อมูลแล้ว');
+    res.locals.messages = req.flash();
     res.redirect('/forms');
   });
 
@@ -67,7 +79,7 @@ module.exports = function(app) {
       if (startup_image == null) {
         console.log(err);
       } else {
-        console.log('../forms/'+file_Part + "\t" + "uploaded");
+        console.log('../forms/' + file_Part + "\t" + "uploaded");
       }
     });
 
@@ -80,8 +92,13 @@ module.exports = function(app) {
     var query = con.query('SELECT * FROM tpicpart', function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
+      req.flash('msg', 'เพิ่มไฟล์แล้ว');
+      res.locals.messages = req.flash();
+      console.log(res.locals.messages);
+      res.render('pages/forms', {
+        data: rows,
+      });
     });
-    res.redirect('/forms');
 
   });
 }

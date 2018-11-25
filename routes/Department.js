@@ -1,20 +1,45 @@
 var mysql = require('mysql');
+var express = require('express');
+// var cookieParser = require('cookie-parser');
+// var session = require('express-session');
+// var flash = require('req-flash');
+
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var app = express();
+var flash = require('connect-flash');
+
 
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
   database: "project"
-})
+});
 
 module.exports = function(app) {
+  // app.use(cookieParser());
+  // app.use(session({
+  //   secret: '123'
+  // }));
+  // app.use(flash());
+  app.use(cookieParser());
+
+  app.use(flash()); // use connect-flash for flash messages stored in session
+
   app.get('/Department', function(req, res) {
     var sql = "select countryName, uniName, facultyName, departmentName, Sub_Dpment_name, Sub_Dpment_ID, Sub_Dpment_Parent from faculty fac, department en, sub_dpment sd, university u, country c where c.countryISOCode = u.countryISOCode AND  fac.uniID = u.uniID AND en.facultyID = fac.facultyID AND en.departmentID = sd.Sub_Dpment_Parent;"
     var query = con.query(sql, function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
+      var te = "พอเถอะ";
+      console.log(te);
+      // req.flash("msg"," ");
+      // res.locals.messages = "";
       res.render('pages/Department', {
-        data: rows
+        data: rows,
+        messages: "555",
       });
     });
   });
@@ -49,7 +74,8 @@ module.exports = function(app) {
       if (err)
         console.log("Error Selecting : %s ", err);
       res.render('pages/Department', {
-        data: rows
+        data: rows,
+        messages: "555",
       });
     });
     res.redirect('/Department');
@@ -62,8 +88,9 @@ module.exports = function(app) {
       if (err)
         console.log("Error Selecting : %s ", err);
     });
-
-    res.redirect('/Department');
+    res.redirect('/Department', {
+      messages: "ลบหมดละสัส",
+    });
   });
 
   app.get("/Department/getAllCountry/", function(req, res) {
@@ -92,28 +119,22 @@ module.exports = function(app) {
   });
 
   app.get("/Department/getFacultyinUni/", function(req, res) {
-    var Uniname = req.query.UniData;
+    var catdata = req.query.uniData;
+    console.log(catdata);
 
-
-    var sql = "SELECT uniID FROM project.university where uniName ='" + Uniname + "' ";
+    //  Query uses the value from the url.
+    var sql = "SELECT * FROM project.faculty where facultyID ='" + catdata + "' ";
     console.log(sql);
     con.query(sql, function(err, rows) {
       console.log(rows);
       if (err) throw err;
-      // res.send(rows);
-      console.log(rows[0].uniID);
-      var sql2 = "SELECT * FROM project.faculty where uniID ='" + rows[0].uniID + "' ";
-      console.log(sql2);
-      con.query(sql2, function(err, rows) {
-        console.log(rows);
-        if (err) throw err;
-        res.send(rows);
-      });
-
+      res.send(rows);
     });
-
-
   });
+
+
+
+
 
 
 }

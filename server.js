@@ -18,7 +18,7 @@ var bodyParser = require("body-parser");
 var url = require('url');
 var querystring = require('querystring');
 var env = require('dotenv').load()
-var exphbs = require('express-handlebars')
+var exphbs = require('express-handlebars');
 //Models
 var models = require("./models");
 //load passport strategies
@@ -61,31 +61,30 @@ require('./routes/signup.js')(app, passport);
 // });
 
 //---- add & configure middleware
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-
-
-app.use(bodyParser.json());
 
 
 var options = {
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: '',
-    database: 'project'
+  host: 'localhost',
+  port: 3306,
+  user: 'root',
+  password: '',
+  database: 'project'
 };
 
 var sessionStore = new MySQLStore(options);
 
+app.use(fileUpload());
+app.use(express.static(__dirname + '/public'));
+
+//---- set the view engine to ejs
+app.set('view engine', 'ejs', 'vue');
 
 app.use(session({
-    key: 'session_cookie_name',
-    secret: 'session_cookie_secret',
-    store: sessionStore,
-    resave: true,
-    saveUninitialized: true,
+  key: 'session_cookie_name',
+  secret: 'session_cookie_secret',
+  store: sessionStore,
+  resave: true,
+  saveUninitialized: true,
 }));
 
 // For Passport
@@ -97,6 +96,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+
+app.use(bodyParser.json());
 
 
 
@@ -112,11 +117,7 @@ app.use(passport.session()); // persistent login sessions
 //   console.log("Connedted!");
 // });
 
-app.use(fileUpload());
-app.use(express.static(__dirname + '/public'));
 
-//---- set the view engine to ejs
-app.set('view engine', 'ejs', 'vue');
 
 //--- Define authentication middleware BEFORE your routes
 // function ensureAuthenticated(req, res, next) {
@@ -186,7 +187,8 @@ app.get('/me', function(req, res) {
   var dataname = req.user.firstname;
   // console.log(dataid,dataname);
   res.render('pages/me', {
-    dataid,dataname
+    dataid,
+    dataname
   });
 });
 
@@ -194,11 +196,11 @@ require('./routes/Department.js')(app);
 
 require('./routes/Research-Type.js')(app);
 require('./routes/grants.js')(app);
-require('./routes/forms.js')(app);
+require('./routes/forms.js')(app, session);
+
 //Sync Database
 models.sequelize.sync().then(function() {
   console.log('Nice! Database looks fine')
-
 }).catch(function(err) {
   console.log(err, "Something went wrong with the Database Update!")
 });

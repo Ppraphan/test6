@@ -104,11 +104,11 @@ $(document).ready(function() {
 /*form-Table*/
 $(document).ready(function() {
   $.extend($.fn.dataTable.defaults, {
-    "order": [0, 'desc']
+    "order": [0, 'asc']
   });
   var table = $('#form-Table').DataTable({
     "columns": [{
-        "orderable": false
+        "orderable": true
       },
       null,
       {

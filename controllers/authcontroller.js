@@ -32,7 +32,7 @@ exports.signin = function(req, res) {
 }
 
 exports.dashboard = function(req, res) {
-  res.render('pages/index');
+  res.render('pages/index',);
 }
 
 exports.logout = function(req, res) {

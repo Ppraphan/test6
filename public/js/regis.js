@@ -1,5 +1,3 @@
-
-
 $('.add').click(function() {
  	$(this).after('<div class="block"><input type="text" /><span class="remove">Remove Option</span></div>');
 });
