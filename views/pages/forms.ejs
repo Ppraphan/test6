@@ -19,13 +19,6 @@
     <div class="grid-x">
       <div class="cell medium-cell-block-y shrink " style="width:17rem">
         <% include ../partials/header %>
-        <!-- <% if (messages) { %>
-        <script>
-          (function() {
-            alertbox.show('<%= messages.msg %>');
-            })();
-        </script>
-        <% } %> -->
       </div>
       <div class="cell auto">
         <div class="grid-y">
@@ -33,13 +26,9 @@
           <div id="demo">
             <div class="cell small-6-container full bgforms" align="center">
               <h1>แบบฟอร์ม</h1>
-
-
-
               <input id="txtSearch" type="search" name="search" placeholder="ค้นหาข้อมูล" class="animated-search-form form-control">
               <div align="right" style="padding-right:1rem">
                 <a class="button secondary" data-open="mobile-ios-modal">อัพโหลดแบบฟอร์ม</a>
-                <a id="alertShowMessage" class="button secondary">click me</a>
               </div>
 
               <div class="reveal mobile-ios-modal" id="mobile-ios-modal" data-reveal>
@@ -78,7 +67,7 @@
                 <thead>
                   <tr>
                     <th>NO</th>
-                    <th>Name</th>
+                    <th>รายการ</th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -90,14 +79,14 @@
                   for(var i = 0;i < data.length;i++) { %>
                   <tr class="showhim ">
                     <td>
-                      <%=data[i].PicID%>
                     </td>
                     <td>
                       <%=data[i].Picname%>
                     </td>
                     <td><a class="small button primary showme" href="/forms/download/<%=data[i].Picpart%>">ดาวน์โหลด</a></td>
                     <td><a class="small button warning showme" href="#">แก้ไข</a></td>
-                    <td><a class="small button alert showme" href="forms/delete/<%=data[i].PicID%>">ลบ</a></td>
+                    <td><a class="small button alert showme" data-open="mobile-ios-modal2">ลบ</a></td>
+                    <!-- href="forms/delete/<%=data[i].PicID%>" -->
                   </tr>
                   <% }
                 }else{ %>

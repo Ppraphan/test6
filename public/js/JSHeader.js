@@ -11,12 +11,16 @@ $(function() {
   var url = window.location.href;
 
   // passes on every "a" tag
-  $(".accordion a").each(function() {
+  $(".accordion  a").each(function() {
     // checks if its the same on the address bar
     if (url == (this.href)) {
-      $(this).closest("a").addClass("active2");
-      //for making parent of submenu active
-      // $(this).closest("a").parent().parent().addClass("active2");
+        $(this).closest("a").addClass("active2");
+        $('#accordion').foundation('down', $(this).closest(".sublevel-1"));
     }
+
+
   });
+
+
+
 });

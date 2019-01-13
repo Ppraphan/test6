@@ -1,5 +1,16 @@
 $(document).foundation();
 
+$(document).ready(function () {
+  // window.location = window.location.pathname
+    reset();
+});
+
+function reset() {
+  if ( window.history.replaceState ) {
+      window.history.replaceState( null, null, window.location.pathname );
+  }
+}
+
 $(document).ready(function() {
   $('#catSelection').change(function() {
     var catdata = $('#catSelection').val();
@@ -104,37 +115,7 @@ function myFunctiongrants5(data) {
 };
 
 
-/*ฟังก์ชันเก็บค่าเก่า-ค่าใหม่ไปแสดงตอนอัปเดท-ประเภทงานวิจัย*/
-function myFunction(data) {
-  var x = document.getElementById("555");
-  var y = document.getElementById("666");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-    y.style.display = "none";
-  }
-  var x2 = document.getElementById("researchtype-Table").value = data;
-  document.getElementById("12").innerHTML = x2;
-  document.getElementById("13").value = x2;
-};
 
-function myFunction2() {
-  var x = document.getElementById("555");
-  var y = document.getElementById("666");
-  if (x.style.display === "block") {
-    y.style.display = "block";
-    x.style.display = "none";
-  }
-};
-
-function myFunction2() {
-  var x = document.getElementById("555");
-  var y = document.getElementById("666");
-
-  if (x.style.display === "block") {
-    y.style.display = "block";
-    x.style.display = "none";
-  }
-};
 
 $(document).ready(function() {
   $('#data').after('<ul id="nav" class="pagination text-center"></ul>');
@@ -167,27 +148,24 @@ $(document).ready(function() {
 });
 
 
+// $(document).ready(function(){
+//   $('#delb').on('click', function(e){
+//     $target = $(e.target);
+//     const id = $target.attr('data-id');
+//     $.ajax({
+//       type:'get',
+//       url: '/forms/delete/'+id,
+//       success: function(response){
+//         alert('Deleting Article');
+//         window.location.href='/';
+//       },
+//       error: function(err){
+//         console.log(err);
+//       }
+//     });
+//   });
+// });
 
-
-/*
-$(document).ready(function(){
-  $('#delb').on('click', function(e){
-    $target = $(e.target);
-    const id = $target.attr('data-id');
-    $.ajax({
-      type:'DELETE',
-      url: '/forms/'+id,
-      success: function(response){
-        alert('Deleting Article');
-        window.location.href='/';
-      },
-      error: function(err){
-        console.log(err);
-      }
-    });
-  });
-});
-*/
 
 $(function() {
   var showClass = 'show';
@@ -212,7 +190,7 @@ $(function() {
 //         }
 //      });
 //  });
-
+/*ตรงนี้ปิดไว้ก่อน จำไม่ได้ว่าของอะไรบ้าง*/
 $('input[type=file]').change(function() {
   var hasNoFiles = this.files.length == 0;
   $(this).closest('form') /* Select the form element */
@@ -236,45 +214,26 @@ $('#myform > input').on('input', function() {
   }
 });
 
-$(document).ready(function() {
-  $('.sendButton').attr('disabled', true);
+// $(document).ready(function() {
+//   $('.sendButton').attr('disabled', true);
+//
+//   $('#message').keyup(function() {
+//     if ($(this).val().length != 0) {
+//       $('.sendButton').attr('disabled', false);
+//     } else {
+//       $('.sendButton').attr('disabled', true);
+//     }
+//   })
+// });
 
-  $('#message').keyup(function() {
-    if ($(this).val().length != 0) {
-      $('.sendButton').attr('disabled', false);
-    } else {
-      $('.sendButton').attr('disabled', true);
-    }
-  })
-});
-
-$(document).ready(function() {
-  $('.sendButton2').attr('disabled', true);
-
-  $('#message2').keyup(function() {
-    if ($(this).val().length != 0) {
-      $('.sendButton2').attr('disabled', false);
-    } else {
-      $('.sendButton2').attr('disabled', true);
-    }
-  })
-});
-
-
-$(document).ready(function() {
-  $('.field input').keyup(function() {
-
-    var empty = false;
-    $('.field input').each(function() {
-      if ($(this).val().length == 0) {
-        empty = true;
-      }
-    });
-
-    if (empty) {
-      $('.actions input').attr('disabled', 'disabled');
-    } else {
-      $('.actions input').removeAttr('disabled');
-    }
-  });
-});
+// $(document).ready(function() {
+//   $('.sendButton2').attr('disabled', true);
+//
+//   $('#message2').keyup(function() {
+//     if ($(this).val().length != 0) {
+//       $('.sendButton2').attr('disabled', false);
+//     } else {
+//       $('.sendButton2').attr('disabled', true);
+//     }
+//   })
+// });

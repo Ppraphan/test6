@@ -31,7 +31,6 @@ module.exports = function(app, passport) {
     var catdata = req.params.catdata;
     console.log(catdata);
 
-    //  Query uses the value from the url.
     var sql = "SELECT Sub_Dpment_name FROM project.sub_dpment where Sub_Dpment_Parent ='" + req.params.catdata + "'";
     console.log(sql);
     con.query(sql, function(err, rows) {

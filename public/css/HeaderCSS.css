@@ -78,9 +78,12 @@
   width: 100%;
 }
 
-.active2{
+.active2 {
   border-left: 10px solid #1779ba;
+}
 
+.active3 {
+  border-left: 10px solid #b63b4d;
 }
 /*ul.active {
   border-left: 10px solid #b63b4d;

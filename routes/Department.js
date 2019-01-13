@@ -1,15 +1,12 @@
 var mysql = require('mysql');
 var express = require('express');
-// var cookieParser = require('cookie-parser');
-// var session = require('express-session');
-// var flash = require('req-flash');
 
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var app = express();
 var flash = require('connect-flash');
-
+var querystring = require('querystring');
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -19,47 +16,109 @@ var con = mysql.createConnection({
 });
 
 module.exports = function(app) {
-  // app.use(cookieParser());
-  // app.use(session({
-  //   secret: '123'
-  // }));
-  // app.use(flash());
   app.use(cookieParser());
-
   app.use(flash()); // use connect-flash for flash messages stored in session
 
-  app.get('/Department', function(req, res) {
-    var sql = "select countryName, uniName, facultyName, departmentName, Sub_Dpment_name, Sub_Dpment_ID, Sub_Dpment_Parent from faculty fac, department en, sub_dpment sd, university u, country c where c.countryISOCode = u.countryISOCode AND  fac.uniID = u.uniID AND en.facultyID = fac.facultyID AND en.departmentID = sd.Sub_Dpment_Parent;"
+  app.get('/department/', function(req, res) {
+    var mses = req.query.valid;
+    var sameNameUni = 0;
+    var sql = "select countryName, uniName, facultyName, departmentName, Sub_Dpment_name, Sub_Dpment_ID, Sub_Dpment_Parent from faculty fac, department en, sub_dpment sd, university u, country c where c.countryISOCode = u.countryISOCode and fac.uniID = u.uniID AND en.facultyID = fac.facultyID AND en.departmentID = sd.Sub_Dpment_Parent;"
     var query = con.query(sql, function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
-      var te = "พอเถอะ";
-      console.log(te);
-      // req.flash("msg"," ");
-      // res.locals.messages = "";
       res.render('pages/Department', {
         data: rows,
-        messages: "555",
+        messages: mses,
+        sameNameUni: sameNameUni,
       });
     });
   });
-  app.post('/Department', function(req, res) {
-    var parent_Dpment = req.body.parent_Dpment;
-    var dpmant_name = req.body.dpmant_name;
 
-    sql = "Insert into sub_dpment(Sub_Dpment_name,Sub_Dpment_Parent) values('" + dpmant_name + "','" + parent_Dpment + "')";
-    con.query(sql, function(err, result) {
-      if (err) throw err;
-      console.log("Insert Complete...");
-    });
+  /*เพิ่มมหาวิทยาลัยใหม่ อย่างเดียว*/
+  app.post('/Department/newuni/', function(req, res) {
+    var txtUniName = req.body.txtUniName;
+    var txtUniNameLOWCASE =  txtUniName.toLowerCase();
+    var countryISOCodeName = req.body.countryISOCodeName;
 
-    var query = con.query('select Dpment_Name, Sub_Dpment_name, Sub_Dpment_ID, Sub_Dpment_Parent from en_dpment en, sub_dpment sd where en.Dpment_ID = sd.Sub_Dpment_Parent', function(err, rows) {
-      if (err)
-        console.log("Error Selecting : %s ", err);
-      res.render('pages/Department', {
-        data: rows
+      var sql1 = "INSERT INTO `project`.`university` (`uniName`, `countryISOCode`) VALUES ('" + txtUniNameLOWCASE + "','" + countryISOCodeName + "');";
+      con.query(sql1, function(err, result) {
+        if (err) throw err;
+        console.log("Insert Complete...");
       });
-    });
+
+      var sql2 = "INSERT INTO `project`.`faculty` (`uniID`, `facultyName`) VALUES ((SELECT `uniID` FROM `project`.`university` ORDER BY uniID DESC LIMIT 1), '-');";
+      con.query(sql2, function(err, result) {
+        if (err) throw err;
+        console.log("Insert Complete...");
+      });
+
+      var sql3 = "INSERT INTO `project`.`department` (`facultyID`, `departmentName`) VALUES ((SELECT `facultyID` FROM `project`.`faculty` ORDER BY facultyID DESC LIMIT 1), '-');";
+      con.query(sql3, function(err, result) {
+        if (err) throw err;
+        console.log("Insert Complete...");
+      });
+
+      var sql4 = "INSERT INTO `project`.`sub_dpment` (`Sub_Dpment_Parent`, `Sub_Dpment_name`) VALUES ((SELECT `departmentID` FROM `project`.`department` ORDER BY departmentID DESC LIMIT 1), '-');";
+      con.query(sql4, function(err, result) {
+        if (err) throw err;
+        console.log("Insert Complete...");
+      });
+
+      var mses = encodeURIComponent('เพิ่ม  ' + txtUniName + '  เรียบร้อยแล้ว');
+      res.redirect('/department?valid=' + mses);
+
+  });
+
+  /*เพิ่มคณะใหม่ อย่างเดียว*/
+  app.post('/Department/newFaculty/', function(req, res) {
+    var uniNameForFaculty = req.body.NameOfuniIDForFaculty;
+    var txtFacultyName = req.body.txtFacultyName;
+    var txtFacultyNameLOWCASE =  txtFacultyName.toLowerCase();
+
+      var sql2 = "INSERT INTO `project`.`faculty` (`uniID`,`facultyName`) VALUES ('" + uniNameForFaculty + "','" + txtFacultyNameLOWCASE + "');";
+      con.query(sql2, function(err, result) {
+        if (err) throw err;
+        console.log("Insert Complete...");
+      });
+
+      var sql3 = "INSERT INTO `project`.`department` (`facultyID`, `departmentName`) VALUES ((SELECT `facultyID` FROM `project`.`faculty` ORDER BY facultyID DESC LIMIT 1), '-');";
+      con.query(sql3, function(err, result) {
+        if (err) throw err;
+        console.log("Insert Complete...");
+      });
+
+      var sql4 = "INSERT INTO `project`.`sub_dpment` (`Sub_Dpment_Parent`, `Sub_Dpment_name`) VALUES ((SELECT `departmentID` FROM `project`.`department` ORDER BY departmentID DESC LIMIT 1), '-');";
+      con.query(sql4, function(err, result) {
+        if (err) throw err;
+        console.log("Insert Complete...");
+      });
+
+      var mses = encodeURIComponent('เพิ่ม  ' + txtFacultyName + '  เรียบร้อยแล้ว');
+      res.redirect('/Department?valid=' + mses);
+
+  });
+
+  /*เพิ่มหน่วยงานหลักใหม่ อย่างเดียว*/
+  app.post('/Department/newDepartment/', function(req, res) {
+    var uniNameForFaculty = req.body.NameOfuniIDForFaculty;
+    var txtFacultyName = req.body.txtFacultyName;
+    var txtFacultyNameLOWCASE =  txtFacultyName.toLowerCase();
+
+      var sql3 = "INSERT INTO `project`.`department` (`facultyID`, `departmentName`) VALUES ('" + uniNameForFaculty + "','" + txtFacultyNameLOWCASE + "');";
+      con.query(sql3, function(err, result) {
+        if (err) throw err;
+        console.log("Insert Complete...");
+      });
+
+      var sql4 = "INSERT INTO `project`.`sub_dpment` (`Sub_Dpment_Parent`, `Sub_Dpment_name`) VALUES ((SELECT `departmentID` FROM `project`.`department` ORDER BY departmentID DESC LIMIT 1), '-');";
+      con.query(sql4, function(err, result) {
+        if (err) throw err;
+        console.log("Insert Complete...");
+      });
+
+      var mses = encodeURIComponent('เพิ่ม  ' + txtFacultyName + '  เรียบร้อยแล้ว');
+      res.redirect('/Department?valid=' + mses);
+
   });
 
   app.post('/Department/update', function(req, res) {
@@ -97,6 +156,44 @@ module.exports = function(app) {
     var sql = "SELECT * FROM project.country ORDER BY countryName ASC";
     console.log(sql);
     con.query(sql, function(err, rows) {
+      if (err) throw err;
+      res.send(rows);
+    });
+  });
+
+  app.get("/Department/getNameUniinCountry/", function(req, res) {
+    var catdata = req.query.countryData;
+    console.log(catdata);
+
+    var sql = "SELECT uniName FROM project.university where countryISOCode ='" + catdata + "' ";
+    console.log(sql);
+    con.query(sql, function(err, rows) {
+      console.log(rows);
+      if (err) throw err;
+      res.send(rows);
+    });
+  });
+
+  app.get("/Department/getNameofFacultyinUni/", function(req, res) {
+    var catdata = req.query.uniData;
+    console.log(catdata);
+
+    var sql = "SELECT facultyName FROM project.faculty where uniID ='" + catdata + "' ";
+    console.log(sql);
+    con.query(sql, function(err, rows) {
+      console.log(rows);
+      if (err) throw err;
+      res.send(rows);
+    });
+  });
+
+  app.get("/Department/getNameofDepartmentinFaculty/", function(req, res) {
+    var catdata = req.query.facultyData;
+    console.log(catdata);
+
+    var sql = "SELECT departmentName FROM project.department WHERE facultyID ='" + catdata + "' ";
+    console.log(sql);
+    con.query(sql, function(err, rows) {
       console.log(rows);
       if (err) throw err;
       res.send(rows);
@@ -108,7 +205,6 @@ module.exports = function(app) {
     var catdata = req.query.countryData;
     console.log(catdata);
 
-    //  Query uses the value from the url.
     var sql = "SELECT * FROM project.university where countryISOCode ='" + catdata + "' ";
     console.log(sql);
     con.query(sql, function(err, rows) {
@@ -122,8 +218,7 @@ module.exports = function(app) {
     var catdata = req.query.uniData;
     console.log(catdata);
 
-    //  Query uses the value from the url.
-    var sql = "SELECT * FROM project.faculty where facultyID ='" + catdata + "' ";
+    var sql = "SELECT * FROM project.faculty where uniID ='" + catdata + "' ";
     console.log(sql);
     con.query(sql, function(err, rows) {
       console.log(rows);
@@ -132,9 +227,27 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/Department/getDpmentinFac/", function(req, res) {
+    var catdata = req.query.facultyID;
+    console.log(catdata);
 
+    var sql = "SELECT * FROM project.department where facultyID ='" + catdata + "' ";
+    console.log(sql);
+    con.query(sql, function(err, rows) {
+      if (err) throw err;
+      res.send(rows);
+    });
+  });
 
+  app.get("/Department/getSubinDpment/", function(req, res) {
+    var catdata = req.query.dpmantID;
+    console.log(catdata);
 
-
-
+    var sql = "SELECT * FROM project.sub_dpment where Sub_Dpment_Parent ='" + catdata + "' ";
+    console.log(sql);
+    con.query(sql, function(err, rows) {
+      if (err) throw err;
+      res.send(rows);
+    });
+  });
 }

@@ -1,0 +1,40 @@
+<div class="cell small-12" style="padding:2.5rem;display:none;" id="addDataElmNewdepartment">
+  <h3 class="">เพิ่มหน่วยงานหลักใหม่</h3>
+  <nav aria-label="You are here:" role="navigation">
+    <ul class="breadcrumbs">
+      <li id="countryNameIDdepartmentPage" style="font-size: 130%"></li>
+      <li id="txtUniOutputdepartmentPage" style="font-size: 130%;"></li>
+      <li id="txtFacultyOutputdepartmentPage" style="font-size: 130%;"></li>
+      <li id="txtdepartmentOutputdepartmentPage" style="font-size: 130%;"></li>
+    </ul>
+  </nav>
+
+  <form id="IDFormForNewdepartment" class="" ref='uploadForm' encType="multipart/form-data" action="/Department/newdepartment/" method="post">
+    <div class="grid-y shink" style="margin-left:25rem;">
+      <div class="grid-x grid-padding-x">
+        <div class="small-2 cell ">
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-y shink" style="margin-left:25rem;">
+      <div class="grid-x grid-padding-x">
+        <div class="small-2 cell ">
+          <label for="middle-label" class="text-left middle"><b>ชื่อหน่วยงานหลัก</b></label>
+        </div>
+        <div class="small-5 cell field2">
+          <input type="hidden" name="NameOfuniIDFordepartment" id="uniIDFordepartment">
+          <input type="text" id="txtdepartmentInput" name="txtdepartmentName" placeholder="ชื่อคณะใหม่">
+        </div>
+        <div class="small-5 cell ">
+          <label for="middle-label" class="text-left middle hide" id="alertDuplicateName3" style="color:red;">มีชื่อหน่วยงานหลักนี้แล้ว</label>
+          <label for="middle-label" class="text-left middle hide" id="alertEmptryName3"style="color:red;">กรุณาใส่ชื่อหน่วยงานหลัก</label>
+        </div>
+      </div>
+    </div>
+
+    <input type="submit" value="เพิ่ม" class=" button sendButton" id="comfirmAdddepartmentID" disabled="disabled" >
+    <input type="reset" value="ยกเลิก" class="button alert" id="cancelAdddepartmentID">
+  </form>
+
+</div>

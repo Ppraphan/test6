@@ -1,0 +1,40 @@
+<div class="cell small-12" style="padding:2.5rem;display:none;" id="addDataElmNewUni">
+
+  <h3 class="">เพิ่มมหาวิทยาลัยใหม่</h3>
+
+  <nav aria-label="You are here:" role="navigation">
+    <ul class="breadcrumbs">
+      <li id="countryNameID" style="font-size: 130%"></li>
+      <li id="txtUniOutput" style="font-size: 130%;"></li>
+    </ul>
+  </nav>
+
+  <form id="IDFormForNewUni"class="" ref='uploadForm' name="addNewUniFormName" name="addNewUniFormID"encType="multipart/form-data" action="/Department/newuni/" method="post">
+    <div class="grid-y shink" style="margin-left:25rem;">
+      <div class="grid-x grid-padding-x">
+        <div class="small-2 cell field">
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-y shink" style="margin-left:25rem;">
+      <div class="grid-x grid-padding-x">
+        <div class="small-2 cell field">
+          <label for="middle-label" class="text-left middle"><b>ชื่อมหาวิทยาลัย</b></label>
+        </div>
+        <div class="small-5 cell field">
+          <input type="text" id="txtUniInput" name="txtUniName" placeholder="ชื่อมหาวิทยาลัย">
+          <input type="hidden" name="countryISOCodeName" id="countryISOID">
+        </div>
+        <div class="small-5 cell field">
+          <label for="middle-label" class="text-left middle hide" id="alertDuplicateName" style="color:red;">มีชื่อมหาวิทยาลัยนี้แล้ว</label>
+          <label for="middle-label" class="text-left middle hide" id="alertEmptryName"style="color:red;">กรุณาใส่ชื่อมหาวิทยาลัย</label>
+        </div>
+      </div>
+    </div>
+
+    <input type="submit" value="เพิ่ม" class=" button sendButton" id="comfirmAddUnityID" disabled="disabled" >
+    <input type="reset" value="ยกเลิก" class="button alert" id="cancelAddUnityID">
+  </form>
+
+</div>

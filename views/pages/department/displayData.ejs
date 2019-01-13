@@ -3,13 +3,11 @@
     <table id="departmentTable" class="hover unstriped ">
       <thead>
         <tr>
-          <th>ชื่อหน่วยงานย่อย</th>
-          <th>หน่วยงานหลัก</th>
-          <th>คณะ</th>
-          <th>มหาวิทยาลัย</th>
           <th>ประเทศ</th>
-          <th></th>
-          <th></th>
+          <th>มหาวิทยาลัย</th>
+          <th>คณะ</th>
+          <th>หน่วยงานหลัก</th>
+          <th>ชื่อหน่วยงานย่อย</th>
         </tr>
       </thead>
 
@@ -18,22 +16,20 @@
           for(var i = 0;i < data.length;i++) { %>
           <tr class="showhim ">
             <td>
-              <%=data[i].Sub_Dpment_name%>
-            </td>
-            <td>
-              <%=data[i].departmentName%>
-            </td>
-            <td>
-              <%=data[i].facultyName%>
+              <%=data[i].countryName%>
             </td>
             <td>
               <%=data[i].uniName%>
             </td>
             <td>
-              <%=data[i].countryName%>
+              <%=data[i].facultyName%>
             </td>
-            <td style="width:60px;"><a style="color:#ffae00;" class="showme" href="#" onclick="myFunctiondpment('<%= data[i].Sub_Dpment_name %>','<%= data[i].Dpment_Name %>',<%= data[i].Sub_Dpment_Parent %>)" data-open="editType">แก้ไข</a></td>
-            <td style="width:60px;"><a style="color:#cc4b37;" class="showme" href="Department/delete/<%=data[i].Sub_Dpment_ID %>">ลบ</a></td>
+            <td>
+              <%=data[i].departmentName%>
+            </td>
+            <td>
+              <%=data[i].Sub_Dpment_name%>
+            </td>
           </tr>
           <% }
         }else{ %>
@@ -45,11 +41,11 @@
 
       <tfoot>
         <tr>
-          <th>ชื่อหน่วยงานย่อย</th>
-          <th>หน่วยงานหลัก</th>
-          <th>คณะ</th>
-          <th>มหาวิทยาลัย</th>
           <th>ประเทศ</th>
+          <th>มหาวิทยาลัย</th>
+          <th>คณะ</th>
+          <th>หน่วยงานหลัก</th>
+          <th>ชื่อหน่วยงานย่อย</th>
         </tr>
       </tfoot>
     </table>

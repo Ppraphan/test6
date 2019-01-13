@@ -42,45 +42,137 @@ $(document).ready(function() {
 
 /*departmentTable*/
 $(document).ready(function() {
-    // Setup - add a text input to each footer cell
-    $('#departmentTable tfoot th').each( function () {
-        var title = $(this).text();
-        $(this).html( '<input type="text" id="txtSearch" placeholder="Search '+title+'" />' );
+  // Setup - add a text input to each footer cell
+  $('#departmentTable tfoot th').each( function () {
+      var title = $(this).text();
+      $(this).html( '<input type="text" id="txtSearch" placeholder="Search '+title+'" />' );
+  } );;
+
+    // DataTable
+    var table = $('#departmentTable').DataTable();
+
+    // Apply the search
+    table.columns().every( function () {
+        var that = this;
+
+        $( 'input', this.footer() ).on( 'keyup change', function () {
+            if ( that.search() !== this.value ) {
+                that
+                    .search( this.value )
+                    .draw();
+            }
+        } );
     } );
+
+    $('#txtSearchDepartment').on('keyup', function() {
+      $('#departmentTable')
+        .DataTable()
+        .search($('#txtSearchDepartment').val(), false, true)
+        .draw();
+    });
+
+    $('#txtSearch').on('keyup', function() {
+      $('#departmentTable')
+        .DataTable()
+        .search($('#txtSearch').val(), false, true)
+        .draw();
+    });
 });
-
-
-
-/*txtSearch departmentTable*/
-$(document).ready(function() {
-  $('#departmentTable').DataTable({
-    "searching": false,
-    "columnDefs": [
-    { "orderable": false, "targets": 5 },
-    { "orderable": false, "targets": 6 }
-  ]
-  });
-  $('#txtSearch').on('keyup', function() {
-    $('#departmentTable')
-      .DataTable()
-      .search($('#txtSearch').val(), false, true)
-      .draw();
-  });
-
-
-});
-
-
 
 
 /*researchtype-Table*/
 $(document).ready(function() {
-  var t = $('#researchtype-Table').DataTable({
+  var t = $('#researchtypeTable').DataTable({
     "columns": [{
         "orderable": false
       },
       {
         "orderable": false
+      },
+      {
+        "orderable": false
+      },
+      {
+        "orderable": false
+      },
+    ]
+  });
+
+  t.on('order.dt search.dt', function() {
+    t.column(0, {
+      search: 'applied',
+      order: 'applied'
+    }).nodes().each(function(cell, i) {
+      cell.innerHTML = i + 1;
+    });
+  }).draw();
+});
+
+/*researchtype-Table*/
+$(document).ready(function() {
+  var t = $('#researchStrategicTable').DataTable({
+    "columns": [{
+        "orderable": false
+      },
+      {
+        "orderable": false
+      },
+      {
+        "orderable": false
+      },
+      {
+        "orderable": false
+      },
+    ]
+  });
+
+  t.on('order.dt search.dt', function() {
+    t.column(0, {
+      search: 'applied',
+      order: 'applied'
+    }).nodes().each(function(cell, i) {
+      cell.innerHTML = i + 1;
+    });
+  }).draw();
+});
+
+/*researchbranch-Table*/
+$(document).ready(function() {
+  var t = $('#researchbranchTable').DataTable({
+    "columns": [{
+        "orderable": false
+      },
+      {
+        "orderable": true
+      },
+      {
+        "orderable": false
+      },
+      {
+        "orderable": false
+      },
+    ]
+  });
+
+  t.on('order.dt search.dt', function() {
+    t.column(0, {
+      search: 'applied',
+      order: 'applied'
+    }).nodes().each(function(cell, i) {
+      cell.innerHTML = i + 1;
+    });
+  }).draw();
+});
+
+
+/*researchform-Table*/
+$(document).ready(function() {
+  var t = $('#researchformTable').DataTable({
+    "columns": [{
+        "orderable": false
+      },
+      {
+        "orderable": true
       },
       {
         "orderable": false
@@ -123,9 +215,14 @@ $(document).ready(function() {
     ],
   });
 
-  $('#delb').click(function() {
-    table.row('.selected').remove().draw(false);
-  });
+  table.on('order.dt search.dt', function() {
+    table.column(0, {
+      search: 'applied',
+      order: 'applied'
+    }).nodes().each(function(cell, i) {
+      cell.innerHTML = i + 1;
+    });
+  }).draw();
 
 });
 /*txtSearch-form-Table*/

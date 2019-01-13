@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" href="css/forms.css">
+
+<head>
+	<% include ../partials/head %>
+</head>
+
+<body style="background-color: #efefef;  height: 100vh;">
+	<div class="cell medium-auto medium-cell-block-container">
+		<div class="grid-x">
+
+			<div class="cell medium-cell-block-y" style="width:17rem">
+				<% include ../partials/header %>
+				  <% include ../partials/flash %>
+			</div>
+
+			<div class="cell medium-cell-block-y auto" style="width:100%">
+
+				<div class="cell small-6-container full bgforms" align="center">
+					<div style="margin:35px;">
+						<h1>จัดการยุทศาสตร์งานวิจัย</h1>
+					</div>
+				</div>
+
+				<div class="grid-x">
+					<div class="grid-y small-6">
+						<div class="cell small-6" id="id_RS_New_Div" style="padding:2.5rem;">
+							<h3>เพิ่มยุทศาสตร์งานวิจัยใหม่</h3>
+
+							<form class="myform" name="newResearchForm" ref='uploadForm' encType="multipart/form-data" action="/research-strategic"method="post" id="id_RS_form_newStrategic">
+								<div class="grid-x grid-padding-x">
+									<div class="small-3 cell">
+										<label for="middle-label" class="text-right middle"><b>ชื่อใหม่</b></label>
+									</div>
+									<div class="small-9 cell RSCLASSINPUTfield">
+										<input type="text"  name="file_Name" placeholder="ชื่อยุทศาสตร์งานวิจัยใหม่" id="id_RS_input_newRSName">
+										<span class="label alert " id="id_RS_label_alertEmptryName_2"><i class="fi-x-circle"></i>กรุณากรอกข้อมูล</span>
+										<span class="label alert hide" id="id_RS_label_alertDuplicateName_2"><i class="fi-x-circle"></i>ยุทศาสตร์งานวิจัยนี้ มีแล้ว</span>
+									</div>
+								</div>
+								<input type="submit" value="เพิ่ม" class="button" id="id_RS_comfirm_newRSName" disabled="disabled">
+							</form>
+
+						</div>
+
+						<div class="cell small-6 " style="padding:2.5rem;display: none;" id="id_RS_Edit_Div">
+							<h3>แก้ไขประเกทงานวิจัย</h3>
+							<form id="id_RS_form_editStrategic" ref='uploadForm' encType="multipart/form-data" class="form-fields" action="/research-strategic/update" method="post">
+								<div class="grid-x grid-padding-x">
+									<div class="small-3 cell">
+										<label for="middle-label" class="text-right middle"><b>ชื่อเดิม</b></label>
+										<label for="middle-label" class="text-right middle"><b>ชื่อใหม่</b></label>
+									</div>
+									<div class="small-9 cell RSCLASSINPUTEDITfield">
+										<label for="middle-label" class="text-left middle" id="id_RS_label_rsOldname"></label>
+										<input name="file_Nameold" type="hidden" id="id_RS_input_rsOldname" value="">
+										<input type="text" id="id_RS_input_rsNewname" name="file_NameUpdate" placeholder="ชื่อยุทศาสตร์งานวิจัยใหม่">
+										<span class="label alert hide" id="id_RS_label_alertEmptryName_1"><i class="fi-x-circle"></i>กรุณากรอกข้อมูล</span>
+										<span class="label alert hide" id="id_RS_label_alertDuplicateName_1"><i class="fi-x-circle"></i>ยุทศาสตร์งานวิจัยนี้ มีแล้ว</span>
+									</div>
+								</div>
+								<input type="submit" value="ยืนยัน" class="button" id="id_RS_comfirm_editRSName" disabled="disabled">
+								<input type="reset" onclick="myFunction2()" value="ยกเลิก" class="button alert">
+							</form>
+						</div>
+					</div>
+
+					<div class="cell small-6 ">
+						<div style="padding:2.5rem;">
+							<table id="researchStrategicTable" class="hover unstriped">
+								<thead>
+									<tr>
+										<th></th>
+										<th>ชื่อยุทศาสตร์</th>
+										<th></th>
+										<th></th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<% if(data.length){
+		                  for(var i = 0;i < data.length;i++) { %>
+									<tr class="showhim ">
+										<td></td>
+										<td>
+											<%=data[i].rsearchStrategicName%>
+										</td>
+										<td><a class="small button warning showme" id="id_RS_edit_OpenEditRSName" onclick="myFunction('<%= data[i].rsearchStrategicName %>')" data-open="editType">แก้ไข</a></td>
+										<td><a class="small button alert showme" onclick="return confirm('คุณต้องการที่จะ ลบ <%= data[i].rsearchStrategicName %> หรือไม่ ?');" href="/research-type/delete/<%=data[i].researchStrategicID %>">ลบ</a></td>
+
+									</tr>
+									<% }
+		                }else{ %>
+									<tr>
+										<td colspan="4">No user</td>
+									</tr>
+									<% } %>
+								</tbody>
+							</table>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</body>
+
+<footer>
+	<script src="js/researchStrategic.js"></script>
+	<% include ../partials/footer %>
+</footer>
+
+</html>

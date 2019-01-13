@@ -1,3 +1,42 @@
+/*ฟังก์ชันปิดการแสดงผลของ หน้าเพิ่มมหาลัย(ยกเลิกการเพิ่มมหาลัย)*/
+$(document).ready(function() {
+  $('#cancelAddUnityID').click(function() {
+    availableTags = [];
+    var addDataElm = document.getElementById("addDataElm");
+    var addDataElmNewUni = document.getElementById("addDataElmNewUni");
+    if (addDataElmNewUni.style.display === "block") {
+      addDataElmNewUni.style.display = "none";
+      addDataElm.style.display = "block";
+    }
+  });
+});
+
+/*ฟังก์ชันปิดการแสดงผลของ หน้าเพิ่มมหาลัย(ยกเลิกการเพิ่มคณะ)*/
+$(document).ready(function() {
+  $('#cancelAddFacultyID').click(function() {
+    availableTags = [];
+    var addDataElm = document.getElementById("addDataElm");
+    var addDataElmNewFaculty = document.getElementById("addDataElmNewFaculty");
+    if (addDataElmNewFaculty.style.display === "block") {
+      addDataElmNewFaculty.style.display = "none";
+      addDataElm.style.display = "block";
+    }
+  });
+});
+
+/*ฟังก์ชันปิดการแสดงผลของ หน้าเพิ่มคณะ(ยกเลิกการเพิ่มคณะ)*/
+$(document).ready(function() {
+  $('#cancelAdddepartmentID').click(function() {
+    availableTags = [];
+    var addDataElm = document.getElementById("addDataElm");
+    var addDataElmNewdepartment = document.getElementById("addDataElmNewdepartment");
+    if (addDataElmNewdepartment.style.display === "block") {
+      addDataElmNewdepartment.style.display = "none";
+      addDataElm.style.display = "block";
+    }
+  });
+});
+
 /*[หน่วยงาน]-ฟังก์ชันขอข้อมูลรายชื่อประเทศทั้งหมด */
 $(document).ready(function() {
   $('#addDepmentBtn').click(function() {
@@ -8,6 +47,9 @@ $(document).ready(function() {
       success: function(rows) {
         $('#getCountry').empty();
         $('#getUni').empty();
+        $('#getFaculty').empty();
+        $('#selectDpmantID').empty();
+
         $('#getCountry').append('<option disabled selected value>' + "เลือก" + '</option>');
         for (var i = 0; i < rows.length; i++) {
           $('#getCountry').append('<option value="' + rows[i].countryISOCode + '">' + rows[i].countryName + '</option>')
@@ -19,11 +61,15 @@ $(document).ready(function() {
     var addDE = document.getElementById("addDataElm");
     var showDE = document.getElementById("showDataElm");
     var element = document.getElementById("addDepmentBtn");
+
+    var txtTopSearch = document.getElementById("txtSearchDepartment");
+    txtTopSearch.classList.add("hide");
+
     if (showDE.style.display === "block") {
       showDE.style.display = "none";
       editDE.style.display = "none";
       addDE.style.display = "block";
-      element.classList.add("disabled");
+      element.classList.add("hide");
     }
   });
   /*[หน่วยงาน]-ฟังก์ชันขอข้อมูลรายชื่อประเทศทั้งหมด-เปิดปิดเอเลเมนการแสดงผล */
@@ -38,7 +84,7 @@ $(document).ready(function() {
       editDE.style.display = "none";
 
       showDE.style.display = "block";
-      element.classList.remove("disabled");
+      element.classList.remove("hide");
     }
   });
 });
@@ -64,137 +110,178 @@ $(document).ready(function() {
 
 /*[หน่วยงาน]-ฟังก์ชันดึงรายชื่อมหาลัยทั้งหมด จากประเทศที่เลือก*/
 $(document).ready(function() {
-  var availableTags = [];
-  var univerID = [];
-  var matUni;
   $("#getCountry").on('keyup keydown change ', function() {
-    availableTags = [];
     $('#getUni').empty();
     $('#getFaculty').empty();
-    var countryData = $('#getCountry').val();
+    $('#selectDpmantID').empty();
+    // var element = document.getElementById("addBtnUnityID");
+    // element.classList.add("notGoneJustDisappear");
 
+    var countryData = $('#getCountry').val();
+ 
     $.ajax({
       type: 'GET',
       url: 'http://127.0.0.1:8080/Department/getUniinCountry/?countryData=' + countryData,
       dataType: 'json',
       success: function(rows) {
-
+        $('#getUni').append('<option selected="selected">' + "เลือก" + '</option>');
         for (var i = 0; i < rows.length; i++) {
-          $('#getUni').append('<option value="' + rows[i].uniID + '">' + rows[i].uniName + '</option>'),
-            availableTags.push(rows[i].uniName);
+          $('#getUni').append('<option value="' + rows[i].uniID + '">' + rows[i].uniName + '</option>');
         };
       }
     });
 
-    // var my_autoComplete = new autoComplete({
-    //   selector: 'input[name="getUniName"]',
-    //   minChars: 2,
-    //   source: function(term, suggest) {
-    //     term = term.toLowerCase();
-    //     var choices = availableTags;
-    //     var matches = [];
-    //     for (i = 0; i < choices.length; i++)
-    //       if (~choices[i].toLowerCase().indexOf(term)) {
-    //         matches.push(choices[i]);
-    //       }
-    //     suggest(matches);
+    addBtnUnityID.classList.remove("hide");
+    /*คำสั่งซ่อนการแสดงผลของปุ่มเพิ่มคณะ*/
+    var element = document.getElementById("addBtnFacultyID");
+    element.classList.add("hide");
+    /*คำสั่งซ่อนการแสดงผลของปุ่มเพิ่มหน่วยงานหลัก*/
+    var element = document.getElementById("addBtnDpmentID");
+    element.classList.add("hide");
+    /*คำสั่งซ่อนการแสดงผลของปุ่มเพิ่มหน่วยงานย่อย*/
+    var element = document.getElementById("addBtnSubDpmentID");
+    element.classList.add("hide");
+
+    // var a = document.forms["dpmentFormName"]["getUniName"].value;
+    //
+    //   if (a != ""){
+    //     element.classList.add("notGoneJustDisappear");
+    //   }
+    //   else{
+    //       addBtnUnityID.classList.remove("notGoneJustDisappear");
+    //   }
+
+    // var element = document.getElementById("addBtnUnityID");
+    // element.classList.add("disabled");
+    // var a = document.forms["dpmentFormName"]["getUniName"].value;
+    // var a = $('#getUni').val();
+    // $(function() {
+    //   if (a == "") {
+    //     addBtnUnityID.classList.remove("disabled");
+    //   } else {
+    //     element.classList.add("disabled");
     //   }
     // });
 
   });
 
-  /*เปิดปิดปุ่มเพิ่มหาลัย*/
-  // document.getElementById('getUni').addEventListener('change', function() {
-  //   var element = document.getElementById("addBtnUnityID");
-  //   element.classList.add("notGoneJustDisappear");
-  //   $(function() {
-  //
-  //     var a = document.forms["dpmentFormName"]["getUniName"].value;
-  //     var count = 0;
-  //     var found = 0;
-  //     if (a == null || a == "") {
-  //       return false;
-  //     }
-  //     for (var i = 0; i < availableTags.length; i++) {
-  //       if (a != availableTags[i]) {
-  //         count++;
-  //       } else {
-  //         found++;
-  //       }
-  //     };
-  //     if (found == 0) {
-  //       addBtnUnityID.classList.remove("notGoneJustDisappear");
-  //     } else {
-  //       var element = document.getElementById("addBtnUnityID");
-  //       element.classList.add("notGoneJustDisappear")
-  //     }
-  //   });
-  // });
-
 });
 
 /*[หน่วยงาน]-ฟังก์ชันดึงรายชื่อคณะทั้งหมด จากมหาวิทยาลัยที่เลือก*/
 $(document).ready(function() {
-  var availableTags = [];
-  $("#getUni").on('keyup', function() {
-    availableTags = [];
+  $("#getUni").on('change', function() {
+    var uniData = $('#getUni').val();
     $('#getFaculty').empty();
+    $('#selectDpmantID').empty();
 
     $.ajax({
       type: 'GET',
       url: 'http://127.0.0.1:8080/Department/getFacultyinUni/?uniData=' + uniData,
       dataType: 'json',
       success: function(rows) {
+        $('#getFaculty').append('<option disabled selected value>' + "เลือก" + '</option>');
         for (var i = 0; i < rows.length; i++) {
-          $('#getFaculty').append('<option value="' + rows[i].facultyID + '">' + rows[i].facultyName + '</option>'),
-            availableTags.push(rows[i].facultyName);
+          $('#getFaculty').append('<option value="' + rows[i].facultyID + '">' + rows[i].facultyName + '</option>');
         };
       }
     });
 
-    var my_autoComplete = new autoComplete({
-      selector: 'input[name="facultyName"]',
-      minChars: 2,
-      source: function(term, suggest) {
-        term = term.toLowerCase();
-        var choices = availableTags;
-        var matches = [];
-        for (i = 0; i < choices.length; i++)
-          if (~choices[i].toLowerCase().indexOf(term)) {
-            matches.push(choices[i]);
-          }
-        suggest(matches);
-      }
-    });
+    var element = document.getElementById("addBtnUnityID");
+    element.classList.add("hide");
+
+    addBtnFacultyID.classList.remove("hide");
+
+    /*คำสั่งซ่อนการแสดงผลของปุ่มเพิ่มหน่วยงานหลัก*/
+    var element = document.getElementById("addBtnDpmentID");
+    element.classList.add("hide");
+    /*คำสั่งซ่อนการแสดงผลของปุ่มเพิ่มหน่วยงานย่อย*/
+    var element = document.getElementById("addBtnSubDpmentID");
+    element.classList.add("hide");
 
   });
 
-  /*เปิดปิดปุ่มเพิ่มหาลัย*/
-  // document.getElementById('getUni').addEventListener('change', function() {
-  //   var element = document.getElementById("addBtnUnityID");
-  //   element.classList.add("notGoneJustDisappear");
-  //   $(function() {
-  //
-  //     var a = document.forms["dpmentFormName"]["getUniName"].value;
-  //     var count = 0;
-  //     var found = 0;
-  //     if (a == null || a == "") {
-  //       return false;
-  //     }
-  //     for (var i = 0; i < availableTags.length; i++) {
-  //       if (a != availableTags[i]) {
-  //         count++;
-  //       } else {
-  //         found++;
-  //       }
-  //     };
-  //     if (found == 0) {
-  //       addBtnUnityID.classList.remove("notGoneJustDisappear");
-  //     } else {
-  //       var element = document.getElementById("addBtnUnityID");
-  //       element.classList.add("notGoneJustDisappear")
-  //     }
-  //   });
-  // });
+});
 
+/*[หน่วยงาน]-ฟังก์ชันดึงรายชื่อหน่วยงานหลักทั้งหมด จากคณะที่เลือก*/
+$(document).ready(function() {
+  $("#getFaculty").on('change', function() {
+    var facultyID = $('#getFaculty').val();
+    $('#selectDpmantID').empty();
+
+    $.ajax({
+      type: 'GET',
+      url: 'http://127.0.0.1:8080/Department/getDpmentinFac/?facultyID=' + facultyID,
+      dataType: 'json',
+      success: function(rows) {
+        $('#selectDpmantID').append('<option disabled selected value>' + "เลือก" + '</option>');
+        for (var i = 0; i < rows.length; i++) {
+          $('#selectDpmantID').append('<option value="' + rows[i].departmentID + '">' + rows[i].departmentName + '</option>');
+
+        };
+      }
+    });
+
+    var element = document.getElementById("addBtnFacultyID");
+    element.classList.add("hide");
+
+    addBtnDpmentID.classList.remove("hide");
+
+    /*คำสั่งซ่อนการแสดงผลของปุ่มเพิ่มหน่วยงานย่อย*/
+    var element = document.getElementById("addBtnSubDpmentID");
+    element.classList.add("hide");
+  });
+
+});
+
+/*[หน่วยงาน]-ฟังก์ชันดึงรายชื่อหน่วยงานย่อยทั้งหมด จากหน่วยงานหลักที่เลือก*/
+$(document).ready(function() {
+  $("#selectDpmantID").on('change', function() {
+
+    var element = document.getElementById("addBtnDpmentID");
+    element.classList.add("hide");
+
+    addBtnSubDpmentID.classList.remove("hide");
+
+  });
+
+});
+
+
+/*รีเซตปุ่ม*/
+function resetbtn() {
+  var txtTopSearch = document.getElementById("txtSearchDepartment");
+  txtTopSearch.classList.remove("hide");
+
+  var element = document.getElementById("addBtnUnityID");
+  element.classList.add("hide");
+
+  var element = document.getElementById("addBtnFacultyID");
+  element.classList.add("hide");
+
+  var element = document.getElementById("addBtnDpmentID");
+  element.classList.add("hide");
+
+  var element = document.getElementById("addBtnSubDpmentID");
+  element.classList.add("hide");
+
+}
+
+
+/*กันค่าnull*/
+$(document).ready(function() {
+  $('#IDFormForNewUni .field input').keyup(function() {
+
+    var empty = false;
+    $('.field input').each(function() {
+      if ($(this).val().length == 0) {
+        empty = true;
+      }
+    });
+
+    if (empty) {
+      $('.actions input').attr('disabled', 'disabled');
+    } else {
+      $('.actions input').removeAttr('disabled');
+    }
+  });
 });

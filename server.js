@@ -96,12 +96,14 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
+app.use(bodyParser.json());
+
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
 
-app.use(bodyParser.json());
+
 
 
 
@@ -192,10 +194,17 @@ app.get('/me', function(req, res) {
   });
 });
 
-require('./routes/Department.js')(app);
+// กลุ่มโครงสร้างพื้นฐานของระบบ
+require('./routes/research-type.js')(app);
+require('./routes/research-branch.js')(app);
+require('./routes/research-form.js')(app);
+require('./routes/research-strategic.js')(app);
+require('./routes/department.js')(app);
 
-require('./routes/Research-Type.js')(app);
+require('./routes/research-settings.js')(app);
+
 require('./routes/grants.js')(app);
+
 require('./routes/forms.js')(app, session);
 
 //Sync Database

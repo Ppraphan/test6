@@ -56,18 +56,18 @@
     <li class="link">
       <a href="/"><i class="fas fa-home fa-lg">&nbsp;&nbsp;&nbsp;</i>หน้าแรก</a>
     </li>
-    <li class="link">
+    <li class="link" id="hjkl">
       <a href="#"><i class=" fas fa-address-card fa-lg">&nbsp;&nbsp;&nbsp;</i>จัดการบัญชีผู้ใช้</a>
-      <ul class="menu vertical sublevel-1 submenu">
-        <li><a class="subitem" href="/me">ข้อมูลของฉัน</a></li>
+      <ul class="menu vertical sublevel-1 submenu " >
+        <li><a class="subitem " href="/me">ข้อมูลของฉัน</a></li>
         <li><a class="subitem" href="#">ผู้ใช้ทั้งหมด</a></li>
         <li><a class="subitem" href="/signup">เพิ่มผู้ใช้ใหม่</a></li>
         <li><a class="subitem" href="#">เปลี่ยนรหัสผ่าน</a></li>
       </ul>
     </li>
     <li>
-      <a href="#"><i class="fas fa-flask fa-lg">&nbsp;&nbsp;&nbsp;</i>จัดการโครงการวิจัย</a>
-      <ul class="menu vertical sublevel-1">
+      <a><i class="fas fa-flask fa-lg">&nbsp;&nbsp;&nbsp;</i>จัดการโครงการวิจัย</a>
+      <ul class="menu vertical sublevel-1" id="researchsettingID">
         <li><a class="subitem" href="#">โครงการวิจัยของฉัน</a></li>
         <li><a class="subitem" href="#">โครงการวิจัยทั้งหมด</a></li>
         <li><a class="subitem" href="#">โครงการวิจัยใหม่</a></li>
@@ -82,17 +82,19 @@
     <li>
       <a href="/forms" target="_self"><i class="fas fa-file fa-lg">&nbsp;&nbsp;&nbsp;</i>จัดการแบบฟอร์ม</a>
     </li>
-    <li>
-      <a href="#"><i class="fas fa-tasks fa-lg">&nbsp;&nbsp;&nbsp;</i>จัดการสถานะการดำเนินงาน</a>
-    </li>
-    <li>
-      <a href="/Department"><i class="fas fa-building fa-lg">&nbsp;&nbsp;&nbsp;</i>จัดการหน่วยงาน</a>
-    </li>
-    <li>
-      <a href="/Research-Type"><i class="fas fa-braille fa-lg"></i>&nbsp;&nbsp;&nbsp;จัดการประเภทงานวิจัย</a>
-    </li>
+
     <li>
       <a href="/#"><i class="fas fa-clipboard fa-lg"></i>&nbsp;&nbsp;&nbsp;จัดการรายงาน</a>
+    </li>
+    <li>
+      <a><i class="fas fa-sliders-h fa-lg">&nbsp;&nbsp;&nbsp;</i>ตั้งค่าโครงการวิจัย</a>
+      <ul class="menu vertical sublevel-1" >
+        <li><a class="subitem" href="/department">หน่วยงานในระบบ</a></li>
+        <li><a class="subitem" href="/research-type">ประเภทงานวิจัย</a></li>
+        <li><a class="subitem" href="/research-branch">สาขาการวิจัย</a></li>
+        <li><a class="subitem" href="/research-form">รูปแบบการวิจัย</a></li>
+        <li><a class="subitem" href="/research-strategic">ยุทธศาสตร์</a></li>
+      </ul>
     </li>
     <li>
       <a href="/logout"><i class="fas fa-key fa-lg">&nbsp;&nbsp;&nbsp;</i>ลงชื่อออก</a>

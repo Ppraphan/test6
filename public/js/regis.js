@@ -1,11 +1,3 @@
-$('.add').click(function() {
- 	$(this).after('<div class="block"><input type="text" /><span class="remove">Remove Option</span></div>');
-});
-
-$(document).on('click','.remove',function() {
- 	$(this).parent('div').remove();
-});
-
 jQuery(document).ready(function(){
     // This button will increment the value
     $('[data-quantity="plus"]').click(function(e){
