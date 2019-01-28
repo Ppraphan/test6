@@ -18,20 +18,23 @@ var con = mysql.createConnection({
 });
 
 module.exports = function(app, passport) {
-  app.get('/signup', authController.signup);
-
-  app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/',
-    failureRedirect: '/signup',
-    session: false,
-
-  }));
-
-  app.get("/signup/getDpment/:catdata", function(req, res) {
-    var catdata = req.params.catdata;
+  app.get("/signup/getUniversityName/", function(req, res) {
+    var catdata = req.query.countryData;
     console.log(catdata);
 
-    var sql = "SELECT Sub_Dpment_name FROM project.sub_dpment where Sub_Dpment_Parent ='" + req.params.catdata + "'";
+    var sql = "SELECT * FROM project.university where countryISOCode ='" + catdata + "' ";
+    console.log(sql);
+    con.query(sql, function(err, rows) {
+      if (err) throw err;
+      res.send(rows);
+    });
+  });
+
+  app.get("/signup/getFacultyinUni/", function(req, res) {
+    var catdata = req.query.universityData;
+    console.log(catdata);
+
+    var sql = "SELECT * FROM project.faculty where uniID ='" + catdata + "' ";
     console.log(sql);
     con.query(sql, function(err, rows) {
       console.log(rows);
@@ -39,5 +42,31 @@ module.exports = function(app, passport) {
       res.send(rows);
     });
   });
+
+  app.get("/signup/getDpmentinFac/", function(req, res) {
+    var catdata = req.query.facultyValue;
+    console.log(catdata);
+
+    var sql = "SELECT * FROM project.department where facultyID ='" + catdata + "' ";
+    console.log(sql);
+    con.query(sql, function(err, rows) {
+      if (err) throw err;
+      res.send(rows);
+    });
+  });
+
+  app.get("/signup/getSubinDpment/", function(req, res) {
+    var catdata = req.query.departmentValue;
+    console.log(catdata);
+
+    var sql = "SELECT * FROM project.sub_dpment where Sub_Dpment_Parent ='" + catdata + "' ";
+    console.log(sql);
+    con.query(sql, function(err, rows) {
+      if (err) throw err;
+      res.send(rows);
+    });
+  });
+
+
 
 }

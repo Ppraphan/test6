@@ -6,6 +6,15 @@ module.exports = function(sequelize, Sequelize) {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
+    userPermission: {
+      type: Sequelize.STRING,
+    },
+    nameIDHuman: {
+      type: Sequelize.INTEGER
+    },
+    nameIDReseacher: {
+      type: Sequelize.INTEGER
+    },
     firstname: {
       type: Sequelize.STRING,
       notEmpty: true
@@ -13,6 +22,36 @@ module.exports = function(sequelize, Sequelize) {
     lastname: {
       type: Sequelize.STRING,
       notEmpty: true
+    },
+    engFirstName: {
+      type: Sequelize.STRING,
+      notEmpty: true
+    },
+    engLastName: {
+      type: Sequelize.STRING,
+      notEmpty: true
+    },
+    prefix: {
+      type: Sequelize.STRING,
+      notEmpty: true
+    },
+    academicPositions: {
+      type: Sequelize.STRING
+    },
+    nationality: {
+      type: Sequelize.STRING
+    },
+    birthday: {
+      type: Sequelize.DATE
+    },
+    telNumber: {
+      type: Sequelize.STRING
+    },
+    fristDayJoin: {
+      type: Sequelize.DATE
+    },
+    dayLeft: {
+      type: Sequelize.DATE
     },
     username: {
       type: Sequelize.TEXT
@@ -36,8 +75,7 @@ module.exports = function(sequelize, Sequelize) {
     status: {
       type: Sequelize.ENUM('active', 'inactive'),
       defaultValue: 'active'
-    },
-    
+    }
 
   });
 

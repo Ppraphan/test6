@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="css/forms.css">
+<link rel="stylesheet" href="css/regis.css">
+<link rel="stylesheet" href="css/signup.css">
+<link rel="stylesheet" href="css/foundation-datepicker.css">
+<link rel="stylesheet" href="css/foundation-datepicker.css.map">
+<link rel="stylesheet" href="css/foundation-datepicker.min.css">
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body style="background-color: #efefef;  height: 100vh;">
+  <div class="cell medium-auto medium-cell-block-container">
+    <div class="grid-x">
+      <div class="cell medium-cell-block-y  " style="width:17rem">
+        <% include ../partials/header %>
+      </div>
+      <div class="cell medium-cell-block-y auto">
+        <!-- Inputmask -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
+
+
+
+
+        <div class="grid-y small-6">
+          <div class="cell small-6 full  bgforms" align="left">
+            <div style="padding: 2rem 2rem 2rem 2rem">
+
+              <div class="grid-x ">
+                <div class=" small-6">
+
+                  <h1>เพิ่มผู้ใช้งานใหม่</h1>
+                  <div class=" small-4">
+                    <ol class="progress-indicator">
+                      <li class="is-current" data-step="1">
+                      </li>
+                      <li class="" data-step="2">
+                      </li>
+                      <li class="" data-step="3">
+                      </li>
+                    </ol>
+                  </div>
+                  <div class=" small-4">
+                  </div>
+                  <div class=" small-4">
+                  </div>
+                </div>
+                <div class=" small-6">
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="cell small-6" style="padding:1.5rem; ">
+            <form id="" name="" method="post" action="/signup">
+              <div class="grid-y">
+
+                <div class="cell small-6 ">
+                  <div class="grid-x">
+                    <div class="cell small-2">
+                      <label>กรุณาใส่รหัสบัตรประชาชน
+                        <input name="nameIDHuman" style="margin:0px!important" type="text" data-inputmask="'mask':'9-9999-99999-99-9'" />
+                      </label>
+                    </div>
+                    <div class="cell small-4">
+
+                    </div>
+                    <div class="cell small-4"></div>
+                  </div>
+                </div>
+
+                <div class="cell small-6 " style="padding-top:2rem; ">
+
+                  <a class="button primary">ยืนยัน</a>
+                  <a class="button alert">ยกเลิก</a>
+
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+
+</body>
+
+<footer>
+  <% include ../partials/footer %>
+  <script src="js/regis.js"></script>
+  <script src="js/signup.js"></script>
+  <script src="js/foundation-datepicker.js"></script>
+  <script src="js/foundation-datepicker.min.js"></script>
+</footer>
+
+</html>

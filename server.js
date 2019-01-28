@@ -10,7 +10,6 @@ var express = require('express');
 var app = express();
 var mysql = require('mysql');
 var fileUpload = require('express-fileupload');
-var Vue = require('vue');
 var http = require('http');
 var https = require('https');
 var fs = require('fs');
@@ -19,49 +18,6 @@ var url = require('url');
 var querystring = require('querystring');
 var env = require('dotenv').load()
 var exphbs = require('express-handlebars');
-//Models
-var models = require("./models");
-//load passport strategies
-require('./config/passport/passport.js')(passport, models.user);
-require('./routes/signup.js')(app, passport);
-
-//---- configure passport.js to use the local strategy
-// passport.use(new LocalStrategy({
-//     usernameField: 'email'
-//   },
-//   (email, password, done) => {
-//     axios.get(`http://localhost:5000/users?email=${email}`)
-//       .then(res => {
-//         const user = res.data[0]
-//         if (!user) {
-//           return done(null, false, {
-//             message: 'Invalid credentials.\n'
-//           });
-//         }
-//         if (!bcrypt.compareSync(password, user.password)) {
-//           return done(null, false, {
-//             message: 'Invalid credentials.\n'
-//           });
-//         }
-//         return done(null, user);
-//       })
-//       .catch(error => done(error));
-//   }
-// ));
-//
-// //---- tell passport how to serialize the user
-// passport.serializeUser((user, done) => {
-//   done(null, user.id);
-// });
-//
-// passport.deserializeUser((id, done) => {
-//   axios.get(`http://localhost:5000/users/${id}`)
-//     .then(res => done(null, res.data))
-//     .catch(error => done(error, false))
-// });
-
-//---- add & configure middleware
-
 
 var options = {
   host: 'localhost',
@@ -102,97 +58,26 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-
-
-
-
-
-// var con = mysql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   password: "",
-//   database: "project"
-// });
-//
-// con.connect(function(err) {
-//   if (err) throw err;
-//   console.log("Connedted!");
-// });
-
-
-
-//--- Define authentication middleware BEFORE your routes
-// function ensureAuthenticated(req, res, next) {
-//   if (req.isAuthenticated()) {
-//     return next();
-//   }
-//   res.redirect('/login')
-// }
-//
-// app.all('*', function(req, res, next) {
-//   if (req.path === '/' || req.path === '/login')
-//     next();
-//   else
-//     ensureAuthenticated(req, res, next);
-// });
-
-//---- index page
-// app.get('/',  function(req, res, next) {
-//   res.render('pages/index');
-// });
-
 //Models
 var models = require("./models");
 
 //Routes
 var authRoute = require('./routes/auth.js')(app, passport);
 
-
-//---- create the login get and post routes
-// app.get('/login', (req, res) => {
-//   res.render('pages/login');
-// });
-//
-// app.post('/login', (req, res, next) => {
-//   passport.authenticate('local', (err, user, info) => {
-//     if (info) {
-//       return res.send(info.message)
-//     }
-//     if (err) {
-//       return next(err);
-//     }
-//     if (!user) {
-//       return res.redirect('/login');
-//     }
-//     req.login(user, (err) => {
-//       var me = req.user.id;
-//       if (err) {
-//         return next(err);
-//       }
-//       return res.redirect('/');
-//     })
-//   })(req, res, next);
-// });
-//
-//
-// app.get('/logout', function(req, res) {
-//   req.session.destroy(function(err) {
-//
-//     res.redirect('/'); //Inside a callback… bulletproof!
-//   });
-// });
-
-
-
 app.get('/me', function(req, res) {
   var dataid = req.user.id;
   var dataname = req.user.firstname;
-  // console.log(dataid,dataname);
   res.render('pages/me', {
     dataid,
     dataname
   });
 });
+//Models
+var models = require("./models");
+
+//load passport strategies
+require('./config/passport/passport.js')(passport, models.user);
+require('./routes/signup.js')(app, passport);
 
 // กลุ่มโครงสร้างพื้นฐานของระบบ
 require('./routes/research-type.js')(app);
@@ -213,7 +98,6 @@ models.sequelize.sync().then(function() {
 }).catch(function(err) {
   console.log(err, "Something went wrong with the Database Update!")
 });
-
 
 app.listen(8080);
 console.log('8080 is Running...');

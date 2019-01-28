@@ -17,14 +17,11 @@ var con = mysql.createConnection({
 });
 
 exports.signup = function(req, res) {
-    con.query('SELECT countryISOCode,countryName FROM project.country', function(err, rows) {
-      console.log(rows);
-      if (err)
-        console.log("Error Selecting : %s ", err);
-      res.render('pages/signup', {
-        data: rows
-      });
-    });
+      res.render('pages/signup');    
+}
+
+exports.useridcheck = function(req, res) {
+      res.render('pages/useridcheck');
 }
 
 exports.signin = function(req, res) {

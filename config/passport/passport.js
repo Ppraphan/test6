@@ -46,7 +46,20 @@ module.exports = function(passport, user) {
             email: email,
             password: userPassword,
             firstname: req.body.firstname,
-            lastname: req.body.lastname
+            lastname: req.body.lastname,
+
+            nameIDHuman: req.body.nameIDHuman,
+            nameIDReseacher: req.body.nameIDReseacher,
+            engFirstName: req.body.engFirstName,
+            engLastName: req.body.engLastName,
+            prefix: req.body.prefix,
+            academicPositions: req.body.academicPositions,
+            nationality: req.body.nationality,
+            birthday: req.body.birthday,
+            telNumber: req.body.telNumber,
+            fristDayJoin: req.body.fristDayJoin,
+            dayLeft: req.body.dayLeft,
+            userPermission: req.body.userPermission,
           };
 
           User.create(data).then(function(newUser, created) {
