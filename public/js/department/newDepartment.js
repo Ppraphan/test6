@@ -266,6 +266,9 @@ $(document).ready(function() {
     var facultyName2 = document.getElementById("getFaculty");
     var valuefacultyNameForDisplay = facultyName2.options[facultyName2.selectedIndex].value;
 
+
+    document.getElementById("uniIDFordepartment").value = valuefacultyNameForDisplay;
+
     /*แสดงค่าที่แถบ nav*/
     document.getElementById("countryNameIDdepartmentPage").innerHTML = text;
     document.getElementById("txtUniOutputdepartmentPage").innerHTML = textuniNameForDisplay;
@@ -273,7 +276,6 @@ $(document).ready(function() {
 
     // document.getElementById("countryISOID").value = countryValue33;
     // document.getElementById("uniIDForFaculty").value = valueuniNameForDisplay;
-
 
     var facultyData = valuefacultyNameForDisplay;
     availableTagsForDepartment = [];
@@ -335,6 +337,125 @@ $(document).ready(function() {
           var elementalertDuplicateName2 = document.getElementById("alertDuplicateName3");
           elementalertDuplicateName2.classList.remove("hide");
           var elementalertEmptryName2 = document.getElementById("alertEmptryName3");
+          elementalertEmptryName2.classList.add("hide");
+        }
+      }
+
+    });
+
+  });
+});
+
+/*ฟังก์ชันเปิดการแสดงผลของ หน้าเพิ่มหน่วยงานย่อย(หน่วยงานระดับ 4)*/
+$(document).ready(function() {
+  var availableTagsForSubdepartment = [];
+
+  $('#addBtnSubDpmentID').click(function() {
+    $('#comfirmAddSubdepartmentID').attr('disabled', 'disabled');
+
+    var el1 = document.getElementById("alertEmptryName");
+    el1.classList.add("hide");
+
+    var el2 = document.getElementById("alertDuplicateName");
+    el2.classList.add("hide");
+
+    $('#countryISOID').val('');
+    $('#txtUniOutput').text('');
+
+    var addDataElm = document.getElementById("addDataElm");
+    var addDataElmNewSubdepartment = document.getElementById("addDataElmNewSubdepartment");
+
+    if (addDataElm.style.display === "block") {
+      addDataElmNewSubdepartment.style.display = "block";
+      addDataElm.style.display = "none";
+    }
+
+    /*ดึงค่าประเทศ*/
+    var countryName = document.getElementById("getCountry");
+    var text = countryName.options[countryName.selectedIndex].text;
+
+    /*ดึงค่ามหาวิทยาลัย*/
+    var uniNameForDisplay = document.getElementById("getUni");
+    var textuniNameForDisplay = uniNameForDisplay.options[uniNameForDisplay.selectedIndex].text;
+
+    /*ดึงค่าคณะ*/
+    var facultyNameForDisplay = document.getElementById("getFaculty");
+    var textfacultyNameForDisplay = facultyNameForDisplay.options[facultyNameForDisplay.selectedIndex].text;
+
+    /*ดึงค่าหนวยงานหลัก*/
+    var dpmanetNameForDisplay = document.getElementById("selectDpmantID");
+    var textdpmaetNameForDisplay = dpmanetNameForDisplay.options[dpmanetNameForDisplay.selectedIndex].text;
+
+    /*แสดงค่าที่แถบ nav*/
+    document.getElementById("countryNameIDSubdepartmentPage").innerHTML = text;
+    document.getElementById("txtUniOutputSubdepartmentPage").innerHTML = textuniNameForDisplay;
+    document.getElementById("txtFacultyOutputSubdepartmentPage").innerHTML = textfacultyNameForDisplay;
+    document.getElementById("txtDepartmentOutputSubdepartmentPage").innerHTML = textdpmaetNameForDisplay;
+
+    var dpmentElment = document.getElementById("selectDpmantID");
+    var dpmantID = dpmentElment.options[dpmentElment.selectedIndex].value;
+
+    document.getElementById("dpmentIDForsubdepartment").value = dpmantID;
+
+    availableTagsForSubdepartment = [];
+
+    $.ajax({
+      type: 'GET',
+      url: 'http://127.0.0.1:8080/Department/getSubinDpment/?dpmantID=' + dpmantID,
+      dataType: 'json',
+      success: function(rows) {
+        for (var i = 0; i < rows.length; i++) {
+          availableTagsForSubdepartment.push(rows[i].Sub_Dpment_name);
+        }
+      }
+    });
+
+    /*Check Error*/
+    $('#txtSubdepartmentInput').keyup(function() {
+
+      var inputBo2x = document.getElementById('txtSubdepartmentInput').value;
+      document.getElementById('txtSubdepartmentOutputSubdepartmentPage').innerHTML = inputBo2x;
+
+      var choice2s = availableTagsForSubdepartment;
+      for (let i = 0; i < choice2s.length; i++) {
+
+        var resultOfsearc2h = choice2s.includes(inputBo2x);
+        if (resultOfsearc2h == false) {
+          var empt2y = false;
+          $('#IDFormForNewSubdepartment .field2 input').each(function() {
+            if ($(this).val().length == 0) {
+              empt2y = true;
+            }
+          });
+
+          if ($.trim($('#txtSubdepartmentInput').val()) == '') {
+            $('#comfirmAddSubdepartmentID').attr('disabled', 'disabled');
+            /*Emptyinput*/
+            var elementalertEmptryName2 = document.getElementById("alertEmptryNameSubdpment");
+            elementalertEmptryName2.classList.remove("hide");
+            var elementalertDuplicateName2 = document.getElementById("alertDuplicateNameSubdpment");
+            elementalertDuplicateName2.classList.add("hide");
+          } else {
+            /*เคสผ่าน*/
+            $('#comfirmAddSubdepartmentID').removeAttr('disabled');
+
+            document.getElementById("txtSubdepartmentOutputSubdepartmentPage").style.color = "green";
+
+            var elementalertDuplicateName2 = document.getElementById("alertDuplicateNameSubdpment");
+            elementalertDuplicateName2.classList.add("hide");
+            var elementalertEmptryName2 = document.getElementById("alertEmptryNameSubdpment");
+            elementalertEmptryName2.classList.add("hide");
+          }
+
+        } else {
+          /*Duplicateinput*/
+          $('#comfirmAddSubdepartmentID').attr('disabled', 'disabled');
+
+          document.getElementById("txtSubdepartmentOutputSubdepartmentPage").style.color = "#ff0000";
+
+          var elementalertDuplicateName2 = document.getElementById("alertDuplicateNameSubdpment");
+          elementalertDuplicateName2.classList.remove("hide");
+          var elementalertEmptryName2 = document.getElementById("alertEmptryNameSubdpment");
           elementalertEmptryName2.classList.add("hide");
         }
       }

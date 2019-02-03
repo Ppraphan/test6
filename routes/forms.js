@@ -8,9 +8,8 @@ var querystring = require('querystring');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
 var app = express();
-var flash = require('connect-flash');
+
 
 
 var con = mysql.createConnection({
@@ -22,14 +21,11 @@ var con = mysql.createConnection({
 
 module.exports = function(app) {
   app.use(cookieParser());
-  app.use(flash()); // use connect-flash for flash messages stored in session
 
   app.get('/forms', function(req, res) {
     var query = con.query('SELECT * FROM tpicpart', function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
-      req.flash("msg", "Morning");
-      res.locals.messages = req.flash();
       res.render('pages/forms', {
         data: rows,
       });

@@ -3,7 +3,7 @@
 <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
 
 
-<form id="signup" name="signup" method="post" action="/signup">
+<form id="signup" name="signup" enctype="multipart/form-data" method="post" action="/signup">
 
   <div class="grid-y small-6">
     <div class="cell small-6 full   bgforms" align="left">
@@ -32,14 +32,13 @@
 
             <div align="right" style="padding-right:1rem">
 
-
                 <div class="image-hover-wrapper">
                   <div class="avatar-preview">
                   <a href="#">
                     <div id="imagePreview" class="imagePreview" style="background-image: url(../picture/profile.jpg);"></div>
                     <span class="image-hover-wrapper-reveal">
                       <p>เปลี่ยนรูป<br>
-                      <input type='file' id="imageUpload"  accept=".png, .jpg, .jpeg" />
+                      <input type='file' id="imageUpload" name="profilePic" accept=".png, .jpg, .jpeg" />
                     </p>
 
                     </span>
@@ -48,24 +47,8 @@
 
               </div>
             </div>
-
-            <!-- <div class="avatar-upload">
-              <div class="avatar-edit">
-                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
-                <label for="imageUpload"></label>
-              </div>
-              <div class="avatar-preview">
-                <div id="imagePreview" style="background-image: url(../picture/profile.jpg);">
-                </div>
-              </div>
-            </div> -->
-
-
           </div>
         </div>
-
-
-
 
       </div>
     </div>
@@ -84,7 +67,7 @@
                     <label for="" class="text-left middle" style="margin:0px!important">สิทธิ์การใช้งาน</label>
                   </div>
                   <div class="cell small-8">
-                    <select id="" name="userPermission" style="margin:0px!important">
+                    <select  name="userPermission" style="margin:0px!important">
                       <option value="admin">ผู้ดูแลระบบ</option>
                       <option value="user">นักวิจัย</option>
                     </select>
@@ -111,10 +94,11 @@
               <div class="cell small-6" style="  ">
                 <div class="grid-x grid-padding-x grid-padding-y">
                   <div class="cell small-4">
+
                     <label for="" class="text-left middle" style="margin:0px!important">รหัสบัตรประชาชน</label>
                   </div>
                   <div class="cell small-8">
-                    <input name="nameIDHuman" style="margin:0px!important" type="text" data-inputmask="'mask':'9-9999-99999-99-9'" />
+                    <input name="nameIDHuman" readonly="readonly" style="margin:0px!important" type="text" data-inputmask="'mask':'9-9999-99999-99-9'" value="<%=humid%>" />
                   </div>
                 </div>
               </div>
@@ -198,7 +182,7 @@
                     <label for="" class="text-left middle" style="margin:0px!important">คำนำหน้า</label>
                   </div>
                   <div class="cell small-6">
-                    <select id="" name="prefix" style="margin:0px!important">
+                    <select  name="prefix" style="margin:0px!important">
                       <option value="Mr.">นาย</option>
                       <option value="Mrs.">นาง</option>
                       <option value="Miss.">นางสาว</option>
@@ -437,7 +421,7 @@
                     <label for="" class="text-left middle" style="margin:0px!important">รหัสผ่าน</label>
                   </div>
                   <div class="cell small-8">
-                    <input name="password" style="margin:0px!important" type="password" />
+                    <input name="password" id="inputPassword_ID"style="margin:0px!important" type="text" />
                   </div>
                 </div>
               </div>
@@ -447,7 +431,7 @@
                     <label for="" class="text-left middle" style="margin:0px!important">ยืนยันรหัสผ่าน</label>
                   </div>
                   <div class="cell small-8">
-                    <input name="" style="margin:0px!important" type="password" />
+                    <input name="" id="confirminputPassword_ID" style="margin:0px!important" type="text" />
 
                   </div>
                 </div>
@@ -466,7 +450,8 @@
 
                   </div>
                   <div class="cell small-8">
-                    <span class="label alert " id=""><i class="fi-x-circle"></i>รหัสผ่านไม่ตรงกัน</span>
+                    <span class="label alert hide" id="id_US_Add_Div_alertEmptryPS"><i class="fi-x-circle"></i>กรุณาใส่รหัสผ่าน</span>
+                      <span class="label alert hide" id="id_US_Add_Div_wrongPS"><i class="fi-x-circle"></i>รหัสผ่านไม่ตรงกัน</span>
                   </div>
                 </div>
               </div>
@@ -501,9 +486,7 @@
 
               </div>
               <div class="cell small-6" style="padding:1rem 0rem 1rem 10rem;">
-
-                <input class="button primary" type="submit" value="ยืนยัน" />
-
+                <input class="button primary" id="comfirmUserData" type="submit" value="ยืนยัน" disabled/>
               </div>
 
             </div>

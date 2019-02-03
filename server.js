@@ -79,14 +79,14 @@ var models = require("./models");
 require('./config/passport/passport.js')(passport, models.user);
 require('./routes/signup.js')(app, passport);
 
+require('./routes/alluser.js')(app);
+
 // กลุ่มโครงสร้างพื้นฐานของระบบ
 require('./routes/research-type.js')(app);
 require('./routes/research-branch.js')(app);
 require('./routes/research-form.js')(app);
 require('./routes/research-strategic.js')(app);
 require('./routes/department.js')(app);
-
-require('./routes/research-settings.js')(app);
 
 require('./routes/grants.js')(app);
 

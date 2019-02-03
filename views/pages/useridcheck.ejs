@@ -16,14 +16,12 @@
     <div class="grid-x">
       <div class="cell medium-cell-block-y  " style="width:17rem">
         <% include ../partials/header %>
+        <% include ../partials/flash %>
       </div>
       <div class="cell medium-cell-block-y auto">
         <!-- Inputmask -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
-
-
-
 
         <div class="grid-y small-6">
           <div class="cell small-6 full  bgforms" align="left">
@@ -56,26 +54,26 @@
             </div>
           </div>
           <div class="cell small-6" style="padding:1.5rem; ">
-            <form id="" name="" method="post" action="/signup">
+            <form id="" name="" method="post" action="/useridcheck">
               <div class="grid-y">
 
                 <div class="cell small-6 ">
                   <div class="grid-x">
                     <div class="cell small-2">
                       <label>กรุณาใส่รหัสบัตรประชาชน
-                        <input name="nameIDHuman" style="margin:0px!important" type="text" data-inputmask="'mask':'9-9999-99999-99-9'" />
+                        <input name="nameIDHuman" id="chckNameIDHuman_ID" style="margin:0px!important" type="text" data-inputmask="'mask':'9-9999-99999-99-9'" />
                       </label>
                     </div>
-                    <div class="cell small-4">
+                    <div class="cell small-5">
 
                     </div>
-                    <div class="cell small-4"></div>
+                    <div class="cell small-5"></div>
                   </div>
                 </div>
 
                 <div class="cell small-6 " style="padding-top:2rem; ">
 
-                  <a class="button primary">ยืนยัน</a>
+                  <input type="submit"class="button primary" id="comfirmIDHumanChkPage"value="ยืนยัน">
                   <a class="button alert">ยกเลิก</a>
 
                 </div>

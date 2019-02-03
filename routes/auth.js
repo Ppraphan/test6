@@ -1,24 +1,86 @@
 var authController = require('../controllers/authcontroller.js');
+var axios = require('axios');
+var mysql = require('mysql');
+var fileUpload = require('express-fileupload');
+var fs = require('fs');
+var bodyParser = require("body-parser");
+var url = require('url');
+var querystring = require('querystring');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+
+
+// app.use(multer({
+//   dest: './picture/user-profile/',
+//   rename: function(fieldname, filename) {
+//     return Date.now();
+//   },
+//   limits: {
+//     fileSize: 100000
+//   },
+//   onFileSizeLimit: function(profilePic) {
+//     console.log('Failed: ' + profilePic.originalname + ' is limited');
+//     fs.unlink(profilePic.path);
+//   }
+// }));
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "project"
+});
 
 module.exports = function(app, passport) {
 
   app.get('/useridcheck', isLoggedIn, authController.useridcheck);
 
-  app.post('/useridcheck/:id',function(req, res) {
+  app.post('/useridcheck', function(req, res) {
     var listID = [];
-    var id = req.params.id;
+    var id = req.body.nameIDHuman;
+    console.log("ID = " + id);
 
     var sql = "SELECT nameIDHuman FROM project.users";
-    con.query(sql, function(err, rows) {
+    con.query(sql, function(err, rows, result) {
+      console.log("------------------------------------------------");
       if (err) throw err;
+
       for (var i = 0; i < rows.length; i++) {
         listID.push(rows[i].nameIDHuman);
       }
-    });
+      console.log(listID);
 
+      let result2 = listID;
+      console.log(result2);
+
+      for (let i = 0; i < result2.length; i++) {
+        var resultSearch = result2.includes(id);
+      }
+
+      if (resultSearch == true) {
+        var mses = "ID : " + id + "ถูกใช้ไปแล้ว";
+        res.render("pages/useridcheck", {
+          messages: mses,
+        });
+      } else {
+        res.redirect('/signup?humid=' + id);
+      }
+
+    });
   });
 
-  app.get('/signup', isLoggedIn, authController.signup);
+  app.get('/signup', isLoggedIn, function(req, res) {
+    var humid = req.query.humid;
+    var query = con.query('SELECT countryISOCode,countryName FROM project.country order by countryName', function(err, rows) {
+      if (err)
+        console.log("Error Selecting : %s ", err);
+      res.render('pages/signup', {
+        data: rows,
+        humid: humid,
+      });
+    });
+  });
 
   app.post('/signup', passport.authenticate('local-signup', {
     successRedirect: '/',
@@ -53,6 +115,8 @@ module.exports = function(app, passport) {
     failureRedirect: '/signin'
   }));
 
+function movefile(req, res, next) { 
+ }
 
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())

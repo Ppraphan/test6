@@ -24,16 +24,13 @@ module.exports = function(sequelize, Sequelize) {
       notEmpty: true
     },
     engFirstName: {
-      type: Sequelize.STRING,
-      notEmpty: true
+      type: Sequelize.STRING,      
     },
     engLastName: {
       type: Sequelize.STRING,
-      notEmpty: true
     },
     prefix: {
       type: Sequelize.STRING,
-      notEmpty: true
     },
     academicPositions: {
       type: Sequelize.STRING
@@ -75,7 +72,25 @@ module.exports = function(sequelize, Sequelize) {
     status: {
       type: Sequelize.ENUM('active', 'inactive'),
       defaultValue: 'active'
-    }
+    },
+    country: {
+      type: Sequelize.INTEGER
+    },
+    university: {
+      type: Sequelize.INTEGER
+    },
+    faculty: {
+      type: Sequelize.INTEGER
+    },
+    department: {
+      type: Sequelize.INTEGER
+    },
+    subdepartment: {
+      type: Sequelize.INTEGER
+    },
+    profilePic: {
+      type: Sequelize.TEXT
+    },
 
   });
 

@@ -16,12 +16,11 @@ var con = mysql.createConnection({
   database: "project"
 });
 
-exports.signup = function(req, res) {
-      res.render('pages/signup');    
-}
-
 exports.useridcheck = function(req, res) {
-      res.render('pages/useridcheck');
+  var mses = req.query.valid;
+  res.render('pages/useridcheck', {
+    messages: mses,
+  });
 }
 
 exports.signin = function(req, res) {
@@ -29,7 +28,7 @@ exports.signin = function(req, res) {
 }
 
 exports.dashboard = function(req, res) {
-  res.render('pages/index',);
+  res.render('pages/index', );
 }
 
 exports.logout = function(req, res) {

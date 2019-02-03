@@ -1,3 +1,11 @@
+// slight update to account for browsers not supporting e.which
+function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); };
+// To disable f5
+
+/* OR jQuery >= 1.7 */
+$(document).on("keydown", disableF5);
+
+/*รูปแบบ input */
 $(":input").inputmask();
 
 /*ปฏิทิน*/
@@ -31,6 +39,59 @@ $(document).ready(function() {
   //   closeIcon: 'X',
   //   closeButton: true
   // });
+});
+
+/*เปิด-ปิด ปุ่มยืนยันใส่รหัสรหัสบัตรประาชนหน้าแรก*/
+$(document).ready(function() {
+  $('#comfirmIDHumanChkPage').attr('disabled', 'disabled');
+    $('#chckNameIDHuman_ID').keydown(function() {
+      if($.trim($('#chckNameIDHuman_ID').val()) == ''){
+        $('#comfirmIDHumanChkPage').attr('disabled', 'disabled');
+      }else{
+        $('#comfirmIDHumanChkPage').removeAttr('disabled');
+      }
+    });
+});
+
+/*เปิด-ปิด ปุ่มยืนยัน ช่องใส่รหัสผ่าน หน้าใส่ข้อมูลส่วนตัว*/
+$(document).ready(function() {
+  $('#comfirmUserData').attr('disabled', 'disabled');
+    $('#confirminputPassword_ID').keyup(function() {
+      var inputPassword_ID = document.getElementById('inputPassword_ID').value;
+      var comfirmIDHumanChkPage = document.getElementById('confirminputPassword_ID').value;
+
+      if($.trim($('#confirminputPassword_ID').val()) == ''){
+        $('#comfirmUserData').attr('disabled', 'disabled');
+        /*รหัสผ่านว่างเปล่า*/
+        var elementalertEmptryName1 = document.getElementById("id_US_Add_Div_alertEmptryPS");
+        elementalertEmptryName1.classList.remove("hide");
+
+        var elementalertEmptryName2 = document.getElementById("id_US_Add_Div_wrongPS");
+        elementalertEmptryName2.classList.add("hide");
+      }else{
+        if(inputPassword_ID != comfirmIDHumanChkPage){
+          $('#comfirmUserData').attr('disabled', 'disabled');
+          /*รหัสผ่านไม่ตรงกัน*/
+          var elementalertEmptryName1 = document.getElementById("id_US_Add_Div_alertEmptryPS");
+          elementalertEmptryName1.classList.add("hide");
+
+          var elementalertEmptryName2 = document.getElementById("id_US_Add_Div_wrongPS");
+          elementalertEmptryName2.classList.remove("hide");
+        }
+        else{
+          /*เคสถูก*/
+          $('#comfirmUserData').removeAttr('disabled');
+
+          var elementalertEmptryName2 = document.getElementById("id_US_Add_Div_wrongPS");
+          elementalertEmptryName2.classList.add("hide");
+
+          var elementalertEmptryName1 = document.getElementById("id_US_Add_Div_alertEmptryPS");
+          elementalertEmptryName1.classList.add("hide");
+
+        }
+
+      }
+    });
 });
 
 /*รูปโปรไฟล์*/

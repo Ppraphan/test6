@@ -1,5 +1,6 @@
 <div class="cell small-12 " id="showDataElm" style="display:block;">
   <div style="padding:2.5rem;">
+
     <table id="departmentTable" class="hover unstriped ">
       <thead>
         <tr>
@@ -14,29 +15,46 @@
       <tbody>
         <% if(data.length){
           for(var i = 0;i < data.length;i++) { %>
-          <tr class="showhim ">
-            <td>
-              <%=data[i].countryName%>
-            </td>
-            <td>
-              <%=data[i].uniName%>
-            </td>
-            <td>
-              <%=data[i].facultyName%>
-            </td>
-            <td>
-              <%=data[i].departmentName%>
-            </td>
-            <td>
-              <%=data[i].Sub_Dpment_name%>
-            </td>
-          </tr>
-          <% }
+        <tr class="showhim ">
+          <td>
+            <%=data[i].countryName%>
+          </td>
+
+          <td class="tooltipp">
+            <%=data[i].uniName%>
+            <span class="tooltiptext">
+              <a data-open="editUniNameShowup" id="editUniNameBtn" onclick="fnEditUniNameShowup('<%=data[i].uniName%>','<%=data[i].uniID%>','<%=data[i].countryISOCode%>')" style="color:#FFFFFF;padding-right:10px">แก้ไข</a>
+              <a style="color:#FFFFFF;padding-left:10px">ลบ</a>
+            </span>
+          </td>
+
+          <td class="tooltipforFaculty">
+            <%=data[i].facultyName%>
+            <span class="tooltiptextforFaculty">
+              <a data-open="editFacultyNameShowup" id="" onclick="fnEditFacultyNameShowup('<%=data[i].facultyName%>','<%=data[i].facultyID%>','<%=data[i].uniID%>')" style="color:#FFFFFF;padding-right:10px">แก้ไข</a>
+              <a style="color:#FFFFFF;padding-left:10px">ลบ</a>
+            </span>
+          </td>
+
+          <td class="tooltipforDpment">
+            <%=data[i].departmentName%>
+            <span class="tooltiptextforDpment">
+              <a data-open="editFacultyNameShowup" id="" onclick="fnEditFacultyNameShowup('<%=data[i].facultyName%>','<%=data[i].facultyID%>','<%=data[i].uniID%>')" style="color:#FFFFFF;padding-right:10px">แก้ไข</a>
+              <a style="color:#FFFFFF;padding-left:10px">ลบ</a>
+            </span>
+          </td>
+
+          <td>
+            <%=data[i].Sub_Dpment_name%>
+          </td>
+
+        </tr>
+        <% }
         }else{ %>
-            <tr>
-              <td colspan="3">No user</td>
-            </tr>
-            <% } %>
+        <tr>
+          <td colspan="3">No user</td>
+        </tr>
+        <% } %>
       </tbody>
 
       <tfoot>

@@ -1,0 +1,41 @@
+<div class="cell small-12" style="padding:2.5rem;display:none;" id="addDataElmNewSubdepartment">
+  <h3 class="">เพิ่มหน่วยงานย่อยใหม่</h3>
+  <nav aria-label="You are here:" role="navigation">
+    <ul class="breadcrumbs">
+      <li id="countryNameIDSubdepartmentPage" style="font-size: 130%"></li>
+      <li id="txtUniOutputSubdepartmentPage" style="font-size: 130%;"></li>
+      <li id="txtFacultyOutputSubdepartmentPage" style="font-size: 130%;"></li>
+      <li id="txtDepartmentOutputSubdepartmentPage" style="font-size: 130%;"></li>
+      <li id="txtSubdepartmentOutputSubdepartmentPage" style="font-size: 130%;"></li>
+    </ul>
+  </nav>
+
+  <form id="IDFormForNewSubdepartment" class="" ref='uploadForm' encType="multipart/form-data" action="/department/newsubdepartment/" method="post">
+    <div class="grid-y shink" style="margin-left:25rem;">
+      <div class="grid-x grid-padding-x">
+        <div class="small-2 cell ">
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-y shink" style="margin-left:25rem;">
+      <div class="grid-x grid-padding-x">
+        <div class="small-2 cell ">
+          <label for="middle-label" class="text-left middle"><b>ชื่อหน่วยงานย่อย</b></label>
+        </div>
+        <div class="small-5 cell field2">
+          <input type="hidden" name="NameOfdpmentIDForsubdepartment" id="dpmentIDForsubdepartment">
+          <input type="text" id="txtSubdepartmentInput" name="txtsubdepartmentName" placeholder="ชื่อหน่วยงานย่อยใหม่">
+        </div>
+        <div class="small-5 cell ">
+          <label for="middle-label" class="text-left middle hide" id="alertDuplicateNameSubdpment" style="color:red;">มีชื่อหน่วยงานย่อยนี้แล้ว</label>
+          <label for="middle-label" class="text-left middle hide" id="alertEmptrySubdpment"style="color:red;">กรุณาใส่ชื่อหน่วยงานย่อย</label>
+        </div>
+      </div>
+    </div>
+
+    <input type="submit" value="เพิ่ม" class=" button sendButton" id="comfirmAddSubdepartmentID" disabled="disabled" >
+    <input type="reset" value="ยกเลิก" class="button alert" id="cancelAddsubdepartmentID">
+  </form>
+
+</div>

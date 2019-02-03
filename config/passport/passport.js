@@ -1,6 +1,7 @@
 //load bcrypt
 var bCrypt = require('bcrypt-nodejs');
 
+
 module.exports = function(passport, user) {
   var User = user;
   var LocalStrategy = require('passport-local').Strategy;
@@ -19,6 +20,7 @@ module.exports = function(passport, user) {
     });
   });
 
+
   passport.use('local-signup', new LocalStrategy({
       usernameField: 'email',
       passwordField: 'password',
@@ -35,12 +37,12 @@ module.exports = function(passport, user) {
           email: email
         }
       }).then(function(user) {
-
         if (user) {
           return done(null, false, {
             message: 'That email is already taken'
           });
         } else {
+
           var userPassword = generateHash(password);
           var data = {
             email: email,
@@ -60,6 +62,12 @@ module.exports = function(passport, user) {
             fristDayJoin: req.body.fristDayJoin,
             dayLeft: req.body.dayLeft,
             userPermission: req.body.userPermission,
+
+            country: req.body.country,
+            university: req.body.university,
+            faculty: req.body.faculty,
+            department: req.body.department,
+            subdepartment: req.body.subdepartment,
           };
 
           User.create(data).then(function(newUser, created) {
@@ -73,7 +81,9 @@ module.exports = function(passport, user) {
         }
       });
     }
+
   ));
+
 
   //LOCAL SIGNIN
   passport.use('local-signin', new LocalStrategy({

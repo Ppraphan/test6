@@ -1,0 +1,37 @@
+<div class="reveal mobile-ios-modal" id="editUniNameShowup" data-reveal>
+  <form ref='uploadForm' encType="multipart/form-data" class="" action="/department/updateuniname/" method="post">
+    <div class="">
+      <h3>เปลี่ยนชื่อมหาวิทยาลัย</h3>
+      <div class="grid-y">
+
+        <div class="grid-x" style="padding-top:40px">
+          <div class="cell small-4">
+              <p>ชื่อมหาวิทยาลัยเก่า</p>
+          </div>
+          <div class="cell small-8">
+              <input  type="text" id="displayOlduniname" name="name_displayOlduniname" style="color:#848484;" readonly>
+          </div>
+        </div>
+
+        <div class="grid-x" style="padding-top:10px">
+          <div class="cell small-4">
+            <p>ชื่อมหาวิทยาลัยใหม่</p>
+          </div>
+          <div class="cell small-8 fielduniname">
+            <input type="hidden"  name="oldUniID" id="ID_oldUniID">
+            <input type="hidden"  name="countryISOCode" id="ID_countryISOCode">
+            <input type="text" id="id_edit_newNameUni" name="newUniName" placeholder="ชื่อมหาวิทยาลัยใหม่">
+            <span class="label alert hide" id="alertEmptryName_foredituniName"><i class="fi-x-circle"></i>กรุณากรอกข้อมูล</span>
+            <span class="label alert hide" id="alertDuplicateName_foredituniName"><i class="fi-x-circle"></i>มีชื่อมหาวิทยาลัยนี้แล้ว</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="mobile-ios-modal-options">
+      <input type="submit" name="" id="comfirmUpdateUniName"value="ตกลง" class="button " disabled="disabled" >
+      <button data-close type="reset" class="alert button">ยกเลิก</button>
+    </div>
+  </form>
+</div>

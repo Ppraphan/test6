@@ -1,0 +1,64 @@
+<div class="cell small-12 " id="showDataElm" style="display:block;">
+  <div style="padding:2.5rem;">
+    <table id="allUserTable" class="hover unstriped ">
+      <thead>
+        <tr>
+          <th>รหัสบัตรประชาชน</th>
+          <th>ชื่อ</th>
+          <th>นามสกุล</th>
+          <th>มหาวิทยาลัย</th>
+          <th>คณะ</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% if(data.length){
+          for(var i = 0;i < data.length;i++) { %>
+        <tr class="showhim ">
+          <td>
+            <%=data[i].nameIDHuman%>
+          </td>
+          <td>
+            <%=data[i].firstname%>
+          </td>
+          <td>
+            <%=data[i].lastname%>
+          </td>
+          <td>
+            <%=data[i].uniName%>
+          </td>
+          <td>
+            <%=data[i].facultyName%>
+          </td>
+          <td >
+            <a class="small button primary showme"  href="/forms/download/<%=data[i].Picpart%>">ดู</a>
+          </td>
+          <td>
+            <a class="small button warning showme" href="#">แก้ไข</a>
+          </td>
+          <td>
+            <a class="small button alert showme" data-open="mobile-ios-modal2">ลบ</a>
+          </td>
+        </tr>
+        <% }
+        }else{ %>
+        <tr>
+          <td colspan="3">No user</td>
+        </tr>
+        <% } %>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <th>รหัสบัตรประชาชน</th>
+          <th>ชื่อ</th>
+          <th>นามสกุล</th>
+          <th>มหาวิทยาลัย</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
