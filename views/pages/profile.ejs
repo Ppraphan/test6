@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="css/forms.css">
+<link rel="stylesheet" href="css/regis.css">
+<link rel="stylesheet" href="css/signup.css">
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body style="background-color: #efefef;  height: 100vh;">
+  <div class="cell medium-auto medium-cell-block-container">
+    <div class="grid-x">
+      <div class="cell medium-cell-block-y  " style="width:17rem">
+        <% include ../partials/header %>
+      </div>
+      <div class="cell medium-cell-block-y auto">
+
+
+        <div class="grid-y small-6">
+          <div class="cell small-6 full   bgforms" align="left">
+            <div style="padding: 2rem">
+
+              <div class="grid-x ">
+                <div class=" small-6">
+
+                  <h1>ข้อมูลของฉัน</h1>
+                  <div class=" small-4">
+                    <input class="button warning" type="button" value="แก้ไข" />
+                  </div>
+                  <div class=" small-4">
+                  </div>
+                  <div class=" small-4">
+                  </div>
+                </div>
+                <div class=" small-6">
+
+                  <div align="right" style="padding-right:1rem">
+
+                    <div class="image-hover-wrapper">
+                      <div class="avatar-preview">
+                        <a href="#">
+                          <div id="imagePreview" class="imagePreview" style="background-image: url(../picture/profile.jpg);"></div>
+                          <span class="image-hover-wrapper-reveal">
+                            <p>เปลี่ยนรูป<br>
+                              <input type='file' id="imageUpload" name="profilePic" accept=".png, .jpg, .jpeg" />
+                            </p>
+
+                          </span>
+                        </a>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="cell small-6" style="padding:1.5rem; ">
+            <div class="grid-y ">
+
+              <div class="grid-x " style=" ">
+
+                <div class="cell small-6" style="    padding:0.2rem;">
+                  <div class="grid-x " style=" ">
+
+                    <div class="cell small-6" style="  ">
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-4">
+                          <label for="" class="text-left middle" style="margin:0px!important">สิทธิ์การใช้งาน</label>
+                        </div>
+                        <div class="cell small-8">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important">
+                            <%=data[0].userPermission%></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell small-6" style="  ">
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-4">
+                          <label for="" class="text-left middle" style="margin:0px!important">รหัสนักวิจัย</label>
+                        </div>
+                        <div class="cell small-8">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important">
+                            <%=data[0].nameIDReseacher%></label>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="cell small-6" style="    padding:0.2rem;">
+                  <div class="grid-x " style=" ">
+
+                    <div class="cell small-6" style="  ">
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-4">
+
+                          <label for="" class="text-left middle" style="margin:0px!important">รหัสบัตรประชาชน</label>
+                        </div>
+                        <div class="cell small-8">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important">
+                            <%=data[0].nameIDHuman%></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell small-6" style="  ">
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="grid-x " style=" padding-top: :1em;">
+                <br>
+              </div>
+
+              <div class="grid-x " style=" ">
+
+                <div class="cell small-6" style="    padding:0.2rem;">
+                  <div class="grid-x " style=" ">
+
+                    <div class="cell small-6" style="  ">
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-4">
+                          <label class="text-left middle" style="margin:0px!important">ชื่อ (ภาษาไทย)</label>
+                        </div>
+                        <div class="cell small-8">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important">
+                            <%=data[0].firstname%></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell small-6" style="  ">
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-5">
+                          <label class="text-left middle" style="margin:0px!important">นามสกุล (ภาษาไทย)</label>
+                        </div>
+                        <div class="cell small-7">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important">
+                            <%=data[0].lastname%></label>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="cell small-6" style="    padding:0.2rem;">
+                  <div class="grid-x " style=" ">
+
+                    <div class="cell small-6" style="  ">
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-3">
+                          <label for="" class="text-left middle" style="margin:0px!important">ชื่อ(อังกฤษ)</label>
+                        </div>
+                        <div class="cell small-9">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important">
+                            <%=data[0].engFirstName%></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell small-6" style="  ">
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-4">
+                          <label for="" class="text-left middle" style="margin:0px!important">นามสกุล(อังกฤษ)</label>
+                        </div>
+                        <div class="cell small-8">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important">
+                            <%=data[0].engLastName%></label>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid-x " style=" ">
+
+                <div class="cell small-6" style=" padding:0.25rem;">
+                  <div class="grid-x " style=" ">
+
+                    <div class="cell small-6" >
+
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-4">
+                          <label for="" class="text-left middle" style="margin:0px!important">คำนำหน้า</label>
+                        </div>
+                        <div class="cell small-8">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important">
+                            <%=data[0].prefix%></label>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="cell small-6" style="  ">
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-6">
+                          <label for="" class="text-left middle" style="margin:0px!important">ตำแหน่งทางวิชาการ</label>
+                        </div>
+                        <div class="cell small-6">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important">
+                            <%=data[0].academicPositions%></label>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="cell small-6" style=" padding:0.25rem;">
+                  <div class="grid-x " style=" ">
+
+                    <div class="cell small-6" style="  ">
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-3">
+                          <label for="" class="text-left middle" style="margin:0px!important">สัญชาติ</label>
+                        </div>
+                        <div class="cell small-9">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important">
+                            <%=data[0].nationality%></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell small-6" style="  ">
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-4">
+                          <label class="text-left middle" style="margin:0px!important">วัน/เดือน/ปีเกิด</label>
+                        </div>
+                        <div class="cell small-8">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important"><%=data[0].birthday%> </label>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="grid-x " style=" ">
+
+                <div class="cell small-6" style=" padding:0.25rem;">
+                  <div class="grid-x " style=" ">
+
+                    <div class="cell small-6" >
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-4">
+                          <label for="" class="text-left middle" style="margin:0px!important">เบอร์โทร</label>
+                        </div>
+                        <div class="cell small-8">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important">
+                            <%=data[0].telNumber%></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell small-6" >
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-5">
+                          <label for="" class="text-left middle" style="margin:0px!important">e-mail</label>
+                        </div>
+                        <div class="cell small-7">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important">
+                            <%=data[0].email%></label>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="cell small-6" style=" padding:0.2rem;">
+
+                </div>
+
+              </div>
+
+              <div class="grid-x " style=" padding:1em;">
+              </div>
+              <div class="grid-x " style=" ">
+
+                <div class="cell small-6" style="    padding:0.2rem;">
+                  <div class="grid-x " style=" ">
+
+                    <div class="cell small-6" >
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-4">
+                          <label for="" class="text-left middle" style="margin:0px!important">วันที่เข้าทำงาน</label>
+                        </div>
+                        <div class="cell small-8">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important">
+                            <%=data[0].fristDayJoin%></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell small-6" style="  ">
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-4">
+                          <label for="" class="text-left middle" style="margin:0px!important">วันที่ออก</label>
+                        </div>
+                        <div class="cell small-8">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important">
+                            <%=data[0].dayLeft%></label>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="cell small-6" style=" padding:0.2rem;">
+
+                </div>
+
+              </div>
+              <div class="grid-x " style=" ">
+
+                <div class="cell small-6" style="    padding:0.2rem;">
+                  <div class="grid-x " style=" ">
+
+                    <div class="cell small-6" style="  ">
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-4">
+                          <label for="" class="text-left middle" style="margin:0px!important">ประเทศ</label>
+                        </div>
+                        <div class="cell small-8">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important">
+                            <%=data[0].country%></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell small-6" style="  ">
+
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="cell small-6" style="    padding:0.2rem;">
+                  <div class="grid-x " style=" ">
+
+                    <div class="cell small-6" style="  ">
+
+                    </div>
+                    <div class="cell small-6" style="  ">
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="grid-x " style=" ">
+
+                <div class="cell small-6" style="    padding:0.2rem;">
+                  <div class="grid-x " style=" ">
+
+                    <div class="cell small-6" style="  ">
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-4">
+                          <label for="" class="text-left middle" style="margin:0px!important">มหาวิทยาลัย</label>
+                        </div>
+                        <div class="cell small-8">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important">
+                            <%=data[0].university%></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell small-6" style="  ">
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-4">
+                          <label for="" class="text-left middle" style="margin:0px!important">คณะ</label>
+                        </div>
+                        <div class="cell small-8">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important">
+                            <%=data[0].faculty%></label>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="cell small-6" style="    padding:0.2rem;">
+                  <div class="grid-x " style=" ">
+
+                    <div class="cell small-6" style="  ">
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-4">
+                          <label for="" class="text-left middle" style="margin:0px!important">หน่วยงานหลัก</label>
+                        </div>
+                        <div class="cell small-8">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important">
+                            <%=data[0].department%></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell small-6" style="  ">
+                      <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-4">
+                          <label for="" class="text-left middle" style="margin:0px!important">หน่วยงานย่อย</label>
+                        </div>
+                        <div class="cell small-8">
+                          <label class="text-left middle" style="color: #767676;margin:0px!important">
+                            <%=data[0].subdepartment%></label>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="grid-x " style=" padding:1em;">
+              </div>
+              <div class="grid-x " style=" padding:1em;">
+              </div>
+              <div class="grid-x " style=" padding:1em;">
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+
+
+      </div>
+    </div>
+
+</body>
+
+<footer>
+  <% include ../partials/footer %>
+  <script src="js/regis.js"></script>
+  <script src="js/signup.js"></script>
+  <script src="js/foundation-datepicker.js"></script>
+  <script src="js/foundation-datepicker.min.js"></script>
+</footer>
+
+</html>

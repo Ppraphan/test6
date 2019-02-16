@@ -152,7 +152,7 @@ module.exports = function(app) {
     con.query(sql, function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
-      var mses = encodeURIComponent('เปลี่ยน  ' + oldname + 'เป็น ' + newname + 'เรียบร้อยแล้ว');
+      var mses = encodeURIComponent('เปลี่ยน  ' + oldname + ' เป็น ' + newname + 'เรียบร้อยแล้ว');
       console.log('change to ' + oldname + '=>' + newname + 'already');
       res.redirect('/department?valid=' + mses);
     });
@@ -169,7 +169,24 @@ module.exports = function(app) {
     con.query(sql, function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
-      var mses = encodeURIComponent('เปลี่ยน  ' + oldname + 'เป็น ' + newname + 'เรียบร้อยแล้ว');
+      var mses = encodeURIComponent('เปลี่ยน  ' + oldname + ' เป็น ' + newname + 'เรียบร้อยแล้ว');
+      console.log('change to ' + oldname + '=>' + newname + 'already');
+      res.redirect('/department?valid=' + mses);
+    });
+  });
+
+  /*แก้ไขชื่อหน่วยงานหลัก*/
+  app.post('/department/updatedpmentname/', function(req, res) {
+    var id = req.body.oldDpmentID;
+    var newname = req.body.newDpmentName;
+    var oldname = req.body.name_displayOldDpmentname;
+
+    var sql = "UPDATE project.department SET departmentName='" + newname + "' WHERE departmentID='" + id + "'";
+    console.log(sql);
+    con.query(sql, function(err, rows) {
+      if (err)
+        console.log("Error Selecting : %s ", err);
+      var mses = encodeURIComponent('เปลี่ยน  ' + oldname + ' เป็น ' + newname + 'เรียบร้อยแล้ว');
       console.log('change to ' + oldname + '=>' + newname + 'already');
       res.redirect('/department?valid=' + mses);
     });

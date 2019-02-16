@@ -10,6 +10,16 @@ $(":input").inputmask();
 
 /*ปฏิทิน*/
 $(document).ready(function() {
+  $('#date').fdatepicker({
+    initialDate: '1989/02/12',
+    format: 'yyyy/mm/dd',
+    disableDblClickSelection: true,
+    leftArrow: '<<',
+    leftArrow: '>>',
+    closeIcon: 'X',
+    closeButton: true
+  });
+
   $('#dp1').fdatepicker({
     initialDate: '1989/02/12',
     format: 'yyyy/mm/dd',

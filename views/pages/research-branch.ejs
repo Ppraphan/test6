@@ -62,8 +62,8 @@
 										<span class="label alert hide" id="id_RB_Add_DivEdit_DuplicateName"><i class="fi-x-circle"></i>สาขางานวิจัยนี้ มีแล้ว</span>
 									</div>
 								</div>
-								<input type="submit" value="ยืนยัน" class="button" id="id_RB_Edit_Comfirm_ChangedRBName" disabled="disabled">
-								<input type="reset" onclick="myFunction2()" value="ยกเลิก" class="button alert">
+								<input type="submit" value="ยืนยัน" class="hollow  button" id="id_RB_Edit_Comfirm_ChangedRBName" disabled="disabled">
+								<input type="reset" onclick="myFunction2()" value="ยกเลิก" class=" hollow button alert">
 							</form>
 						</div>
 					</div>
@@ -88,8 +88,8 @@
 										<td>
 											<%=data[i].researchbranchName%>
 										</td>
-										<td><a class="small button warning showme" id="id_RB_Display_DivTable_RBTable" onclick="openEditDiv('<%=data[i].researchbranchName%>')" >แก้ไข</a></td>
-										<td><a class="small button alert showme" onclick="return confirm('คุณต้องการที่จะ ลบ <%= data[i].researchbranchName %> หรือไม่ ?');" href="/research-branch/delete/<%=data[i].researchbranchID %>">ลบ</a></td>
+										<td><a class="small hollow  button warning showme" id="id_RB_Display_DivTable_RBTable" onclick="openEditDiv('<%=data[i].researchbranchName%>')" >แก้ไข</a></td>
+										<td><a class="small hollow  button alert showme" onclick="return confirm('คุณต้องการที่จะ ลบ <%= data[i].researchbranchName %> หรือไม่ ?');" href="/research-branch/delete/<%=data[i].researchbranchID %>">ลบ</a></td>
 
 									</tr>
 									<% }
@@ -113,6 +113,7 @@
 </body>
 
 <footer>
+	  <script src="js/datatable/researchBranch.js"></script>
 	<script src="js/researchBranch.js"></script>
 	<% include ../partials/footer %>
 </footer>

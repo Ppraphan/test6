@@ -63,14 +63,25 @@ var models = require("./models");
 
 //Routes
 var authRoute = require('./routes/auth.js')(app, passport);
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "project"
+});
 
 app.get('/me', function(req, res) {
-  var dataid = req.user.id;
-  var dataname = req.user.firstname;
-  res.render('pages/me', {
-    dataid,
-    dataname
+  var mses = req.query.valid;
+  var sql = "SELECT * FROM project.users"
+  var query = con.query(sql, function(err, rows) {
+    if (err)
+      console.log("Error Selecting : %s ", err);
+    res.render('pages/profile', {
+      data: rows,
+      messages: mses,
+    });
   });
+
 });
 //Models
 var models = require("./models");

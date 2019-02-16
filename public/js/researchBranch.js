@@ -1,3 +1,19 @@
+$(document).ready(function() {
+  // $('.button').hover(function() {
+  //   // var elementalertEmptryName3 = document.getElementsByClassName("button");
+  //   // elementalertEmptryName3.classList.remove("hollow");
+  //   $(".button").removeClass("hollow");
+  // });
+
+  $(".button").hover(function(){
+      $(this ).removeClass("hollow");
+      }, function(){
+          // change to any color that was previously used.
+          $(this ).addClass("hollow");
+      });
+
+});
+
 /*ฟังก์ชันเก็บค่าเก่า-ค่าใหม่ไปแสดงยืนยันการลบ-สาขางานวิจัย*/
 function getfordeleteRSTType(researchbranchName, researchbranchID) {
   document.getElementById("RT_SHOW_ID_RSTtypeName").innerHTML = researchbranchName;

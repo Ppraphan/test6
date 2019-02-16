@@ -144,6 +144,80 @@ function fnEditFacultyNameShowup(oldFacultyname, oldFacultyID, uniID) {
   });
 };
 
+/* ฟังก์เปิดหน้าการแก้ไขชื่อ หน่วยงานหลัก */
+function fnEditDpmentNameShowup(oldDpmentname, oldDpmentID, facultyID) {
+
+  /*get ชื่อหน่วยงานหลักเก่าเพื่อไปแสดงบนหน้าจอ*/
+  var oldDpmentname = oldDpmentname;
+  document.getElementById("displayOldDpmentname").value = oldDpmentname;
+
+  /*get ID หน่วยงานหลักเก่า*/
+  var oldDpmentID = oldDpmentID;
+  document.getElementById("ID_oldDpmentID").value = oldDpmentID;
+
+  /*get ID คณะของหน่วยงานหลักเก่า*/
+  var facultyData = facultyID;
+  document.getElementById("ID_uniIDforEditFacultyName").value = facultyData;
+
+
+
+  var listDpmentName = [];
+
+  $.ajax({
+    type: 'GET',
+    url: 'http://127.0.0.1:8080/Department/getNameofDepartmentinFaculty/?facultyData=' + facultyData,
+    dataType: 'json',
+    success: function(rows) {
+      for (var i = 0; i < rows.length; i++) {
+        listDpmentName.push(rows[i].departmentName);
+      }
+    }
+  });
+
+  $('#id_edit_newNameDpment').keyup(function() {
+    var inputBox_foreditDpmentName = document.getElementById('id_edit_newNameDpment').value;
+
+    var choices_foreditDpmentName = listDpmentName;
+    for (let i = 0; i < choices_foreditDpmentName.length; i++) {
+
+      var resultOfsearch_foreditDpmentName = choices_foreditDpmentName.includes(inputBox_foreditDpmentName);
+      if (resultOfsearch_foreditDpmentName == false) {
+        var empty_foreditDpmentName = false;
+        $('.fieldDpmentname #id_edit_newNameDpment').each(function() {
+          if ($(this).val().length == 0) {
+            empty_foreditDpmentName = true;
+          }
+        });
+
+        if ($.trim($('.fieldDpmentname #id_edit_newNameDpment').val()) == '') {
+          $('#comfirmUpdateDpmentName').attr('disabled', 'disabled');
+
+          var element = document.getElementById("alertEmptryName_foreditDpmentName");
+          element.classList.remove("hide");
+          var element = document.getElementById("alertDuplicateName_foreditDpmentName");
+          element.classList.add("hide");
+        } else {
+          $('#comfirmUpdateDpmentName').removeAttr('disabled');
+
+          var element = document.getElementById("alertDuplicateName_foreditDpmentName");
+          element.classList.add("hide");
+          var element = document.getElementById("alertEmptryName_foreditDpmentName");
+          element.classList.add("hide");
+        }
+
+      } else {
+        $('#comfirmUpdateDpmentName').attr('disabled', 'disabled');
+
+        var element = document.getElementById("alertDuplicateName_foreditDpmentName");
+        element.classList.remove("hide");
+        var element = document.getElementById("alertEmptryName_foreditDpmentName");
+        element.classList.add("hide");
+      }
+    }
+
+  });
+};
+
 /*ฟังก์ชันปิดการแสดงผลของ หน้าเพิ่ม(ยกเลิกการเพิ่มมหาลัย)*/
 $(document).ready(function() {
   $('#cancelAddUnityID').click(function() {

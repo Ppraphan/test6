@@ -2,11 +2,13 @@ html{
   min-width: 1920px!important;
 }
 
+
 .notGoneJustDisappear{
   display: none;
 }
 .button{
   margin: 0px!important;
+  border-radius: 0.5em;
 }
 
 .fullw {

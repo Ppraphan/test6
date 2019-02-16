@@ -1,9 +1,10 @@
+
 {
   "name": "node-ejs",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "json:server": "json-server --watch ./db.json --port 5000"
+    "start":"node ./bin/www",
+    "deploy": "gcloud app deploy"
   },
   "dependencies": {
     "axios": "^0.18.0",
