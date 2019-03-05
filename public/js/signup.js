@@ -5,50 +5,33 @@ function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); }
 /* OR jQuery >= 1.7 */
 $(document).on("keydown", disableF5);
 
-/*รูปแบบ input */
-$(":input").inputmask();
 
-/*ปฏิทิน*/
-$(document).ready(function() {
-  $('#dp1').fdatepicker({
-    initialDate: '1989/02/12',
-    format: 'yyyy/mm/dd',
-    disableDblClickSelection: true,
-    leftArrow: '<<',
-    leftArrow: '>>',
-    closeIcon: 'X',
-    closeButton: true
+/* Input Style */
+$(function () {
+  var showClass = 'show';
+
+  $('input').on('checkval', function () {
+    var label = $(this).prev('label');
+    if(this.value !== '') {
+      label.addClass(showClass);
+    } else {
+      label.removeClass(showClass);
+    }
+  }).on('keyup', function () {
+    $(this).trigger('checkval');
   });
-
-  $('#dp2').fdatepicker({
-    initialDate: '1989/02/12',
-    format: 'yyyy/mm/dd',
-    disableDblClickSelection: true,
-    leftArrow: '<<',
-    leftArrow: '>>',
-    closeIcon: 'X',
-    closeButton: true
-  });
-
-  // $('#dp3').fdatepicker({
-  //   initialDate: '1989/02/12',
-  //   format: 'yyyy/mm/dd',
-  //   disableDblClickSelection: true,
-  //   leftArrow: '<<',
-  //   leftArrow: '>>',
-  //   closeIcon: 'X',
-  //   closeButton: true
-  // });
 });
+
+
 
 /*เปิด-ปิด ปุ่มยืนยันใส่รหัสรหัสบัตรประาชนหน้าแรก*/
 $(document).ready(function() {
-  $('#comfirmIDHumanChkPage').attr('disabled', 'disabled');
-    $('#chckNameIDHuman_ID').keydown(function() {
-      if($.trim($('#chckNameIDHuman_ID').val()) == ''){
-        $('#comfirmIDHumanChkPage').attr('disabled', 'disabled');
+  $('#comfirmemailChkPage').attr('disabled', 'disabled');
+    $('#newemail_ID').keyup(function() {
+      if($.trim($('#newemail_ID').val()) == ''){
+        $('#comfirmemailChkPage').attr('disabled', 'disabled');
       }else{
-        $('#comfirmIDHumanChkPage').removeAttr('disabled');
+        $('#comfirmemailChkPage').removeAttr('disabled');
       }
     });
 });
@@ -107,6 +90,23 @@ function readURL(input) {
   }
 }
 $("#imageUpload").change(function() {
+  readURL(this);
+});
+
+
+/*รูปโปรไฟล์*/
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $('#profileimage2').css('background-image', 'url(' + e.target.result + ')');
+      $('#profileimage2').hide();
+      $('#profileimage2').fadeIn(650);
+    }
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+$("#profileimage").change(function() {
   readURL(this);
 });
 

@@ -1,13 +1,30 @@
+var ajaxURL = 'http://127.0.0.1:8080';
 $(document).foundation();
+$(function() {
+  $('[data-toggle="datepicker"]').datepicker({
+    language: 'th-TH',
+    date: null,
+  });
+});
 
-$(document).ready(function () {
+$(document).ready(function() {
   // window.location = window.location.pathname
-    reset();
+  reset();
 });
 
 function reset() {
-  if ( window.history.replaceState ) {
-      window.history.replaceState( null, null, window.location.pathname );
+  var sgup = "/signup";
+  var currentLocation2 = window.location.pathname.split('?')[0];;
+
+  if (window.history.replaceState) {
+    if (currentLocation2 == sgup) {
+      window.onbeforeunload = function() {
+        return "Data will be lost if you leave the page, are you sure?";
+      };
+    } else {
+      window.history.replaceState(null, null, window.location.pathname);
+    }
+
   }
 }
 
@@ -17,7 +34,7 @@ $(document).ready(function() {
     //   Note the url below. It adds catid=(#categoryBox value from above).
     $.ajax({
       type: 'GET',
-      url: 'http://127.0.0.1:8080/signup/getDpment/' + catdata,
+      url: './signup/getDpment/' + catdata,
       dataType: 'json',
       success: function(rows) {
         $('#games').empty();
@@ -54,7 +71,7 @@ function myFunctiongrants3(data) {
   //   Note the url below. It adds catid=(#categoryBox value from above).
   $.ajax({
     type: 'GET',
-    url: 'http://127.0.0.1:8080/grants/detail/' + catdata2,
+    url: './grants/detail/' + catdata2,
     dataType: 'json',
     success: function(rows) {
       document.getElementById("gYearID").innerHTML = rows[i].grants_Years;
@@ -93,7 +110,7 @@ function myFunctiongrants5(data) {
   //   Note the url below. It adds catid=(#categoryBox value from above).
   $.ajax({
     type: 'GET',
-    url: 'http://127.0.0.1:8080/grants/detail/' + catdata2,
+    url: './grants/detail/' + catdata2,
     dataType: 'json',
     success: function(rows) {
       document.getElementById("gIDEdit").value = rows[i].idGrants;
@@ -190,13 +207,7 @@ $(function() {
 //         }
 //      });
 //  });
-/*ตรงนี้ปิดไว้ก่อน จำไม่ได้ว่าของอะไรบ้าง*/
-$('input[type=file]').change(function() {
-  var hasNoFiles = this.files.length == 0;
-  $(this).closest('form') /* Select the form element */
-    .find('input[type=submit]') /* Get the submit button */
-    .prop('disabled', hasNoFiles); /* Disable the button. */
-});
+
 
 
 $('#myform > input').on('input', function() {

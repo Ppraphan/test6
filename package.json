@@ -2,10 +2,11 @@
   "name": "node-ejs",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "json:server": "json-server --watch ./db.json --port 5000"
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@chenfengyuan/datepicker": "^1.0.7",
     "axios": "^0.18.0",
     "bcrypt-nodejs": "0.0.3",
     "beautify-scrollbar": "^1.0.8",

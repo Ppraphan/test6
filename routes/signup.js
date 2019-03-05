@@ -1,23 +1,57 @@
-var authController = require('../controllers/authcontroller.js');
-var exports = module.exports = {}
-var path = require('path');
 var axios = require('axios');
-var mysql = require('mysql');
 var fileUpload = require('express-fileupload');
 var fs = require('fs');
 var bodyParser = require("body-parser");
 var url = require('url');
 var querystring = require('querystring');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
 
-
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "project"
-});
+const authController = require('../controllers/authcontroller.js');
+var con = require('./connect-db.js'); /*เชื่อมต่อฐานข้อมูล*/
 
 module.exports = function(app, passport) {
+
+  app.get("/addprofile", function(req, res) {
+    var userinfo =req.user;
+    res.render('pages/addprofile',{
+      userinfo:userinfo,
+    });
+  });
+
+  app.post("/addprofile", function(req, res) {
+    var userid;
+    var startup_image = req.files.profileimage;
+    var file_Part = req.files.profileimage.name;
+    var dr2 = (file_Part);
+
+    startup_image.mv('./userprofile/' + file_Part, function(err) {
+      if (startup_image == null) {
+        console.log(err);
+      } else {
+        console.log('../userprofile/' + file_Part + "\t" + "uploaded");
+      }
+    });
+
+    let sql1 = "SELECT id FROM project.users ORDER BY id DESC LIMIT 1";
+    con.query(sql1, function(err, result) {
+      if (err) throw err;
+       userid = result[0].id;
+      console.log("sql1 userid = "+userid);
+
+      let sql = "UPDATE project.users SET profilePic = '" + dr2 + "' WHERE id = '"+userid+"' "
+      con.query(sql, function(err, result) {
+        if (err) throw err;
+        console.log("Insert Complete...");
+      });
+    });
+
+    console.log("out side userid = "+userid);
+    res.redirect('/');
+  });
+
+
   app.get("/signup/getUniversityName/", function(req, res) {
     var catdata = req.query.countryData;
     console.log(catdata);
@@ -66,7 +100,4 @@ module.exports = function(app, passport) {
       res.send(rows);
     });
   });
-
-
-
 }

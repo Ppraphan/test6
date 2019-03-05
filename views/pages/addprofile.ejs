@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="css/regis.css">
+<link rel="stylesheet" href="css/signup.css">
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body style="height: 100vh;">
+  <div class="cell medium-auto medium-cell-block-container">
+    <div class="grid-x">
+      <div class="cell medium-cell-block-y  " style="width:17rem">
+        <% include ../partials/header %>
+      </div>
+      <div class="cell medium-cell-block-y auto">
+        <div class="cell small-6 full  bgforms" align="left">
+          <div style="padding: 2rem">
+            <div class="grid-x">
+              <div class=" small-2"></div>
+              <div class=" small-8">
+                <h1>เพิ่มผู้ใช้งานใหม่</h1>
+              </div>
+              <div class=" small-2"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cell small-6 full" align="center" style="padding:2em;">
+          <div class="grid-x">
+            <div class=" small-2"></div>
+            <div class=" small-6">
+              <ol class="progress-indicator">
+                <li class="is-complete" data-step="1">
+                  <span>กรอกอีเมล</span>
+                </li>
+                <li class="is-complete" data-step="2">
+                  <span>กรอกข้อมูลส่วนตัว</span>
+                </li>
+                <li class="is-current" data-step="3">
+                  <span>เพิ่มรูปประจำตัว</span>
+                </li>
+                <li class="" data-step="4">
+                  <span>โปรไฟล์</span>
+                </li>
+              </ol>
+            </div>
+            <div class=" small-4"></div>
+          </div>
+        </div>
+
+        <div class="cell small-6" style="padding:2rem;">
+          <form onload="document.signup.reset();" enctype="multipart/form-data" method="post" action="/addprofile">
+            <div class="grid-x">
+              <div class="cell small-2"></div>
+              <div class="cell small-6">
+
+                <div class="grid-y grid-margin-y">
+
+                  <!-- ROW กลุ่มข้อมูล -->
+                  <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
+
+                    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                      <label style="font-size:1.5em;">เพิ่มรูปประจำตัว</label>
+                    </div>
+
+                    <div class="grid-y">
+                      <div class="cell small-6" style="padding:0em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+
+                          <div class="cell small-6 ">
+                            <div class="image-hover-wrapper">
+                              <div class="avatar-preview">
+                                <a href="#">
+                                  <div id="profileimage2" class="imagePreview" style="background-image: url(../picture/profile.jpg);"></div>
+                                  <span class="image-hover-wrapper-reveal">
+                                    <p>เปลี่ยนรูป<br>
+                                      <input type='file' id="profileimage" name="profileimage" accept=".png, .jpg, .jpeg" />
+                                    </p>
+                                  </span>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                            <div class="cell small-6"></div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class=" small-2" data-sticky-container style="border-radius:5px;padding-left: 1em;">
+                <div class=" grid-y" data-sticky data-margin-top="22">
+
+                  <div class=" small-6" style="padding-bottom: 1em;">
+                    <input type="submit" value="ต่อไป" class="button primary expanded"  style="border-radius:5px;padding:1em;">
+                  </div>
+
+                  <div class=" small-6">
+                    <a type="button" href="/alluser" class="button hollow  alert expanded" style="border-radius:5px;padding:1em;">ยกเลิก</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+</body>
+
+<footer>
+  <% include ../partials/footer %>
+  <script src="js/regis.js"></script>
+  <script src="js/signup.js"></script>
+</footer>
+
+</html>

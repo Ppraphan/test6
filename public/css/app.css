@@ -1,13 +1,28 @@
-html{
-  min-width: 1920px!important;
+html {
+  min-width: 1920px !important;
+}
+input[type=text]{
+  margin:0px 0px 0px 0px!important;
+  border-radius:5px!important;
+}
+select{
+  margin:0px 0px 0px 0px!important;
+  border-radius:5px!important;
+}
+input[type=submit]{
+  margin: 0px !important;
+  border-radius: 2em;
 }
 
-.notGoneJustDisappear{
+.notGoneJustDisappear {
   display: none;
 }
-.button{
-  margin: 0px!important;
+
+.button {
+  margin: 0px !important;
+  border-radius: 2em;
 }
+
 
 .fullw {
   height: 100vh;
@@ -36,7 +51,7 @@ html{
   width: 10rem;
   border: 0.125rem solid #e6e6e6;
   box-shadow: 0 0 3.125rem rgba(0, 0, 0, 0.18);
-  border-radius: 0;
+  border-radius: 2em;
   background-image: url("//image.ibb.co/i7NbrQ/search_icon_15.png");
   background-position: 0.625rem 0.625rem;
   background-repeat: no-repeat;
@@ -100,10 +115,9 @@ th.active .arrow {
   display: block;
 }
 
-.minh1{
+.minh1 {
   min-height: 15rem;
 }
-
 
 .floated-label-wrapper {
   position: relative;

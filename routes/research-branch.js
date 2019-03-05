@@ -3,20 +3,22 @@ var bodyParser = require('body-parser');
 var querystring = require('querystring');
 
 var con = mysql.createConnection({
-  host: "localhost",
+  host: "35.220.198.55",
   user: "root",
-  password: "",
+  password: "itmyfinalproject",
   database: "project"
-})
+});
 
 module.exports = function(app) {
 
   app.get('/research-branch', function(req, res) {
+    var userinfo =req.user;
     var mses = req.query.valid;
     var query = con.query('SELECT * FROM researchbranch', function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
-      res.render('pages/Research-branch', {
+      res.render('pages/research-branch', {
+        userinfo:userinfo,
         data: rows,
         messages: mses,
       });
@@ -34,6 +36,7 @@ module.exports = function(app) {
   });
 
   app.post('/research-branch', function(req, res) {
+    var userinfo =req.user;
     var file_Name = req.body.file_Name;
     var file_NameLowcase = file_Name.toLowerCase();
     var fName = (file_NameLowcase);
@@ -49,6 +52,7 @@ module.exports = function(app) {
       if (err)
         console.log("Error Selecting : %s ", err);
       res.render('pages/research-branch', {
+          userinfo:userinfo,
         data: rows,
         messages: 'เพิ่ม  '+ mses + '  เรียบร้อยแล้ว',
       });

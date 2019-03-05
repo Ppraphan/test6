@@ -11,14 +11,54 @@
   <% include ../partials/head %>
 </head>
 
-<body style="background-color: #efefef;  height: 100vh;">
+<body style="height: 100vh;">
   <div class="cell medium-auto medium-cell-block-container">
     <div class="grid-x">
       <div class="cell medium-cell-block-y  " style="width:17rem">
         <% include ../partials/header %>
       </div>
       <div class="cell medium-cell-block-y auto">
-        <% include ../pages/signup/newUser %>
+        <div class="cell small-6 full  bgforms" align="left">
+          <div style="padding: 2rem">
+            <div class="grid-x">
+              <div class=" small-2"></div>
+              <div class=" small-8">
+                <h1>เพิ่มผู้ใช้งานใหม่</h1>
+              </div>
+              <div class=" small-2"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cell small-6 full" align="center" style="padding:2em;">
+            <div class="grid-x">
+              <div class=" small-2"></div>
+              <div class=" small-6">
+                <ol class="progress-indicator">
+                  <li class="is-complete" data-step="1">
+                    <span>กรอกอีเมล</span>
+                  </li>
+                  <li class="is-current" data-step="2">
+                    <span>กรอกข้อมูลส่วนตัว</span>
+                  </li>
+                  <li class="" data-step="3">
+                    <span>เพิ่มรูปประจำตัว</span>
+                  </li>
+                  <li class="" data-step="4">
+                    <span>โปรไฟล์</span>
+                  </li>
+                </ol>
+              </div>
+              <div class=" small-4"></div>
+            </div>
+        </div>
+
+        <div class="cell small-6" style="padding:2rem;">
+          <form onload="document.signup.reset();" id="signup" name="signup" enctype="multipart/form-data" method="post" action="/signup">
+          <% include ../pages/signup/newUser %>
+          </form>
+        </div>
+
       </div>
     </div>
 

@@ -1,17 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/zf/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.css" />
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/zf/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.js"></script>
-
 <link rel="stylesheet" href="css/forms.css">
 
 <head>
   <% include ../partials/head %>
-
 </head>
 
 <body>
@@ -28,22 +20,26 @@
               <h1>แบบฟอร์ม</h1>
               <input id="txtSearch" type="search" name="search" placeholder="ค้นหาข้อมูล" class="animated-search-form form-control">
               <div align="right" style="padding-right:1rem">
-                <a class="button secondary" data-open="mobile-ios-modal">อัพโหลดแบบฟอร์ม</a>
+                <a class="button secondary" data-open="mobile-ios-modal" id="ID_DC_newForm">อัพโหลดแบบฟอร์ม</a>
               </div>
 
               <div class="reveal mobile-ios-modal" id="mobile-ios-modal" data-reveal>
-                <form ref='uploadForm' encType="multipart/form-data" class="" action="/forms" method="post">
+                <form id="ID_documentForm"ref='uploadForm' encType="multipart/form-data" class="" action="/forms" method="post">
                   <h3 style="padding-bottom:3%">เพิ่มไฟล์ที่นี่</h3>
                   <div class="mobile-ios-modal-inner">
                     <input type="file" name="foo" accept=".pdf">
                   </div>
-                  <div class="floated-label-wrapper">
-                    <label for="full-name">ชื่อแบบฟอร์ม</label>
-                    <input type="text" id="full-name" name="fName" placeholder="ชื่อแบบฟอร์ม">
+                  <div style="padding:1em 0em 1em 0em;">
+                    <div class="floated-label-wrapper">
+                      <label for="full-name">ชื่อแบบฟอร์ม</label>
+                      <input type="text" id="full-name" name="fName" placeholder="ชื่อแบบฟอร์ม">
+                      <span class="label alert hide" id="ID_DC_insert_duplicatename">ชื่อแบบฟอร์ม นี้มีแล้ว</span>
+                      <span class="label alert hide" id="ID_DC_insert_emptyname">กรุณากรอกชื่อ/อัพโหลด แบบฟอร์ม</span>
+                    </div>
                   </div>
                   <div class="mobile-ios-modal-options">
-                    <input type="submit" name="uploadbutton" value="Upload" class="button " disabled="true">
-                    <button data-close type="reset" class="button ">Cancel</button>
+                    <input type="submit" name="uploadbutton" value="Upload" class="button" disabled="disabled">
+                    <button data-close type="reset" class="button">Cancel</button>
                   </div>
                 </form>
               </div>
@@ -66,8 +62,8 @@
               <table id="form-Table" class="hover unstriped ">
                 <thead>
                   <tr>
-                    <th>NO</th>
-                    <th>รายการ</th>
+                    <th>ลำดับ</th>
+                    <th>ชื่อเอกสาร</th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -81,12 +77,11 @@
                     <td>
                     </td>
                     <td>
-                      <%=data[i].Picname%>
+                      <%=data[i].documentName%>
                     </td>
-                    <td><a class="small button primary showme" href="/forms/download/<%=data[i].Picpart%>">ดาวน์โหลด</a></td>
+                    <td><a class="small button primary showme" href="/forms/download/<%=data[i].documentDir%>">ดาวน์โหลด</a></td>
                     <td><a class="small button warning showme" href="#">แก้ไข</a></td>
                     <td><a class="small button alert showme" data-open="mobile-ios-modal2">ลบ</a></td>
-                    <!-- href="forms/delete/<%=data[i].PicID%>" -->
                   </tr>
                   <% }
                 }else{ %>
@@ -104,6 +99,9 @@
     </div>
     <footer>
       <% include ../partials/footer %>
+      <script src="js/app.js"></script>
+      <script src="js/module/document.js"></script>
+      <script src="js/datatable/forms-Table.js"></script>
     </footer>
   </div>
 </body>

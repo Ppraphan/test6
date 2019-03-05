@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="css/forms.css">
+<link rel="stylesheet" href="css/regis.css">
+<link rel="stylesheet" href="css/signup.css">
+<link rel="stylesheet" href="css/foundation-datepicker.css">
+<link rel="stylesheet" href="css/foundation-datepicker.css.map">
+<link rel="stylesheet" href="css/foundation-datepicker.min.css">
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body style="height: 100vh;">
+  <div class="cell medium-auto medium-cell-block-container">
+    <div class="grid-x">
+      <div class="cell medium-cell-block-y  " style="width:17rem">
+        <% include ../partials/header %>
+      </div>
+      <div class="cell medium-cell-block-y auto">
+        <div class="cell small-6 full  bgforms" align="left">
+          <div style="padding: 2rem">
+            <div class="grid-x">
+              <div class=" small-2"></div>
+              <div class=" small-8">
+                <h1>เพิ่มผู้ใช้งานใหม่</h1>
+              </div>
+              <div class=" small-2"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cell small-6 full" align="center" style="padding:2em;">
+            <div class="grid-x">
+              <div class=" small-2"></div>
+              <div class=" small-6">
+                <ol class="progress-indicator">
+                  <li class="is-complete" data-step="1">
+                    <span>กรอกอีเมล</span>
+                  </li>
+                  <li class="is-current" data-step="2">
+                    <span>กรอกข้อมูลส่วนตัว</span>
+                  </li>
+                  <li class="" data-step="3">
+                    <span>ยืนยันข้อมูล</span>
+                  </li>
+                  <li class="" data-step="4">
+                    <span>เพิ่มรูปประจำตัว</span>
+                  </li>
+                  <li class="" data-step="5">
+                    <span>เรียบร้อย</span>
+                  </li>
+                </ol>
+              </div>
+              <div class=" small-4"></div>
+            </div>
+        </div>
+
+        <div class="cell small-6" style="padding:2rem;">
+          <form id="signup" name="signup" enctype="multipart/form-data" method="post" action="/signup">
+            <div class="grid-x">
+              <div class="cell small-2"></div>
+              <div class="cell small-6">
+
+                <div class="grid-y grid-margin-y">
+
+                  <!-- ROW กลุ่มข้อมูล -->
+                  <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
+
+                    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                      <label style="font-size:1.5em;">ข้อมูลส่วนตัว </label>
+                    </div>
+
+                    <div class="grid-y">
+                      <div class="cell small-6" style="padding:0em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-6 floated-label-wrapper">
+                            <label for="email">E-Mail</label>
+                            <input type="email" name="email" id="newemail_ID" readonly="readonly" placeholder="E-Mail" style="margin:0px!important;border-radius:5px;" value="<%=email%>">
+                          </div>
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-6 floated-label-wrapper">
+                            <label>สิทธิ์การใช้งาน</label>
+                            <select placeholder="สิทธิ์การใช้งาน" name="userPermission" style="margin:0px!important;border-radius:5px;">
+                              <option value="admin">ผู้ดูแลระบบ</option>
+                              <option value="user">ผู้บริหาร</option>
+                              <option value="user">นักวิจัย</option>
+                            </select>
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-3 floated-label-wrapper">
+                            <label for="nameIDReseacher">รหัสนักวิจัย</label>
+                            <input type="text" name="nameIDReseacher" placeholder="รหัสนักวิจัย" style="margin:0px!important;border-radius:5px;" />
+                          </div>
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-3 floated-label-wrapper">
+                            <label for="nameIDHuman">รหัสบัตรประชาชน</label>
+                            <input type="text" name="nameIDHuman" placeholder="รหัสบัตรประชาชน" style="margin:0px!important;border-radius:5px;" />
+                          </div>
+                          <!-- คอลัม 3 -->
+                          <div class="cell small-6 floated-label-wrapper">
+                            <label for="birthday">วัน/เดือน/ปีเกิด</label>
+                            <input type="text" name="birthday" placeholder="วัน/เดือน/ปีเกิด" id="dp1" style="margin:0px!important;border-radius:5px;" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-3 floated-label-wrapper">
+                            <label for="prefix">คำนำหน้า</label>
+                            <select name="prefix" style="margin:0px!important;border-radius:5px;">
+                              <option value="Mr.">นาย</option>
+                              <option value="Mrs.">นาง</option>
+                              <option value="Miss.">นางสาว</option>
+                            </select>
+                          </div>
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-3 floated-label-wrapper">
+                            <label for="academicPositions">ตำแหน่งทางวิชาการ</label>
+                            <input type="text" name="academicPositions" placeholder="ตำแหน่งทางวิชาการ" style="margin:0px!important;border-radius:5px;" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-6 floated-label-wrapper">
+                            <label for="firstname">ชื่อ (ภาษาไทย)</label>
+                            <input type="text" name="firstname" placeholder="ชื่อ (ภาษาไทย)" style="margin:0px!important;border-radius:5px;"  />
+                          </div>
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-6 floated-label-wrapper">
+                            <label for="lastname">นามสกุล (ภาษาไทย)</label>
+                            <input type="text" name="lastname" placeholder="นามสกุล (ภาษาไทย)" style="margin:0px!important;border-radius:5px;"  />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-6 floated-label-wrapper">
+                            <label for="engFirstName">ชื่อ  (ภาษาอังกฤษ)</label>
+                            <input type="text" name="engFirstName" placeholder="ชื่อ  (ภาษาอังกฤษ)" style="margin:0px!important;border-radius:5px;"  />
+                          </div>
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-6 floated-label-wrapper">
+                            <label for="engLastName">นามสกุล (ภาษาอังกฤษ)</label>
+                            <input type="text" name="engLastName" placeholder="นามสกุล (ภาษาอังกฤษ)" style="margin:0px!important;border-radius:5px;"  />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-6 floated-label-wrapper">
+                            <label for="nationality">สัญชาติ</label>
+                            <input type="text" name="nationality" placeholder="สัญชาติ" style="margin:0px!important;border-radius:5px;"  />
+                          </div>
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-6 floated-label-wrapper">
+                            <label for="telNumber">เบอร์โทร</label>
+                            <input type="text" name="telNumber" placeholder="เบอร์โทร" style="margin:0px!important;border-radius:5px;"  />
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  <!-- ROW กลุ่มข้อมูล -->
+                  <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
+
+                    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                      <label style="font-size:1.5em;">ข้อมูลที่ทำงาน</label>
+                    </div>
+
+                    <div class="grid-y">
+                      <div class="cell small-6" style="padding:0em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-6 floated-label-wrapper">
+                            <label for="fristDayJoin">วันที่เข้าทำงาน</label>
+                            <input type="text" name="fristDayJoin" id="dp2" placeholder="วันที่เข้าทำงาน"  style="margin:0px!important;border-radius:5px;">
+                          </div>
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-6 floated-label-wrapper">
+                            <label>วันที่ออก</label>
+                            <input type="text" name="dayLeft"  id="dp3" placeholder="วันที่ออก"style="margin:0px!important;border-radius:5px;">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:0em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-12 floated-label-wrapper">
+                            <label for="country">ประเทศ</label>
+                            <select name="country" id="ID_country" placeholder="ประเทศ" style="margin:0px!important;border-radius:5px;">
+                              <option disabled selected value>เลือก</option>
+                              <% for (var i = 0; i < data.length; i++){ %>
+                              <option value="<%= data[i].countryISOCode %>">
+                                <%=data[i].countryName %>
+                              </option>
+                              <% } %>
+                            </select>
+                          </div>
+
+
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:0em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-12 floated-label-wrapper">
+                            <label for="university">มหาวิทยาลัย</label>
+                            <select name="university" id="ID_university"placeholder="มหาวิทยาลัย"  style="margin:0px!important;border-radius:5px;"></select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:0em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-12 floated-label-wrapper">
+                            <label for="faculty">คณะ</label>
+                            <select name="faculty" id="ID_faculty"placeholder="คณะ" style="margin:0px!important;border-radius:5px;"></select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:0em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-12 floated-label-wrapper">
+                            <label for="department">หน่วยงานหลัก</label>
+                            <select name="department" id="ID_department"placeholder="หน่วยงานหลัก" style="margin:0px!important;border-radius:5px;"></select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:0em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-12 floated-label-wrapper">
+                            <label for="department">หน่วยงานย่อย</label>
+                            <select name="subdepartment" id="ID_subdepartment"  placeholder="หน่วยงานย่อย" style="margin:0px!important;border-radius:5px;"></select>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <!-- ROW กลุ่มข้อมูล -->
+                  <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
+
+                    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                      <label style="font-size:1.5em;">สร้างรหัสผ่าน</label>
+                    </div>
+
+                    <div class="grid-y">
+
+                      <div class="cell small-6" style="padding:0em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-6 floated-label-wrapper">
+                            <label for="fristDayJoin">รหัสผ่าน</label>
+                            <input type="text" name="password" id="inputPassword_ID"placeholder="รหัสผ่าน"  style="margin:0px!important;border-radius:5px;">
+                          </div>
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-6 floated-label-wrapper">
+                            <label for="onfirminputPassword">ยืนยันรหัสผ่าน</label>
+                            <input type="text" name="onfirminputPassword" id="confirminputPassword_ID" placeholder="ยืนยันรหัสผ่าน"style="margin:0px!important;border-radius:5px;">
+                          </div>
+
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class=" small-2" data-sticky-container style="border-radius:5px;padding-left: 1em;">
+                <div class=" grid-y" data-sticky data-margin-top="22">
+
+                  <div class=" small-6" style="padding-bottom: 1em;">
+                    <input type="submit" value="ยืนยัน" class="button primary expanded" id="comfirmUserData" style="border-radius:5px;padding:1em;">
+                  </div>
+
+                  <div class=" small-6">
+                    <a type="button" value="ยกเลิก" href="/" class="button hollow  alert expanded" style="border-radius:5px;padding:1em;"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+</body>
+
+<footer>
+  <% include ../partials/footer %>
+  <script src="js/regis.js"></script>
+  <script src="js/signup.js"></script>
+  <script src="js/foundation-datepicker.js"></script>
+  <script src="js/foundation-datepicker.min.js"></script>
+</footer>
+
+</html>

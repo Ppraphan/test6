@@ -11,80 +11,104 @@
   <% include ../partials/head %>
 </head>
 
-<body style="background-color: #efefef;  height: 100vh;">
+<body style="height: 100vh;">
   <div class="cell medium-auto medium-cell-block-container">
+
     <div class="grid-x">
       <div class="cell medium-cell-block-y  " style="width:17rem">
         <% include ../partials/header %>
         <% include ../partials/flash %>
       </div>
       <div class="cell medium-cell-block-y auto">
-        <!-- Inputmask -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
 
         <div class="grid-y small-6">
+
           <div class="cell small-6 full  bgforms" align="left">
-            <div style="padding: 2rem 2rem 2rem 2rem">
+            <div style="padding: 2rem">
 
-              <div class="grid-x ">
-                <div class=" small-6">
-
+              <div class="grid-x">
+                <div class=" small-2"></div>
+                <div class=" small-8">
                   <h1>เพิ่มผู้ใช้งานใหม่</h1>
-                  <div class=" small-4">
-                    <ol class="progress-indicator">
-                      <li class="is-current" data-step="1">
-                      </li>
-                      <li class="" data-step="2">
-                      </li>
-                      <li class="" data-step="3">
-                      </li>
-                    </ol>
-                  </div>
-                  <div class=" small-4">
-                  </div>
-                  <div class=" small-4">
-                  </div>
                 </div>
-                <div class=" small-6">
-
-                </div>
+                <div class=" small-2"></div>
               </div>
 
             </div>
           </div>
-          <div class="cell small-6" style="padding:1.5rem; ">
+
+          <div class="cell small-6" align="center" style="padding:2em;">
+              <div class="grid-x">
+                <div class=" small-2"></div>
+                <div class=" small-6">
+                  <ol class="progress-indicator">
+                    <li class="is-current" data-step="1">
+                      <span>กรอกอีเมล</span>
+                    </li>
+                    <li class="" data-step="2">
+                      <span>กรอกข้อมูลส่วนตัว</span>
+                    </li>
+                    <li class="" data-step="3">
+                      <span>เพิ่มรูปประจำตัว</span>
+                    </li>
+                    <li class="" data-step="4">
+                      <span>โปรไฟล์</span>
+                    </li>
+                  </ol>
+                </div>
+                <div class=" small-4"></div>
+              </div>
+          </div>
+
+          <div class="cell small-6" style="padding:2rem;">
             <form id="" name="" method="post" action="/useridcheck">
-              <div class="grid-y">
+              <div class="grid-x">
+                <div class=" small-2"></div>
+                <div class=" small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
+                  <div class="grid-y">
 
-                <div class="cell small-6 ">
-                  <div class="grid-x">
-                    <div class="cell small-2">
-                      <label>กรุณาใส่รหัสบัตรประชาชน
-                        <input name="nameIDHuman" id="chckNameIDHuman_ID" style="margin:0px!important" type="text" data-inputmask="'mask':'9-9999-99999-99-9'" />
-                      </label>
-                    </div>
-                    <div class="cell small-5">
+                    <div class="cell small-6">
+                      <div class="grid-y">
+                        <div class="cell small-4" style="border-radius:5px;padding:1em;">
 
+                          <label style="font-size:1.5em;">กรุณาใส่ E-Mail   <i class="far fa-envelope"></i></label>
+
+                        </div>
+                        <div class="cell small-4" style="border-radius:5px;padding:0em 1em 1em 1em;">
+
+
+                          <div class="floated-label-wrapper" >
+                            <label for="newemail">E-Mail</label>
+                            <input type="email" name="newemail" id="newemail_ID" placeholder="E-Mail" style="margin:0px!important;border-radius:5px;">
+                          </div>
+                        </div>
+
+                      </div>
                     </div>
-                    <div class="cell small-5"></div>
+
                   </div>
                 </div>
 
-                <div class="cell small-6 " style="padding-top:2rem; ">
+                <div class="cell small-2" style="border-radius:5px;padding-left: 1em;">
+                  <div class="grid-y">
 
-                  <input type="submit"class="button primary" id="comfirmIDHumanChkPage"value="ยืนยัน">
-                  <a class="button alert">ยกเลิก</a>
+                    <div class=" small-6" style="padding-bottom: 1em;">
+                      <input type="submit" value="ยืนยัน" class="button primary expanded" id="comfirmemailChkPage"  style="border-radius:5px;padding:1em;">
+                    </div>
 
+                    <div class=" small-6">
+                      <a type="button"href="/alluser" class="button hollow  alert expanded" style="border-radius:5px;padding:1em;">ยกเลิก</a>
+                    </div>
+
+
+                  </div>
                 </div>
-
               </div>
+
             </form>
           </div>
+
         </div>
-
-
-
       </div>
     </div>
 

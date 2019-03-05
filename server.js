@@ -20,12 +20,13 @@ var env = require('dotenv').load()
 var exphbs = require('express-handlebars');
 
 var options = {
-  host: 'localhost',
-  port: 3306,
-  user: 'root',
-  password: '',
-  database: 'project'
+    host: '35.220.198.55',
+    port: 3306,
+    user: 'root',
+    password: 'itmyfinalproject',
+    database: 'project'
 };
+
 
 var sessionStore = new MySQLStore(options);
 
@@ -65,11 +66,10 @@ var models = require("./models");
 var authRoute = require('./routes/auth.js')(app, passport);
 
 app.get('/me', function(req, res) {
-  var dataid = req.user.id;
-  var dataname = req.user.firstname;
+  var userinfo =req.user;
+  console.log(userinfo);
   res.render('pages/me', {
-    dataid,
-    dataname
+    userinfo:userinfo,
   });
 });
 //Models
@@ -80,6 +80,9 @@ require('./config/passport/passport.js')(passport, models.user);
 require('./routes/signup.js')(app, passport);
 
 require('./routes/alluser.js')(app);
+
+// กลุ่มโครงการวิจัย
+require('./routes/allproject.js')(app);
 
 // กลุ่มโครงสร้างพื้นฐานของระบบ
 require('./routes/research-type.js')(app);

@@ -1,54 +1,42 @@
 var axios = require('axios');
-var mysql = require('mysql');
 var fileUpload = require('express-fileupload');
 var fs = require('fs');
 var bodyParser = require("body-parser");
 var url = require('url');
 var querystring = require('querystring');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var app = express();
-
-
-
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "project"
-});
+const con = require('./connect-db.js');
 
 module.exports = function(app) {
-  app.use(cookieParser());
 
   app.get('/forms', function(req, res) {
-    var query = con.query('SELECT * FROM tpicpart', function(err, rows) {
+    var userinfo = req.user;
+    var query = con.query('SELECT * FROM project.document', function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
       res.render('pages/forms', {
+        userinfo: userinfo,
         data: rows,
       });
     });
   });
 
   app.get('/forms/delete/:id', function(req, res) {
-    var sql = "SELECT Picpart FROM tpicpart WHERE PicID=" + req.params.id;
+    var userinfo = req.user;
+    var sql = "SELECT documentDir FROM project.document WHERE documentID=" + req.params.id;
+
     con.query(sql, function(err, fields) {
       if (err) throw err;
-      var filePath = './forms/' + fields[0].Picpart;
+      var filePath = './forms/' + fields[0].documentDir;
       console.log(filePath);
       fs.unlinkSync(filePath);
     });
 
-    var query = "DELETE FROM tpicpart WHERE PicID=" + req.params.id;
+    var query = "DELETE FROM project.document WHERE documentID=" + req.params.id;
     console.log(query);
     con.query(query, function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
     });
-    req.flash('msg', 'ลบข้อมูลแล้ว');
-    res.locals.messages = req.flash();
     res.redirect('/forms');
   });
 
@@ -57,12 +45,9 @@ module.exports = function(app) {
     res.download(file); // Set disposition and send it.
   });
 
-  app.get('/new-forms', function(req, res) {
-    res.render('pages/new-forms');
-  });
-
   app.post('/forms', function(req, res) {
 
+    var userinfo = req.user;
     var startup_image = req.files.foo;
     var file_Part = req.files.foo.name;
     var file_Name = req.body.fName;
@@ -79,22 +64,31 @@ module.exports = function(app) {
       }
     });
 
-    sql = "Insert into tpicpart(Picname,Picpart) values('" + dr + "','" + dr2 + "')";
+    sql = "Insert into project.document(documentName,documentDir) values('" + dr + "','" + dr2 + "')";
     con.query(sql, function(err, result) {
       if (err) throw err;
       console.log("Insert Complete...");
     });
 
-    var query = con.query('SELECT * FROM tpicpart', function(err, rows) {
+    var query = con.query('SELECT * FROM project.document', function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
-      req.flash('msg', 'เพิ่มไฟล์แล้ว');
-      res.locals.messages = req.flash();
-      console.log(res.locals.messages);
+
       res.render('pages/forms', {
+        userinfo: userinfo,
         data: rows,
       });
     });
 
+  });
+
+  app.get('/forms/getallofname', function(req, res){
+    var sql = "SELECT documentName FROM project.document";
+    console.log(sql);
+    con.query(sql, function(err, rows) {
+      if (err) throw err;
+      docname = rows;
+      res.send(docname);
+    });
   });
 }

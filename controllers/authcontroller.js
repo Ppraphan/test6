@@ -9,16 +9,19 @@ var url = require('url');
 var querystring = require('querystring');
 
 
+
 var con = mysql.createConnection({
-  host: "localhost",
+  host: "35.220.198.55",
   user: "root",
-  password: "",
+  password: "itmyfinalproject",
   database: "project"
 });
 
 exports.useridcheck = function(req, res) {
+  var userinfo =req.user;
   var mses = req.query.valid;
   res.render('pages/useridcheck', {
+    userinfo:userinfo,
     messages: mses,
   });
 }
@@ -28,7 +31,10 @@ exports.signin = function(req, res) {
 }
 
 exports.dashboard = function(req, res) {
-  res.render('pages/index', );
+  var userinfo =req.user;
+  res.render('pages/index', {
+    userinfo:userinfo,
+  });
 }
 
 exports.logout = function(req, res) {

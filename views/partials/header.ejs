@@ -3,17 +3,29 @@
     <div class="card-section">
       <div class="profile-card-header">
         <div class="profile-card-avatar">
-          <img class="avatar-image" src="./picture/13428.jpg" >
+          <img class="avatar-image" src="./userprofile/<%=userinfo.profilePic%>" >
         </div>
         <div class="profile-card-author">
-          <h5 class="author-title">Praphan Prathumwan</h5>
-          <p class="author-description">Web Developer</p>
+          <h5 class="author-title"><%=userinfo.firstname%> <%=userinfo.lastname%></h5>
+          <% if(userinfo.prefix == "Mr."){ %>
+          <p class="author-description">ผู้ดูแลระบบ</p>
+          <% } else{ %>
+            <% if(userinfo.prefix == "Mrs."){ %>
+            <p class="author-description">นักวิจัย</p>
+            <% } else{ %>
+            <p class="author-description">ผู้บริหาร</p>
+            <% } %>
+          <% } %>
+
+
         </div>
       </div>
       <div class="profile-card-about">
-        <h5 class="about-title separator-left">About Me</h5>
+        <h5 class="about-title separator-left">Research Database</h5>
         <p class="about-content">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          ฐานข้อมูลงานวิจัย<br>
+          คณะวิศวกรรมศาสตร์<br>
+          มทร.ธัญบุรี
         </p>
       </div>
       <div class="profile-card-action">
@@ -62,7 +74,6 @@
         <li><a class="subitem " href="/me">ข้อมูลของฉัน</a></li>
         <li><a class="subitem" href="/alluser">ผู้ใช้ทั้งหมด</a></li>
         <li><a class="subitem" id="newuseridnavi" href="/useridcheck">เพิ่มผู้ใช้ใหม่</a></li>
-        <li><a class="subitem" href="#">เปลี่ยนรหัสผ่าน</a></li>
       </ul>
     </li>
     <li>
@@ -70,7 +81,7 @@
       <ul class="menu vertical sublevel-1" id="researchsettingID">
         <li><a class="subitem" href="#">โครงการวิจัยของฉัน</a></li>
         <li><a class="subitem" href="#">โครงการวิจัยทั้งหมด</a></li>
-        <li><a class="subitem" href="#">โครงการวิจัยใหม่</a></li>
+        <li><a class="subitem" href="/new-project">โครงการวิจัยใหม่</a></li>
       </ul>
     </li>
     <li>

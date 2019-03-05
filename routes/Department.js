@@ -8,31 +8,31 @@ var app = express();
 var querystring = require('querystring');
 
 var con = mysql.createConnection({
-  host: "localhost",
+  host: "35.220.198.55",
   user: "root",
-  password: "",
+  password: "itmyfinalproject",
   database: "project"
 });
 
 module.exports = function(app) {
 
-  app.get('/department/', function(req, res) {
+  app.get('/department', function(req, res) {
+    var userinfo =req.user;
     var mses = req.query.valid;
-    var sameNameUni = 0;
-    var sql = "select * from faculty fac, department en, sub_dpment sd, university u, country c where c.countryISOCode = u.countryISOCode and fac.uniID = u.uniID AND en.facultyID = fac.facultyID AND en.departmentID = sd.Sub_Dpment_Parent;"
+    var sql = "select * from project.faculty , project.department , project.sub_dpment , project.university , project.country where project.country.countryISOCode = project.university.countryISOCode AND project.faculty.uniID = project.university.uniID AND project.department.facultyID = project.faculty.facultyID AND project.department.departmentID = project.sub_dpment.Sub_Dpment_Parent;"
     var query = con.query(sql, function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
-      res.render('pages/Department', {
+      res.render('pages/department', {
+        userinfo:userinfo,
         data: rows,
         messages: mses,
-        sameNameUni: sameNameUni,
       });
     });
   });
 
   /*เพิ่มมหาวิทยาลัยใหม่ อย่างเดียว*/
-  app.post('/department/newuni/', function(req, res) {
+  app.post('/department/newuni', function(req, res) {
     var txtUniName = req.body.txtUniName;
     var txtUniNameLOWCASE = txtUniName.toLowerCase();
     var countryISOCodeName = req.body.countryISOCodeName;
@@ -67,7 +67,7 @@ module.exports = function(app) {
   });
 
   /*เพิ่มคณะใหม่ อย่างเดียว*/
-  app.post('/department/newFaculty/', function(req, res) {
+  app.post('/department/newFaculty', function(req, res) {
     var uniNameForFaculty = req.body.NameOfuniIDForFaculty;
     var txtFacultyName = req.body.txtFacultyName;
     var txtFacultyNameLOWCASE = txtFacultyName.toLowerCase();
@@ -91,12 +91,12 @@ module.exports = function(app) {
     });
 
     var mses = encodeURIComponent('เพิ่ม  ' + txtFacultyName + '  เรียบร้อยแล้ว');
-    res.redirect('/Department?valid=' + mses);
+    res.redirect('/department?valid=' + mses);
 
   });
 
   /*เพิ่มหน่วยงานหลักใหม่ อย่างเดียว*/
-  app.post('/department/newDepartment/', function(req, res) {
+  app.post('/department/newdepartment/', function(req, res) {
     var nameOfuniIDFordepartment = req.body.NameOfuniIDFordepartment;
     var txtdepartmentName = req.body.txtdepartmentName;
     var txtdepartmentNameLOWCASE = txtdepartmentName.toLowerCase();
@@ -174,20 +174,9 @@ module.exports = function(app) {
       res.redirect('/department?valid=' + mses);
     });
   });
-  //
-  // app.get('/Department/delete/:id', function(req, res) {
-  //   var query = "DELETE FROM sub_dpment WHERE Sub_Dpment_ID =" + req.params.id;
-  //   console.log(query);
-  //   con.query(query, function(err, rows) {
-  //     if (err)
-  //       console.log("Error Selecting : %s ", err);
-  //   });
-  //   res.redirect('/Department', {
-  //     messages: "ลบหมดละสัส",
-  //   });
-  // });
 
-  app.get("/Department/getAllCountry/", function(req, res) {
+  app.get("/department/getAllCountry/", function(req, res) {
+    
     var sql = "SELECT * FROM project.country ORDER BY countryName ASC";
     console.log(sql);
     con.query(sql, function(err, rows) {
@@ -196,7 +185,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/Department/getNameUniinCountry/", function(req, res) {
+  app.get("/department/getNameUniinCountry/", function(req, res) {
     var catdata = req.query.countryData;
     console.log(catdata);
 
@@ -209,7 +198,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/Department/getNameofFacultyinUni/", function(req, res) {
+  app.get("/department/getNameofFacultyinUni/", function(req, res) {
     var catdata = req.query.uniData;
     console.log(catdata);
 
@@ -273,7 +262,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/Department/getSubinDpment/", function(req, res) {
+  app.get("/department/getSubinDpment/", function(req, res) {
     var catdata = req.query.dpmantID;
     console.log(catdata);
 

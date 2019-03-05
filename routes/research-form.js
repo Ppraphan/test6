@@ -3,20 +3,22 @@ var bodyParser = require('body-parser');
 var querystring = require('querystring');
 
 var con = mysql.createConnection({
-  host: "localhost",
+  host: "35.220.198.55",
   user: "root",
-  password: "",
+  password: "itmyfinalproject",
   database: "project"
-})
+});
 
 module.exports = function(app) {
 
   app.get('/research-form', function(req, res) {
+    var userinfo =req.user;
     var mses = req.query.valid;
-    var query = con.query('SELECT * FROM researchform', function(err, rows) {
+    var query = con.query('SELECT * FROM project.researchform', function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
       res.render('pages/research-form', {
+        userinfo:userinfo,
         data: rows,
         messages: mses,
       });
@@ -24,7 +26,7 @@ module.exports = function(app) {
   });
 
   app.get("/research-form/reqAlltype/", function(req, res) {
-    var sql = "SELECT researchformName FROM researchform";
+    var sql = "SELECT researchformName FROM project.researchform";
     console.log(sql);
     con.query(sql, function(err, rows) {
       if (err) throw err;
@@ -35,21 +37,23 @@ module.exports = function(app) {
   });
 
   app.post('/research-form', function(req, res) {
+    var userinfo =req.user;
     var file_Name = req.body.file_Name;
     var file_NameLowcase = file_Name.toLowerCase();
     var fName = (file_NameLowcase);
     var mses = file_NameLowcase;
 
-    sql = "Insert into researchform(researchformName) values('" + fName + "')";
+    sql = "Insert into project.researchform(researchformName) values('" + fName + "')";
     con.query(sql, function(err, result) {
       if (err) throw err;
       console.log("Insert Complete...");
     });
 
-    var query = con.query('SELECT * FROM researchform', function(err, rows) {
+    var query = con.query('SELECT * FROM project.researchform', function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
       res.render('pages/research-form', {
+        userinfo:userinfo,
         data: rows,
         messages: 'เพิ่ม  '+ mses + '  เรียบร้อยแล้ว',
       });
@@ -60,7 +64,7 @@ module.exports = function(app) {
     var idRST = req.params.id;
 
     console.log(idRST);
-    var query2 = "DELETE FROM researchform WHERE researchformID='" + idRST + "'";
+    var query2 = "DELETE FROM project.researchform WHERE researchformID='" + idRST + "'";
 
     console.log(query2);
     con.query(query2, function(err, rows) {
@@ -78,14 +82,14 @@ module.exports = function(app) {
     var oldname = req.body.file_Nameold;
     var newname = req.body.file_NameUpdate;
 
-    var sql = "UPDATE researchform SET researchformName ='" + req.body.file_NameUpdate + "' WHERE researchformName ='" + req.body.file_Nameold + "' ";
+    var sql = "UPDATE project.researchform SET researchformName ='" + req.body.file_NameUpdate + "' WHERE researchformName ='" + req.body.file_Nameold + "' ";
     console.log(sql);
     con.query(sql, function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
     });
 
-    var query = "SELECT * FROM researchform"
+    var query = "SELECT * FROM project.researchform"
     console.log(query);
     con.query(query, function(err, rows) {
       if (err)

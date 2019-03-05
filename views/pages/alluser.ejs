@@ -22,19 +22,23 @@
       </div>
 
       <div class="cell medium-cell-block-y auto" style="width:100%">
+
         <div class="cell small-6-container full bgforms" align="center">
           <div style="margin:35px;">
             <h1>จัดการผู้ใช้ในระบบ</h1>
             <input id="txtSearchAllUser" type="search" name="search" placeholder="ค้นหาผู้ใช้งานในระบบ" class="animated-search-form form-control">
             <div align="right" style="padding-right:1rem">
-              <a class="button secondary" >เพิ่มผู้ใช้งานใหม่</a>
+              <a class="button secondary" href="/useridcheck">เพิ่มผู้ใช้งานใหม่</a>
             </div>
           </div>
         </div>
+
+
+
         <div class="grid-x">
 
           <div id="alert-area" class="alert-area"></div>
-          <% include ../pages/alluser/displayData %>
+          <% include ../pages/alluser/displaydata %>
         </div>
       </div>
 
@@ -44,6 +48,7 @@
 </body>
 
 <footer>
+  
   <script src="js/datatable/alluser.js"></script>
   <script src="js/departmentJS.js"></script>
   <script src="js/department/newDepartment.js"></script>

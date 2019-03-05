@@ -17,14 +17,12 @@ module.exports = function(sequelize, Sequelize) {
     },
     firstname: {
       type: Sequelize.STRING,
-      notEmpty: true
     },
     lastname: {
       type: Sequelize.STRING,
-      notEmpty: true
     },
     engFirstName: {
-      type: Sequelize.STRING,      
+      type: Sequelize.STRING,
     },
     engLastName: {
       type: Sequelize.STRING,
@@ -39,16 +37,16 @@ module.exports = function(sequelize, Sequelize) {
       type: Sequelize.STRING
     },
     birthday: {
-      type: Sequelize.DATE
+      type: Sequelize.STRING
     },
     telNumber: {
       type: Sequelize.STRING
     },
     fristDayJoin: {
-      type: Sequelize.DATE
+      type: Sequelize.STRING
     },
     dayLeft: {
-      type: Sequelize.DATE
+      type: Sequelize.STRING,
     },
     username: {
       type: Sequelize.TEXT
@@ -63,8 +61,7 @@ module.exports = function(sequelize, Sequelize) {
       }
     },
     password: {
-      type: Sequelize.STRING,
-      allowNull: false
+      type: Sequelize.STRING,    
     },
     last_login: {
       type: Sequelize.DATE

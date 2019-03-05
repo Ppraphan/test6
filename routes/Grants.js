@@ -1,24 +1,22 @@
 var mysql = require('mysql');
 
-
-
 var con = mysql.createConnection({
-  host: "localhost",
+  host: "35.220.198.55",
   user: "root",
-  password: "",
+  password: "itmyfinalproject",
   database: "project"
 });
-
-
 
 module.exports = function(app) {
 
   app.get('/grants', function(req, res) {
+    var userinfo =req.user;
     var query = con.query('SELECT * FROM project.grants', function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
       res.render('pages/grants', {
-        data: rows
+        userinfo:userinfo,
+        data: rows,
       });
     });
   });

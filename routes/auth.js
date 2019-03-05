@@ -1,6 +1,4 @@
-var authController = require('../controllers/authcontroller.js');
 var axios = require('axios');
-var mysql = require('mysql');
 var fileUpload = require('express-fileupload');
 var fs = require('fs');
 var bodyParser = require("body-parser");
@@ -10,44 +8,26 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 
-
-// app.use(multer({
-//   dest: './picture/user-profile/',
-//   rename: function(fieldname, filename) {
-//     return Date.now();
-//   },
-//   limits: {
-//     fileSize: 100000
-//   },
-//   onFileSizeLimit: function(profilePic) {
-//     console.log('Failed: ' + profilePic.originalname + ' is limited');
-//     fs.unlink(profilePic.path);
-//   }
-// }));
-
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "project"
-});
+var authController = require('../controllers/authcontroller.js');
+var con = require('./connect-db.js');
 
 module.exports = function(app, passport) {
 
   app.get('/useridcheck', isLoggedIn, authController.useridcheck);
 
   app.post('/useridcheck', function(req, res) {
+    var userinfo =req.user;
     var listID = [];
-    var id = req.body.nameIDHuman;
-    console.log("ID = " + id);
+    var email = req.body.newemail;
+    console.log("newemail = " + email);
 
-    var sql = "SELECT nameIDHuman FROM project.users";
+    var sql = "SELECT email FROM project.users";
     con.query(sql, function(err, rows, result) {
       console.log("------------------------------------------------");
       if (err) throw err;
 
       for (var i = 0; i < rows.length; i++) {
-        listID.push(rows[i].nameIDHuman);
+        listID.push(rows[i].email);
       }
       console.log(listID);
 
@@ -55,41 +35,46 @@ module.exports = function(app, passport) {
       console.log(result2);
 
       for (let i = 0; i < result2.length; i++) {
-        var resultSearch = result2.includes(id);
+        var resultSearch = result2.includes(email);
       }
 
       if (resultSearch == true) {
-        var mses = "ID : " + id + "ถูกใช้ไปแล้ว";
+        var mses = "e-mail : " + email + "ถูกใช้ไปแล้ว";
         res.render("pages/useridcheck", {
+          userinfo:userinfo,
           messages: mses,
         });
       } else {
-        res.redirect('/signup?humid=' + id);
+        email = encodeURIComponent(email);
+        res.redirect('/signup?email=' + email);
       }
 
     });
   });
 
   app.get('/signup', isLoggedIn, function(req, res) {
-    var humid = req.query.humid;
+    var userinfo =req.user;
+    var email = req.query.email;
     var query = con.query('SELECT countryISOCode,countryName FROM project.country order by countryName', function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
       res.render('pages/signup', {
+        userinfo:userinfo,
         data: rows,
-        humid: humid,
+        email: email,
       });
     });
   });
 
   app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/',
+    successRedirect: '/addprofile',
     failureRedirect: '/signup',
     session: false,
   }));
 
   app.get("/signup/getDpment/:catdata", function(req, res) {
     var catdata = req.params.catdata;
+
     console.log(catdata);
 
     var sql = "SELECT Sub_Dpment_name FROM project.sub_dpment where Sub_Dpment_Parent ='" + req.params.catdata + "'";
@@ -106,7 +91,7 @@ module.exports = function(app, passport) {
 
 
   // app.get('/', isLoggedIn);
-  app.get('/', isLoggedIn, authController.dashboard);
+  app.get('/', isLoggedIn, authController.dashboard,);
 
   app.get('/logout', authController.logout);
 
@@ -115,7 +100,7 @@ module.exports = function(app, passport) {
     failureRedirect: '/signin'
   }));
 
-function movefile(req, res, next) { 
+function movefile(req, res, next) {
  }
 
   function isLoggedIn(req, res, next) {

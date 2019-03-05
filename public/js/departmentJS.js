@@ -12,8 +12,6 @@ function fnEditUniNameShowup(oldUniname, oldUniID, countryISOCode) {
   var countryData = countryISOCode;
   document.getElementById("ID_countryISOCode").value = countryData;
 
-
-
   var listUniName = [];
 
   $.ajax({
