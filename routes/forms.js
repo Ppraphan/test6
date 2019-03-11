@@ -6,6 +6,7 @@ var url = require('url');
 var querystring = require('querystring');
 const con = require('./connect-db.js');
 
+
 module.exports = function(app) {
 
   app.get('/forms', function(req, res) {
@@ -13,6 +14,7 @@ module.exports = function(app) {
     var query = con.query('SELECT * FROM project.document', function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
+
       res.render('pages/forms', {
         userinfo: userinfo,
         data: rows,
@@ -56,7 +58,7 @@ module.exports = function(app) {
     var dr2 = (file_Part);
 
 
-    startup_image.mv('./forms/' + file_Part, function(err) {
+    startup_image.mv('./forms/' + file_Name + '.pdf', function(err) {
       if (startup_image == null) {
         console.log(err);
       } else {

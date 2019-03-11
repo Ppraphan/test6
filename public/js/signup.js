@@ -111,7 +111,7 @@ $("#profileimage").change(function() {
 });
 
 /* โหลดรายชื่อหน่วยงานต่าง ๆ*/
-$(document).ready(function() {
+$(document).ready(function() { 
 
   /* โหลดรายชื่อมหาวิทยาลัยจากประเทศที่เลือก*/
   $('#ID_country').change(function() {
@@ -120,17 +120,17 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: 'http://127.0.0.1:8080/signup/getUniversityName/?countryData=' + countryData,
+      url: ajaxURL + '/signup/getUniversityName/?countryData=' + countryData,
       dataType: 'json',
       success: function(rows) {
         $('#ID_university').empty();
-        $('#ID_faculty').empty();
-        $('#ID_department').empty();
-        $('#ID_subdepartment').empty();
+        $('#ID_faculty').append('<option selected="selected" value="-">' + "เลือก" + '</option>');
+        $('#ID_department').append('<option selected="selected" value="-">' + "เลือก" + '</option>');
+        $('#ID_subdepartment').append('<option selected="selected" value="-">' + "เลือก" + '</option>');
 
-        $('#ID_university').append('<option disabled selected value>' + "เลือก" + '</option>');
+
         for (var i = 0; i < rows.length; i++) {
-          $('#ID_university').append('<option value="' + rows[i].uniID + '">' + rows[i].uniName + '</option>')
+          $('#ID_university').append('<option selec value="' + rows[i].uniID + '">' + rows[i].uniName + '</option>')
         }
       }
     });
@@ -143,14 +143,14 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: 'http://127.0.0.1:8080/signup/getFacultyinUni/?universityData=' + universityData,
+      url: ajaxURL + '/signup/getFacultyinUni/?universityData=' + universityData,
       dataType: 'json',
       success: function(rows) {
         $('#ID_faculty').empty();
         $('#ID_department').empty();
         $('#ID_subdepartment').empty();
 
-        $('#ID_faculty').append('<option disabled selected value>' + "เลือก" + '</option>');
+        $('#ID_faculty').append('<option selected="selected" hidden>' + "เลือก" + '</option>');
         for (var i = 0; i < rows.length; i++) {
           $('#ID_faculty').append('<option value="' + rows[i].facultyID + '">' + rows[i].facultyName + '</option>')
         }
@@ -165,13 +165,13 @@ $(document).ready(function() {
 
       $.ajax({
         type: 'GET',
-        url: 'http://127.0.0.1:8080/signup/getDpmentinFac/?facultyValue=' + facultyValue,
+        url: ajaxURL + '/signup/getDpmentinFac/?facultyValue=' + facultyValue,
         dataType: 'json',
         success: function(rows) {
           $('#ID_department').empty();
           $('#ID_subdepartment').empty();
 
-          $('#ID_department').append('<option disabled selected value>' + "เลือก" + '</option>');
+          $('#ID_department').append('<option selected="selected" hidden>' + "เลือก" + '</option>');
           for (var i = 0; i < rows.length; i++) {
             $('#ID_department').append('<option value="' + rows[i].departmentID + '">' + rows[i].departmentName + '</option>')
           }
@@ -186,12 +186,12 @@ $(document).ready(function() {
 
       $.ajax({
         type: 'GET',
-        url: 'http://127.0.0.1:8080/signup/getSubinDpment/?departmentValue=' + departmentValue,
+        url: ajaxURL + '/signup/getSubinDpment/?departmentValue=' + departmentValue,
         dataType: 'json',
         success: function(rows) {
           $('#ID_subdepartment').empty();
 
-          $('#ID_subdepartment').append('<option disabled selected value>' + "เลือก" + '</option>');
+          $('#ID_subdepartment').append('<option selected="selected" hidden>' + "เลือก" + '</option>');
           for (var i = 0; i < rows.length; i++) {
             $('#ID_subdepartment').append('<option value="' + rows[i].Sub_Dpment_ID + '">' + rows[i].Sub_Dpment_name + '</option>')
           }

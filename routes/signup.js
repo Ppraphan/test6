@@ -14,40 +14,58 @@ var con = require('./connect-db.js'); /*เชื่อมต่อฐานข�
 module.exports = function(app, passport) {
 
   app.get("/addprofile", function(req, res) {
-    var userinfo =req.user;
-    res.render('pages/addprofile',{
-      userinfo:userinfo,
+    var userinfo = req.user;
+    res.render('pages/addprofile', {
+      userinfo: userinfo,
     });
   });
 
   app.post("/addprofile", function(req, res) {
     var userid;
-    var startup_image = req.files.profileimage;
-    var file_Part = req.files.profileimage.name;
-    var dr2 = (file_Part);
 
-    startup_image.mv('./userprofile/' + file_Part, function(err) {
-      if (startup_image == null) {
-        console.log(err);
-      } else {
-        console.log('../userprofile/' + file_Part + "\t" + "uploaded");
-      }
-    });
-
-    let sql1 = "SELECT id FROM project.users ORDER BY id DESC LIMIT 1";
-    con.query(sql1, function(err, result) {
-      if (err) throw err;
-       userid = result[0].id;
-      console.log("sql1 userid = "+userid);
-
-      let sql = "UPDATE project.users SET profilePic = '" + dr2 + "' WHERE id = '"+userid+"' "
-      con.query(sql, function(err, result) {
+    if (startup_image == null) {
+      let sql1 = "SELECT id FROM project.users ORDER BY id DESC LIMIT 1";
+      con.query(sql1, function(err, result) {
         if (err) throw err;
-        console.log("Insert Complete...");
-      });
-    });
+        userid = result[0].id;
+        console.log("sql1 userid = " + userid);
 
-    console.log("out side userid = "+userid);
+        let sql = "UPDATE project.users SET profilePic = 'default-profile.jpg' WHERE id = '" + userid + "' "
+        con.query(sql, function(err, result) {
+          if (err) throw err;
+          console.log("Insert Complete...");
+        });
+      });
+    } else {
+      
+      var startup_image = req.files.profileimage;
+      var file_Part = req.files.profileimage.name;
+      var dr2 = (file_Part);
+
+      startup_image.mv('./userprofile/' + file_Part, function(err) {
+        if (startup_image == null) {
+          console.log(err);
+        } else {
+          console.log('../userprofile/' + file_Part + "\t" + "uploaded");
+        }
+      });
+
+      let sql1 = "SELECT id FROM project.users ORDER BY id DESC LIMIT 1";
+      con.query(sql1, function(err, result) {
+        if (err) throw err;
+        userid = result[0].id;
+        console.log("sql1 userid = " + userid);
+
+        let sql = "UPDATE project.users SET profilePic = '" + dr2 + "' WHERE id = '" + userid + "' "
+        con.query(sql, function(err, result) {
+          if (err) throw err;
+          console.log("Insert Complete...");
+        });
+      });
+
+    }
+
+    console.log("out side userid = " + userid);
     res.redirect('/');
   });
 

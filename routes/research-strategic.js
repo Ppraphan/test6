@@ -1,13 +1,7 @@
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var querystring = require('querystring');
-
-var con = mysql.createConnection({
-  host: "35.220.198.55",
-  user: "root",
-  password: "itmyfinalproject",
-  database: "project"
-});
+const con = require('./connect-db.js');
 
 module.exports = function(app) {
 

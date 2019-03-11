@@ -12,9 +12,6 @@ module.exports = function(sequelize, Sequelize) {
     nameIDHuman: {
       type: Sequelize.INTEGER
     },
-    nameIDReseacher: {
-      type: Sequelize.INTEGER
-    },
     firstname: {
       type: Sequelize.STRING,
     },
@@ -51,9 +48,6 @@ module.exports = function(sequelize, Sequelize) {
     username: {
       type: Sequelize.TEXT
     },
-    about: {
-      type: Sequelize.TEXT
-    },
     email: {
       type: Sequelize.STRING,
       validate: {
@@ -61,7 +55,7 @@ module.exports = function(sequelize, Sequelize) {
       }
     },
     password: {
-      type: Sequelize.STRING,    
+      type: Sequelize.STRING,
     },
     last_login: {
       type: Sequelize.DATE
@@ -71,19 +65,19 @@ module.exports = function(sequelize, Sequelize) {
       defaultValue: 'active'
     },
     country: {
-      type: Sequelize.INTEGER
+      type: Sequelize.STRING
     },
     university: {
-      type: Sequelize.INTEGER
+      type: Sequelize.STRING
     },
     faculty: {
-      type: Sequelize.INTEGER
+      type: Sequelize.STRING
     },
     department: {
-      type: Sequelize.INTEGER
+      type: Sequelize.STRING
     },
     subdepartment: {
-      type: Sequelize.INTEGER
+      type: Sequelize.STRING
     },
     profilePic: {
       type: Sequelize.TEXT

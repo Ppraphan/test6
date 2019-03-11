@@ -1,0 +1,51 @@
+<div style="padding:2.5rem;" id="pageShowAllGrants">
+  <table id="grantstable" class="hover unstriped ">
+    <thead>
+      <tr>
+        <th>ชื่อทุนวิจัย</th>
+        <th>ประเภททุนวิจัย</th>
+        <th>ปีทุนวิจัย</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% if(data.length){
+      for(var i = 0;i < data.length;i++) { %>
+      <tr class="showhim ">
+        <td>
+          <a class="nameRsearch" href="#" onclick="myFunctiongrants3('<%=data[i].idGrants%>')">
+            <%=data[i].grants_Name%>
+          </a>
+        </td>
+        <td>
+          <%=data[i].grants_Type%>
+        </td>
+        <td>
+          <%=data[i].grants_Years%>
+        </td>
+        <td>
+          <a style="color:#ffae00;" class="showme" href="#" onclick="myFunctiongrants5('<%=data[i].idGrants%>')">แก้ไข</a>
+        </td>
+        <td>
+          <a style="color:#cc4b37;" class="showme" href="grants/delete/<%=data[i].idGrants %>">ลบ</a>
+        </td>
+      </tr>
+      <% }
+    }else{ %>
+      <tr>
+        <td colspan="3">No user</td>
+      </tr>
+      <% } %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>ชื่อทุนวิจัย</th>
+        <th>ประเภททุนวิจัย</th>
+        <th>ปีทุนวิจัย</th>
+
+      </tr>
+    </tfoot>
+  </table>
+</div>

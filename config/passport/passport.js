@@ -51,7 +51,6 @@ module.exports = function(passport, user) {
             lastname: req.body.lastname,
 
             nameIDHuman: req.body.nameIDHuman,
-            nameIDReseacher: req.body.nameIDReseacher,
             engFirstName: req.body.engFirstName,
             engLastName: req.body.engLastName,
             prefix: req.body.prefix,

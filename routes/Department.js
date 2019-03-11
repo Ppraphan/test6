@@ -1,18 +1,4 @@
-var mysql = require('mysql');
-var express = require('express');
-
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var app = express();
-var querystring = require('querystring');
-
-var con = mysql.createConnection({
-  host: "35.220.198.55",
-  user: "root",
-  password: "itmyfinalproject",
-  database: "project"
-});
+var con = require('./connect-db.js'); /*เชื่อมต่อฐานข้อมูล*/
 
 module.exports = function(app) {
 
@@ -176,7 +162,7 @@ module.exports = function(app) {
   });
 
   app.get("/department/getAllCountry/", function(req, res) {
-    
+
     var sql = "SELECT * FROM project.country ORDER BY countryName ASC";
     console.log(sql);
     con.query(sql, function(err, rows) {

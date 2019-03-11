@@ -5,6 +5,16 @@ input[type=text]{
   margin:0px 0px 0px 0px!important;
   border-radius:5px!important;
 }
+
+input[type=number]{
+  margin:0px 0px 0px 0px!important;
+  border-radius:5px!important;
+}
+
+input[type=radio]{
+  margin:0px 0px 0px 0px!important;
+  border-radius:5px!important;
+}
 select{
   margin:0px 0px 0px 0px!important;
   border-radius:5px!important;

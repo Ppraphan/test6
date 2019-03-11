@@ -9,14 +9,6 @@ var url = require('url');
 var querystring = require('querystring');
 
 
-
-var con = mysql.createConnection({
-  host: "35.220.198.55",
-  user: "root",
-  password: "itmyfinalproject",
-  database: "project"
-});
-
 exports.useridcheck = function(req, res) {
   var userinfo =req.user;
   var mses = req.query.valid;
