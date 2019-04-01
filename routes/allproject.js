@@ -8,16 +8,19 @@ module.exports = function(app) {
     var userinfo = req.user;
     var mses = req.query.valid;
 
-    var sql = "SELECT idproject,projectNameTH,departmentName,grants_Years FROM project.project,project.department,project.grants WHERE project.project.idGrant = project.grants.idGrants AND  project.project.departmentID = project.department.departmentID";
+    var idOfProj = req.params;
+    console.log(idOfProj);
 
-    con.query(sql, function(err, rows) {
-      res.render('pages/project', {
-        userinfo: userinfo,
-        messages: mses,
-        
-        data0: rows,
-      });
-    });
+    // var sql = "SELECT idproject,projectNameTH,departmentName,grants_Years FROM project.project,project.department,project.grants WHERE project.project.idGrant = project.grants.idGrants AND  project.project.departmentID = project.department.departmentID";
+    //
+    // con.query(sql, function(err, rows) {
+    //   res.render('pages/project', {
+    //     userinfo: userinfo,
+    //     messages: mses,
+    //
+    //     data0: rows,
+    //   });
+    // });
 
   });
 
