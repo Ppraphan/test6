@@ -3,7 +3,7 @@
     <table id="allUserTable" class="hover unstriped ">
       <thead>
         <tr>
-          <th>รหัสบัตรประชาชน</th>
+          <th>อีเมล</th>
           <th>ชื่อ</th>
           <th>นามสกุล</th>
           <th>มหาวิทยาลัย</th>
@@ -19,7 +19,7 @@
           for(var i = 0;i < data.length;i++) { %>
         <tr class="showhim ">
           <td>
-            <%=data[i].nameIDHuman%>
+            <%=data[i].email%>
           </td>
           <td>
             <%=data[i].firstname%>
@@ -53,10 +53,14 @@
 
       <tfoot>
         <tr>
-          <th>รหัสบัตรประชาชน</th>
+          <th>อีเมล</th>
           <th>ชื่อ</th>
           <th>นามสกุล</th>
           <th>มหาวิทยาลัย</th>
+          <th>คณะ</th>
+          <th></th>
+          <th></th>
+          <th></th>
         </tr>
       </tfoot>
     </table>

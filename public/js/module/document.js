@@ -1,27 +1,21 @@
 /* ไฟล์เฉพาะ ฟีเจอร์เอกสาร */
-// $('input[type=file]').change(function() {
-//   var hasNoFiles = this.files.length == 0;
-//   $(this).closest('form') /* Select the form element */
-//     .find('input[type=submit]') /* Get the submit button */
-//     .prop('disabled', hasNoFiles); /* Disable the button. */
-// });
+var myfile = "";
+$('#resume_link').click(function(e) {
+  e.preventDefault();
+  $('#id_DocFile').trigger('click');
+});
 
-// $(document).ready(function() {
-//     $("#ID_documentForm input[type=submit]").click(function() {
-//         $("#ID_documentForm input").each(function() {
-//             if(!isNaN(this.value)) {
-//                 // alert(this.value + " is a valid number");
-//                 document.getElementById("ID_DC_insert_emptyname").classList.remove("hide");
-//                 $('#ID_DC_comfirm_newDoc').attr('disabled', 'disabled');
-//             }else{
-//               document.getElementById("ID_DC_insert_emptyname").classList.add("hide");
-//               $('#ID_DC_comfirm_newDoc').removeAttr('disabled');
-//             }
-//         });
-//         return false;
-//     });
-// });
-//
+$('#id_DocFile').on('change', function() {
+  myfile = $(this).val();
+  var ext = myfile.split('.').pop();
+  if (ext == "pdf" || ext == "docx" || ext == "doc") {
+    alert(ext);
+  } else {
+    alert("กรุณาอัพไฟล์ .PDF เท่านั้น");
+  }
+});
+
+/*เพิ่มไฟล์ใหม่*/
 $(document).ready(function() {
   $('#ID_DC_newForm').click(function() {
     var availableTagsForADDdocname = [];
@@ -91,3 +85,11 @@ $(document).ready(function() {
 
   });
 });
+
+
+/*แสดงชื่อเก่าบนแถบแก้ไขชื่อ*/
+function showOldname(oldname){
+  document.getElementById("oldNameForm").interHTML=oldname;
+  document.getElementById("oldNameForm").value=oldname;
+
+}

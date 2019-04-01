@@ -86,7 +86,6 @@ module.exports = function(app, passport) {
     });
   });
 
-
   app.get('/signin', authController.signin);
 
 

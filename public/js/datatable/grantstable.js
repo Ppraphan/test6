@@ -11,7 +11,7 @@ $(document).ready(function() {
               $(this).val()
             );
 
-            column
+            column 
               .search(val ? '^' + val + '$' : '', true, false)
               .draw();
           });

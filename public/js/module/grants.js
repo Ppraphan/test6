@@ -1,5 +1,15 @@
+/*ตั้งค่าตัวเลือกวันที่*/
+$(function() {
+  $('[data-toggle="datepicker_grants"]').datepicker({
+    language: 'th-TH',
+    date: null,
+    format: 'yyyy',
+  });
+});
+
 /*ฟังก์ชันเพิ่ม-แสดง-ทุนงานวิจัย*/
 function myFunctiongrants() {
+  document.getElementById("txtSearch").classList.add("hide");
   document.getElementById("addRT").classList.add("hide");
   var x = document.getElementById("pageNewGrants");
   var y = document.getElementById("pageShowAllGrants");
@@ -10,15 +20,17 @@ function myFunctiongrants() {
 };
 
 function myFunctiongrants2() {
+  document.getElementById("txtSearch").classList.remove("hide");
   document.getElementById("addRT").classList.remove("hide");
+
   var x = document.getElementById("pageNewGrants");
   var y = document.getElementById("pageShowAllGrants");
-
   if (x.style.display === "block") {
     y.style.display = "block";
     x.style.display = "none";
   }
 };
+
 /*ฟังก์ชันแสดงทั้งหมด => เรียกดูรายละเอียด ของฟังก์ชันทุนงานวิจัย*/
 function myFunctiongrants3(data) {
   var catdata2 = data;
@@ -47,7 +59,7 @@ function myFunctiongrants3(data) {
 };
 
 function myFunctiongrants4() {
-document.getElementById("addRT").classList.remove("hide");
+  document.getElementById("addRT").classList.remove("hide");
 
   var x = document.getElementById("pageShowAllGrants");
   var y = document.getElementById("pageGrantsDetail");
@@ -82,4 +94,16 @@ function myFunctiongrants5(data) {
     x.style.display = "block";
     y.style.display = "none";
   }
+};
+
+
+function closeEditGrantAndShowAll() {
+  $(".reset").click(function() {
+    $(this).closest('form').find("input[type=text], textarea").val("");
+  });
+
+  document.getElementById("pageEditGrantsDetail").style.display = "none";
+  document.getElementById("pageNewGrants").style.display = "none";
+
+  document.getElementById("pageShowAllGrants").style.display = "block";
 };

@@ -37,7 +37,7 @@ module.exports = function(app, passport) {
         });
       });
     } else {
-      
+
       var startup_image = req.files.profileimage;
       var file_Part = req.files.profileimage.name;
       var dr2 = (file_Part);
@@ -66,9 +66,8 @@ module.exports = function(app, passport) {
     }
 
     console.log("out side userid = " + userid);
-    res.redirect('/');
+    res.redirect('/alluser');
   });
-
 
   app.get("/signup/getUniversityName/", function(req, res) {
     var catdata = req.query.countryData;

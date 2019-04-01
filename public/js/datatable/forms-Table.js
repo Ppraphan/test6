@@ -5,17 +5,22 @@ $(document).ready(function() {
   });
   var table = $('#form-Table').DataTable({
     "columns": [{
-        "orderable": true
+        "orderable": true,
+        "width": "30px",
+
       },
       null,
       {
-        "orderable": false
+        "orderable": false,
+        "width": "55px",
       },
       {
-        "orderable": false
+        "orderable": false,
+        "width": "55px",
       },
       {
-        "orderable": false
+        "orderable": false,
+        "width": "55px",
       },
     ],
   });

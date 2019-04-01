@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body style="background-color: #efefef;  height: 100vh;">
+
+  <div class="cell medium-auto medium-cell-block-container">
+    <div class="grid-x">
+      <div class="cell medium-cell-block-y " style="width:17rem">
+        <% include ../partials/header %>
+        <% include ../partials/flash %>
+      </div>
+
+      <div class="cell medium-cell-block-y auto" style="width:100%">
+
+        <div class="cell small-6-container full bgforms" align="center">
+          <div style="margin:35px;">
+            <h1>โครงการวิจัยทั้งหมดในระบบ</h1>
+            <input id="txtSearchTopProjectTable" type="search" name="search" placeholder="ค้นหาโครงการ" class="animated-search-form form-control">
+            <div align="right" style="padding-right:1rem">
+              <a class="button secondary" href="/new-project">เพิ่มโครงการวิจัยใหม่</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-x">
+          <div class="cell small-12 " id="showDataElm" style="display:block;">
+            <div style="padding:2.5rem;">
+              <table id="allProjectTable" class="hover unstriped ">
+                <thead>
+                  <tr>
+                    <th>ปีงบประมาณ</th>
+                    <th>ชื่อโครงการ</th>
+                    <th>ภาควิชา</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% if(data0.length){
+                    for(var i = 0;i < data0.length;i++) { %>
+                  <tr class="showhim ">
+                    <td>
+                      <%=data0[i].grants_Years%>
+                    </td>
+                    <td>
+                      <%=data0[i].projectNameTH%>
+                    </td>
+                    <td>
+                      <%=data0[i].departmentName%>
+                    </td>
+                    <td >
+                      <a class="small button primary showme"  href="">ดู</a>
+                    </td>
+                    <td>
+                      <a class="small button warning showme" href="/project/<%=data0[i].idproject%>">แก้ไข</a>
+                    </td>
+                    <td>
+                      <a class="small button alert showme" >ลบ</a>
+                    </td>
+                  </tr>
+                  <% }
+                  }else{ %>
+                  <tr>
+                    <td colspan="3">No user</td>
+                  </tr>
+
+                  <% } %>
+                </tbody>
+
+                <tfoot>
+                  <tr>
+                    <th>ปีงบประมาณ</th>
+                    <th>ชื่อโครงการ</th>
+                    <th>ภาควิชา</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+<footer>
+
+  <script src="js/datatable/allProject.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <% include ../partials/footer %>
+</footer>
+
+</html>

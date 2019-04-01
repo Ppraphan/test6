@@ -57,7 +57,7 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({
   extended: true
-})); 
+}));
 
 //Models
 var models = require("./models");
@@ -82,6 +82,7 @@ require('./routes/signup.js')(app, passport);
 require('./routes/alluser.js')(app);
 
 // กลุ่มโครงการวิจัย
+require('./routes/my-project.js')(app);
 require('./routes/allproject.js')(app);
 
 // กลุ่มโครงสร้างพื้นฐานของระบบ
@@ -94,6 +95,12 @@ require('./routes/department.js')(app);
 require('./routes/grants.js')(app);
 
 require('./routes/forms.js')(app, session);
+
+//กลุ่มฟังก์ชันผลงาน
+require('./routes/portforio.js')(app, session);
+
+//กลุ่มฟังก์ชันรายงาน
+require('./routes/report.js')(app, session);
 
 //Sync Database
 models.sequelize.sync().then(function() {

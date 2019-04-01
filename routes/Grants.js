@@ -92,14 +92,13 @@ app.get("/grants/getgrantsnamefromyear/", function(req, res) {
     var grants_Years = req.body.grants_Years;
     var grants_Supporter = req.body.grants_Supporter;
     var grants_Type = req.body.grants_Type;
-    var grants_detail = req.body.grants_detail;
+
 
     var sql = "UPDATE grants SET grants_Name ='" + req.body.grants_Name +
               "',grants_Years='"+ req.body.grants_Years +
               "',grants_Supporter='"+ req.body.grants_Supporter +
               "',grants_Type='"+ req.body.grants_Type +
-              "',grants_detail='"+ req.body.grants_detail +
-              "' WHERE idGrants ='" + req.body.grants_ID + "' ";
+              "' WHERE idGrants ='" + req.body.gIDEdit + "' ";
     console.log(sql);
     con.query(sql, function(err, rows) {
       if (err)

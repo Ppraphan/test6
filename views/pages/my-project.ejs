@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+  <link rel="stylesheet" href="css/my-project.css">
+</head>
+
+<body style="background-color: #efefef;  height: 100vh;">
+
+  <div class="cell medium-auto medium-cell-block-container">
+    <div class="grid-x">
+      <div class="cell medium-cell-block-y " style="width:17rem">
+        <% include ../partials/header %>
+        <% include ../partials/flash %>
+      </div>
+
+      <div class="cell medium-cell-block-y auto" style="width:100%">
+
+        <div class="cell small-6-container full bgforms" align="center">
+          <div style="margin:35px;">
+            <h1>โครงการวิจัยของฉัน</h1>
+          </div>
+        </div>
+        <div class="md-tabs">
+
+          <ul class="tabs" data-responsive-accordion-tabs="tabs small-accordion medium-tabs large-tabs" id="collapsing-tabs" data-allow-all-closed="true" data-multi-expand="true">
+            <li class="tabs-title is-active"><a href="#panel1c" aria-selected="true">โครงการที่ฉันเป็นหัวหน้าโครงการ</a></li>
+            <li class="tabs-title"><a href="#panel2c">โครงการที่ฉันเป็นผู้ร่วมวิจัย</a></li>
+            <div class="slide"></div>
+          </ul>
+
+          <div class="tabs-content" data-tabs-content="collapsing-tabs">
+            <div class="grid-x tabs-panel is-active" id="panel1c" style="height:680px;background:#EFEFEF">
+
+                <div class="cell small-12 "  style="display:block;">
+                  <div style="padding:2.5rem;">
+                    <table id="myProjectTable" class="hover unstriped myProjectTable">
+                      <thead>
+                        <tr>
+                          <th>ปีงบประมาณ</th>
+                          <th>ชื่อโครงการ</th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <% if(data0.length){
+                          for(var i = 0;i < data0.length;i++) { %>
+                        <tr class="showhim ">
+                          <td>
+                            <%=data0[i].grants_Years%>
+                          </td>
+                          <td>
+                            <%=data0[i].projectNameTH%>
+                          </td>
+                          <td>
+                            <a class="small button primary showme" href="">ดู</a>
+                          </td>
+                          <td>
+                            <a class="small button warning showme" href="#">แก้ไข</a>
+                          </td>
+                          <td>
+                            <a class="small button alert showme">ลบ</a>
+                          </td>
+                        </tr>
+                        <% }
+                        }else{ %>
+                        <tr>
+                          <td colspan="3">No user</td>
+                        </tr>
+
+                        <% } %>
+                      </tbody>
+
+                      <tfoot>
+                        <tr>
+                          <th>ปีงบประมาณ</th>
+                          <th>ชื่อโครงการ</th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
+
+
+            </div>
+            <div class="grid-x tabs-panel" id="panel2c" style="height:680px;background:#EFEFEF">
+
+                <div class="cell small-12 "  style="display:block;">
+                  <div style="padding:2.5rem;">
+                    <table class="hover unstriped myProjectTable h2c" style="width:100%">
+                      <thead>
+                        <tr>
+                          <th>ปีงบประมาณ</th>
+                          <th>ชื่อโครงการ</th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <% if(data1.length){
+                          for(var i = 0;i < data1.length;i++) { %>
+                        <tr class="showhim ">
+                          <td style="width:55px">
+                            <%=data1[i].grants_Years%>
+                          </td>
+                          <td>
+                            <%=data1[i].projectNameTH%>
+                          </td>
+                          <td style="width:55px">
+                            <a class="small button primary showme" href="">ดู</a>
+                          </td >
+                          <td style="width:55px">
+                            <a class="small button warning showme" href="#">แก้ไข</a>
+                          </td>
+                          <td style="width:55px">
+                            <a class="small button alert showme">ลบ</a>
+                          </td>
+                        </tr>
+                        <% }
+                        }else{ %>
+                        <tr>
+                          <td colspan="3">No user</td>
+                        </tr>
+
+                        <% } %>
+                      </tbody>
+
+                      <tfoot>
+                        <tr>
+                          <th>ปีงบประมาณ</th>
+                          <th>ชื่อโครงการ</th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
+
+
+            </div>
+          </div>
+        </div>
+
+
+
+
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+<footer>
+
+  <script src="js/datatable/myProject.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <% include ../partials/footer %>
+</footer>
+
+</html>

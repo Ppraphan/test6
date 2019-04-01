@@ -35,4 +35,5 @@ $(document).ready(function() {
       .search($('#txtSearch').val(), false, true)
       .draw();
   });
+
 });

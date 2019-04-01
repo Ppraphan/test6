@@ -4,7 +4,7 @@
       <tr>
         <th>ชื่อทุนวิจัย</th>
         <th>ประเภททุนวิจัย</th>
-        <th>ปีทุนวิจัย</th>
+        <th>ปีงบประมาณ</th>
         <th></th>
         <th></th>
       </tr>
@@ -26,10 +26,10 @@
           <%=data[i].grants_Years%>
         </td>
         <td>
-          <a style="color:#ffae00;" class="showme" href="#" onclick="myFunctiongrants5('<%=data[i].idGrants%>')">แก้ไข</a>
+          <a class="small button warning showme" href="#" onclick="myFunctiongrants5('<%=data[i].idGrants%>')">แก้ไข</a>
         </td>
         <td>
-          <a style="color:#cc4b37;" class="showme" href="grants/delete/<%=data[i].idGrants %>">ลบ</a>
+          <a class="small button alert showme" onclick="return confirm('คุณต้องการที่จะ ลบ <%= data[i].grants_Name %> หรือไม่ ?');" href="grants/delete/<%=data[i].idGrants %>">ลบ</a>
         </td>
       </tr>
       <% }
