@@ -1,0 +1,114 @@
+/* Tooltip container */
+.tooltipp {
+  position: relative;
+
+}
+
+/* Tooltip text */
+.tooltipp .tooltiptext {
+  visibility: hidden;
+  width: 400px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -200px; /* Use half of the width (120/2 = 60), to center the tooltip */
+  background-color: #767676;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltipp:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltipp .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #767676 transparent transparent transparent;
+}
+
+
+/* Tooltip container */
+.tooltipforFaculty {
+  position: relative;
+
+}
+
+/* Tooltip text */
+.tooltipforFaculty .tooltiptextforFaculty {
+  visibility: hidden;
+  width: 100%;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+  background-color: #767676;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltipforFaculty:hover .tooltiptextforFaculty {
+  visibility: visible;
+}
+
+.tooltipforFaculty .tooltiptextforFaculty::after {
+  content: " ";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #767676 transparent transparent transparent;
+}
+
+/* Tooltip container */
+.tooltipforDpment {
+  position: relative;
+
+}
+
+/* Tooltip text */
+.tooltipforDpment .tooltiptextforDpment {
+  visibility: hidden;
+  width: 100%;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+  background-color: #767676;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltipforDpment:hover .tooltiptextforDpment {
+  visibility: visible;
+}
+
+.tooltipforDpment .tooltiptextforDpment::after {
+  content: " ";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #767676 transparent transparent transparent;
+}

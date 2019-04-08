@@ -2,9 +2,10 @@
   <table id="grantstable" class="hover unstriped ">
     <thead>
       <tr>
-        <th>ชื่อทุนวิจัย</th>
-        <th>ประเภททุนวิจัย</th>
+        <th>ลำดับ</th>
         <th>ปีงบประมาณ</th>
+        <th>ประเภททุนวิจัย</th>
+        <th>ชื่อทุนวิจัย</th>
         <th></th>
         <th></th>
       </tr>
@@ -14,16 +15,17 @@
       <% if(data.length){
       for(var i = 0;i < data.length;i++) { %>
       <tr class="showhim ">
+        <td></td>
         <td>
-          <a class="nameRsearch" href="#" onclick="myFunctiongrants3('<%=data[i].idGrants%>')">
-            <%=data[i].grants_Name%>
-          </a>
+          <%=data[i].grants_Years%>
         </td>
         <td>
           <%=data[i].grants_Type%>
         </td>
         <td>
-          <%=data[i].grants_Years%>
+          <a class="nameRsearch" href="#" onclick="myFunctiongrants3('<%=data[i].idGrants%>')">
+            <%=data[i].grants_Name%>
+          </a>
         </td>
         <td>
           <a class="small button warning showme" href="#" onclick="myFunctiongrants5('<%=data[i].idGrants%>')">แก้ไข</a>
@@ -41,9 +43,10 @@
     </tbody>
     <tfoot>
       <tr>
-        <th>ชื่อทุนวิจัย</th>
+        <th></th>
+        <th>ปีงบประมาณ</th>
         <th>ประเภททุนวิจัย</th>
-        <th>ปีทุนวิจัย</th>
+        <th>ชื่อทุนวิจัย</th>
 
       </tr>
     </tfoot>

@@ -30,24 +30,29 @@
           </div>
         </div>
 
-        <div class="cell small-6 full" align="center" style="padding:2em;">
-          <div class="grid-x">
+        <div class="cell small-6 " align="center" style="padding:2em 0em 2em 12em;">
+          <div class="grid-x grid-margin-x">
             <div class=" small-2"></div>
             <div class=" small-6">
+              <ul class="menu menu-fancy">
+                <li class="menu-fancy-option1 is-selected"><a href="#">ข้อมูลส่วนตัว</a></li>
+                <li class="menu-fancy-option2"><a href="#">ข้อมูลที่ทำงาน</a></li>
+                <li class="menu-fancy-option3"><a href="#">เปลี่ยนรหัสผ่านใหม่</a></li>
+                </li>
+              </ul>
+
+
             </div>
             <div class=" small-4"></div>
           </div>
+
         </div>
 
         <div class="cell small-6" style="padding:2rem  4em 2em 10em;">
-          <form id="signup" name="signup" enctype="multipart/form-data" method="post" action="/signup">
+          <form id="signup" name="signup" enctype="multipart/form-data" method="get" action="/alluser">
             <div class="grid-x grid-margin-x">
               <div class="cell small-2">
-                <ul class="vertical menu menu-personal">
-                  <li><a class="is-selected"href="#">แก้ไขข้อมูลส่วนตัว</a></li>
-                  <li><a href="#">ข้อมูลที่ทำงาน</a></li>
-                  <li><a href="#">เปลี่ยนรหัสผ่าน</a></li>
-                </ul>
+
               </div>
               <div class="cell small-6">
 
@@ -66,16 +71,19 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-6 floated-label-wrapper">
                             <label for="email">E-Mail</label>
-                            <input type="email"   style="margin:0px!important;border-radius:5px;" value="<%=userinfo.email%>">
+                            <input type="email" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.email%>">
                           </div>
                           <!-- คอลัม 2 -->
                           <div class="cell small-6 floated-label-wrapper">
                             <label>สิทธิ์การใช้งาน</label>
-                            <% if(userinfo.userPermission == "admin"){ %>
-                            <input type="text"   style="margin:0px!important;border-radius:5px;" value="ผู้ดูแลระบบ">
-                            <% } else{ %>
-                            <input type="text"   style="margin:0px!important;border-radius:5px;" value="นักวิจัย">
-                            <% } %>
+
+                            <select name="userPermission" style="margin:0px!important;border-radius:5px;">
+                              <option value="--Select--" disabled>สิทธิ์การใช้งาน</option>
+                              <option <%- userinfo.userPermission=="admin" ? "selected" : "" %> value="admin">ผู้ดูแลระบบ</option>
+                              <option <%- userinfo.userPermission=="board" ? "selected" : "" %> value="board">ผู้บริหาร</option>
+                              <option <%- userinfo.userPermission=="user" ? "selected" : "" %> value="user">นักวิจัย</option>
+                            </select>
+
                           </div>
                         </div>
                       </div>
@@ -85,12 +93,12 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-6 floated-label-wrapper">
                             <label for="nameIDHuman">รหัสบัตรประชาชน</label>
-                            <input type="text"   style="margin:0px!important;border-radius:5px;" value="<%=userinfo.nameIDHuman%>">
+                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.nameIDHuman%>">
                           </div>
                           <!-- คอลัม 2 -->
                           <div class="cell small-6 floated-label-wrapper">
                             <label for="birthday">วัน/เดือน/ปีเกิด</label>
-                            <input type="text"   style="margin:0px!important;border-radius:5px;" value="<%=userinfo.birthday%>">
+                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.birthday%>">
                           </div>
                         </div>
                       </div>
@@ -100,20 +108,30 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-3 floated-label-wrapper">
                             <label for="prefix">คำนำหน้า</label>
-														<% if(userinfo.prefix == "Mr."){ %>
-                            <input type="text"   style="margin:0px!important;border-radius:5px;" value="นาย">
-                            <% } else{ %>
-															<% if(userinfo.prefix == "Mrs."){ %>
-	                            <input type="text"   style="margin:0px!important;border-radius:5px;" value="นาง">
-	                            <% } else{ %>
-	                            <input type="text"   style="margin:0px!important;border-radius:5px;" value="นางสาว">
-	                            <% } %>
-                            <% } %>
+
+                            <select name="prefix" style="margin:0px!important;border-radius:5px;">
+                              <option value="--Select--" disabled>กรุณาเลือก</option>
+                              <option <%- userinfo.prefix=="Mr." ? "selected" : "" %> value="Mr.">นาย</option>
+                              <option <%- userinfo.prefix=="Mrs." ? "selected" : "" %> value="Mrs.">นาง</option>
+                              <option <%- userinfo.prefix=="Miss." ? "selected" : "" %> value="Miss.">นางสาว</option>
+                            </select>
+
                           </div>
                           <!-- คอลัม 2 -->
                           <div class="cell small-3 floated-label-wrapper">
                             <label for="academicPositions">ตำแหน่งทางวิชาการ</label>
-                            <input type="text"   style="margin:0px!important;border-radius:5px;" value="<%=userinfo.academicPositions%>">
+
+                            <select name="prefix" style="margin:0px!important;border-radius:5px;">
+                              <option value="--Select--" disabled>กรุณาเลือก</option>
+                              <option <%- userinfo.academicPositions=="ศ.ดร." ? "selected" : "" %> value="ศ.ดร.">ศ.ดร.</option>
+                              <option <%- userinfo.academicPositions=="ศ." ? "selected" : "" %> value="ศ.">ศ.</option>
+                              <option <%- userinfo.academicPositions=="รศ.ดร." ? "selected" : "" %> value="รศ.ดร.">รศ.ดร.</option>
+                              <option <%- userinfo.academicPositions=="รศ." ? "selected" : "" %> value="รศ.">รศ.</option>
+                              <option <%- userinfo.academicPositions=="ผศ.ดร." ? "selected" : "" %> value="ผศ.ดร.">ผศ.ดร.</option>
+                              <option <%- userinfo.academicPositions=="ผศ." ? "selected" : "" %> value="ผศ.">ผศ.</option>
+                              <option <%- userinfo.academicPositions=="ดร." ? "selected" : "" %> value="ดร.">ดร.</option>
+                              <option <%- userinfo.academicPositions=="อ." ? "selected" : "" %> value="อ.">อ.</option>
+                            </select>
                           </div>
                         </div>
                       </div>
@@ -123,12 +141,12 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-6 floated-label-wrapper">
                             <label for="firstname">ชื่อ (ภาษาไทย)</label>
-                          <input type="text"   style="margin:0px!important;border-radius:5px;" value="<%=userinfo.firstname%>">
+                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.firstname%>">
                           </div>
                           <!-- คอลัม 2 -->
                           <div class="cell small-6 floated-label-wrapper">
                             <label for="lastname">นามสกุล (ภาษาไทย)</label>
-                            <input type="text"   style="margin:0px!important;border-radius:5px;" value="<%=userinfo.lastname%>">
+                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.lastname%>">
                           </div>
                         </div>
                       </div>
@@ -138,12 +156,12 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-6 floated-label-wrapper">
                             <label for="engFirstName">ชื่อ (ภาษาอังกฤษ)</label>
-                            <input type="text"   style="margin:0px!important;border-radius:5px;" value="<%=userinfo.engFirstName%>">
+                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.engFirstName%>">
                           </div>
                           <!-- คอลัม 2 -->
                           <div class="cell small-6 floated-label-wrapper">
                             <label for="engLastName">นามสกุล (ภาษาอังกฤษ)</label>
-                            <input type="text"   style="margin:0px!important;border-radius:5px;" value="<%=userinfo.engLastName%>">
+                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.engLastName%>">
                           </div>
                         </div>
                       </div>
@@ -153,12 +171,12 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-6 floated-label-wrapper">
                             <label for="nationality">สัญชาติ</label>
-                            <input type="text"   style="margin:0px!important;border-radius:5px;" value="<%=userinfo.nationality%>">
+                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.nationality%>">
                           </div>
                           <!-- คอลัม 2 -->
                           <div class="cell small-6 floated-label-wrapper">
                             <label for="telNumber">เบอร์โทร</label>
-                            <input type="text"   style="margin:0px!important;border-radius:5px;" value="<%=userinfo.telNumber%>">
+                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.telNumber%>">
                           </div>
                         </div>
                       </div>
@@ -168,7 +186,7 @@
               </div>
 
               <div class=" small-2" data-sticky-container style="border-radius:5px;padding-left: 1em;">
-                <div class=" grid-y" data-sticky data-margin-top="19">
+                <div class=" grid-y" data-sticky data-margin-top="20">
 
                   <div class=" small-6" style="padding-bottom: 1em;">
                     <input type="submit" value="ยืนยัน" class="button primary expanded" id="" style="border-radius:2em;padding:1em;">
@@ -191,6 +209,7 @@
 
 <footer>
   <% include ../partials/footer %>
+  <script src="js/personal-info.js"></script>
   <script src="js/regis.js"></script>
   <script src="js/signup.js"></script>
   <script src="js/foundation-datepicker.js"></script>

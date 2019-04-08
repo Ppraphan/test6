@@ -12,6 +12,9 @@ $(document).ready(function() {
       {
         "width": "55px",
       },
+      {
+        "width": "30px",
+      },
       null,
       null,
       {

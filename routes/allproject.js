@@ -4,23 +4,23 @@ var con = require('./connect-db.js'); /*เชื่อมต่อฐานข�
 
 module.exports = function(app) {
   /*หน้าโครงการวิจัยทั้งหมด*/
-  app.get('/project', function(req, res) {
+  app.get('/project/:idproject', function(req, res) {
     var userinfo = req.user;
     var mses = req.query.valid;
 
-    var idOfProj = req.params;
+    var idOfProj = req.params.idproject;
     console.log(idOfProj);
 
-    // var sql = "SELECT idproject,projectNameTH,departmentName,grants_Years FROM project.project,project.department,project.grants WHERE project.project.idGrant = project.grants.idGrants AND  project.project.departmentID = project.department.departmentID";
-    //
-    // con.query(sql, function(err, rows) {
-    //   res.render('pages/project', {
-    //     userinfo: userinfo,
-    //     messages: mses,
-    //
-    //     data0: rows,
-    //   });
-    // });
+    var sql = "SELECT * FROM project.project WHERE idproject ='" + idOfProj + "';";
+
+    con.query(sql, function(err, rows) {
+      res.render('pages/project', {
+        userinfo: userinfo,
+        messages: mses,
+
+        data0: rows,
+      });
+    });
 
   });
 
@@ -82,6 +82,8 @@ module.exports = function(app) {
     var name_PJ_ADD_Researchform = req.body.name_PJ_ADD_ResearcType; /*รหัสของรูปแบบการวิจัย*/
     var name_PJ_ADD_Researchstrategic = req.body.name_PJ_ADD_Researchstrategic; /*รหัสของยุทศาสตร์การวิจัย*/
 
+    var stateOfProJ = req.body.stateOfProJ; /*สถานะของโครงการ*/
+
     var sql0 = "SELECT `idproject` FROM `project`.`project` ORDER BY idproject DESC LIMIT 1;";
     console.log(sql0);
     con.query(sql0, function(err, results) {
@@ -109,6 +111,8 @@ module.exports = function(app) {
       console.log("name_PJ_ADD_Researchbranch = " + name_PJ_ADD_Researchbranch);
       console.log("name_PJ_ADD_Researchform = " + name_PJ_ADD_Researchform);
       console.log("name_PJ_ADD_Researchstrategic = " + name_PJ_ADD_Researchstrategic);
+      console.log("stateOfProJ = " + stateOfProJ);
+
 
       if (projectSet == 1) {
         if (projectMain == 1) {
@@ -122,7 +126,7 @@ module.exports = function(app) {
       }
 
 
-      var sql1 = "INSERT INTO `project`.`project` (`projectNameTH`, `projectNameEN`, `projectYears`, `projectSet`, `projectMain`, `projectParent`, `idGrant`, `researchTypeID`, `researchFormID`, `researchBranchID`, `researchStrategicID`, `countryISOCode`, `uniID`, `facultyID`, `departmentID`, `subDepartmentID`) VALUES ('" + nameProjectTH + "','" + nameProjectEN + "','" + projectYears + "','" + projectSet + "','" + projectMain + "','" + name_projectParentName + "','" + BudgetName + "','" + name_PJ_ADD_ResearcType + "','" + name_PJ_ADD_Researchform + "','" + name_PJ_ADD_Researchbranch + "','" + name_PJ_ADD_Researchstrategic + "','" + country + "','" + university + "','" + faculty + "','" + department + "','" + subdepartment + "');";
+      var sql1 = "INSERT INTO `project`.`project` (`projectNameTH`, `projectNameEN`, `projectYears`, `projectSet`, `projectMain`, `projectParent`, `idGrant`, `researchTypeID`, `researchFormID`, `researchBranchID`, `researchStrategicID`, `countryISOCode`, `uniID`, `facultyID`, `departmentID`, `subDepartmentID`, `stateOfProJ`) VALUES ('" + nameProjectTH + "','" + nameProjectEN + "','" + projectYears + "','" + projectSet + "','" + projectMain + "','" + name_projectParentName + "','" + BudgetName + "','" + name_PJ_ADD_ResearcType + "','" + name_PJ_ADD_Researchform + "','" + name_PJ_ADD_Researchbranch + "','" + name_PJ_ADD_Researchstrategic + "','" + country + "','" + university + "','" + faculty + "','" + department + "','" + subdepartment + "','" + stateOfProJ + "');";
       console.log(sql1);
       con.query(sql1, function(err, results) {
         if (err) throw err;
@@ -136,14 +140,17 @@ module.exports = function(app) {
           people[i] = req.body['nameLDIDProj' + i];
           listProportionLD[i] = req.body['nameProportionLD' + i];
 
-          if(people[i] != '' && listProportionLD[i] != ''){
-            var sql2 = "INSERT INTO `project`.`LDProject` (`idUser_LD`, `idproject`, `proportion`) VALUES ('" + people[i] + "','" + newProjID + "','" + listProportionLD[i] + "');";
+          if (people[i] != '') {
+            if (listProportionLD[i] == '') {
+              listProportionLD[i] = "-";
+              var sql2 = "INSERT INTO `project`.`LDProject` (`idUser_LD`, `idproject`, `proportion`) VALUES ('" + people[i] + "','" + newProjID + "','" + listProportionLD[i] + "');";
 
-            con.query(sql2, function(err, results) {
-              if (err) throw err;
-              console.log("Insert Complete...");
+              con.query(sql2, function(err, results) {
+                if (err) throw err;
+                console.log("Insert Complete...");
 
-            });
+              });
+            }
           }
         };
 
@@ -155,14 +162,17 @@ module.exports = function(app) {
           peopleRS[i] = req.body['nameLDIDProj' + i];
           listProportionRS[i] = req.body['nameProportionRS' + i];
 
-          if(peopleRS[i] != '' && listProportionRS[i] != ''){
-            var sql3 = "INSERT INTO `project`.`RSProject` (`idUser_RS`, `idproject`, `proportion`) VALUES ('" + peopleRS[i] + "','" + newProjID + "','" + listProportionRS[i] + "');";
+          if (peopleRS[i] != '') {
+            if (listProportionRS[i] == '') {
+              listProportionRS[i] = "-";
+              var sql3 = "INSERT INTO `project`.`RSProject` (`idUser_RS`, `idproject`, `proportion`) VALUES ('" + peopleRS[i] + "','" + newProjID + "','" + listProportionRS[i] + "');";
 
-            con.query(sql3, function(err, results) {
-              if (err) throw err;
-              console.log("Insert Complete...");
+              con.query(sql3, function(err, results) {
+                if (err) throw err;
+                console.log("Insert Complete...");
 
-            });
+              });
+            }
           }
         };
 
@@ -203,9 +213,10 @@ module.exports = function(app) {
     var userinfo = req.user;
     var mses = req.query.valid;
 
-    var sql = "SELECT idproject,projectNameTH,departmentName,grants_Years FROM project.project,project.department,project.grants WHERE project.project.idGrant = project.grants.idGrants AND  project.project.departmentID = project.department.departmentID";
+    var sql = "SELECT idproject,projectNameTH,departmentName,stateOfProJ,grants_Years FROM project.project,project.department,project.grants WHERE project.project.idGrant = project.grants.idGrants AND  project.project.departmentID = project.department.departmentID";
 
     con.query(sql, function(err, rows) {
+      console.log(rows);
       res.render('pages/all-project', {
         userinfo: userinfo,
         messages: mses,

@@ -67,7 +67,7 @@ $(document).ready(function() {
 });
 
 /*เลือกทุนวิจัยจากปีที่กำหนด-*/
-$(document).ready(function() {
+$(document).ready(function() { 
   $("#budgetYear").on('change', function() {
     var budgetYear = $('#budgetYear').val();
     $('#BudgetName').empty();

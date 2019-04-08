@@ -16,7 +16,7 @@ module.exports = function(app, passport) {
   app.get('/useridcheck', isLoggedIn, authController.useridcheck);
 
   app.post('/useridcheck', function(req, res) {
-    var userinfo =req.user;
+    var userinfo = req.user;
     var listID = [];
     var email = req.body.newemail;
     console.log("newemail = " + email);
@@ -41,7 +41,7 @@ module.exports = function(app, passport) {
       if (resultSearch == true) {
         var mses = "e-mail : " + email + "ถูกใช้ไปแล้ว";
         res.render("pages/useridcheck", {
-          userinfo:userinfo,
+          userinfo: userinfo,
           messages: mses,
         });
       } else {
@@ -53,13 +53,13 @@ module.exports = function(app, passport) {
   });
 
   app.get('/signup', isLoggedIn, function(req, res) {
-    var userinfo =req.user;
+    var userinfo = req.user;
     var email = req.query.email;
     var query = con.query('SELECT countryISOCode,countryName FROM project.country order by countryName', function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
       res.render('pages/signup', {
-        userinfo:userinfo,
+        userinfo: userinfo,
         data: rows,
         email: email,
       });
@@ -90,7 +90,7 @@ module.exports = function(app, passport) {
 
 
   // app.get('/', isLoggedIn);
-  app.get('/', isLoggedIn, authController.dashboard,);
+  app.get('/', isLoggedIn, authController.dashboard, );
 
   app.get('/logout', authController.logout);
 
@@ -99,8 +99,7 @@ module.exports = function(app, passport) {
     failureRedirect: '/signin'
   }));
 
-function movefile(req, res, next) {
- }
+  function movefile(req, res, next) {}
 
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
@@ -114,4 +113,25 @@ function movefile(req, res, next) {
     else
       isLoggedIn(req, res, next);
   });
+
+  function requireRole(role) {
+    return function(req, res, next) {
+      if (req.user.userPermission === role) {
+        next();
+      } else {
+        res.send(403);
+      }
+    }
+  }
+
+  //
+  // app.get("/foo/:id", requireRole("user"), foo.show);
+  // app.post("/foo", requireRole("admin"), foo.create);
+  //
+  // // All bars are protected
+  // app.all("/foo/bar", requireRole("admin"));
+  //
+  // // All paths starting with "/foo/bar/" are protected
+  // app.all("/foo/bar/*", requireRole("user"));
+
 }

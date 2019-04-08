@@ -4,10 +4,10 @@
 <head>
   <% include ../partials/head %>
   <script src="js/Chart.bundle.js"></script>
-    <script src="js/Chart.bundle.min.js"></script>
-      <script src="js/Chart.js"></script>
-        <script src="js/Chart.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+  <script src="js/Chart.bundle.min.js"></script>
+  <script src="js/Chart.js"></script>
+  <script src="js/Chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
 </head>
 
 <body style="background-color: #efefef;  height: 100vh;">
@@ -25,40 +25,16 @@
           <div style="margin:35px;">
             <h1>จัดการรายงาน</h1>
             <div align="right" style="padding-right:1rem">
-
             </div>
           </div>
         </div>
 
-
-
-
         <div class="grid-x">
-
           <div id="alert-area" class="alert-area"></div>
           <div class="cell small-12 " style="display:block;">
             <div style="padding:2.5rem;">
               <div class="grid-y">
-                <div class="grid-x">
-                  <div class="cell small-6">
-                    <div class="grid-x grid-margin-x">
-                      <div class="cell small-3">
-                        <p>ช่วงของข้อมูล</p>
-                      </div>
-                      <div class="cell small-3">
-                        <select style="margin:0px!important">
-                          <option>2008</option>
-                        </select>
-                      </div>
-                      <div class="cell small-3">
-                        <select style="margin:0px!important">
-                          <option>2018</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="cell small-6"> </div>
-                </div>
+
                 <div class="grid-x">
                   <div class="cell small-6">
                     <div class="grid-x grid-margin-x">
@@ -66,57 +42,36 @@
                         <p>ประเภทข้อมูล</p>
                       </div>
                       <div class="cell small-6">
-                        <select style="margin:0px!important">
+                        <select id="id_dataTypeofResearch" style="margin:0px!important">
+                          <option value="--Select--" selected="selected" disabled>กรุณาเลือกประเภทรายงาน</option>
                           <option>จำนวนนักวิจัย</option>
+                          <option value="numberOfResearchGrants">จำนวนทุนวิจัย</option>
                         </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell small-6"> <p id="showmydata"></p></div>
+                </div>
+
+                <div class="grid-x">
+                  <div class="cell small-6">
+                    <div class="grid-x grid-margin-x">
+                      <div class="cell small-3">
+                        <p>ช่วงของข้อมูล</p>
+                      </div>
+                      <div class="cell small-3">
+                        <select id="id_beginYear" style="margin:0px!important"></select>
+                      </div>
+                      <div class="cell small-3">
+                        <select id="id_endYear" style="margin:0px!important"></select>
                       </div>
                     </div>
                   </div>
                   <div class="cell small-6"> </div>
                 </div>
+
                 <div class="grid-x">
-
-                    <canvas id="myChart2" width="400" height="140px"></canvas>
-<script>
-var ctx = document.getElementById("myChart2");
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["ภาควิชาวิศวกรรมคอมพิวเตอร์", "ภาควิชาวิศวกรรมไฟฟ้า", "ภาควิชาวิศวกรรมเครื่องกล", "ภาควิชาวิศวกรรมโยธา", "ภาควิชาวิศวกรรมอุตสาหการ", "ภาควิชาวิศวกรรมอาหาร"],
-        datasets: [{
-            label: 'จำนวนนักวิจัย',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});
-</script>
-
+                  <canvas id="myChart2" width="400" height="140px"></canvas>
                 </div>
 
               </div>
@@ -132,9 +87,7 @@ var myChart = new Chart(ctx, {
 </body>
 
 <footer>
-
-
-
+  <script src="js/module/report.js"></script>
   <% include ../partials/footer %>
 </footer>
 

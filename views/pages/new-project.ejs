@@ -20,7 +20,9 @@
               <div class=" small-2"></div>
               <div class=" small-8">
                 <h1>เพิ่มโครงการวิจัยใหม่</h1>
-                <p style="color:#707070;">รหัสโครงการวิจัย : <%=data6%></p>
+                <p style="color:#707070;">รหัสโครงการวิจัย :
+                  <%=data6%>
+                </p>
                 <input type="hidden" name="idofproject" value="<%=data6%>" id="ID_idproject" required>
               </div>
               <div class=" small-2"></div>
@@ -43,82 +45,7 @@
                   <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
 
                     <div class="cell small-6" style="padding:1em 1em 1em 1em;">
-                      <label style="font-size:1.5em;">ลักษณะโครงการ</label>
-                    </div>
-
-                    <div class="grid-y">
-
-                      <div class="cell small-6"id="projectSetElmID" style="padding:0em 1em 1em 1em;">
-                        <div class="grid-x grid-margin-x">
-                          <!-- คอลัม 1 -->
-                          <div class="cell small-3 ">
-                            <input type="radio" name="projectSet" value="1" id="projectSet_1" >
-                            <label class="" for="projectSet_1">โครงการชุด</label>
-                          </div>
-
-                          <!-- คอลัม 2 -->
-                          <div class="cell small-3 ">
-
-                            <input type="radio" name="projectSet" value="0" id="projectSet_0">
-                            <label class="" for="projectSet_0">โครงการเดี่ยว</label>
-                          </div>
-
-                          <!-- คอลัม 3 -->
-                          <div class="cell small-3 floated-label-wrapper">
-                            <label for="">ปีที่</label>
-                            <input type="number" min="1" max="8" name="projectYears" id="ID_projectYears" placeholder="ปีที่" required/>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="cell small-6 hide" id="projectMainElmID" style="padding:0em 1em 1em 1em;">
-                        <div class="grid-x grid-margin-x">
-                          <!-- คอลัม 1 -->
-                          <div class="cell small-3 ">
-                            <input type="radio" name="projectMain" value="1" id="projectMain_1">
-                            <label class=" " for="projectMain_1">โครงการหลัก</label>
-                          </div>
-                          <!-- คอลัม 2 -->
-                          <div class="cell small-3 ">
-                            <input type="radio" name="projectMain" value="0" id="projectMain_0">
-                            <label class=" " for="projectMain_0">โครงการย่อย</label>
-                          </div>
-
-
-                        </div>
-                      </div>
-
-                      <div class="cell small-6 hide" id="id_projectParentElm" style="padding:0em 1em 1em 1em;">
-                        <p style="color:#717272">กรุณาเลือกโครงการหลัก ของโครงการย่อยนี้</p>
-                        <div class="grid-x grid-margin-x">
-                          <!-- คอลัม 1 -->
-                          <div class="cell small-3 " id="" style="padding:1em 0em 1em 0em">
-                            <select name="name_projectParentYear" id="id_projectParentYear" >
-                              <option selected="selected" value="-">ไม่มี</option>
-                              <% for (var i = 0; i < data7.length; i++){ %>
-                              <option value="<%= data7[i].grants_Years %>">
-                                <%=data7[i].grants_Years %>
-                              </option>
-                              <% } %>
-                            </select>
-                          </div>
-                          <!-- คอลัม 2 -->
-                          <div class="cell small-9 floated-label-wrapper " id="" style="padding:1em 0em 1em 0em">
-                            <label for=""></label>
-                            <select name="name_projectParentName" id="id_projectParentName" ></select>
-                          </div>
-
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-
-                  <!-- ROW กลุ่มข้อมูล -->
-                  <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
-
-                    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
-                      <label style="font-size:1.5em;">งบประมาณ</label>
+                      <label style="font-size:1.5em;">ทุนวิจัย</label>
                     </div>
 
                     <div class="grid-y">
@@ -156,7 +83,7 @@
 
                           <div class="cell small-7 floated-label-wrapper">
                             <label for="BudgetAllocated">งบประมาณที่ได้รับการจัดสรร</label>
-                            <input type="text"  name="amountBudget" id="BudgetAllocated" placeholder="งบประมาณที่ได้รับการจัดสรร" required/>
+                            <input type="text" name="amountBudget" id="BudgetAllocated" placeholder="งบประมาณที่ได้รับการจัดสรร" required />
                           </div>
 
                         </div>
@@ -164,6 +91,83 @@
 
                     </div>
                   </div>
+
+                  <!-- ROW กลุ่มข้อมูล -->
+                  <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
+
+                    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                      <label style="font-size:1.5em;">ลักษณะโครงการ</label>
+                    </div>
+
+                    <div class="grid-y">
+
+                      <div class="cell small-6" id="projectSetElmID" style="padding:0em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-3 ">
+                            <input type="radio" name="projectSet" value="1" id="projectSet_1">
+                            <label class="" for="projectSet_1">โครงการชุด</label>
+                          </div>
+
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-3 ">
+
+                            <input type="radio" name="projectSet" value="0" id="projectSet_0">
+                            <label class="" for="projectSet_0">โครงการเดี่ยว</label>
+                          </div>
+
+                          <!-- คอลัม 3 -->
+                          <div class="cell small-3 floated-label-wrapper">
+                            <label for="">ปีที่</label>
+                            <input type="number" min="1" max="8" name="projectYears" id="ID_projectYears" placeholder="ปีที่" required />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-6 hide" id="projectMainElmID" style="padding:0em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-3 ">
+                            <input type="radio" name="projectMain" value="1" id="projectMain_1">
+                            <label class=" " for="projectMain_1">โครงการหลัก</label>
+                          </div>
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-3 ">
+                            <input type="radio" name="projectMain" value="0" id="projectMain_0">
+                            <label class=" " for="projectMain_0">โครงการย่อย</label>
+                          </div>
+
+
+                        </div>
+                      </div>
+
+                      <div class="cell small-6 hide" id="id_projectParentElm" style="padding:0em 1em 1em 1em;">
+                        <p style="color:#717272">กรุณาเลือกโครงการหลัก ของโครงการย่อยนี้</p>
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-3 " id="" style="padding:1em 0em 1em 0em">
+                            <select name="name_projectParentYear" id="id_projectParentYear">
+                              <option selected="selected" value="-">ไม่มี</option>
+                              <% for (var i = 0; i < data7.length; i++){ %>
+                              <option value="<%= data7[i].grants_Years %>">
+                                <%=data7[i].grants_Years %>
+                              </option>
+                              <% } %>
+                            </select>
+                          </div>
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-9 floated-label-wrapper " id="" style="padding:1em 0em 1em 0em">
+                            <label for=""></label>
+                            <select name="name_projectParentName" id="id_projectParentName"></select>
+                          </div>
+
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+
 
                   <!-- ROW กลุ่มข้อมูล -->
                   <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
@@ -179,7 +183,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 floated-label-wrapper">
                             <label for="country">ประเทศ</label>
-                            <select  name="country" id="ID_PJ_ADD_country" placeholder="ประเทศ" style="margin:0px!important;border-radius:5px;">
+                            <select name="country" id="ID_PJ_ADD_country" placeholder="ประเทศ" style="margin:0px!important;border-radius:5px;">
                               <option disabled selected value>เลือก</option>
                               <% for (var i = 0; i < data1.length; i++){ %>
                               <option value="<%= data1[i].countryISOCode %>">
@@ -196,7 +200,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 floated-label-wrapper">
                             <label for="university">มหาวิทยาลัย</label>
-                            <select  name="university" id="ID_PJ_ADD_Uni" placeholder="มหาวิทยาลัย"></select>
+                            <select name="university" id="ID_PJ_ADD_Uni" placeholder="มหาวิทยาลัย"></select>
                           </div>
                         </div>
                       </div>
@@ -248,7 +252,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 floated-label-wrapper">
                             <label for="id_PJ_ADD_ResearcType">ประเภทงานวิจัย</label>
-                            <select name="name_PJ_ADD_ResearcType" id="id_PJ_ADD_ResearcType" >
+                            <select name="name_PJ_ADD_ResearcType" id="id_PJ_ADD_ResearcType">
                               <% for (var i = 0; i < data2.length; i++){ %>
                               <option value="<%= data2[i].idresearchType %>">
                                 <%=data2[i].Name_researchType %>
@@ -332,12 +336,47 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 floated-label-wrapper">
                             <label for="id_PJ_ADD_Researchstrategic">ชื่อยุทศาสตร์</label>
-                            <select name="name_PJ_ADD_Researchstrategic" id="id_PJ_ADD_Researchstrategic" >
+                            <select name="name_PJ_ADD_Researchstrategic" id="id_PJ_ADD_Researchstrategic">
                               <% for (var i = 0; i < data5.length; i++){ %>
                               <option value="<%= data5[i].researchStrategicID %>">
                                 <%=data5[i].rsearchStrategicName %>
                               </option>
                               <% } %>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <!-- ROW กลุ่มข้อมูล -->
+                  <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
+
+                    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                      <label style="font-size:1.5em;">ประเภทงานวิจัย</label>
+                    </div>
+
+                    <div class="grid-y">
+
+                      <div class="cell small-12" style="padding:0em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-12 floated-label-wrapper">
+                            <label for="">สถานะการดำเนินงาน</label>
+                            <select name="stateOfProJ" id="">
+                              <option value="1">1. ทำบันทึกขออนุมัติดำเนินโครงการฯ (ฟอร์ม 2)พร้อมแนบแผนการใช้จ่ายเงิน(วจ.1)(ฟอร์ม 1)</option>
+                              <option value="2">2. ทำบันทึกเบิกงวด 1 (ฟอร์ม 3)</option>
+                              <option value="3">3. การจัดซื้อวัสดุ (ฟอร์ม 4)</option>
+                              <option value="4">4. การจัดจ้าง (ฟอร์ม 5)</option>
+                              <option value="5">5. ใบสำคัญรับเงิน (ฟอร์ม 6)</option>
+                              <option value="6">6. ขอขยายเวลาดำเนินโครงการวิจัยฯ (ฟอร์ม 7)</option>
+                              <option value="7">7. ทำบันทึกส่งหลักฐานการใช้เงิน (ฟอร์ม  8)</option>
+                              <option value="8">8. ทำบันทึกเบิกเงินงวดที่ 2 (ฟอร์ม 9 )พร้อมแนบรายงานความก้าวหน้า(ฟอร์ม 10)</option>
+                              <option value="9">9. ทำบันทึกเบิกงวด 3  (ฟอร์ม 11)พร้อมส่งเล่มรายงานวิจัยฉบับสมบูรณ์ 6 เล่ม ซีดี 2 แผ่น</option>
+                              <option value="10">10. ทำบันทึกส่งเล่มรายงานวิจัย (ฟอร์ม 12) </option>
+                              <option value="11">11. ทำบันทึกส่งมอบครุภัณฑ์ (ถ้ามี) (ฟอร์ม 13)</option>
+                              <option value="12">12. ทำบันทึกปิดโครงการวิจัย (ฟอร์ม 14)พร้อมแนบ วจ.2 (ฟอร์ม  15)</option>
                             </select>
                           </div>
                         </div>
@@ -354,7 +393,7 @@
                 <div class=" grid-y" data-sticky data-margin-top="22">
 
                   <div class=" small-6" style="padding-bottom: 1em;">
-                    <input type="submit" value="ยืนยัน" class="button primary expanded" id="comfirmUserData" style="border-radius:5px;padding:1em;">
+                    <input type="submit" value="ยืนยัน" class="button primary expanded"  style="border-radius:5px;padding:1em;">
                   </div>
 
                   <div class=" small-6">
