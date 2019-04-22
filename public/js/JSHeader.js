@@ -11,7 +11,7 @@ $(function() {
   var url = window.location.href;
   var currentLocation = window.location.pathname;
   var singupurl =  "/signup";
-  
+
   // passes on every "a" tag
   $(".accordion  a").each(function() {
     // checks if its the same on the address bar

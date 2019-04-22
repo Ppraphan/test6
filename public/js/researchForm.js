@@ -47,7 +47,7 @@ $(document).ready(function() {
 
   $.ajax({
     type: 'GET',
-    url: 'http://127.0.0.1:8080/research-form/reqAlltype',
+    url: ajaxURL + '/research-form/reqAlltype',
     dataType: 'json',
     success: function(r2) {
       for (var i = 0; i < r2.length; i++) {
@@ -95,7 +95,7 @@ $(document).ready(function() {
         }
 
       } else {
-        /*Duplicateinput*/        
+        /*Duplicateinput*/
         $('#id_RF_Add_Confirm_newrFormName').attr('disabled', 'disabled');
 
         var id_RF_Add_Div_alertDuplicateName = document.getElementById("id_RF_Add_Div_alertDuplicateName");
@@ -127,7 +127,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: 'http://127.0.0.1:8080/research-form/reqAlltype',
+      url: ajaxURL + '/research-form/reqAlltype',
       dataType: 'json',
       success: function(r2) {
         for (var i = 0; i < r2.length; i++) {

@@ -1,7 +1,4 @@
-
-
 exports.requireRole = function(role,req, res) {
-
 
     return function(req, res, next) {
       if (req.user.userPermission === role) {
@@ -11,6 +8,5 @@ exports.requireRole = function(role,req, res) {
         res.send(403);
       }
     }
-
 
 }

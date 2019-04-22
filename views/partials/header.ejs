@@ -1,9 +1,11 @@
 <% if (userinfo.userPermission == "admin") { %>
-<% include ../partials/adminHeader %>
+  <% include ../partials/adminHeader %>
 <% } %>
+
 <% if (userinfo.userPermission == "user") { %>
-<% include ../partials/userHeader %>
+  <% include ../partials/userHeader %>
 <% } %>
+
 <% if (userinfo.userPermission == "board") { %>
-<% include ../partials/boardHeader %>
+  <% include ../partials/boardHeader %>
 <% } %>

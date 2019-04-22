@@ -157,7 +157,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: 'http://127.0.0.1:8080/Department/getNameofFacultyinUni/?uniData=' + uniData,
+      url: ajaxURL+'/Department/getNameofFacultyinUni/?uniData=' + uniData,
       dataType: 'json',
       success: function(rows) {
         for (var i = 0; i < rows.length; i++) {
@@ -282,7 +282,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: 'http://127.0.0.1:8080/Department/getNameofDepartmentinFaculty/?facultyData=' + facultyData,
+      url: ajaxURL+'/Department/getNameofDepartmentinFaculty/?facultyData=' + facultyData,
       dataType: 'json',
       success: function(rows) {
         for (var i = 0; i < rows.length; i++) {
@@ -401,7 +401,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: 'http://127.0.0.1:8080/Department/getSubinDpment/?dpmantID=' + dpmantID,
+      url: ajaxURL+'/Department/getSubinDpment/?dpmantID=' + dpmantID,
       dataType: 'json',
       success: function(rows) {
         for (var i = 0; i < rows.length; i++) {

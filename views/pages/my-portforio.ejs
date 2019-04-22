@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<% include ../partials/head %>
+</head>
+
+<body style="background-color: #efefef;  height: 100vh;">
+	<div class="cell medium-auto medium-cell-block-container">
+		<div class="grid-x">
+
+			<div class="cell medium-cell-block-y" style="width:17rem">
+				<% include ../partials/header %>
+				  <% include ../partials/flash %>
+			</div>
+
+			<div class="cell medium-cell-block-y auto" style="width:100%">
+				<div class="cell small-6-container full bgforms" align="center">
+					<div style="margin:35px;">
+						<h1>จัดการผลงานของฉัน</h1>
+					</div>
+
+					<div class="reveal mobile-ios-modal" id="mobile-ios-modal2" data-reveal>
+						<form>
+							<div class="mobile-ios-modal-inner">
+								<center>
+								<p>คุณต้องการลบ </p>
+								<p style="font-size: 1.8em;" name="RTSHOWNAMERSTtypeName" id="RT_SHOW_ID_RSTtypeName"></p>
+								<input type="hidden" name="RTNAMEHIDEVALUERSTtypeName" id="RT_HIDE_VALUE_RSTtypeName" value="">
+								<p>ใช่หรือไม่ ?</p>
+							</center>
+							</div>
+
+							<div class="mobile-ios-modal-options">
+								<button data-close type="reset" class="button secondary">ยกเลิก</button>
+								<button   id="RTSUNMITIDNewRSTtype"class="button alert">ลบ</button>
+							</div>
+						</form>
+					</div>
+
+				</div>
+
+				<div class="grid-x">
+					<div class="grid-y small-6">
+						<div class="cell small-6" id="666" style="padding:2.5rem;">
+							<h3>เพิ่มประเภทงานวิจัยใหม่</h3>
+
+							<form class="myform"name="newResearchForm" ref='uploadForm' encType="multipart/form-data" action="/research-type" method="post" id="RTIDFORMNewResearchType">
+								<div class="grid-x grid-padding-x">
+									<div class="small-3 cell">
+										<label for="middle-label" class="text-right middle"><b>ชื่อใหม่</b></label>
+									</div>
+									<div class="small-9 cell RTCLASSINPUTfield">
+										<input type="text"  name="file_Name" placeholder="ชื่อประเภทงานวิจัยใหม่" id="RTIDINPUTNewResearchType">
+										<!-- id="message" -->
+										<span class="label alert " id="RTIDADDalertEmptryName"><i class="fi-x-circle"></i>กรุณากรอกข้อมูล</span>
+										<span class="label alert hide" id="RTIDADDalertDuplicateName"><i class="fi-x-circle"></i>ประเภทงานวิจัยนี้ มีแล้ว</span>
+									</div>
+								</div>
+								<input type="submit" value="เพิ่ม" class="button" id="RTIDCONFIRMNewResearchType" disabled="disabled">
+							</form>
+
+						</div>
+
+						<div class="cell small-6 " style="padding:2.5rem;display: none;" id="555">
+							<h3>แก้ไขประเกทงานวิจัย</h3>
+							<form id="myform" ref='uploadForm' encType="multipart/form-data" class="form-fields" action="/research-type/update" method="post">
+								<div class="grid-x grid-padding-x">
+									<div class="small-3 cell">
+										<label for="middle-label" class="text-right middle"><b>ชื่อเดิม</b></label>
+										<label for="middle-label" class="text-right middle"><b>ชื่อใหม่</b></label>
+									</div>
+									<div class="small-9 cell RTCLASSINPUTEDITfield">
+										<label for="middle-label" class="text-left middle" id="12"></label>
+										<input name="file_Nameold" type="hidden" id="13" value="">
+										<input type="text" id="RTIDINPUT_EDIT_NewResearchType" name="file_NameUpdate" placeholder="ชื่อประเภทงานวิจัยใหม่">
+										<span class="label alert hide" id="RTIDEDalertEmptryName"><i class="fi-x-circle"></i>กรุณากรอกข้อมูล</span>
+										<span class="label alert hide" id="RTIDEDalertDuplicateName"><i class="fi-x-circle"></i>ประเภทงานวิจัยนี้ มีแล้ว</span>
+									</div>
+								</div>
+								<!-- <input type="submit" value="ยืนยัน" class="sendButton2 button" disabled="disabled"> -->
+								<input type="submit" value="ยืนยัน" class="button" id="RTIDCONFIRMEDITResearchType" disabled="disabled">
+								<input type="reset" onclick="myFunction2()" value="ยกเลิก" class="button alert">
+							</form>
+						</div>
+					</div>
+
+					<div class="cell small-6 ">
+						<div style="padding:2.5rem;">
+							<table id="researchtypeTable" class="hover unstriped">
+								<thead>
+									<tr>
+										<th></th>
+										<th>ชื่อประเภท</th>
+										<th></th>
+										<th></th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<% if(data.length){
+		                  for(var i = 0;i < data.length;i++) { %>
+									<tr class="showhim ">
+										<td></td>
+										<td>
+											<%=data[i].Name_researchType%>
+										</td>
+										<td><a class="small button warning showme" id="RTIDEDNAMEResearchType" onclick="myFunction('<%= data[i].Name_researchType %>')" data-open="editType">แก้ไข</a></td>
+										<td><a class="small button alert showme" onclick="return confirm('คุณต้องการที่จะ ลบ <%= data[i].Name_researchType %> หรือไม่ ?');" href="/research-type/delete/<%=data[i].idresearchType %>">ลบ</a></td>
+
+									</tr>
+									<% }
+		                }else{ %>
+									<tr>
+										<td colspan="4">No user</td>
+									</tr>
+									<% } %>
+								</tbody>
+							</table>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</body>
+
+<footer>
+	<script src="js/datatable/researchType-Table.js"></script>
+	<script src="js/researchType.js"></script>
+	<script src="js/app.js"></script>
+	<% include ../partials/footer %>
+</footer>
+
+</html>

@@ -56,7 +56,7 @@ $(document).ready(function() {
 
   $.ajax({
     type: 'GET',
-    url: 'http://127.0.0.1:8080/research-type/reqAlltype',
+    url: ajaxURL+'/research-type/reqAlltype',
     dataType: 'json',
     success: function(r2) {
       for (var i = 0; i < r2.length; i++) {
@@ -136,7 +136,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: 'http://127.0.0.1:8080/research-type/reqAlltype',
+      url: ajaxURL+'/research-type/reqAlltype',
       dataType: 'json',
       success: function(r2) {
         for (var i = 0; i < r2.length; i++) {

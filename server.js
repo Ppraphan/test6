@@ -65,13 +65,7 @@ var models = require("./models");
 //Routes
 var authRoute = require('./routes/auth.js')(app, passport);
 
-app.get('/me', function(req, res) {
-  var userinfo =req.user;
-  console.log(userinfo);
-  res.render('pages/me', {
-    userinfo:userinfo,
-  });
-});
+
 //Models
 var models = require("./models");
 
@@ -79,7 +73,9 @@ var models = require("./models");
 require('./config/passport/passport.js')(passport, models.user);
 require('./routes/signup.js')(app, passport);
 
+// กลุ่มบัญชีผู้ใช้
 require('./routes/alluser.js')(app);
+require('./routes/user.js')(app);
 
 // กลุ่มโครงการวิจัย
 require('./routes/my-project.js')(app);
@@ -98,6 +94,8 @@ require('./routes/forms.js')(app, session);
 
 //กลุ่มฟังก์ชันผลงาน
 require('./routes/portforio.js')(app, session);
+require('./routes/my-portforio.js')(app, session);
+require('./routes/portforio-setting.js')(app, session);
 
 //กลุ่มฟังก์ชันรายงาน
 require('./routes/report.js')(app, session);

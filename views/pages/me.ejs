@@ -18,10 +18,13 @@
         <% include ../partials/header %>
       </div>
       <div class="cell medium-cell-block-y auto">
+
         <div class="cell small-6 full  bgforms" align="left">
           <div style="padding: 2rem  4em 2em 10em;">
             <div class="grid-x">
-              <div class=" small-2"></div>
+              <div class=" small-2">
+
+              </div>
               <div class=" small-8">
                 <h1>เกี่ยวกับฉัน</h1>
               </div>
@@ -35,27 +38,38 @@
             <div class=" small-2"></div>
             <div class=" small-6">
               <ul class="menu menu-fancy">
-                <li class="menu-fancy-option1 is-selected"><a href="#">ข้อมูลส่วนตัว</a></li>
-                <li class="menu-fancy-option2"><a href="#">ข้อมูลที่ทำงาน</a></li>
+                <li class="menu-fancy-option1 is-selected"><a href="#">แก้ไขข้อมูลส่วนตัว</a></li>
+                <li class="menu-fancy-option2"><a href="#">แก้ไขข้อมูลที่ทำงาน</a></li>
                 <li class="menu-fancy-option3"><a href="#">เปลี่ยนรหัสผ่านใหม่</a></li>
                 </li>
               </ul>
-
-
             </div>
             <div class=" small-4"></div>
           </div>
 
         </div>
 
-        <div class="cell small-6" style="padding:2rem  4em 2em 10em;">
+        <!-- ข้อมูลส่วนตัว -->
+        <div class="cell small-6 hide" style="padding:2rem  4em 2em 10em;">
           <form id="signup" name="signup" enctype="multipart/form-data" method="get" action="/alluser">
             <div class="grid-x grid-margin-x">
               <div class="cell small-2">
-
+                <div class="image-hover-wrapper">
+                  <div class="avatar-preview">
+                    <a href="#">
+                      <div id="profileimage2" class="imagePreview" style="background-image: url(./userprofile/<%=userinfo.profilePic%>);"></div>
+                      <span class="image-hover-wrapper-reveal">
+                        <p>เปลี่ยนรูป<br>
+                          <input type='file' id="profileimage" name="profileimage" accept=".png, .jpg, .jpeg" />
+                        </p>
+                      </span>
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div class="cell small-6">
 
+
+              <div class="cell small-6 ">
                 <div class="grid-y grid-margin-y">
 
                   <!-- ROW กลุ่มข้อมูล -->
@@ -197,6 +211,218 @@
                   </div>
                 </div>
               </div>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- ข้อมูลที่ทำงาน -->
+        <div class="cell small-6 hide" style="padding:2rem  4em 2em 10em;">
+          <form id="signup" name="signup" enctype="multipart/form-data" method="get" action="/alluser">
+            <div class="grid-x grid-margin-x">
+              <div class="cell small-2"></div>
+              <div class="cell small-6 ">
+
+                <div class="grid-y grid-margin-y">
+
+                  <!-- ROW กลุ่มข้อมูล -->
+                  <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
+
+                    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                      <label style="font-size:1.5em;">ข้อมูลที่ทำงาน</label>
+                    </div>
+
+                    <div class="grid-y">
+
+                      <div class="cell small-6" style="padding:0em 1em 0.5em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-6 ">
+                            <label>วันที่เข้าทำงาน</label>
+                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.fristDayJoin%>">
+                          </div>
+
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-6 ">
+                            <label>วันที่ออก</label>
+                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.dayLeft%>">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:0.5em 1em 0.5em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-12 ">
+                            <label>ประเทศ</label>
+                            <select style="margin:0px!important;border-radius:5px;">
+                              <option value="--Select--" disabled>กรุณาเลือก</option>
+
+                              <% for(var i=0; i<data0.length; i++) {%>
+                                <option value=<%=data0[i].countryISOCode%> ><%=data0[i].countryName%></option>
+                                 <%if (data0[i].countryISOCode==userinfo.country) { %>
+                                   <option value=<%=data0[i].countryISOCode%> selected ><%=data0[i].countryName%></option>
+                                  <% } %>
+                              <% } %>
+
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:0.5em 1em 0.5em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-12 ">
+                            <label>มหาวิทยาลัย</label>
+                            <select style="margin:0px!important;border-radius:5px;">
+                              <option value="--Select--" disabled>กรุณาเลือก</option>
+                              <% for(var i=0; i<data1.length; i++) {%>
+                                <option value=<%=data1[i].uniID%> ><%=data1[i].uniName%></option>
+                                 <%if (data1[i].uniID==userinfo.university) { %>
+                                   <option value=<%=data1[i].uniID%> selected ><%=data1[i].uniName%></option>
+                                  <% } %>
+                              <% } %>
+                            </select>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:0.5em 1em 0.5em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-12 ">
+                            <label>คณะ</label>
+                            <select style="margin:0px!important;border-radius:5px;">
+                              <option value="--Select--" disabled>กรุณาเลือก</option>
+                              <% for(var i=0; i<data2.length; i++) {%>
+                                <option value=<%=data2[i].facultyID%> ><%=data2[i].facultyName%></option>
+                                 <%if (data2[i].facultyID==userinfo.faculty) { %>
+                                   <option value=<%=data2[i].facultyID%> selected ><%=data2[i].facultyName%></option>
+                                  <% } %>
+                              <% } %>
+                            </select>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:0.5em 1em 0.5em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-12 ">
+                            <label>หน่วยงานหลัก</label>
+                            <select style="margin:0px!important;border-radius:5px;">
+                              <option value="--Select--" disabled>กรุณาเลือก</option>
+                              <% for(var i=0; i<data3.length; i++) {%>
+                                <option value=<%=data3[i].departmentID%> ><%=data3[i].departmentName%></option>
+                                 <%if (data3[i].departmentID==userinfo.department) { %>
+                                   <option value=<%=data3[i].departmentID%> selected ><%=data3[i].departmentName%></option>
+                                  <% } %>
+                              <% } %>
+                            </select>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:0.5em 1em 0.5em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-12 ">
+                            <label>หน่วยงานย่อย</label>
+                            <select style="margin:0px!important;border-radius:5px;">
+                              <option value="--Select--" disabled>กรุณาเลือก</option>
+                              <% for(var i=0; i<data4.length; i++) {%>
+                                <option value=<%=data4[i].Sub_Dpment_ID%> ><%=data4[i].Sub_Dpment_name%></option>
+                                 <%if (data4[i].Sub_Dpment_ID==userinfo.subdepartment) { %>
+                                   <option value=<%=data4[i].Sub_Dpment_ID%> selected ><%=data4[i].Sub_Dpment_name%></option>
+                                  <% } %>
+                              <% } %>
+                            </select>
+
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class=" small-2" data-sticky-container style="border-radius:5px;padding-left: 1em;">
+                <div class=" grid-y" data-sticky data-margin-top="20">
+
+                  <div class=" small-6" style="padding-bottom: 1em;">
+                    <input type="submit" value="ยืนยัน" class="button primary expanded" id="" style="border-radius:2em;padding:1em;">
+                  </div>
+
+                  <div class=" small-6"></div>
+
+                </div>
+              </div>
+
+            </div>
+
+          </form>
+        </div>
+
+        <!-- เปลี่ยนรหัสผ่าน -->
+        <div class="cell small-6" style="padding:2rem  4em 2em 10em;">
+          <form id="" name="" enctype="multipart/form-data" method="get" action="">
+            <div class="grid-x grid-margin-x">
+              <div class="cell small-2"></div>
+              <div class="cell small-6 ">
+
+                <div class="grid-y grid-margin-y">
+
+                  <!-- ROW กลุ่มข้อมูล -->
+                  <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
+
+                    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                      <label style="font-size:1.5em;">เปลี่ยนรหัสผ่านใหม่</label>
+                    </div>
+
+                    <div class="grid-y">
+
+                      <div class="cell small-12" style="padding:1em 1em 0.5em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-12 ">
+                            <label>รหัสผ่านใหม่</label>
+                            <input type="text" >
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-12" style="padding:0em 1em 0.5em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-12 ">
+                            <label>รหัสผ่านใหม่อีกครั้ง</label>
+                            <input type="text" >
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class=" small-2" data-sticky-container style="border-radius:5px;padding-left: 1em;">
+                <div class=" grid-y" data-sticky data-margin-top="20">
+
+                  <div class=" small-6" style="padding-bottom: 1em;">
+                    <input type="submit" value="ยืนยัน" class="button primary expanded" id="" style="border-radius:2em;padding:1em;">
+                  </div>
+
+                  <div class=" small-6"></div>
+
+                </div>
+              </div>
+
             </div>
 
           </form>

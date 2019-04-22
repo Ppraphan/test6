@@ -16,7 +16,7 @@ function fnEditUniNameShowup(oldUniname, oldUniID, countryISOCode) {
 
   $.ajax({
     type: 'GET',
-    url: 'http://127.0.0.1:8080/Department/getNameUniinCountry/?countryData=' + countryData,
+    url: ajaxURL+'/Department/getNameUniinCountry/?countryData=' + countryData,
     dataType: 'json',
     success: function(rows) {
       for (var i = 0; i < rows.length; i++) {
@@ -89,7 +89,7 @@ function fnEditFacultyNameShowup(oldFacultyname, oldFacultyID, uniID) {
 
   $.ajax({
     type: 'GET',
-    url: 'http://127.0.0.1:8080/Department/getNameofFacultyinUni/?uniData=' + uniData,
+    url: ajaxURL+'/Department/getNameofFacultyinUni/?uniData=' + uniData,
     dataType: 'json',
     success: function(rows) {
       for (var i = 0; i < rows.length; i++) {
@@ -199,7 +199,7 @@ $(document).ready(function() {
   $('#addDepmentBtn').click(function() {
     $.ajax({
       type: 'GET',
-      url: 'http://127.0.0.1:8080/Department/getAllCountry/',
+      url: ajaxURL+'/Department/getAllCountry/',
       dataType: 'json',
       success: function(rows) {
         $('#getCountry').empty();
@@ -259,7 +259,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: 'http://127.0.0.1:8080/Department/getUniinCountry/?countryData=' + countryData,
+      url: ajaxURL+'/Department/getUniinCountry/?countryData=' + countryData,
       dataType: 'json',
       success: function(rows) {
         $('#getUni').append('<option selected="selected">' + "เลือก" + '</option>');
@@ -314,7 +314,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: 'http://127.0.0.1:8080/Department/getFacultyinUni/?uniData=' + uniData,
+      url: ajaxURL+'/Department/getFacultyinUni/?uniData=' + uniData,
       dataType: 'json',
       success: function(rows) {
         $('#getFaculty').append('<option disabled selected value>' + "เลือก" + '</option>');
@@ -348,7 +348,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: 'http://127.0.0.1:8080/Department/getDpmentinFac/?facultyID=' + facultyID,
+      url: ajaxURL+'/Department/getDpmentinFac/?facultyID=' + facultyID,
       dataType: 'json',
       success: function(rows) {
         $('#selectDpmantID').append('<option disabled selected value>' + "เลือก" + '</option>');
