@@ -11,6 +11,7 @@
     <div class="grid-x">
       <div class="cell medium-cell-block-y shrink " style="width:17rem">
         <% include ../partials/header %>
+        <% include ../partials/flash %>
       </div>
       <div class="cell auto">
         <div class="grid-y">
@@ -28,8 +29,8 @@
                 <form id="ID_documentForm" ref='uploadForm' encType="multipart/form-data" class="" action="/forms" method="post">
                   <h3 style="padding-bottom:3%">เพิ่มไฟล์ที่นี่</h3>
                   <div class="mobile-ios-modal-inner">
-                    <label for="exampleFileUpload" id="resume_link" class="button">เพิ่มไฟล์</label>
-                    <input type="file" id="id_DocFile" name="foo" accept=".pdf" class="show-for-sr">
+                    <!-- <label for="exampleFileUpload" id="resume_link" class="button">เพิ่มไฟล์</label> -->
+                    <input type="file" id="id_DocFile" name="foo" accept=".pdf">
                   </div>
                   <div style="padding:1em 0em 1em 0em;">
                     <div class="floated-label-wrapper">
@@ -75,7 +76,7 @@
 
                   </div>
                   <div class="mobile-ios-modal-options">
-                    <input type="submit"  value="ยืนยัน" class="button" disabled="disabled">
+                    <input type="submit" value="ยืนยัน" class="button" disabled="disabled">
                     <button data-close type="reset" class="button alert">ยกเลิก</button>
                   </div>
                 </form>
@@ -104,7 +105,7 @@
                       <%=data[i].documentName%>
                     </td>
                     <td><a class="small button primary showme" href="/forms/download/<%=data[i].documentDir%>">ดาวน์โหลด</a></td>
-                    <td><a class="small button warning showme" onclick="showOldname('<%=data[i].documentName%>')"data-open="mobile-ios-modal2">แก้ไข</a></td>
+                    <td><a class="small button warning showme" onclick="showOldname('<%=data[i].documentName%>')" data-open="mobile-ios-modal2">แก้ไข</a></td>
                     <td><a class="small button alert showme" onclick="return confirm('คุณต้องการที่จะ ลบ <%= data[i].documentName %> หรือไม่ ?');" href="/forms/delete/<%=data[i].documentID %>">ลบ</a></td>
                   </tr>
                   <% }

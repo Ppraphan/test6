@@ -108,7 +108,7 @@ module.exports = function(app, passport) {
   }
 
   app.all('*', function(req, res, next) {
-    if (req.path === '/' || req.path === '/login')
+    if (req.path === '/' || req.path === '/login'|| req.path === '/forgot-password')
       next();
     else
       isLoggedIn(req, res, next);

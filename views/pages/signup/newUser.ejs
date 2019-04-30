@@ -10,20 +10,20 @@
         <div class="cell small-6" style="padding:1em 1em 1em 1em;">
           <label style="font-size:1.5em;">ข้อมูลส่วนตัว </label>
 
-          <p style="color:#cc4b37;">  กรุณากรอกข้อมูลให้ครบทุกช่อง ถ้าไม่มีกรุณาใส่ -</p>
+          <p style="color:#cc4b37;"> กรุณากรอกข้อมูลให้ครบทุกช่อง ถ้าไม่มีกรุณาใส่ -</p>
         </div>
 
         <div class="grid-y">
           <div class="cell small-6" style="padding:0em 1em 1em 1em;">
             <div class="grid-x grid-margin-x">
               <!-- คอลัม 1 -->
-              <div class="cell small-6 floated-label-wrapper">
-                <label for="email">E-Mail</label>
+              <div class="cell small-6">
+                <label for="email" style="color:#8a8a8a;">E-Mail</label>
                 <input type="email" name="email" id="newemail_ID" readonly="readonly" placeholder="E-Mail" style="margin:0px!important;border-radius:5px;" value="<%=email%>" required>
               </div>
               <!-- คอลัม 2 -->
-              <div class="cell small-6 floated-label-wrapper">
-                <label>สิทธิ์การใช้งาน</label>
+              <div class="cell small-6 ">
+                <label style="color:#8a8a8a;">สิทธิ์การใช้งาน</label>
                 <select placeholder="สิทธิ์การใช้งาน" name="userPermission" style="margin:0px!important;border-radius:5px;">
                   <option value="admin">ผู้ดูแลระบบ</option>
                   <option value="user">ผู้บริหาร</option>
@@ -53,8 +53,8 @@
           <div class="cell small-6" style="padding:1em 1em 1em 1em;">
             <div class="grid-x grid-margin-x">
               <!-- คอลัม 1 -->
-              <div class="cell small-3 floated-label-wrapper">
-                <label for="prefix">คำนำหน้า</label>
+              <div class="cell small-3 ">
+                <label for="prefix" style="color:#8a8a8a;">คำนำหน้า</label>
                 <select name="prefix" style="margin:0px!important;border-radius:5px;">
                   <option value="Mr.">นาย</option>
                   <option value="Mrs.">นาง</option>
@@ -62,8 +62,8 @@
                 </select>
               </div>
               <!-- คอลัม 2 -->
-              <div class="cell small-3 floated-label-wrapper">
-                <label for="academicPositions">ตำแหน่งทางวิชาการ</label>
+              <div class="cell small-3 ">
+                <label for="academicPositions" style="color:#8a8a8a;">ตำแหน่งทางวิชาการ</label>
                 <select name="academicPositions" style="margin:0px!important;border-radius:5px;">
                   <option value="ศ.ดร.">ศ.ดร.</option>
                   <option value="ศ.">ศ.</option>
@@ -154,12 +154,12 @@
               <!-- คอลัม 1 -->
               <div class="cell small-6 floated-label-wrapper">
                 <label for="fristDayJoin">วันที่เข้าทำงาน</label>
-                <input required type="text" name="fristDayJoin" data-toggle="datepicker" placeholder="วันที่เข้าทำงาน" style="margin:0px!important;border-radius:5px;">
+                <input required type="text" autocomplete="off" name="fristDayJoin" data-toggle="datepicker" placeholder="วันที่เข้าทำงาน" style="margin:0px!important;border-radius:5px;">
               </div>
               <!-- คอลัม 2 -->
               <div class="cell small-6 floated-label-wrapper">
                 <label>วันที่ออก</label>
-                <input required type="text" name="dayLeft" data-toggle="datepicker" placeholder="วันที่ออก" style="margin:0px!important;border-radius:5px;">
+                <input required autocomplete="off" type="text" name="dayLeft" data-toggle="datepicker" placeholder="วันที่ออก" style="margin:0px!important;border-radius:5px;">
               </div>
             </div>
           </div>
@@ -167,10 +167,10 @@
           <div class="cell small-6" style="padding:0em 1em 1em 1em;">
             <div class="grid-x grid-margin-x">
               <!-- คอลัม 1 -->
-              <div class="cell small-12 floated-label-wrapper">
-                <label for="country">ประเทศ</label>
+              <div class="cell small-12 ">
+                <label for="country" style="color:#8a8a8a;">ประเทศ</label>
                 <select required name="country" id="ID_country" placeholder="ประเทศ" style="margin:0px!important;border-radius:5px;">
-                    <option selected="selected" hidden>กรุณาเลือก</option>
+                  <option selected="selected" hidden>กรุณาเลือก</option>
                   <% for (var i = 0; i < data.length; i++){ %>
                   <option value="<%= data[i].countryISOCode %>">
                     <%=data[i].countryName %>
@@ -186,20 +186,10 @@
           <div class="cell small-6" style="padding:0em 1em 1em 1em;">
             <div class="grid-x grid-margin-x">
               <!-- คอลัม 1 -->
-              <div class="cell small-12 floated-label-wrapper">
-                <label for="university">มหาวิทยาลัย</label>
-                <select required name="university" id="ID_university" placeholder="มหาวิทยาลัย" style="margin:0px!important;border-radius:5px;"></select>
-              </div>
-            </div>
-          </div>
-
-          <div class="cell small-6" style="padding:0em 1em 1em 1em;">
-            <div class="grid-x grid-margin-x">
-              <!-- คอลัม 1 -->
-              <div class="cell small-12 floated-label-wrapper">
-                <label for="faculty">คณะ</label>
-                <select name="faculty" id="ID_faculty" placeholder="คณะ" style="margin:0px!important;border-radius:5px;">
-                  <option selected="selected" hidden>-</option>
+              <div class="cell small-12 ">
+                <label for="university" style="color:#8a8a8a;">มหาวิทยาลัย</label>
+                <select required name="university" id="ID_university">
+                  <option disabled="disabled">-</option>
                 </select>
               </div>
             </div>
@@ -208,10 +198,10 @@
           <div class="cell small-6" style="padding:0em 1em 1em 1em;">
             <div class="grid-x grid-margin-x">
               <!-- คอลัม 1 -->
-              <div class="cell small-12 floated-label-wrapper">
-                <label for="department">หน่วยงานหลัก</label>
-                <select name="department" id="ID_department" placeholder="หน่วยงานหลัก" style="margin:0px!important;border-radius:5px;">
-                  <option selected="selected" hidden>-</option>
+              <div class="cell small-12 ">
+                <label for="faculty" style="color:#8a8a8a;">คณะ</label>
+                <select name="faculty" id="ID_faculty">
+                  <option disabled="disabled" selected="selected">-</option>
                 </select>
               </div>
             </div>
@@ -220,10 +210,22 @@
           <div class="cell small-6" style="padding:0em 1em 1em 1em;">
             <div class="grid-x grid-margin-x">
               <!-- คอลัม 1 -->
-              <div class="cell small-12 floated-label-wrapper">
-                <label for="department">หน่วยงานย่อย</label>
-                <select name="subdepartment" id="ID_subdepartment" placeholder="หน่วยงานย่อย" style="margin:0px!important;border-radius:5px;">
-                  <option selected="selected" hidden>-</option>
+              <div class="cell small-12 ">
+                <label for="department" style="color:#8a8a8a;">หน่วยงานหลัก</label>
+                <select name="department" id="ID_department">
+                  <option disabled="disabled" selected="selected">-</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="cell small-6" style="padding:0em 1em 1em 1em;">
+            <div class="grid-x grid-margin-x">
+              <!-- คอลัม 1 -->
+              <div class="cell small-12 ">
+                <label for="department" style="color:#8a8a8a;">หน่วยงานย่อย</label>
+                <select name="subdepartment" id="ID_subdepartment">
+                  <option disabled="disabled" selected="selected">-</option>
                 </select>
               </div>
             </div>

@@ -11,10 +11,21 @@ module.exports = function(app) {
 
   app.get('/portforio', function(req, res) {
     var userinfo = req.user;
+    var mses = req.query.valid;
 
-    res.render('pages/portforio', {
-      userinfo: userinfo,
-    });
+    var sql = "SELECT * FROM project.users"
+    var query = con.query(sql, function(err, rows) {
+      if (err)
+        console.log("Error Selecting : %s ", err);
+      res.render('pages/portforio', {
+        userinfo: userinfo,
+        messages: mses,
+
+        data: rows,
+      });
+    })
+
 
   });
+
 }

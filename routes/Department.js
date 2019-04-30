@@ -3,14 +3,14 @@ var con = require('./connect-db.js'); /*เชื่อมต่อฐานข�
 module.exports = function(app) {
 
   app.get('/department', function(req, res) {
-    var userinfo =req.user;
+    var userinfo = req.user;
     var mses = req.query.valid;
     var sql = "select * from project.faculty , project.department , project.sub_dpment , project.university , project.country where project.country.countryISOCode = project.university.countryISOCode AND project.faculty.uniID = project.university.uniID AND project.department.facultyID = project.faculty.facultyID AND project.department.departmentID = project.sub_dpment.Sub_Dpment_Parent;"
     var query = con.query(sql, function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
       res.render('pages/department', {
-        userinfo:userinfo,
+        userinfo: userinfo,
         data: rows,
         messages: mses,
       });
@@ -29,13 +29,13 @@ module.exports = function(app) {
       console.log("Insert Complete...");
     });
 
-    var sql2 = "INSERT INTO `project`.`faculty` (`uniID`, `facultyName`) VALUES ((SELECT `uniID` FROM `project`.`university` ORDER BY uniID DESC LIMIT 1), '-');";
+    var sql2 = "INSERT INTO `project`.`faculty` (`uniID`,`facultyName`) VALUES ((SELECT `uniID` FROM `project`.`university` ORDER BY uniID DESC LIMIT 1),  '-');";
     con.query(sql2, function(err, result) {
       if (err) throw err;
       console.log("Insert Complete...");
     });
 
-    var sql3 = "INSERT INTO `project`.`department` (`facultyID`, `departmentName`) VALUES ((SELECT `facultyID` FROM `project`.`faculty` ORDER BY facultyID DESC LIMIT 1), '-');";
+    var sql3 = "INSERT INTO `project`.`department` (`facultyID`, `departmentName`) VALUES ((SELECT `facultyID` FROM `project`.`faculty` ORDER BY facultyID DESC LIMIT 1),'-');";
     con.query(sql3, function(err, result) {
       if (err) throw err;
       console.log("Insert Complete...");
@@ -70,7 +70,7 @@ module.exports = function(app) {
       console.log("Insert Complete...");
     });
 
-    var sql4 = "INSERT INTO `project`.`sub_dpment` (`Sub_Dpment_Parent`, `Sub_Dpment_name`) VALUES ((SELECT `departmentID` FROM `project`.`department` ORDER BY departmentID DESC LIMIT 1), '-');";
+    var sql4 = "INSERT INTO `project`.`sub_dpment` (`Sub_Dpment_Parent`, `Sub_Dpment_name`) VALUES ((SELECT `departmentID` FROM `project`.`department` ORDER BY departmentID DESC LIMIT 1),'-');";
     con.query(sql4, function(err, result) {
       if (err) throw err;
       console.log("Insert Complete...");
@@ -116,11 +116,6 @@ module.exports = function(app) {
       console.log("Insert Complete...");
     });
 
-    var sql4 = "INSERT INTO `project`.`sub_dpment` (`Sub_Dpment_Parent`, `Sub_Dpment_name`) VALUES ((SELECT `departmentID` FROM `project`.`department` ORDER BY departmentID DESC LIMIT 1), '-');";
-    con.query(sql4, function(err, result) {
-      if (err) throw err;
-      console.log("Insert Complete...");
-    });
 
     var mses = encodeURIComponent('เพิ่ม  ' + txtsubdepartmentName + '  เรียบร้อยแล้ว');
     res.redirect('/department?valid=' + mses);
@@ -175,7 +170,7 @@ module.exports = function(app) {
     var catdata = req.query.countryData;
     console.log(catdata);
 
-    var sql = "SELECT uniName FROM project.university where countryISOCode ='" + catdata + "' ";
+    var sql = "SELECT uniName FROM project.university where countryISOCode ='" + catdata + "' order by uniName ASC";
     console.log(sql);
     con.query(sql, function(err, rows) {
       console.log(rows);
@@ -214,7 +209,7 @@ module.exports = function(app) {
     var catdata = req.query.countryData;
     console.log(catdata);
 
-    var sql = "SELECT * FROM project.university where countryISOCode ='" + catdata + "' ";
+    var sql = "SELECT * FROM project.university where countryISOCode ='" + catdata + "' order by uniName ASC";
     console.log(sql);
     con.query(sql, function(err, rows) {
       console.log(rows);

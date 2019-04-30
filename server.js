@@ -20,17 +20,29 @@ var env = require('dotenv').load()
 var exphbs = require('express-handlebars');
 
 var options = {
-    host: '35.220.198.55',
-    port: 3306,
-    user: 'root',
-    password: 'itmyfinalproject',
-    database: 'project'
+  host: '35.220.198.55',
+  port: 3306,
+  user: 'root',
+  password: 'itmyfinalproject',
+  database: 'project'
 };
 
 
 var sessionStore = new MySQLStore(options);
 
-app.use(fileUpload());
+// app.use(fileUpload());
+
+app.use(fileUpload({
+  limits: { fileSize:30000000 },
+}));
+
+// app.use(fileUpload({
+//   limits: {
+//     fieldSize: 20971520,
+//     abortOnLimit: true,
+//   },
+// }));
+
 app.use(express.static(__dirname + '/public'));
 
 //---- set the view engine to ejs
@@ -55,9 +67,12 @@ app.use(passport.session()); // persistent login sessions
 
 app.use(bodyParser.json());
 
-app.use(bodyParser.urlencoded({
+
+app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
+  limit: '150mb',
   extended: true
 }));
+
 
 //Models
 var models = require("./models");
@@ -76,6 +91,7 @@ require('./routes/signup.js')(app, passport);
 // กลุ่มบัญชีผู้ใช้
 require('./routes/alluser.js')(app);
 require('./routes/user.js')(app);
+require('./routes/forgot-password.js')(app);
 
 // กลุ่มโครงการวิจัย
 require('./routes/my-project.js')(app);

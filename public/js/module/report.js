@@ -47,7 +47,7 @@
 
         $.ajax({
           type: 'GET',
-          url: ajaxURL + '/report/allofyears',
+          url: '/report/allofyears',
           dataType: 'json',
           success: function(rows) {
 

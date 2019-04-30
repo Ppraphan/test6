@@ -33,14 +33,14 @@
           <td>
             <%=data[i].facultyName%>
           </td>
-          <td >
-            <a class="small button primary showme"  href="/forms/download/<%=data[i].Picpart%>">ดู</a>
+          <td>
+            <a class="small button primary showme" href="/user/<%=data[i].id%>">ดู</a>
           </td>
           <td>
             <a class="small button warning showme" href="#">แก้ไข</a>
           </td>
           <td>
-            <a class="small button alert showme" data-open="mobile-ios-modal2">ลบ</a>
+            <a class="small button alert showme" onclick="return confirm('คุณต้องการที่จะ ลบ <%= data[i].firstname %> <%= data[i].lastname %>หรือไม่ ?');" href="/signup/delete/<%=data[i].id %>">ลบ</a>
           </td>
         </tr>
         <% }

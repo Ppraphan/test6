@@ -19,7 +19,10 @@ exports.useridcheck = function(req, res) {
 }
 
 exports.signin = function(req, res) {
-  res.render('pages/signin');
+  var mses = req.query.valid;
+  res.render('pages/signin', {
+    messages: mses,
+  });
 }
 
 exports.dashboard = function(req, res) {

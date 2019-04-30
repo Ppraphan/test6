@@ -157,7 +157,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: ajaxURL+'/Department/getNameofFacultyinUni/?uniData=' + uniData,
+      url: '/Department/getNameofFacultyinUni/?uniData=' + uniData,
       dataType: 'json',
       success: function(rows) {
         for (var i = 0; i < rows.length; i++) {
@@ -183,7 +183,7 @@ $(document).ready(function() {
               empt2y = true;
             }
           });
-
+          /*ตรวจสอบ INPUT ว่าง*/
           if ($.trim($('#txtFacultyInput').val()) == '') {
             $('#comfirmAddFacultyID').attr('disabled', 'disabled');
             document.getElementById("txtFacultyOutputFacultyPage").style.color = "#ff8888";
@@ -282,7 +282,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: ajaxURL+'/Department/getNameofDepartmentinFaculty/?facultyData=' + facultyData,
+      url: '/Department/getNameofDepartmentinFaculty/?facultyData=' + facultyData,
       dataType: 'json',
       success: function(rows) {
         for (var i = 0; i < rows.length; i++) {
@@ -401,7 +401,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: ajaxURL+'/Department/getSubinDpment/?dpmantID=' + dpmantID,
+      url: '/Department/getSubinDpment/?dpmantID=' + dpmantID,
       dataType: 'json',
       success: function(rows) {
         for (var i = 0; i < rows.length; i++) {

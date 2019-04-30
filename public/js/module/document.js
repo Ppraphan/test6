@@ -1,9 +1,79 @@
 /* ไฟล์เฉพาะ ฟีเจอร์เอกสาร */
 var myfile = "";
-$('#resume_link').click(function(e) {
-  e.preventDefault();
-  $('#id_DocFile').trigger('click');
-});
+// $('#resume_link').click(function(e) {
+//   e.preventDefault();
+//   $('#id_DocFile').trigger('click');
+// });
+/* ฟังก์เปิดหน้าการแก้ไขชื่อ แบบฟอร์ม */
+function fnEditUniNameShowup(oldUniname, oldUniID, countryISOCode) {
+  /*get ชื่อมหาลัยเก่าเพื่อไปแสดงบนหน้าจอ*/
+  var oldUniname = oldUniname;
+  document.getElementById("displayOlduniname").value = oldUniname;
+
+  /*get ID มหาลัยเก่า*/
+  var oldUniID = oldUniID;
+  document.getElementById("ID_oldUniID").value = oldUniID;
+
+  /*get ID ประเทศของมหาลัยเก่า*/
+  var countryData = countryISOCode;
+  document.getElementById("ID_countryISOCode").value = countryData;
+
+  var listUniName = [];
+
+  $.ajax({
+    type: 'GET',
+    url: '/Department/getNameUniinCountry/?countryData=' + countryData,
+    dataType: 'json',
+    success: function(rows) {
+      for (var i = 0; i < rows.length; i++) {
+        listUniName.push(rows[i].uniName);
+      }
+    }
+  });
+
+  $('#id_edit_newNameUni').keyup(function() {
+    var inputBox_foredituniName = document.getElementById('id_edit_newNameUni').value;
+
+    var choices_foredituniName = listUniName;
+    for (let i = 0; i < choices_foredituniName.length; i++) {
+
+      var resultOfsearch_foredituniName = choices_foredituniName.includes(inputBox_foredituniName);
+      if (resultOfsearch_foredituniName == false) {
+        var empty_foredituniName = false;
+        $('.fielduniname #id_edit_newNameUni').each(function() {
+          if ($(this).val().length == 0) {
+            empty_foredituniName = true;
+          }
+        });
+
+        if ($.trim($('.fielduniname #id_edit_newNameUni').val()) == '') {
+          $('#comfirmUpdateUniName').attr('disabled', 'disabled');
+
+          var element = document.getElementById("alertEmptryName_foredituniName");
+          element.classList.remove("hide");
+          var element = document.getElementById("alertDuplicateName_foredituniName");
+          element.classList.add("hide");
+        } else {
+          $('#comfirmUpdateUniName').removeAttr('disabled');
+
+          var element = document.getElementById("alertDuplicateName_foredituniName");
+          element.classList.add("hide");
+          var element = document.getElementById("alertEmptryName_foredituniName");
+          element.classList.add("hide");
+        }
+
+      } else {
+        $('#comfirmUpdateUniName').attr('disabled', 'disabled');
+
+        var element = document.getElementById("alertDuplicateName_foredituniName");
+        element.classList.remove("hide");
+        var element = document.getElementById("alertEmptryName_foredituniName");
+        element.classList.add("hide");
+      }
+    }
+
+  });
+};
 
 $('#id_DocFile').on('change', function() {
   myfile = $(this).val();
@@ -29,7 +99,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: ajaxURL + '/forms/getallofname',
+      url: '/forms/getallofname',
       dataType: 'json',
       success: function(docname) {
         for (var i = 0; i < docname.length; i++) {

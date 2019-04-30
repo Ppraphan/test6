@@ -56,7 +56,7 @@ $(document).ready(function() {
 
   $.ajax({
     type: 'GET',
-    url: ajaxURL + '/research-branch/reqAlltype',
+    url: '/research-branch/reqAlltype',
     dataType: 'json',
     success: function(r2) {
       for (var i = 0; i < r2.length; i++) {
@@ -77,7 +77,7 @@ $(document).ready(function() {
       if (resultOfsearc2h == false) {
         var empt2y = false;
         $('.RBCLASSINPUTfield input').each(function() {
-          if ($(this).val().length == 0) {
+          if ($(this).val().length == 0) { 
             empt2y = true;
           }
         });
@@ -136,7 +136,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: ajaxURL + '/research-branch/reqAlltype',
+      url: '/research-branch/reqAlltype',
       dataType: 'json',
       success: function(r2) {
         for (var i = 0; i < r2.length; i++) {

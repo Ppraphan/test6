@@ -120,17 +120,18 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: ajaxURL + '/signup/getUniversityName/?countryData=' + countryData,
+      url: '/signup/getUniversityName/?countryData=' + countryData,
       dataType: 'json',
-      success: function(rows) {
+      success: function(results) {
         $('#ID_university').empty();
-        $('#ID_faculty').append('<option selected="selected" value="-">' + "เลือก" + '</option>');
-        $('#ID_department').append('<option selected="selected" value="-">' + "เลือก" + '</option>');
-        $('#ID_subdepartment').append('<option selected="selected" value="-">' + "เลือก" + '</option>');
 
-        $('#ID_university').append('<option selected="selected" value="-">' + "เลือก" + '</option>');
-        for (var i = 0; i < rows.length; i++) {
-          $('#ID_university').append('<option  value="' + rows[i].uniID + '">' + rows[i].uniName + '</option>')
+        $('#ID_faculty').append('<option disabled="disabled" selected="selected" value="-">' + "เลือก" + '</option>');
+        $('#ID_department').append('<option disabled="disabled"selected="selected" value="-">' + "เลือก" + '</option>');
+        $('#ID_subdepartment').append('<option disabled="disabled"selected="selected" value="-">' + "เลือก" + '</option>');
+        // alert(data.data0[0].uniName);
+        $('#ID_university').append('<option value="" >' + "กรุณาเลือกมหาวิทยาลัย" + '</option>');
+        for (var i = 0; i < results.length; i++) {
+          $('#ID_university').append('<option  value="' + results[i].uniID + '">' +results[i].uniName + '</option>')
         }
       }
     });
@@ -143,18 +144,18 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: ajaxURL + '/signup/getFacultyinUni/?universityData=' + universityData,
+      url: '/signup/getFacultyinUni/?universityData=' + universityData,
       dataType: 'json',
-      success: function(rows) {
+      success: function(data) {
         $('#ID_faculty').empty();
         $('#ID_department').empty();
         $('#ID_subdepartment').empty();
 
-        $('#ID_faculty').append('<option selected="selected" hidden>' + "เลือก" + '</option>');
-        $('#ID_department').append('<option selected="selected" hidden>' + "เลือก" + '</option>');
-        $('#ID_subdepartment').append('<option selected="selected" hidden>' + "เลือก" + '</option>');
-        for (var i = 0; i < rows.length; i++) {
-          $('#ID_faculty').append('<option value="' + rows[i].facultyID + '">' + rows[i].facultyName + '</option>')
+        $('#ID_faculty').append('<option selected="selected" value="' + data.data1[0].facultyID + '" hidden>' +data.data1[0].facultyName+'</option>');
+        $('#ID_department').append('<option selected="selected" value="' + data.data1[0].departmentID + '"hidden>' + data.data1[0].departmentName + '</option>');
+        $('#ID_subdepartment').append('<option selected="selected" value="' + data.data1[0].Sub_Dpment_Parent + '"hidden>' + data.data1[0].Sub_Dpment_name + '</option>');
+        for (var i = 0; i < data.data0.length; i++) {
+          $('#ID_faculty').append('<option value="' + data.data0[i].facultyID + '">' + data.data0[i].facultyName + '</option>')
         }
       }
     });
@@ -167,16 +168,16 @@ $(document).ready(function() {
 
       $.ajax({
         type: 'GET',
-        url: ajaxURL + '/signup/getDpmentinFac/?facultyValue=' + facultyValue,
+        url:  '/signup/getDpmentinFac/?facultyValue=' + facultyValue,
         dataType: 'json',
-        success: function(rows) {
+        success: function(data) {
           $('#ID_department').empty();
           $('#ID_subdepartment').empty();
 
-          $('#ID_department').append('<option selected="selected" hidden>' + "เลือก" + '</option>');
-          $('#ID_subdepartment').append('<option selected="selected" hidden>' + "เลือก" + '</option>');
-          for (var i = 0; i < rows.length; i++) {
-            $('#ID_department').append('<option value="' + rows[i].departmentID + '">' + rows[i].departmentName + '</option>')
+          $('#ID_department').append('<option selected="selected" value="' + data.data1[0].departmentID + '"hidden>' + data.data1[0].departmentName + '</option>');
+          $('#ID_subdepartment').append('<option selected="selected" value="' + data.data1[0].Sub_Dpment_Parent + '"hidden>' + data.data1[0].Sub_Dpment_name + '</option>');
+          for (var i = 0; i < data.data0.length; i++) {
+            $('#ID_department').append('<option value="' + data.data0[i].departmentID + '">' + data.data0[i].departmentName + '</option>')
           }
         }
       });
@@ -189,14 +190,14 @@ $(document).ready(function() {
 
       $.ajax({
         type: 'GET',
-        url: ajaxURL + '/signup/getSubinDpment/?departmentValue=' + departmentValue,
+        url: '/signup/getSubinDpment/?departmentValue=' + departmentValue,
         dataType: 'json',
-        success: function(rows) {
+        success: function(data) {
           $('#ID_subdepartment').empty();
 
-          $('#ID_subdepartment').append('<option selected="selected" hidden>' + "เลือก" + '</option>');
-          for (var i = 0; i < rows.length; i++) {
-            $('#ID_subdepartment').append('<option value="' + rows[i].Sub_Dpment_ID + '">' + rows[i].Sub_Dpment_name + '</option>')
+          $('#ID_subdepartment').append('<option selected="selected" value="' + data.data1[0].Sub_Dpment_Parent + '"hidden>' + data.data1[0].Sub_Dpment_name + '</option>');
+          for (var i = 0; i < data.data0.length; i++) {
+            $('#ID_subdepartment').append('<option value="' + data.data0[i].Sub_Dpment_ID + '">' + data.data0[i].Sub_Dpment_name + '</option>')
           }
         }
       });

@@ -38,9 +38,9 @@
             <div class=" small-2"></div>
             <div class=" small-6">
               <ul class="menu menu-fancy">
-                <li class="menu-fancy-option1 is-selected"><a href="#">แก้ไขข้อมูลส่วนตัว</a></li>
-                <li class="menu-fancy-option2"><a href="#">แก้ไขข้อมูลที่ทำงาน</a></li>
-                <li class="menu-fancy-option3"><a href="#">เปลี่ยนรหัสผ่านใหม่</a></li>
+                <li class="menu-fancy-option1 is-selected" id="ME_ID_editPersonalInfo"><a>แก้ไขข้อมูลส่วนตัว</a></li>
+                <li class="menu-fancy-option2" id="ME_ID_editWorkInfo"><a >แก้ไขข้อมูลที่ทำงาน</a></li>
+                <li class="menu-fancy-option3" id="ME_ID_resetPassword"><a >เปลี่ยนรหัสผ่านใหม่</a></li>
                 </li>
               </ul>
             </div>
@@ -50,7 +50,7 @@
         </div>
 
         <!-- ข้อมูลส่วนตัว -->
-        <div class="cell small-6 hide" style="padding:2rem  4em 2em 10em;">
+        <div id="ME_Elm_PersonalInfo"class="cell small-6 " style="padding:2rem  4em 2em 10em;display:block;">
           <form id="signup" name="signup" enctype="multipart/form-data" method="get" action="/alluser">
             <div class="grid-x grid-margin-x">
               <div class="cell small-2">
@@ -203,7 +203,7 @@
                 <div class=" grid-y" data-sticky data-margin-top="20">
 
                   <div class=" small-6" style="padding-bottom: 1em;">
-                    <input type="submit" value="ยืนยัน" class="button primary expanded" id="" style="border-radius:2em;padding:1em;">
+                    <input type="submit" value="ยืนยัน" class="button primary " id="" style="border-radius:2em;padding:1em;">
                   </div>
 
                   <div class=" small-6">
@@ -217,7 +217,7 @@
         </div>
 
         <!-- ข้อมูลที่ทำงาน -->
-        <div class="cell small-6 hide" style="padding:2rem  4em 2em 10em;">
+        <div id="ME_Elm_WorkInfo"class="cell small-6 " style="padding:2rem  4em 2em 10em;display:none;">
           <form id="signup" name="signup" enctype="multipart/form-data" method="get" action="/alluser">
             <div class="grid-x grid-margin-x">
               <div class="cell small-2"></div>
@@ -355,7 +355,7 @@
                 <div class=" grid-y" data-sticky data-margin-top="20">
 
                   <div class=" small-6" style="padding-bottom: 1em;">
-                    <input type="submit" value="ยืนยัน" class="button primary expanded" id="" style="border-radius:2em;padding:1em;">
+                    <input type="submit" value="ยืนยัน" class="button primary " id="" style="border-radius:2em;padding:1em;">
                   </div>
 
                   <div class=" small-6"></div>
@@ -369,8 +369,8 @@
         </div>
 
         <!-- เปลี่ยนรหัสผ่าน -->
-        <div class="cell small-6" style="padding:2rem  4em 2em 10em;">
-          <form id="" name="" enctype="multipart/form-data" method="get" action="">
+        <div id="ME_Elm_resetPassword"class="cell small-6 " style="padding:2rem  4em 2em 10em;display:none;">
+          <form id="" name="" enctype="multipart/form-data" method="post" action="/reset-password">
             <div class="grid-x grid-margin-x">
               <div class="cell small-2"></div>
               <div class="cell small-6 ">
@@ -391,7 +391,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
                             <label>รหัสผ่านใหม่</label>
-                            <input type="text" >
+                            <input type="text" name="newPassword1" id="ME_ID_newPassword1">
                           </div>
                         </div>
                       </div>
@@ -401,7 +401,9 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
                             <label>รหัสผ่านใหม่อีกครั้ง</label>
-                            <input type="text" >
+                            <input type="text" name="newPassword2" id="ME_ID_newPassword2">
+                            <span class="label alert hide" id="ME_ID_reset_Div_alertEmptryPS"><i class="fi-x-circle"></i>กรุณาใส่รหัสผ่าน</span>
+                            <span class="label alert hide" id="ME_ID_reset_Div_wrongPS"><i class="fi-x-circle"></i>รหัสผ่านไม่ตรงกัน</span>
                           </div>
                         </div>
                       </div>
@@ -415,7 +417,7 @@
                 <div class=" grid-y" data-sticky data-margin-top="20">
 
                   <div class=" small-6" style="padding-bottom: 1em;">
-                    <input type="submit" value="ยืนยัน" class="button primary expanded" id="" style="border-radius:2em;padding:1em;">
+                    <input type="submit" value="ยืนยัน" class="button primary " id="comfirmResetPassword" style="border-radius:2em;padding:1em;">
                   </div>
 
                   <div class=" small-6"></div>
@@ -435,6 +437,7 @@
 
 <footer>
   <% include ../partials/footer %>
+  <script src="js/reset-password.js"></script>
   <script src="js/personal-info.js"></script>
   <script src="js/regis.js"></script>
   <script src="js/signup.js"></script>

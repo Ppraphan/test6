@@ -1,3 +1,12 @@
+
+.pic-profile{
+  border-radius: 50%;
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+
+
 .bgportforio {
   background: linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, .5)), url("../picture/pexels-photo-256112.jpg");
   width: 100%;

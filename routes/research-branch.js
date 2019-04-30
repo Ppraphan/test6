@@ -24,6 +24,7 @@ module.exports = function(app) {
     var sql = "SELECT researchbranchName FROM researchbranch";
     console.log(sql);
     con.query(sql, function(err, rows) {
+      console.log(rows);
       if (err) throw err;
       r2 = rows;
       res.send(r2);
