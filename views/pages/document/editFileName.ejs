@@ -1,0 +1,33 @@
+<div class="reveal mobile-ios-modal" id="mobile-ios-modal2" data-reveal>
+  <form id="ID_documentFormEditName" ref='uploadForm' encType="multipart/form-data" class="" action="/forms/update" method="post">
+    <h3 style="padding-bottom:3%">แก้ไขชื่อแบบฟอร์ม</h3>
+    <div style="padding:1em 0em 1em 0em;">
+      <div class="grid-y">
+        <div class="grid-x">
+          <div class="cell small-3">
+            <p>ชื่อแบบฟอร์มเดิม</p>
+          </div>
+          <div class="cell small-9 ">
+            <input  type="hidden" name="name_id_oldNameForm" id="id_id_oldNameForm">
+            <input  type="text" id="oldNameForm" style="color:#848484;" readonly>
+          </div>
+        </div>
+        <div class="grid-x">
+          <div class="cell small-3">
+            <p>ชื่อแบบฟอร์มใหม่</p>
+          </div>
+          <div class="cell small-9 DCCLASSINPUTEDITfield">
+            <input type="text" id="nameEdit" name="nameEdit" placeholder="ชื่อแบบฟอร์ม">
+          </div>
+        </div>
+        <span class="label alert hide" id="id_alertDuplicateName_EditFileDocName">ชื่อแบบฟอร์ม นี้มีแล้ว</span>
+        <span class="label alert hide" id="id_alertEmptryName_EditFileDocName">กรุณากรอกชื่อแบบฟอร์ม</span>
+      </div>
+
+    </div>
+    <div class="mobile-ios-modal-options">
+      <input type="submit" value="ยืนยัน"  id="comfirmToEditFileDocName"class="button" disabled="disabled">
+      <button data-close type="reset" class="button alert">ยกเลิก</button>
+    </div>
+  </form>
+</div>

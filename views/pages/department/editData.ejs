@@ -1,21 +1,80 @@
-<div class="cell small-12 " style="padding:2.5rem;display:none;" id="editDataElm">
-  <h3>แก้ไขชื่อหน่วยงาน</h3>
-  <form id="myform" ref='uploadForm' encType="multipart/form-data" class="form-fields" action="/Department/update" method="post">
-    <div class="grid-x grid-padding-x">
-      <div class="small-3 cell">
-        <label for="middle-label" class="text-right middle"><b>ชื่อเดิม</b></label>
-        <label for="middle-label" class="text-right middle"><b>หน่วยงานหลัก</b></label>
-        <label for="middle-label" class="text-right middle"><b>ชื่อใหม่</b></label>
+<div class="cell small-12" style="padding:2.5rem;display:none;" id="editDataElm">
+  <h3 class="">แก้ไขชื่อ/ลบ หน่วยงาน</h3>
+  <form class="myform" name="formEditDpment"ref='uploadForm' encType="multipart/form-data" >
+    <div class="grid-y shink" style="margin-left:25rem;">
+
+      <div class="grid-x grid-padding-x">
+        <div class="small-2 cell field">
+          <label for="middle-label" class="text-left middle"><b>ประเทศ</b></label>
+        </div>
+        <div class="small-5 cell field">
+          <label>
+            <select name="Country_edit" id="getCountry_edit" style="margin:0px!important"></select>
+          </label>
+        </div>
       </div>
-      <div class="small-9 cell">
-        <label for="middle-label" class="text-left middle" id="12"></label>
-        <label for="middle-label" class="text-left middle" id="14" ></label>
-        <input name="Sub_Dpment_Parent" type="hidden" id="15" value="">
-        <input name="file_Nameold" type="hidden" id="13" value="">
-        <input type="text" id="message2" name="file_NameUpdate" placeholder="ชื่อหน่วยงานใหม่">
+
+      <div class="grid-x grid-padding-x">
+        <div class="small-2 cell field">
+          <label for="middle-label" class="text-left middle"><b>มหาวิทยาลัย</b></label>
+        </div>
+        <div class="small-5 cell field">
+          <label>
+            <select name="getUniName_edit" id="getUni_edit" style="margin:0px!important"></select>
+          </label>
+        </div>
+        <div class="small-5 cell field">
+          <a class="button warning hide" id="editBtnUnityID_edit" data-open="editUniNameShowup" onclick="fnEditUniNameShowup()">แก้ไขชื่อ</a>
+          <a class="button alert hide" id="delBtnUnityID_edit">ลบ</a>
+        </div>
       </div>
+
+      <div class="grid-x grid-padding-x">
+        <div class="small-2 cell field">
+          <label for="middle-label" class="text-left middle"><b>คณะ</b></label>
+        </div>
+        <div class="small-5 cell field">
+          <label>
+            <select name="getFacultyname_edit" id="getFaculty_edit" style="margin:0px!important"></select>
+          </label>
+        </div>
+        <div class="small-3 cell field">
+          <a class="button warning hide" id="editBtnFacultyID_edit" data-open="editFacultyNameShowup" onclick="fnEditFacultyNameShowup()">แก้ไขชื่อ</a>
+          <a class="button alert hide" id="delBtnFacultyID_edit">ลบ</a>
+        </div>
+      </div>
+      <div class="grid-x grid-padding-x">
+        <div class="small-2 cell field">
+          <label for="middle-label" class="text-left middle"><b>หน่วยงานหลัก</b></label>
+        </div>
+        <div class="small-5 cell field">
+          <label>
+            <select id="selectDpmantID_edit" name="dpmentName_edit"></select>
+          </label>
+        </div>
+        <div class="small-3 cell field">
+          <a class="button warning hide" id="editBtnDpmentID_edit">แก้ไขชื่อ</a>
+          <a class="button alert hide" id="delBtnDpmentID_edit">ลบ</a>
+        </div>
+      </div>
+      <div class="grid-x grid-padding-x">
+        <div class="small-2 cell field">
+          <label for="middle-label" class="text-left middle"><b>หน่วยงานย่อย</b></label>
+        </div>
+        <div class="small-5 cell field">
+          <label>
+            <select id="selectSubDpmantID_edit" name="subDpmentName_edit"></select>
+          </label>
+        </div>
+        <div class="small-3 cell field">
+          <a class="button warning hide" id="editBtnSubDpmentID_edit">แก้ไขชื่อ</a>
+          <a class="button alert hide" id="delBtnSubDpmentID_edit">ลบ</a>
+        </div>
+      </div>
+
+
     </div>
-    <input type="submit" value="ยืนยัน" class="sendButton2 button" disabled="disabled">
-    <input type="reset" onclick="myFunction2()" value="ยกเลิก" class="button alert">
+    <input type="reset" value="ยกเลิก" onclick="resetbtn()" class="button alert" id="resetEditDpment">
   </form>
+
 </div>

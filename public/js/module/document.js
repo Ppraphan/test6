@@ -75,6 +75,8 @@ function fnEditUniNameShowup(oldUniname, oldUniID, countryISOCode) {
   });
 };
 
+
+
 $('#id_DocFile').on('change', function() {
   myfile = $(this).val();
   var ext = myfile.split('.').pop();
@@ -156,10 +158,71 @@ $(document).ready(function() {
   });
 });
 
-
-/*แสดงชื่อเก่าบนแถบแก้ไขชื่อ*/
-function showOldname(oldname){
+/*แสดงชื่อเก่าบนแถบแก้ไขชื่อ และแก้ไขชื่อไฟล์*/
+function showOldname(oldname,oldid){
   document.getElementById("oldNameForm").interHTML=oldname;
   document.getElementById("oldNameForm").value=oldname;
 
+
+  document.getElementById("id_id_oldNameForm").value=oldid;
+
+  var availableTagsForeditFileDocName = [];
+
+  /*Init แถบแจ้งเตือน และปุ่ม*/
+  $('#comfirmToEditFileDocName').attr('disabled', 'disabled');
+  document.getElementById("id_alertEmptryName_EditFileDocName").classList.add("hide");
+  document.getElementById("id_alertDuplicateName_EditFileDocName").classList.add("hide");
+
+  availableTagsForeditFileDocName = [];
+
+  $.ajax({
+    type: 'GET',
+    url: '/forms/getallofname',
+    dataType: 'json',
+    success: function(docname) {
+      for (var i = 0; i < docname.length; i++) {
+        availableTagsForeditFileDocName.push(docname[i].documentName);
+      }
+    }
+  });
+
+  /*Check Error*/
+  $('#nameEdit').keyup(function() {
+
+    var inputBoxFileDocName = document.getElementById('nameEdit').value;
+    var inputBoxFileDocNamelowcase = inputBoxFileDocName.toLowerCase();
+    var choicesFileDocName = availableTagsForeditFileDocName;
+    for (let i = 0; i < choicesFileDocName.length; i++) {
+
+      var resultOfsearchFileDocName = choicesFileDocName.includes(inputBoxFileDocNamelowcase);
+      if (resultOfsearchFileDocName == false) {
+        var emptryFileDocName = false;
+        $('.DCCLASSINPUTEDITfield input').each(function() {
+          if ($(this).val().length == 0) {
+            emptryFileDocName = true;
+          }
+        });
+
+        if ($.trim($('#nameEdit').val()) == '') {
+          /*Emptyinput*/
+          $('#comfirmToEditFileDocName').attr('disabled', 'disabled');
+          document.getElementById("id_alertEmptryName_EditFileDocName").classList.remove("hide");
+          document.getElementById("id_alertDuplicateName_EditFileDocName").classList.add("hide");
+
+        } else {
+          /*เคสผ่าน*/
+          $('#comfirmToEditFileDocName').removeAttr('disabled');
+          document.getElementById("id_alertDuplicateName_EditFileDocName").classList.add("hide");
+          document.getElementById("id_alertEmptryName_EditFileDocName").classList.add("hide");
+        }
+
+      } else {
+        /*Duplicateinput*/
+        $('#comfirmToEditFileDocName').attr('disabled', 'disabled');
+        document.getElementById("id_alertDuplicateName_EditFileDocName").classList.remove("hide");
+        document.getElementById("id_alertEmptryName_EditFileDocName").classList.add("hide");
+      }
+    }
+
+  });
 }

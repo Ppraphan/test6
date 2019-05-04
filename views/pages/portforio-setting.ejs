@@ -51,6 +51,16 @@
 										<label for="middle-label" class="text-right middle"><b>ชื่อใหม่</b></label>
 									</div>
 									<div class="small-9 cell RTCLASSINPUTfield">
+
+		                <select required name="country" id="ID_country" placeholder="ประเทศ" style="margin:0px!important;border-radius:5px;">
+		                  <option selected="selected" hidden>กรุณาเลือก</option>
+		                  <% for (var i = 0; i < data.length; i++){ %>
+		                  <option value="<%= data[i].idMainCategory %>">
+		                    <%=data[i].MainCategoryName %>
+		                  </option>
+		                  <% } %>
+		                </select>
+
 										<input type="text"  name="file_Name" placeholder="ชื่อประเภทงานวิจัยใหม่" id="RTIDINPUTNewResearchType">
 										<!-- id="message" -->
 										<span class="label alert " id="RTIDADDalertEmptryName"><i class="fi-x-circle"></i>กรุณากรอกข้อมูล</span>
@@ -92,7 +102,7 @@
 									<tr>
 										<th></th>
 										<th>หมวดหมู่หลัก</th>
-										<th>หมวกหมู่ย่อย</th>
+										<th>หมวดหมู่ย่อย</th>
 									</tr>
 								</thead>
 

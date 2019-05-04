@@ -25,7 +25,7 @@
             <li><a href="#">Contact</a></li>
             <li>
               <div class="">
-                <img class="pic-profile" src="./userprofile/<%=userinfo.profilePic%>" >
+                <img class="pic-profile" src="./userprofile/<%=userinfo.profilePic%>">
               </div>
             </li>
           </ul>
@@ -88,68 +88,31 @@
 
 
               <div class="grid-x small-up-2 medium-up-2 large-up-3">
+                <% for(var i=0; i<data.length; i++) {%>
+
                 <div class="small-4 column column-block filter-simple-item space" align="center">
-                  <img src="./userprofile/<%=userinfo.profilePic%>" alt="" class="researcher-img" />
-                  <p class="researcher-text"><%=userinfo.firstname%>&emsp;<%=userinfo.lastname%></p>
-                  <p class="dpment-text"></p>
+                  <img src="./userprofile/<%=data[i].profilePic%>" alt="" class="researcher-img" />
+                  <p class="researcher-text">
+                    <%=data[i].academicPositions%>&nbsp;
+                    <%=data[i].firstname%>&nbsp;&nbsp;
+                    <%=data[i].lastname%>
+                  </p>
+
+                  <% for(var j=0; j<data1.length; j++) {%>
+                    <%if (data1[j].facultyID==data[i].faculty) { %>
+                    <p class="dpment-text">
+                      <%=data1[j].facultyName%>
+                    </p>
+                    <% } %>
+                  <% } %>
+
+
                 </div>
-                <!-- <div class="small-4 column column-block filter-simple-item nature" align="center">
-                  <img src="./picture/รูปอาจารย์/คอมพิวเตอร์/ดร.ปอลิน กองสุวรรณ.jpg" alt="" class="researcher-img" />
-                  <p class="researcher-text">ดร.ปอลิน กองสุวรรณ</p>
-                  <p class="dpment-text">คณะวิศวกรรมศาสตร์</p>
-                </div>
-                <div class="small-4 column column-block filter-simple-item animals" align="center">
-                  <img src="./picture/รูปอาจารย์/คอมพิวเตอร์/ดร.วินัย วิชัยพาณิชย์.jpg" alt="" class="researcher-img" />
-                  <p class="researcher-text">ดร.วินัย วิชัยพาณิชย์</p>
-                  <p class="dpment-text">คณะวิศวกรรมศาสตร์</p>
-                </div>
-                <div class="small-4 column column-block filter-simple-item animals" align="center">
-                  <img src="./picture/รูปอาจารย์/คอมพิวเตอร์/ดร.ศิริชัย เตรียมล้ำเลิศ.png" alt="" class="researcher-img" />
-                  <p class="researcher-text">ดร.ศิริชัย เตรียมล้ำเลิศ</p>
-                  <p class="dpment-text">คณะวิศวกรรมศาสตร์</p>
-                </div>
-                <div class="small-4 column column-block filter-simple-item animals" align="center">
-                  <img src="./picture/รูปอาจารย์/คอมพิวเตอร์/ดร.สุทินัน  พรอนุรักษ์.jpg" alt="" class="researcher-img" />
-                  <p class="researcher-text">ดร.สุทินัน พรอนุรักษ์</p>
-                  <p class="dpment-text">คณะวิศวกรรมศาสตร์</p>
-                </div>
-                <div class="small-4 column column-block filter-simple-item nature" align="center">
-                  <img src="./picture/รูปอาจารย์/คอมพิวเตอร์/ผศ.ดร.พฤศยน  นินทนา.jpg" alt="" class="researcher-img" />
-                  <p class="researcher-text">ผศ.ดร.พฤศยน นินทนา</p>
-                  <p class="dpment-text">คณะวิศวกรรมศาสตร์</p>
-                </div>
-                <div class="small-4 column column-block filter-simple-item nature" align="center">
-                  <img src="./picture/รูปอาจารย์/คอมพิวเตอร์/ผศ.ดร.อิฐอารัญ  ปิติมล.jpg" alt="" class="researcher-img" />
-                  <p class="researcher-text">ผศ.ดร.อิฐอารัญ  ปิติมล</p>
-                  <p class="dpment-text">คณะวิศวกรรมศาสตร์</p>
-                </div>
-                <div class="small-4 column column-block filter-simple-item animals" align="center">
-                  <img src="./picture/รูปอาจารย์/คอมพิวเตอร์/ผศ.นชิรัตน์  ราชบุรี.jpg" alt="" class="researcher-img" />
-                  <p class="researcher-text">ผศ.นชิรัตน์ ราชบุรี</p>
-                  <p class="dpment-text">คณะวิศวกรรมศาสตร์</p>
-                </div>
-                <div class="small-4 column column-block filter-simple-item nature" align="center">
-                  <img src="./picture/รูปอาจารย์/คอมพิวเตอร์/ผศ.วัฒนา พันธ์ลำเจียก.jpg" alt="" class="researcher-img" />
-                  <p class="researcher-text">ผศ.วัฒนา พันธ์ลำเจียก</p>
-                  <p class="dpment-text">คณะวิศวกรรมศาสตร์</p>
-                </div>
-                <div class="small-4 column column-block filter-simple-item animals" align="center">
-                  <img src="./picture/รูปอาจารย์/คอมพิวเตอร์/อ.เจษฎา  อรุณฤกษ์.jpg" alt="" class="researcher-img" />
-                  <p class="researcher-text">อ.เจษฎา อรุณฤกษ์</p>
-                  <p class="dpment-text">คณะวิศวกรรมศาสตร์</p>
-                </div>
-                <div class="small-4 column column-block filter-simple-item space" align="center">
-                  <img src="./picture/รูปอาจารย์/คอมพิวเตอร์/อ.ณัชติพงศ์ อูทอง.jpg" alt="" class="researcher-img" />
-                  <p class="researcher-text">อ.ณัชติพงศ์ อูทอง</p>
-                  <p class="dpment-text">คณะวิศวกรรมศาสตร์</p>
-                </div>
-                <div class="small-4 column column-block filter-simple-item space" align="center">
-                  <img src="./picture/รูปอาจารย์/คอมพิวเตอร์/อ.เดชรัชต์  ใจถวิล.jpg" alt="" class="researcher-img" />
-                  <p class="researcher-text">อ.เดชรัชต์ ใจถวิล</p>
-                  <p class="dpment-text">คณะวิศวกรรมศาสตร์</p>
-                </div> -->
+                <% } %>
+
               </div>
             </section>
+
             <div style="padding:2em 0em 2em 0em;">
               <ul class="pagination text-center" role="navigation" aria-label="Pagination" data-page="6" data-total="16">
                 <li class="pagination-previous disabled">Previous <span class="show-for-sr">page</span></li>

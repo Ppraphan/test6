@@ -13,15 +13,18 @@ module.exports = function(app) {
     var userinfo = req.user;
     var mses = req.query.valid;
 
-    var sql = "SELECT * FROM project.users"
+    var sql = "SELECT * FROM project.users;SELECT * FROM project.faculty;"
     var query = con.query(sql, function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
+
+        console.log(rows[1]);
       res.render('pages/portforio', {
         userinfo: userinfo,
         messages: mses,
 
-        data: rows,
+        data: rows[0],
+        data1: rows[1],
       });
     })
 

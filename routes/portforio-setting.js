@@ -14,7 +14,7 @@ module.exports = function(app) {
       res.render('pages/portforio-setting', {
         userinfo:userinfo,
         data: rows,
-        messages: mses,
+        messages: mses, 
       });
     });
   });

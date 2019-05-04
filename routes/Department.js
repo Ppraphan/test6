@@ -156,6 +156,8 @@ module.exports = function(app) {
     });
   });
 
+
+
   app.get("/department/getAllCountry/", function(req, res) {
 
     var sql = "SELECT * FROM project.country ORDER BY countryName ASC";

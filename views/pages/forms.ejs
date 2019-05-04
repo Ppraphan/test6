@@ -48,39 +48,7 @@
               </div>
 
               <!-- แก้ไขชื่อไฟล์ -->
-              <div class="reveal mobile-ios-modal" id="mobile-ios-modal2" data-reveal>
-                <form id="ID_documentFormEditName" ref='uploadForm' encType="multipart/form-data" class="" action="/forms/update" method="post">
-                  <h3 style="padding-bottom:3%">แก้ไขชื่อแบบฟอร์ม</h3>
-                  <div style="padding:1em 0em 1em 0em;">
-                    <div class="grid-y">
-                      <div class="grid-x">
-                        <div class="cell small-3">
-                          <p>ชื่อแบบฟอร์มเดิม</p>
-                        </div>
-                        <div class="cell small-9 ">
-                          <p id="oldNameForm"></p>
-                        </div>
-                      </div>
-                      <div class="grid-x">
-                        <div class="cell small-3">
-                          <p>ชื่อแบบฟอร์มใหม่</p>
-                        </div>
-                        <div class="cell small-9 floated-label-wrapper">
-                          <label for="full-name">ชื่อแบบฟอร์ม</label>
-                          <input type="text" id="" name="nameEdit" placeholder="ชื่อแบบฟอร์ม">
-                        </div>
-                      </div>
-                      <span class="label alert hide" id="">ชื่อแบบฟอร์ม นี้มีแล้ว</span>
-                      <span class="label alert hide" id="">กรุณากรอกชื่อแบบฟอร์ม</span>
-                    </div>
-
-                  </div>
-                  <div class="mobile-ios-modal-options">
-                    <input type="submit" value="ยืนยัน" class="button" disabled="disabled">
-                    <button data-close type="reset" class="button alert">ยกเลิก</button>
-                  </div>
-                </form>
-              </div>
+              <% include ../pages/document/editFileName %>
 
             </div>
             <div style="padding:2.5rem;">
@@ -105,7 +73,7 @@
                       <%=data[i].documentName%>
                     </td>
                     <td><a class="small button primary showme" href="/forms/download/<%=data[i].documentDir%>">ดาวน์โหลด</a></td>
-                    <td><a class="small button warning showme" onclick="showOldname('<%=data[i].documentName%>')" data-open="mobile-ios-modal2">แก้ไข</a></td>
+                    <td><a class="small button warning showme" id="editFileDocName"onclick="showOldname('<%=data[i].documentName%>','<%=data[i].documentID%>')" data-open="mobile-ios-modal2">แก้ไข</a></td>
                     <td><a class="small button alert showme" onclick="return confirm('คุณต้องการที่จะ ลบ <%= data[i].documentName %> หรือไม่ ?');" href="/forms/delete/<%=data[i].documentID %>">ลบ</a></td>
                   </tr>
                   <% }

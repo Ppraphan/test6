@@ -1,12 +1,12 @@
-<div class="reveal mobile-ios-modal" id="editFacultyNameShowup" data-reveal>
+<div class="reveal mobile-ios-modal" id="editDpmentNameShowup" data-reveal>
   <form ref='uploadForm' encType="multipart/form-data" class="" action="/department/updatefacultyname/" method="post">
     <div class="">
-      <h3>เปลี่ยนชื่อคณะ</h3>
+      <h3>เปลี่ยนชื่อหน่วยงานหลัก</h3>
       <div class="grid-y">
 
         <div class="grid-x" style="padding-top:40px">
           <div class="cell small-4">
-              <p>ชื่อคณะเก่า</p>
+              <p>ชื่อหน่วยงานหลักเดิม</p>
           </div>
           <div class="cell small-8">
               <input  type="text" id="displayOldFacultyname" name="name_displayOldFacultyname" style="color:#848484;" readonly>
@@ -15,14 +15,14 @@
 
         <div class="grid-x" style="padding-top:10px">
           <div class="cell small-4">
-            <p>ชื่อคณะใหม่</p>
+            <p>ชื่อหน่วยงานหลักใหม่</p>
           </div>
           <div class="cell small-8 fieldFacultyname">
             <input type="hidden"  name="oldFacultyID" id="ID_oldFacultyID">
             <input type="hidden"  name="uniIDforEditFacultyName" id="ID_uniIDforEditFacultyName">
             <input type="text" id="id_edit_newNameFaculty" name="newFacultyName" placeholder="ชื่อคณะใหม่">
             <span class="label alert hide" id="alertEmptryName_foreditFacultyName"><i class="fi-x-circle"></i>กรุณากรอกข้อมูล</span>
-            <span class="label alert hide" id="alertDuplicateName_foreditFacultyName"><i class="fi-x-circle"></i>มีชื่อคณะนี้แล้ว</span>
+            <span class="label alert hide" id="alertDuplicateName_foreditFacultyName"><i class="fi-x-circle"></i>มีชื่อหน่วยงานหลักนี้แล้ว</span>
           </div>
         </div>
 

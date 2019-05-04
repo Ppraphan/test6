@@ -116,6 +116,17 @@ module.exports = function(app) {
   });
 
   app.post('/forms/update', function(req, res) {
+    var oldID = req.body.name_id_oldNameForm;
+    var newName = req.body.nameEdit;
+
+
+    var query = "UPDATE `project`.`document` SET `documentName` = '"+newName+"' WHERE (`documentID` = '"+oldID+"');" ;
+    console.log(query);
+    con.query(query, function(err, rows) {
+      if (err)
+        console.log("Error Selecting : %s ", err);
+    });
+    res.redirect('/forms');
 
   });
 }

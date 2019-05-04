@@ -1,147 +1,3 @@
-/* ฟังก์เปิดหน้าการแก้ไขชื่อ มหาวิทยาลัย */
-function fnEditUniNameShowup(oldUniname, oldUniID, countryISOCode) {
-  /*get ชื่อมหาลัยเก่าเพื่อไปแสดงบนหน้าจอ*/
-  var oldUniname = oldUniname;
-  document.getElementById("displayOlduniname").value = oldUniname;
-
-  /*get ID มหาลัยเก่า*/
-  var oldUniID = oldUniID;
-  document.getElementById("ID_oldUniID").value = oldUniID;
-
-  /*get ID ประเทศของมหาลัยเก่า*/
-  var countryData = countryISOCode;
-  document.getElementById("ID_countryISOCode").value = countryData;
-
-  var listUniName = [];
-
-  $.ajax({
-    type: 'GET',
-    url: '/Department/getNameUniinCountry/?countryData=' + countryData,
-    dataType: 'json',
-    success: function(rows) {
-      for (var i = 0; i < rows.length; i++) {
-        listUniName.push(rows[i].uniName);
-      }
-    }
-  });
-
-  $('#id_edit_newNameUni').keyup(function() {
-    var inputBox_foredituniName = document.getElementById('id_edit_newNameUni').value;
-
-    var choices_foredituniName = listUniName;
-    for (let i = 0; i < choices_foredituniName.length; i++) {
-
-      var resultOfsearch_foredituniName = choices_foredituniName.includes(inputBox_foredituniName);
-      if (resultOfsearch_foredituniName == false) {
-        var empty_foredituniName = false;
-        $('.fielduniname #id_edit_newNameUni').each(function() {
-          if ($(this).val().length == 0) {
-            empty_foredituniName = true;
-          }
-        });
-
-        if ($.trim($('.fielduniname #id_edit_newNameUni').val()) == '') {
-          $('#comfirmUpdateUniName').attr('disabled', 'disabled');
-
-          var element = document.getElementById("alertEmptryName_foredituniName");
-          element.classList.remove("hide");
-          var element = document.getElementById("alertDuplicateName_foredituniName");
-          element.classList.add("hide");
-        } else {
-          $('#comfirmUpdateUniName').removeAttr('disabled');
-
-          var element = document.getElementById("alertDuplicateName_foredituniName");
-          element.classList.add("hide");
-          var element = document.getElementById("alertEmptryName_foredituniName");
-          element.classList.add("hide");
-        }
-
-      } else {
-        $('#comfirmUpdateUniName').attr('disabled', 'disabled');
-
-        var element = document.getElementById("alertDuplicateName_foredituniName");
-        element.classList.remove("hide");
-        var element = document.getElementById("alertEmptryName_foredituniName");
-        element.classList.add("hide");
-      }
-    }
-
-  });
-};
-
-/* ฟังก์เปิดหน้าการแก้ไขชื่อ คณะ */
-function fnEditFacultyNameShowup(oldFacultyname, oldFacultyID, uniID) {
-  /*get ชื่อมหาลัยเก่าเพื่อไปแสดงบนหน้าจอ*/
-  var oldFacultyname = oldFacultyname;
-  document.getElementById("displayOldFacultyname").value = oldFacultyname;
-
-  /*get ID มหาลัยเก่า*/
-  var oldFacultyID = oldFacultyID;
-  document.getElementById("ID_oldFacultyID").value = oldFacultyID;
-
-  /*get ID ประเทศของมหาลัยเก่า*/
-  var uniData = uniID;
-  document.getElementById("ID_uniIDforEditFacultyName").value = uniData;
-
-
-
-  var listFacultyName = [];
-
-  $.ajax({
-    type: 'GET',
-    url: '/Department/getNameofFacultyinUni/?uniData=' + uniData,
-    dataType: 'json',
-    success: function(rows) {
-      for (var i = 0; i < rows.length; i++) {
-        listFacultyName.push(rows[i].facultyName);
-      }
-    }
-  });
-
-  $('#id_edit_newNameFaculty').keyup(function() {
-    var inputBox_foreditFacultyName = document.getElementById('id_edit_newNameFaculty').value;
-
-    var choices_foreditFacultyName = listFacultyName;
-    for (let i = 0; i < choices_foreditFacultyName.length; i++) {
-
-      var resultOfsearch_foreditFacultyName = choices_foreditFacultyName.includes(inputBox_foreditFacultyName);
-      if (resultOfsearch_foreditFacultyName == false) {
-        var empty_foreditFacultyName = false;
-        $('.fieldFacultyname #id_edit_newNameFaculty').each(function() {
-          if ($(this).val().length == 0) {
-            empty_foreditFacultyName = true;
-          }
-        });
-
-        if ($.trim($('.fieldFacultyname #id_edit_newNameFaculty').val()) == '') {
-          $('#comfirmUpdateFacultyName').attr('disabled', 'disabled');
-
-          var element = document.getElementById("alertEmptryName_foreditFacultyName");
-          element.classList.remove("hide");
-          var element = document.getElementById("alertDuplicateName_foreditFacultyName");
-          element.classList.add("hide");
-        } else {
-          $('#comfirmUpdateFacultyName').removeAttr('disabled');
-
-          var element = document.getElementById("alertDuplicateName_foreditFacultyName");
-          element.classList.add("hide");
-          var element = document.getElementById("alertEmptryName_foreditFacultyName");
-          element.classList.add("hide");
-        }
-
-      } else {
-        $('#comfirmUpdateFacultyName').attr('disabled', 'disabled');
-
-        var element = document.getElementById("alertDuplicateName_foreditFacultyName");
-        element.classList.remove("hide");
-        var element = document.getElementById("alertEmptryName_foreditFacultyName");
-        element.classList.add("hide");
-      }
-    }
-
-  });
-};
-
 /*ฟังก์ชันปิดการแสดงผลของ หน้าเพิ่ม(ยกเลิกการเพิ่มมหาลัย)*/
 $(document).ready(function() {
   $('#cancelAddUnityID').click(function() {
@@ -218,6 +74,7 @@ $(document).ready(function() {
     var addDE = document.getElementById("addDataElm");
     var showDE = document.getElementById("showDataElm");
     var element = document.getElementById("addDepmentBtn");
+    var editDepmentBtn = document.getElementById("editDepmentBtn");
 
     var txtTopSearch = document.getElementById("txtSearchDepartment");
     txtTopSearch.classList.add("hide");
@@ -227,6 +84,7 @@ $(document).ready(function() {
       editDE.style.display = "none";
       addDE.style.display = "block";
       element.classList.add("hide");
+      editDepmentBtn.classList.add("hide");
     }
   });
   /*[หน่วยงาน]-ฟังก์ชันขอข้อมูลรายชื่อประเทศทั้งหมด-เปิดปิดเอเลเมนการแสดงผล */
@@ -235,6 +93,7 @@ $(document).ready(function() {
     var addDE = document.getElementById("addDataElm");
     var showDE = document.getElementById("showDataElm");
     var element = document.getElementById("addDepmentBtn");
+    var editDepmentBtn = document.getElementById("editDepmentBtn");
 
     if (addDE.style.display === "block") {
       addDE.style.display = "none";
@@ -242,6 +101,7 @@ $(document).ready(function() {
 
       showDE.style.display = "block";
       element.classList.remove("hide");
+      editDepmentBtn.classList.remove("hide");
     }
   });
 });
@@ -386,21 +246,26 @@ $(document).ready(function() {
 
 /*รีเซตปุ่ม*/
 function resetbtn() {
-  var txtTopSearch = document.getElementById("txtSearchDepartment");
-  txtTopSearch.classList.remove("hide");
+  document.getElementById("txtSearchDepartment").classList.remove("hide");
 
-  var element = document.getElementById("addBtnUnityID");
-  element.classList.add("hide");
+  document.getElementById("addBtnUnityID").classList.add("hide");
+  document.getElementById("addBtnFacultyID").classList.add("hide");
+  document.getElementById("addBtnDpmentID").classList.add("hide");
+  document.getElementById("addBtnSubDpmentID").classList.add("hide");
 
-  var element = document.getElementById("addBtnFacultyID");
-  element.classList.add("hide");
 
-  var element = document.getElementById("addBtnDpmentID");
-  element.classList.add("hide");
+  /*หน้าแก้ไข*/
+  document.getElementById("editBtnUnityID_edit").classList.add("hide");
+  document.getElementById("delBtnUnityID_edit").classList.add("hide");
 
-  var element = document.getElementById("addBtnSubDpmentID");
-  element.classList.add("hide");
+  document.getElementById("editBtnFacultyID_edit").classList.add("hide");
+  document.getElementById("delBtnFacultyID_edit").classList.add("hide");
 
+  document.getElementById("editBtnDpmentID_edit").classList.add("hide");
+  document.getElementById("delBtnDpmentID_edit").classList.add("hide");
+
+  document.getElementById("editBtnSubDpmentID_edit").classList.add("hide");
+  document.getElementById("delBtnSubDpmentID_edit").classList.add("hide");
 }
 
 /*กันค่าnull*/
