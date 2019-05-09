@@ -76,13 +76,13 @@ module.exports = function(app) {
           messages: mses,
 
 
-          id:userid,
+          id: userid,
           data0: results2[0],
           data1: results2[1],
           data2: results2[2],
           data3: results2[3],
           data4: results2[4],
-          selectuser:  results2[5][0],
+          selectuser: results2[5][0],
         });
       });
 
@@ -90,6 +90,76 @@ module.exports = function(app) {
 
   });
 
+  app.post('/editmyinfo', function(req, res) {
+    var userinfo = req.user;
+    var mses = req.query.valid;
+
+    // ข้อมูลจากในฟอร์ม
+    var startup_image = req.files.profileimage;
+    var myEmail = req.body.editemail;
+    var myRole = req.body.userPermission;
+    var myHumanID = req.body.humanID;
+    var myBirthDay = req.body.birthday;
+    var myPrefix = req.body.prefix;
+    var myAcademicPositions = req.body.academicPositions;
+    var myFName = req.body.myFName;
+    var myLName = req.body.myLName;
+    var myEN_FName = req.body.myEN_FName;
+    var myEN_LName = req.body.myEN_LName;
+    var myNationality = req.body.nationality;
+    var myTel = req.body.myTel;
+
+
+    if (startup_image == null) {
+      let sql = "UPDATE project.users SET profilePic = 'default-profile.jpg' WHERE id = '" + req.user.id + "' "
+      con.query(sql, function(err, result) {
+        if (err) throw err;
+        console.log("Insert Complete...");
+        mses = "startup_image == null"
+        res.redirect('/me?valid=' + mses);
+      });
+
+    } else {
+      var imageName = req.files.profileimage.name;
+      var imagetype = req.files.profileimage.mimetype;
+      var imageNameWithoutspace = imageName.replace(/\s/g, '');
+      var dr2 = (imageNameWithoutspace);
+      console.log(imagetype);
+
+      startup_image.mv('./public/userprofile/' + req.user.id + imageNameWithoutspace, function(err) {
+        if (startup_image == null) {
+          console.log(err);
+        } else {
+          console.log('../userprofile/' + req.user.id + imageNameWithoutspace + "\t" + "uploaded");
+        }
+      });
+
+      var sql = "UPDATE project.users SET profilePic ='" + req.user.id + imageNameWithoutspace +
+        "',email ='" + myEmail +
+        "',userPermission ='" + myRole +
+        "',nameIDHuman='" + myHumanID +
+        "',birthday='" + myBirthDay +
+        "',prefix='" + myPrefix +
+        "',academicPositions='" + myAcademicPositions +
+        "',firstname='" + myFName +
+        "',lastname='" + myLName +
+        "',engFirstName='" + myEN_FName +
+        "',engLastName='" + myEN_LName +
+        "',nationality='" + myNationality +
+        "',telNumber='" + myTel +
+        "' WHERE id ='" + req.user.id + "' ";
+
+      var query = con.query(sql, function(err, rows) {
+        if (err)
+          console.log("Error Selecting : %s ", err);
+        mses = "อัพเดทข้อมูลเรียบร้อย"
+        res.redirect('/me?valid=' + mses);
+      });
+    }
+  });
+
+
+  /*จัดการรหัสผ่าน*/
   app.post('/reset-password', function(req, res) {
     var userinfo = req.user;
     var userid = req.user.id;
@@ -110,6 +180,72 @@ module.exports = function(app) {
       res.redirect('/?valid=' + mses);
     });
 
+  });
+
+
+
+
+  // ขอข้อมูลหน่วยงาน
+  app.get("/me/getUniversityName/", function(req, res) {
+    var catdata = req.query.countryData;
+    console.log("catdata : " + catdata);
+    var sql = "SELECT * FROM project.university where countryISOCode = '" + catdata + "' ;";
+
+    con.query(sql, function(err, results) {
+      if (err) throw err;
+
+      res.send(results);
+    });
+  });
+  app.get("/me/getFacultyinUni/", function(req, res) {
+    var catdata = req.query.universityData;
+    console.log(catdata);
+
+    var sql = "SELECT * FROM project.faculty where uniID ='" + catdata + "';SELECT * FROM project.university,project.faculty,project.department,project.sub_dpment WHERE project.university.uniID = project.faculty.uniID AND project.faculty.facultyID = project.department.facultyID AND project.department.departmentID = project.sub_dpment.Sub_Dpment_Parent AND project.university.uniID=  '" + catdata + "'  AND project.faculty.facultyName= '-';  ";
+
+    con.query(sql, function(err, results) {
+      console.log(results);
+      if (err) throw err;
+      var data = {
+        data0: results[0],
+        data1: results[1]
+      }
+
+      res.send(data);
+    });
+
+  });
+  app.get("/me/getDpmentinFac/", function(req, res) {
+    var catdata = req.query.facultyValue;
+    console.log(catdata);
+
+    var sql = "SELECT * FROM project.department where facultyID ='" + catdata + "';SELECT * FROM project.faculty,project.department,project.sub_dpment WHERE  project.faculty.facultyID = project.department.facultyID AND project.department.departmentID = project.sub_dpment.Sub_Dpment_Parent AND project.faculty.facultyID= '" + catdata + "' AND project.department.departmentName='-';  ";
+    console.log(sql);
+    con.query(sql, function(err, results) {
+      if (err) throw err;
+      var data = {
+        data0: results[0],
+        data1: results[1]
+      }
+
+      res.send(data);
+    });
+  });
+  app.get("/me/getSubinDpment/", function(req, res) {
+    var catdata = req.query.departmentValue;
+    console.log(catdata);
+
+    var sql = "SELECT * FROM project.sub_dpment where Sub_Dpment_Parent ='" + catdata + "';SELECT * FROM project.department,project.sub_dpment WHERE   project.department.departmentID = project.sub_dpment.Sub_Dpment_Parent AND project.department.departmentID='4' AND project.sub_dpment.Sub_Dpment_name='-';   ";
+    console.log(sql);
+    con.query(sql, function(err, results) {
+      if (err) throw err;
+      var data = {
+        data0: results[0],
+        data1: results[1]
+      }
+
+      res.send(data);
+    });
   });
 
 }

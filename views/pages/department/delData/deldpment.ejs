@@ -1,0 +1,25 @@
+<div class="reveal mobile-ios-modal" id="delDpmentNameShowup" data-reveal>
+  <form ref='uploadForm' encType="multipart/form-data" class="" action="/department/deletedpmentname/" method="post">
+    <div class="">
+      <h3>ยืนยันการลบ</h3>
+      <p style="color:red;">การดำเนินการนี้ จะทำให้หน่วยงานที่อยู่ภายใต้หน่วยงานนี้ทั้งหมดถูก ลบ</p>
+      <div class="grid-y">
+
+        <div class="grid-x" style="padding-top:40px">
+          <div class="cell small-4">
+            <p>หน่วยงานหลักชื่อ</p>
+          </div>
+          <div class="cell small-8">
+            <input type="hidden" id="id_delDDpmentID" name="id_displayOldDpmentname_del">
+            <input type="text" id="id_delDDpmentName" name="name_displayOldDpmentname_del" style="color:#848484;" readonly>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="mobile-ios-modal-options">
+      <input type="submit" name="" id="" value="ตกลง" class="button " >
+      <button data-close type="reset" class="alert button">ยกเลิก</button>
+    </div>
+  </form>
+</div>

@@ -65,7 +65,7 @@ $(document).ready(function() {
 
         $('#getCountry').append('<option disabled="disabled" selected value>' + "เลือก" + '</option>');
         for (var i = 0; i < rows.length; i++) {
-          $('#getCountry').append('<option value="' + rows[i].countryISOCode + '">' + rows[i].countryName + '</option>')
+          $('#getCountry').append('<option value="' + rows[i].countryISOCode + '">' + rows[i].countryName + '</option>');
         }
       }
     });
@@ -124,7 +124,9 @@ $(document).ready(function() {
       success: function(rows) {
         $('#getUni').append('<option disabled="disabled" selected="selected">' + "เลือก" + '</option>');
         for (var i = 0; i < rows.length; i++) {
-          $('#getUni').append('<option value="' + rows[i].uniID + '">' + rows[i].uniName + '</option>');
+          if(rows[i].uniName!='-'&&rows[i].uniName!='example'){
+            $('#getUni').append('<option value="' + rows[i].uniID + '">' + rows[i].uniName + '</option>');
+          }
         };
       }
     });
@@ -179,7 +181,9 @@ $(document).ready(function() {
       success: function(rows) {
         $('#getFaculty').append('<option disabled selected value>' + "เลือก" + '</option>');
         for (var i = 0; i < rows.length; i++) {
-          $('#getFaculty').append('<option value="' + rows[i].facultyID + '">' + rows[i].facultyName + '</option>');
+          if(rows[i].facultyName!='-'){
+            $('#getFaculty').append('<option value="' + rows[i].facultyID + '">' + rows[i].facultyName + '</option>');
+          }
         };
       }
     });
@@ -213,8 +217,9 @@ $(document).ready(function() {
       success: function(rows) {
         $('#selectDpmantID').append('<option disabled selected value>' + "เลือก" + '</option>');
         for (var i = 0; i < rows.length; i++) {
-          $('#selectDpmantID').append('<option value="' + rows[i].departmentID + '">' + rows[i].departmentName + '</option>');
-
+          if(rows[i].departmentName!='-'){
+            $('#selectDpmantID').append('<option value="' + rows[i].departmentID + '">' + rows[i].departmentName + '</option>');
+          }
         };
       }
     });

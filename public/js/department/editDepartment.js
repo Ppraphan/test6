@@ -80,7 +80,9 @@ $(document).ready(function() {
       success: function(rows) {
         $('#getUni_edit').append('<option disabled="disabled" selected="selected">' + "เลือก" + '</option>');
         for (var i = 0; i < rows.length; i++) {
-          $('#getUni_edit').append('<option value="' + rows[i].uniID + '">' + rows[i].uniName + '</option>');
+            if( rows[i].uniName!='-'&&rows[i].uniName!='example'){
+              $('#getUni_edit').append('<option value="' + rows[i].uniID + '">' + rows[i].uniName + '</option>');
+            }
         };
       }
     });
@@ -120,7 +122,9 @@ $(document).ready(function() {
       success: function(rows) {
         $('#getFaculty_edit').append('<option disabled selected value>' + "เลือก" + '</option>');
         for (var i = 0; i < rows.length; i++) {
-          $('#getFaculty_edit').append('<option value="' + rows[i].facultyID + '">' + rows[i].facultyName + '</option>');
+          if(rows[i].facultyName!='-'){
+            $('#getFaculty_edit').append('<option value="' + rows[i].facultyID + '">' + rows[i].facultyName + '</option>');
+          }
         };
       }
     });
@@ -131,7 +135,7 @@ $(document).ready(function() {
 
     /*ซ่อนปุ่มของหน่วยงานที่ระดับต่ำกว่า*/
     document.getElementById("editBtnFacultyID_edit").classList.add("hide");
-    document.getElementById("editBtnFacultyID_edit").classList.add("hide");
+    document.getElementById("delBtnFacultyID_edit").classList.add("hide");
 
     document.getElementById("editBtnDpmentID_edit").classList.add("hide");
     document.getElementById("delBtnDpmentID_edit").classList.add("hide");
@@ -157,8 +161,9 @@ $(document).ready(function() {
       success: function(rows) {
         $('#selectDpmantID_edit').append('<option disabled selected value>' + "เลือก" + '</option>');
         for (var i = 0; i < rows.length; i++) {
-          $('#selectDpmantID_edit').append('<option value="' + rows[i].departmentID + '">' + rows[i].departmentName + '</option>');
-
+          if( rows[i].departmentName!='-'){
+            $('#selectDpmantID_edit').append('<option value="' + rows[i].departmentID + '">' + rows[i].departmentName + '</option>');
+          }
         };
       }
     });
@@ -196,8 +201,9 @@ $(document).ready(function() {
       success: function(rows) {
         $('#selectSubDpmantID_edit').append('<option disabled selected value>' + "เลือก" + '</option>');
         for (var i = 0; i < rows.length; i++) {
-          $('#selectSubDpmantID_edit').append('<option value="' + rows[i].Sub_Dpment_ID + '">' + rows[i].Sub_Dpment_name + '</option>');
-
+          if(rows[i].Sub_Dpment_name!='-'){
+            $('#selectSubDpmantID_edit').append('<option value="' + rows[i].Sub_Dpment_ID + '">' + rows[i].Sub_Dpment_name + '</option>');
+          }
         };
       }
     });
@@ -390,6 +396,142 @@ function fnEditFacultyNameShowup() {
         element.classList.remove("hide");
         var element = document.getElementById("alertEmptryName_foreditFacultyName");
         element.classList.add("hide");
+      }
+    }
+
+  });
+};
+
+/* ฟังก์เปิดหน้าการแก้ไขชื่อ หน่วยงานหลัก */
+function fnEditDpmentNameShowup() {
+  /*get ชื่อหน่วยงานหลักเก่าเพื่อไปแสดงบนหน้าจอ*/
+  var oldDpmentname = document.getElementById("selectDpmantID_edit");
+  var text_oldDpmentname = oldDpmentname.options[oldDpmentname.selectedIndex].text;
+  document.getElementById("displayOldDpmentname").value = text_oldDpmentname;
+
+  /*get ID หน่วยงานหลักเก่า*/
+  var oldDpmentID = document.getElementById("selectDpmantID_edit");
+  var text_oldDpmentID = oldDpmentID.options[oldDpmentID.selectedIndex].value;
+  document.getElementById("ID_oldDpmentID").value = text_oldDpmentID;
+
+  /*get ID ของคณะเก่า*/
+  var uniData = document.getElementById("getFaculty_edit");
+  var text_olduniData = uniData.options[uniData.selectedIndex].value;
+  document.getElementById("ID_uniIDforEditDpmentName").value = text_olduniData;
+
+  var listDpmentName = [];
+
+  $.ajax({
+    type: 'GET',
+    url: '/Department/getDpmentinFac/?facultyID=' + text_olduniData,
+    dataType: 'json',
+    success: function(rows) {
+      for (var i = 0; i < rows.length; i++) {
+        listDpmentName.push(rows[i].departmentName);
+      }
+    }
+  });
+
+  $('#id_edit_newNameDpment').keyup(function() {
+    var inputBox_foreditDpmentName = document.getElementById('id_edit_newNameDpment').value;
+
+    var choices_foreditDpmentName = listDpmentName;
+    for (let i = 0; i < choices_foreditDpmentName.length; i++) {
+
+      var resultOfsearch_foreditDpmentName = choices_foreditDpmentName.includes(inputBox_foreditDpmentName);
+      if (resultOfsearch_foreditDpmentName == false) {
+        var empty_foreditDpmentName = false;
+        $('.fieldDpmentname #id_edit_newNameDpment').each(function() {
+          if ($(this).val().length == 0) {
+            empty_foreditDpmentName = true;
+          }
+        });
+
+        if ($.trim($('.fieldDpmentname #id_edit_newNameDpment').val()) == '') {
+          $('#comfirmUpdateDpmentName').attr('disabled', 'disabled');
+
+          document.getElementById("alertEmptryName_foreditDpmentName").classList.remove("hide");
+          document.getElementById("alertDuplicateName_foreditDpmentName").classList.add("hide");
+        } else {
+          $('#comfirmUpdateDpmentName').removeAttr('disabled');
+
+          document.getElementById("alertDuplicateName_foreditDpmentName").classList.add("hide");
+          document.getElementById("alertEmptryName_foreditDpmentName").classList.add("hide");
+        }
+
+      } else {
+        $('#comfirmUpdateDpmentName').attr('disabled', 'disabled');
+
+        document.getElementById("alertDuplicateName_foreditDpmentName").classList.remove("hide");
+        document.getElementById("alertEmptryName_foreditDpmentName").classList.add("hide");
+      }
+    }
+
+  });
+};
+
+/* ฟังก์เปิดหน้าการแก้ไขชื่อ หน่วยงานย่อย */
+function fnEditSubDpmentNameShowup() {
+  /*get ชื่อหน่วยงานย่อยเก่าเพื่อไปแสดงบนหน้าจอ*/
+  var oldSubDpmentname = document.getElementById("selectSubDpmantID_edit");
+  var text_oldSubDpmentname = oldSubDpmentname.options[oldSubDpmentname.selectedIndex].text;
+  document.getElementById("displayOldSubDpmentname").value = text_oldSubDpmentname;
+
+  /*get ID หน่วยงานย่อยเก่า*/
+  var oldSubDpmentID = document.getElementById("selectSubDpmantID_edit");
+  var text_oldSubDpmentID = oldSubDpmentID.options[oldSubDpmentID.selectedIndex].value;
+  document.getElementById("ID_oldSubDpmentID").value = text_oldSubDpmentID;
+
+  /*get ID ของหน่วยงานหลัก*/
+  var selectDpmantID_edit = document.getElementById("selectDpmantID_edit");
+  var text_selectDpmantID_edit = selectDpmantID_edit.options[selectDpmantID_edit.selectedIndex].value;
+  document.getElementById("ID_uniIDforEditSubDpmentName").value = text_selectDpmantID_edit;
+
+  var listSubDpmentName = [];
+
+  $.ajax({
+    type: 'GET',
+    url: '/department/getSubinDpment/?dpmantID=' + text_selectDpmantID_edit,
+    dataType: 'json',
+    success: function(rows) {
+      for (var i = 0; i < rows.length; i++) {
+        listSubDpmentName.push(rows[i].Sub_Dpment_name);
+      }
+    }
+  });
+
+  $('#id_edit_newNameSubDpment').keyup(function() {
+    var inputBox_foreditSubDpmentName = document.getElementById('id_edit_newNameSubDpment').value;
+
+    var choices_foreditSubDpmentName = listSubDpmentName;
+    for (let i = 0; i < choices_foreditSubDpmentName.length; i++) {
+
+      var resultOfsearch_foreditSubDpmentName = choices_foreditSubDpmentName.includes(inputBox_foreditSubDpmentName);
+      if (resultOfsearch_foreditSubDpmentName == false) {
+        var empty_foreditSubDpmentName = false;
+        $('.fieldSubDpmentname #id_edit_newNameSubDpment').each(function() {
+          if ($(this).val().length == 0) {
+            empty_foreditSubDpmentName = true;
+          }
+        });
+
+        if ($.trim($('.fieldSubDpmentname #id_edit_newNameSubDpment').val()) == '') {
+          $('#comfirmUpdateSubDpmentName').attr('disabled', 'disabled');
+
+          document.getElementById("alertEmptryName_foreditSubDpmentName").classList.remove("hide");
+          document.getElementById("alertDuplicateName_foreditSubDpmentName").classList.add("hide");
+        } else {
+          $('#comfirmUpdateSubDpmentName').removeAttr('disabled');
+
+          document.getElementById("alertDuplicateName_foreditSubDpmentName").classList.add("hide");
+          document.getElementById("alertEmptryName_foreditSubDpmentName").classList.add("hide");
+        }
+
+      } else {
+        $('#comfirmUpdateSubDpmentName').attr('disabled', 'disabled');
+
+        document.getElementById("alertDuplicateName_foreditSubDpmentName").classList.remove("hide");
+        document.getElementById("alertEmptryName_foreditSubDpmentName").classList.add("hide");
       }
     }
 

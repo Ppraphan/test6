@@ -16,6 +16,7 @@
     <div class="grid-x">
       <div class="cell medium-cell-block-y  " style="width:17rem">
         <% include ../partials/header %>
+        <% include ../partials/flash %>
       </div>
       <div class="cell medium-cell-block-y auto">
 
@@ -51,7 +52,7 @@
 
         <!-- ข้อมูลส่วนตัว -->
         <div id="ME_Elm_PersonalInfo"class="cell small-6 " style="padding:2rem  4em 2em 10em;display:block;">
-          <form id="signup" name="signup" enctype="multipart/form-data" method="get" action="/alluser">
+          <form id="" name="" enctype="multipart/form-data" method="post" action="/editmyinfo">
             <div class="grid-x grid-margin-x">
               <div class="cell small-2">
                 <div class="image-hover-wrapper">
@@ -60,7 +61,7 @@
                       <div id="profileimage2" class="imagePreview" style="background-image: url(./userprofile/<%=userinfo.profilePic%>);"></div>
                       <span class="image-hover-wrapper-reveal">
                         <p>เปลี่ยนรูป<br>
-                          <input type='file' id="profileimage" name="profileimage" accept=".png, .jpg, .jpeg" />
+                          <input type='file' id="profileimage" name="profileimage" accept=".png, .jpg, .jpeg" value="<%=userinfo.profilePic%>"/>
                         </p>
                       </span>
                     </a>
@@ -77,6 +78,7 @@
 
                     <div class="cell small-6" style="padding:1em 1em 1em 1em;">
                       <label style="font-size:1.5em;">ข้อมูลส่วนตัว </label>
+                      <p style="color:#cc4b37;">*กรุณากรอกข้อมูลให้ครบทุกช่อง ถ้าไม่มีกรุณาใส่ -</p>
                     </div>
 
                     <div class="grid-y">
@@ -85,7 +87,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-6 floated-label-wrapper">
                             <label for="email">E-Mail</label>
-                            <input type="email" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.email%>">
+                            <input type="email" name="editemail"style="margin:0px!important;border-radius:5px;" value="<%=userinfo.email%>">
                           </div>
                           <!-- คอลัม 2 -->
                           <div class="cell small-6 floated-label-wrapper">
@@ -107,12 +109,12 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-6 floated-label-wrapper">
                             <label for="nameIDHuman">รหัสบัตรประชาชน</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.nameIDHuman%>">
+                            <input type="text" name="humanID"style="margin:0px!important;border-radius:5px;" value="<%=userinfo.nameIDHuman%>">
                           </div>
                           <!-- คอลัม 2 -->
                           <div class="cell small-6 floated-label-wrapper">
                             <label for="birthday">วัน/เดือน/ปีเกิด</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.birthday%>">
+                            <input type="text" name="birthday" data-toggle="datepicker" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.birthday%>">
                           </div>
                         </div>
                       </div>
@@ -135,7 +137,7 @@
                           <div class="cell small-3 floated-label-wrapper">
                             <label for="academicPositions">ตำแหน่งทางวิชาการ</label>
 
-                            <select name="prefix" style="margin:0px!important;border-radius:5px;">
+                            <select name="academicPositions" style="margin:0px!important;border-radius:5px;">
                               <option value="--Select--" disabled>กรุณาเลือก</option>
                               <option <%- userinfo.academicPositions=="ศ.ดร." ? "selected" : "" %> value="ศ.ดร.">ศ.ดร.</option>
                               <option <%- userinfo.academicPositions=="ศ." ? "selected" : "" %> value="ศ.">ศ.</option>
@@ -155,12 +157,12 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-6 floated-label-wrapper">
                             <label for="firstname">ชื่อ (ภาษาไทย)</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.firstname%>">
+                            <input type="text" name="myFName"style="margin:0px!important;border-radius:5px;" value="<%=userinfo.firstname%>">
                           </div>
                           <!-- คอลัม 2 -->
                           <div class="cell small-6 floated-label-wrapper">
                             <label for="lastname">นามสกุล (ภาษาไทย)</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.lastname%>">
+                            <input type="text" name="myLName"style="margin:0px!important;border-radius:5px;" value="<%=userinfo.lastname%>">
                           </div>
                         </div>
                       </div>
@@ -170,12 +172,12 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-6 floated-label-wrapper">
                             <label for="engFirstName">ชื่อ (ภาษาอังกฤษ)</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.engFirstName%>">
+                            <input type="text" name="myEN_FName"style="margin:0px!important;border-radius:5px;" value="<%=userinfo.engFirstName%>">
                           </div>
                           <!-- คอลัม 2 -->
                           <div class="cell small-6 floated-label-wrapper">
                             <label for="engLastName">นามสกุล (ภาษาอังกฤษ)</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.engLastName%>">
+                            <input type="text"name="myEN_LName" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.engLastName%>">
                           </div>
                         </div>
                       </div>
@@ -185,12 +187,12 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-6 floated-label-wrapper">
                             <label for="nationality">สัญชาติ</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.nationality%>">
+                            <input type="text" name="nationality"style="margin:0px!important;border-radius:5px;" value="<%=userinfo.nationality%>">
                           </div>
                           <!-- คอลัม 2 -->
                           <div class="cell small-6 floated-label-wrapper">
                             <label for="telNumber">เบอร์โทร</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.telNumber%>">
+                            <input type="text" name="myTel"style="margin:0px!important;border-radius:5px;" value="<%=userinfo.telNumber%>">
                           </div>
                         </div>
                       </div>
@@ -218,7 +220,7 @@
 
         <!-- ข้อมูลที่ทำงาน -->
         <div id="ME_Elm_WorkInfo"class="cell small-6 " style="padding:2rem  4em 2em 10em;display:none;">
-          <form id="signup" name="signup" enctype="multipart/form-data" method="get" action="/alluser">
+          <form id="" name="" enctype="multipart/form-data" method="post" action="">
             <div class="grid-x grid-margin-x">
               <div class="cell small-2"></div>
               <div class="cell small-6 ">
@@ -229,7 +231,9 @@
                   <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
 
                     <div class="cell small-6" style="padding:1em 1em 1em 1em;">
-                      <label style="font-size:1.5em;">ข้อมูลที่ทำงาน</label>
+                      <label  style="font-size:1.5em;">ข้อมูลที่ทำงาน</label>
+                      <p style="color:#cc4b37;">*กรุณากรอกข้อมูลให้ครบทุกช่อง ถ้าไม่มีกรุณาใส่ -</p>
+
                     </div>
 
                     <div class="grid-y">
@@ -238,14 +242,14 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-6 ">
-                            <label>วันที่เข้าทำงาน</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.fristDayJoin%>">
+                            <label style="color:#767676">วันที่เข้าทำงาน</label>
+                            <input required type="text" data-toggle="datepicker" value="<%=userinfo.fristDayJoin%>">
                           </div>
 
                           <!-- คอลัม 2 -->
                           <div class="cell small-6 ">
-                            <label>วันที่ออก</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=userinfo.dayLeft%>">
+                            <label style="color:#767676">วันที่ออก</label>
+                            <input required type="text" data-toggle="datepicker" value="<%=userinfo.dayLeft%>">
                           </div>
                         </div>
                       </div>
@@ -254,9 +258,9 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
-                            <label>ประเทศ</label>
-                            <select style="margin:0px!important;border-radius:5px;">
-                              <option value="--Select--" disabled>กรุณาเลือก</option>
+                            <label style="color:#767676">ประเทศ</label>
+                            <select required id="ME_ID_country">
+                              <option value="" disabled>กรุณาเลือก</option>
 
                               <% for(var i=0; i<data0.length; i++) {%>
                                 <option value=<%=data0[i].countryISOCode%> ><%=data0[i].countryName%></option>
@@ -274,9 +278,9 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
-                            <label>มหาวิทยาลัย</label>
-                            <select style="margin:0px!important;border-radius:5px;">
-                              <option value="--Select--" disabled>กรุณาเลือก</option>
+                            <label style="color:#767676">มหาวิทยาลัย</label>
+                            <select required id="ME_ID_university">
+                              <option value="" disabled>กรุณาเลือก</option>
                               <% for(var i=0; i<data1.length; i++) {%>
                                 <option value=<%=data1[i].uniID%> ><%=data1[i].uniName%></option>
                                  <%if (data1[i].uniID==userinfo.university) { %>
@@ -293,9 +297,9 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
-                            <label>คณะ</label>
-                            <select style="margin:0px!important;border-radius:5px;">
-                              <option value="--Select--" disabled>กรุณาเลือก</option>
+                            <label style="color:#767676">คณะ</label>
+                            <select id="ME_ID_faculty">
+                              <option value="" disabled>กรุณาเลือก</option>
                               <% for(var i=0; i<data2.length; i++) {%>
                                 <option value=<%=data2[i].facultyID%> ><%=data2[i].facultyName%></option>
                                  <%if (data2[i].facultyID==userinfo.faculty) { %>
@@ -312,9 +316,9 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
-                            <label>หน่วยงานหลัก</label>
-                            <select style="margin:0px!important;border-radius:5px;">
-                              <option value="--Select--" disabled>กรุณาเลือก</option>
+                            <label style="color:#767676">หน่วยงานหลัก</label>
+                            <select id="ME_ID_department">
+                              <option value="" disabled>กรุณาเลือก</option>
                               <% for(var i=0; i<data3.length; i++) {%>
                                 <option value=<%=data3[i].departmentID%> ><%=data3[i].departmentName%></option>
                                  <%if (data3[i].departmentID==userinfo.department) { %>
@@ -331,9 +335,9 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
-                            <label>หน่วยงานย่อย</label>
-                            <select style="margin:0px!important;border-radius:5px;">
-                              <option value="--Select--" disabled>กรุณาเลือก</option>
+                            <label style="color:#767676">หน่วยงานย่อย</label>
+                            <select id="ME_ID_subdepartment">
+                              <option value="" disabled>กรุณาเลือก</option>
                               <% for(var i=0; i<data4.length; i++) {%>
                                 <option value=<%=data4[i].Sub_Dpment_ID%> ><%=data4[i].Sub_Dpment_name%></option>
                                  <%if (data4[i].Sub_Dpment_ID==userinfo.subdepartment) { %>
@@ -437,6 +441,7 @@
 
 <footer>
   <% include ../partials/footer %>
+  <script src="js/module/me.js"></script>
   <script src="js/reset-password.js"></script>
   <script src="js/personal-info.js"></script>
   <script src="js/regis.js"></script>

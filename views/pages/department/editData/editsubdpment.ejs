@@ -1,0 +1,37 @@
+<div class="reveal mobile-ios-modal" id="editSubDpmentNameShowup" data-reveal>
+  <form ref='uploadForm' encType="multipart/form-data" class="" action="/department/updatesubdpmentname/" method="post">
+    <div class="">
+      <h3>เปลี่ยนชื่อหน่วยงานย่อย</h3>
+      <div class="grid-y">
+
+        <div class="grid-x" style="padding-top:40px">
+          <div class="cell small-4">
+              <p>ชื่อหน่วยงานย่อยเดิม</p>
+          </div>
+          <div class="cell small-8">
+              <input  type="text" id="displayOldSubDpmentname" name="name_displayOldSubDpmentname" style="color:#848484;" readonly>
+          </div>
+        </div>
+
+        <div class="grid-x" style="padding-top:10px">
+          <div class="cell small-4">
+            <p>ชื่อหน่วยงานย่อยใหม่</p>
+          </div>
+          <div class="cell small-8 fieldSubDpmentname">
+            <input type="hidden"  name="oldSubDpmentID" id="ID_oldSubDpmentID">
+            <input type="hidden"  name="uniIDforEditSubDpmentName" id="ID_uniIDforEditSubDpmentName">
+            <input type="text" id="id_edit_newNameSubDpment" name="newSubDpmentName" placeholder="ชื่อหน่วยงานย่อยใหม่">
+            <span class="label alert hide" id="alertEmptryName_foreditSubDpmentName"><i class="fi-x-circle"></i>กรุณากรอกข้อมูล</span>
+            <span class="label alert hide" id="alertDuplicateName_foreditSubDpmentName"><i class="fi-x-circle"></i>มีชื่อหน่วยงานย่อยนี้แล้ว</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="mobile-ios-modal-options">
+      <input type="submit" name="" id="comfirmUpdateSubDpmentName"value="ตกลง" class="button " disabled="disabled" >
+      <button data-close type="reset" class="alert button">ยกเลิก</button>
+    </div>
+  </form>
+</div>

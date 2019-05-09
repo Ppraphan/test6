@@ -73,6 +73,21 @@ module.exports = function(app, passport) {
     res.redirect('/alluser');
   });
 
+
+
+  app.get('/signup/delete/:id', function(req, res) {
+
+    var query = "DELETE FROM `project`.`users` WHERE (`id` = '" + req.params.id + "');";
+    console.log(query);
+    con.query(query, function(err, rows) {
+      if (err)
+        console.log("Error Selecting : %s ", err);
+    });
+    res.redirect('/alluser');
+  });
+
+
+  /*ขอข้อมูลหน่วยงาน*/
   app.get("/signup/getUniversityName/", function(req, res) {
     var catdata = req.query.countryData;
     console.log("catdata : " + catdata);
@@ -84,7 +99,6 @@ module.exports = function(app, passport) {
       res.send(results);
     });
   });
-
   app.get("/signup/getFacultyinUni/", function(req, res) {
     var catdata = req.query.universityData;
     console.log(catdata);
@@ -103,7 +117,6 @@ module.exports = function(app, passport) {
     });
 
   });
-
   app.get("/signup/getDpmentinFac/", function(req, res) {
     var catdata = req.query.facultyValue;
     console.log(catdata);
@@ -120,12 +133,11 @@ module.exports = function(app, passport) {
       res.send(data);
     });
   });
-
   app.get("/signup/getSubinDpment/", function(req, res) {
     var catdata = req.query.departmentValue;
     console.log(catdata);
 
-    var sql = "SELECT * FROM project.sub_dpment where Sub_Dpment_Parent ='" + catdata + "';SELECT * FROM project.department,project.sub_dpment WHERE   project.department.departmentID = project.sub_dpment.Sub_Dpment_Parent AND project.department.departmentID='4' AND project.sub_dpment.Sub_Dpment_name='-';   ";
+    var sql = "SELECT * FROM project.sub_dpment where Sub_Dpment_Parent ='" + catdata + "';SELECT * FROM project.department,project.sub_dpment WHERE   project.department.departmentID = project.sub_dpment.Sub_Dpment_Parent AND project.department.departmentID='" + catdata + "' AND project.sub_dpment.Sub_Dpment_name='-';   ";
     console.log(sql);
     con.query(sql, function(err, results) {
       if (err) throw err;
@@ -136,17 +148,6 @@ module.exports = function(app, passport) {
 
       res.send(data);
     });
-  });
-
-  app.get('/signup/delete/:id', function(req, res) {
-
-    var query = "DELETE FROM `project`.`users` WHERE (`id` = '" + req.params.id + "');";
-    console.log(query);
-    con.query(query, function(err, rows) {
-      if (err)
-        console.log("Error Selecting : %s ", err);
-    });
-    res.redirect('/alluser');
   });
 
 }

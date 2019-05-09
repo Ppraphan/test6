@@ -143,7 +143,7 @@ $(document).ready(function() {
     var universityData = universityValue;
 
     $.ajax({
-      type: 'GET',
+      type: 'GET', 
       url: '/signup/getFacultyinUni/?universityData=' + universityData,
       dataType: 'json',
       success: function(data) {

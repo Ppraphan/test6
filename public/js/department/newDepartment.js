@@ -40,7 +40,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: './Department/getNameUniinCountry/?countryData=' + countryData,
+      url: '/Department/getNameUniinCountry/?countryData=' + countryData,
       dataType: 'json',
       success: function(rows) {
         for (var i = 0; i < rows.length; i++) {

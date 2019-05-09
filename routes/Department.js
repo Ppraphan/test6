@@ -1,4 +1,5 @@
 var con = require('./connect-db.js'); /*เชื่อมต่อฐานข้อมูล*/
+var bodyParser = require("body-parser");
 
 module.exports = function(app) {
 
@@ -51,7 +52,6 @@ module.exports = function(app) {
     res.redirect('/department?valid=' + mses);
 
   });
-
   /*เพิ่มคณะใหม่ อย่างเดียว*/
   app.post('/department/newFaculty', function(req, res) {
     var uniNameForFaculty = req.body.NameOfuniIDForFaculty;
@@ -80,7 +80,6 @@ module.exports = function(app) {
     res.redirect('/department?valid=' + mses);
 
   });
-
   /*เพิ่มหน่วยงานหลักใหม่ อย่างเดียว*/
   app.post('/department/newdepartment/', function(req, res) {
     var nameOfuniIDFordepartment = req.body.NameOfuniIDFordepartment;
@@ -103,7 +102,6 @@ module.exports = function(app) {
     res.redirect('/department?valid=' + mses);
 
   });
-
   /*เพิ่มหน่วยงานย่อยใหม่ อย่างเดียว*/
   app.post('/department/newsubdepartment/', function(req, res) {
     var nameOfdpmentIDForsubdepartment = req.body.NameOfdpmentIDForsubdepartment;
@@ -122,6 +120,8 @@ module.exports = function(app) {
 
   });
 
+
+
   /*แก้ไขชื่อมหาลัย*/
   app.post('/department/updateuniname/', function(req, res) {
     var id = req.body.oldUniID;
@@ -138,7 +138,6 @@ module.exports = function(app) {
       res.redirect('/department?valid=' + mses);
     });
   });
-
   /*แก้ไขชื่อคณะ*/
   app.post('/department/updatefacultyname/', function(req, res) {
     var id = req.body.oldFacultyID;
@@ -155,7 +154,143 @@ module.exports = function(app) {
       res.redirect('/department?valid=' + mses);
     });
   });
+  /*แก้ไขชื่อหน่วยงานหลัก*/
+  app.post('/department/updatedpmentname/', function(req, res) {
+    var id = req.body.oldDpmentID;
+    var newname = req.body.newDpmentName;
+    var oldname = req.body.name_displayOldDpmentname;
 
+    var sql = "UPDATE `project`.`department` SET `departmentName` ='" + newname + "' WHERE departmentID='" + id + "'";
+    console.log(sql);
+    con.query(sql, function(err, rows) {
+      if (err)
+        console.log("Error Selecting : %s ", err);
+      var mses = encodeURIComponent('เปลี่ยน  ' + oldname + 'เป็น ' + newname + 'เรียบร้อยแล้ว');
+      console.log('change to ' + oldname + '=>' + newname + 'already');
+      res.redirect('/department?valid=' + mses);
+    });
+  });
+  /*แก้ไขชื่อหน่วยงานย่อย*/
+  app.post('/department/updatesubdpmentname/', function(req, res) {
+    var id = req.body.oldSubDpmentID;
+    var newname = req.body.newSubDpmentName;
+    var oldname = req.body.name_displayOldSubDpmentname;
+
+    var sql = "UPDATE `project`.`sub_dpment` SET `Sub_Dpment_name` ='" + newname + "' WHERE Sub_Dpment_ID='" + id + "'";
+    console.log(sql);
+    con.query(sql, function(err, rows) {
+      if (err)
+        console.log("Error Selecting : %s ", err);
+      var mses = encodeURIComponent('เปลี่ยน  ' + oldname + 'เป็น ' + newname + 'เรียบร้อยแล้ว');
+      console.log('change to ' + oldname + '=>' + newname + 'already');
+      res.redirect('/department?valid=' + mses);
+    });
+  });
+
+
+  /*ลบชื่อหน่วยงานย่อย*/
+  app.post('/department/deletesubdpmentname/', function(req, res) {
+    var subDpmentOldName = req.body.name_displayOldSubDpmentname_del;
+    var subDpmentOldID = req.body.id_displayOldSubDpmentname_del;
+
+    var query = "DELETE FROM project.sub_dpment WHERE Sub_Dpment_ID='" + subDpmentOldID + "'";
+    console.log(query);
+    con.query(query, function(err, rows) {
+      if (err)
+        console.log("Error Selecting : %s ", err);
+    });
+    var mses = encodeURIComponent('ลบ  ' + subDpmentOldName + 'เรียบร้อยแล้ว');
+    res.redirect('/department?valid=' + mses);
+  });
+  /*ลบชื่อหน่วยงานหลัก*/
+  app.post('/department/deletedpmentname/', function(req, res) {
+
+    var DpmentOldName = req.body.name_displayOldDpmentname_del;
+    var DpmentOldID = req.body.id_displayOldDpmentname_del;
+
+    var query = "DELETE FROM `project`.`sub_dpment` WHERE (`Sub_Dpment_Parent` = '" + DpmentOldID + "');";
+    console.log(query);
+    con.query(query, function(err, rows) {
+      if (err)
+        console.log("Error Selecting : %s ", err);
+      var query2 = "DELETE FROM `project`.`department` WHERE (`departmentID` = '" + DpmentOldID + "');";
+      console.log(query);
+      con.query(query2, function(err, rows) {
+        if (err)
+          console.log("Error Selecting : %s ", err);
+        var mses = encodeURIComponent('ลบ  ' + DpmentOldName + 'เรียบร้อยแล้ว');
+        res.redirect('/department?valid=' + mses);
+      });
+    });
+
+
+  });
+  /*ลบชื่อคณะ*/
+  app.post('/department/deletefacultyname/', function(req, res) {
+
+    var facultyOldName = req.body.name_displayOldFacultyname_del;
+    var facultyOldID = req.body.id_displayOldFacultyname_del;
+
+    /*ลบหน่วยงานย่อย 	ตามไอดีคณะ*/
+    var query = "DELETE FROM project.sub_dpment WHERE  Sub_Dpment_Parent in(SELECT departmentID FROM project.department WHERE facultyID in (" + facultyOldID + "));";
+    console.log(query);
+    con.query(query, function(err, rows) {
+      if (err)
+        console.log("Error Selecting : %s ", err);
+      var query2 = "DELETE FROM project.department WHERE facultyID in (" + facultyOldID + ");";
+      console.log(query2);
+      con.query(query2, function(err, rows) {
+        if (err)
+          console.log("Error Selecting : %s ", err);
+        var query3 = "DELETE FROM project.faculty WHERE facultyID in (" + facultyOldID + ");	";
+        console.log(query3);
+        con.query(query3, function(err, rows) {
+          if (err)
+            console.log("Error Selecting : %s ", err);
+          var mses = encodeURIComponent('ลบ  ' + facultyOldName + 'เรียบร้อยแล้ว');
+          res.redirect('/department?valid=' + mses);
+        });
+      });
+    });
+
+
+  });
+  /*ลบชื่อมหาวิทยาลัย*/
+  app.post('/department/deleteuniname/', function(req, res) {
+
+    var uniOldName = req.body.name_displayOldUniname_del;
+    var uniOldID = req.body.id_displayOldUniname_del;
+
+    /*ลบหน่วยงานย่อย 	ตามไอดีมหาวิทยาลัย*/
+    var query = "DELETE FROM project.sub_dpment WHERE  Sub_Dpment_Parent in(SELECT departmentID FROM project.department WHERE facultyID in (SELECT departmentID FROM project.department WHERE facultyID in (SELECT facultyID FROM project.faculty WHERE facultyID in (SELECT facultyID FROM project.faculty WHERE uniID in (" + uniOldID + ")))));";
+    console.log(query);
+    con.query(query, function(err, rows) {
+      if (err)
+        console.log("Error Selecting : %s ", err);
+      var query2 = "DELETE FROM project.department WHERE facultyID in (SELECT facultyID FROM project.faculty WHERE facultyID in (SELECT facultyID FROM project.faculty WHERE uniID in (" + uniOldID + ")));";
+      console.log(query2);
+      con.query(query2, function(err, rows) {
+        if (err)
+          console.log("Error Selecting : %s ", err);
+        var query3 = "DELETE FROM project.faculty WHERE uniID in (SELECT facultyID FROM project.faculty WHERE uniID in (" + uniOldID + "));";
+        console.log(query3);
+        con.query(query3, function(err, rows) {
+          if (err)
+            console.log("Error Selecting : %s ", err);
+          var query4 = "DELETE FROM project.university WHERE uniID in (" + uniOldID + ");";
+          console.log(query4);
+          con.query(query4, function(err, rows) {
+            if (err)
+              console.log("Error Selecting : %s ", err);
+            var mses = encodeURIComponent('ลบ  ' + uniOldName + 'เรียบร้อยแล้ว');
+            res.redirect('/department?valid=' + mses);
+          });
+        });
+      });
+    });
+
+
+  });
 
 
   app.get("/department/getAllCountry/", function(req, res) {
@@ -253,6 +388,7 @@ module.exports = function(app) {
     console.log(sql);
     con.query(sql, function(err, rows) {
       if (err) throw err;
+      console.log(rows);
       res.send(rows);
     });
   });

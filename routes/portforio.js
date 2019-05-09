@@ -13,7 +13,7 @@ module.exports = function(app) {
     var userinfo = req.user;
     var mses = req.query.valid;
 
-    var sql = "SELECT * FROM project.users;SELECT * FROM project.faculty;"
+    var sql = "SELECT * FROM project.users where university = '295';SELECT * FROM project.faculty;"
     var query = con.query(sql, function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
