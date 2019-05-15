@@ -22,8 +22,7 @@ module.exports = function(app, passport) {
 
   app.post("/addprofile", function(req, res) {
     var startup_image = req.files.profileimage;
-
-
+    
     var userid;
 
     if (startup_image == null) {

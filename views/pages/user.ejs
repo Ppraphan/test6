@@ -17,25 +17,44 @@
     <div class="grid-x">
       <div class="cell medium-cell-block-y  " style="width:17rem">
         <% include ../partials/header %>
+        <% include ../partials/flash %>
       </div>
       <div class="cell medium-cell-block-y auto">
 
         <div class="cell small-6 full  bgforms" align="left">
           <div style="padding: 2rem  4em 2em 10em;">
             <div class="grid-x">
-              <div class=" small-2"></div>
+              <div class=" small-2">
+
+              </div>
               <div class=" small-8">
-                <h1>ข้อมูลผู้ใช้</h1>
-                <h3><%=selectuser.firstname%> <%=selectuser.lastname%></h3>
+                <h1>เกี่ยวกับ</h1>
+                <h2 class="label secondary"style="font-size:2rem;"><%=selectuser.firstname%>  <%=selectuser.lastname%></h2>
               </div>
               <div class=" small-2"></div>
             </div>
           </div>
         </div>
 
+        <div class="cell small-6 " align="center" style="padding:1em 0em 1em 12em;">
+          <div class="grid-x grid-margin-x">
+            <div class=" small-2"></div>
+            <div class=" small-6">
+              <ul class="menu menu-fancy">
+                <li class="menu-fancy-option1 is-selected" id="ME_ID_editPersonalInfo"><a>แก้ไขข้อมูลส่วนตัว</a></li>
+                <li class="menu-fancy-option2" id="ME_ID_editWorkInfo"><a >แก้ไขข้อมูลที่ทำงาน</a></li>
+                </li>
+              </ul>
+            </div>
+            <div class=" small-4"></div>
+          </div>
+
+        </div>
+
         <!-- ข้อมูลส่วนตัว -->
-        <div id="ME_Elm_PersonalInfo"class="cell small-6 " style="padding:2rem  4em 2em 10em;">
-          <form id="signup" name="signup" enctype="multipart/form-data" method="get" action="/alluser">
+        <div id="ME_Elm_PersonalInfo"class="cell small-6 " style="padding:2rem  4em 2em 10em;display:block;">
+          <form id="" name="" enctype="multipart/form-data" method="post" action="/edituserinfo">
+            <input type='hidden' name="idThisUser"  value="<%=selectuser.id%>"/>
             <div class="grid-x grid-margin-x">
               <div class="cell small-2">
                 <div class="image-hover-wrapper">
@@ -44,7 +63,7 @@
                       <div id="profileimage2" class="imagePreview" style="background-image: url(./userprofile/<%=selectuser.profilePic%>);"></div>
                       <span class="image-hover-wrapper-reveal">
                         <p>เปลี่ยนรูป<br>
-                          <input type='file' id="profileimage" name="profileimage" accept=".png, .jpg, .jpeg" />
+                          <input type='file' id="profileimage" name="profileimage" accept=".png, .jpg, .jpeg" value="<%=selectuser.profilePic%>"/>
                         </p>
                       </span>
                     </a>
@@ -59,23 +78,25 @@
                   <!-- ROW กลุ่มข้อมูล -->
                   <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
 
-                    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                    <div class="cell small-6" style="padding:1em 1em 0em 1em;">
                       <label style="font-size:1.5em;">ข้อมูลส่วนตัว </label>
+                      <p style="color:#cc4b37;">*กรุณากรอกข้อมูลให้ครบทุกช่อง ถ้าไม่มีกรุณาใส่ -</p>
                     </div>
 
                     <div class="grid-y">
-                      <div class="cell small-6" style="padding:0em 1em 1em 1em;">
+
+                      <div class="cell small-6" style="padding:0em 1em 0em 1em;">
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
-                          <div class="cell small-6 floated-label-wrapper">
-                            <label for="email">E-Mail</label>
-                            <input type="email" style="margin:0px!important;border-radius:5px;" value="<%=selectuser.email%>">
+                          <div class="cell small-6">
+                            <label for="email"class="label-top-select">E-Mail</label>
+                            <input type="email" name="editemail" value="<%=selectuser.email%>">
                           </div>
                           <!-- คอลัม 2 -->
-                          <div class="cell small-6 floated-label-wrapper">
-                            <label>สิทธิ์การใช้งาน</label>
+                          <div class="cell small-6">
+                            <label class="label-top-select">สิทธิ์การใช้งาน</label>
 
-                            <select name="userPermission" style="margin:0px!important;border-radius:5px;">
+                            <select name="userPermission" >
                               <option value="--Select--" disabled>สิทธิ์การใช้งาน</option>
                               <option <%- selectuser.userPermission=="admin" ? "selected" : "" %> value="admin">ผู้ดูแลระบบ</option>
                               <option <%- selectuser.userPermission=="board" ? "selected" : "" %> value="board">ผู้บริหาร</option>
@@ -86,28 +107,28 @@
                         </div>
                       </div>
 
-                      <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                      <div class="cell small-6" style="padding:0em 1em 1em 1em;">
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
-                          <div class="cell small-6 floated-label-wrapper">
-                            <label for="nameIDHuman">รหัสบัตรประชาชน</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=selectuser.nameIDHuman%>">
+                          <div class="cell small-6 ">
+                            <label for="nameIDHuman"class="label-top-select">รหัสบัตรประชาชน</label>
+                            <input type="text" name="humanID" value="<%=selectuser.nameIDHuman%>">
                           </div>
                           <!-- คอลัม 2 -->
-                          <div class="cell small-6 floated-label-wrapper">
-                            <label for="birthday">วัน/เดือน/ปีเกิด</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=selectuser.birthday%>">
+                          <div class="cell small-6">
+                            <label for="birthday"class="label-top-select">วัน/เดือน/ปีเกิด</label>
+                            <input type="text" name="birthday" data-toggle="datepicker"  value="<%=selectuser.birthday%>">
                           </div>
                         </div>
                       </div>
 
-                      <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                      <div class="cell small-6" style="padding:0em 1em 1em 1em;">
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
-                          <div class="cell small-3 floated-label-wrapper">
-                            <label for="prefix">คำนำหน้า</label>
+                          <div class="cell small-3 ">
+                            <label for="prefix"class="label-top-select">คำนำหน้า</label>
 
-                            <select name="prefix" style="margin:0px!important;border-radius:5px;">
+                            <select name="prefix" >
                               <option value="--Select--" disabled>กรุณาเลือก</option>
                               <option <%- selectuser.prefix=="Mr." ? "selected" : "" %> value="Mr.">นาย</option>
                               <option <%- selectuser.prefix=="Mrs." ? "selected" : "" %> value="Mrs.">นาง</option>
@@ -116,10 +137,10 @@
 
                           </div>
                           <!-- คอลัม 2 -->
-                          <div class="cell small-3 floated-label-wrapper">
-                            <label for="academicPositions">ตำแหน่งทางวิชาการ</label>
+                          <div class="cell small-3">
+                            <label for="academicPositions"class="label-top-select">ตำแหน่งทางวิชาการ</label>
 
-                            <select name="prefix" style="margin:0px!important;border-radius:5px;">
+                            <select name="academicPositions" >
                               <option value="--Select--" disabled>กรุณาเลือก</option>
                               <option <%- selectuser.academicPositions=="ศ.ดร." ? "selected" : "" %> value="ศ.ดร.">ศ.ดร.</option>
                               <option <%- selectuser.academicPositions=="ศ." ? "selected" : "" %> value="ศ.">ศ.</option>
@@ -134,47 +155,47 @@
                         </div>
                       </div>
 
-                      <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                      <div class="cell small-6" style="padding:0em 1em 1em 1em;">
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
-                          <div class="cell small-6 floated-label-wrapper">
-                            <label for="firstname">ชื่อ (ภาษาไทย)</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=selectuser.firstname%>">
+                          <div class="cell small-6">
+                            <label for="firstname"class="label-top-select">ชื่อ (ภาษาไทย)</label>
+                            <input type="text" name="myFName" value="<%=selectuser.firstname%>">
                           </div>
                           <!-- คอลัม 2 -->
-                          <div class="cell small-6 floated-label-wrapper">
-                            <label for="lastname">นามสกุล (ภาษาไทย)</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=selectuser.lastname%>">
+                          <div class="cell small-6 ">
+                            <label for="lastname"class="label-top-select">นามสกุล (ภาษาไทย)</label>
+                            <input type="text" name="myLName" value="<%=selectuser.lastname%>">
                           </div>
                         </div>
                       </div>
 
-                      <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                      <div class="cell small-6" style="padding:0em 1em 1em 1em;">
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
-                          <div class="cell small-6 floated-label-wrapper">
-                            <label for="engFirstName">ชื่อ (ภาษาอังกฤษ)</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=selectuser.engFirstName%>">
+                          <div class="cell small-6 ">
+                            <label for="engFirstName"class="label-top-select">ชื่อ (ภาษาอังกฤษ)</label>
+                            <input type="text" name="myEN_FName" value="<%=selectuser.engFirstName%>">
                           </div>
                           <!-- คอลัม 2 -->
-                          <div class="cell small-6 floated-label-wrapper">
-                            <label for="engLastName">นามสกุล (ภาษาอังกฤษ)</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=selectuser.engLastName%>">
+                          <div class="cell small-6 ">
+                            <label for="engLastName"class="label-top-select">นามสกุล (ภาษาอังกฤษ)</label>
+                            <input type="text"name="myEN_LName"  value="<%=selectuser.engLastName%>">
                           </div>
                         </div>
                       </div>
 
-                      <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                      <div class="cell small-6" style="padding:0em 1em 1em 1em;">
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
-                          <div class="cell small-6 floated-label-wrapper">
-                            <label for="nationality">สัญชาติ</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=selectuser.nationality%>">
+                          <div class="cell small-6 ">
+                            <label for="nationality"class="label-top-select">สัญชาติ</label>
+                            <input type="text" name="nationality" value="<%=selectuser.nationality%>">
                           </div>
                           <!-- คอลัม 2 -->
-                          <div class="cell small-6 floated-label-wrapper">
-                            <label for="telNumber">เบอร์โทร</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=selectuser.telNumber%>">
+                          <div class="cell small-6 ">
+                            <label for="telNumber"class="label-top-select">เบอร์โทร</label>
+                            <input type="text" name="myTel" value="<%=selectuser.telNumber%>">
                           </div>
                         </div>
                       </div>
@@ -185,14 +206,7 @@
 
               <div class=" small-2" data-sticky-container style="border-radius:5px;padding-left: 1em;">
                 <div class=" grid-y" data-sticky data-margin-top="20">
-
-                  <div class=" small-6" style="padding-bottom: 1em;">
-                    <input type="submit" value="ยืนยัน" class="button primary " id="" style="border-radius:2em;padding:1em;">
-                  </div>
-
-                  <div class=" small-6">
-
-                  </div>
+                  <input type="submit" value="ยืนยัน" class="button primary " id="" style="border-radius:2em;padding:1em;">
                 </div>
               </div>
             </div>
@@ -201,8 +215,9 @@
         </div>
 
         <!-- ข้อมูลที่ทำงาน -->
-        <div id="ME_Elm_WorkInfo"class="cell small-6 " style="padding:2rem  4em 2em 10em;">
-          <form id="signup" name="signup" enctype="multipart/form-data" method="get" action="/alluser">
+        <div id="ME_Elm_WorkInfo"class="cell small-6 " style="padding:2rem  4em 2em 10em;display:none;">
+          <form id="" name="" enctype="multipart/form-data" method="post" action="/edituserwork">
+            <input type='hidden' name="idThisUser"  value="<%=selectuser.id%>"/>
             <div class="grid-x grid-margin-x">
               <div class="cell small-2"></div>
               <div class="cell small-6 ">
@@ -213,7 +228,9 @@
                   <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
 
                     <div class="cell small-6" style="padding:1em 1em 1em 1em;">
-                      <label style="font-size:1.5em;">ข้อมูลที่ทำงาน</label>
+                      <label  style="font-size:1.5em;">ข้อมูลที่ทำงาน</label>
+                      <p style="color:#cc4b37;">*กรุณากรอกข้อมูลให้ครบทุกช่อง ถ้าไม่มีกรุณาใส่ -</p>
+
                     </div>
 
                     <div class="grid-y">
@@ -222,14 +239,14 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-6 ">
-                            <label>วันที่เข้าทำงาน</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=selectuser.fristDayJoin%>">
+                            <label style="color:#767676">วันที่เข้าทำงาน</label>
+                            <input required name="myfristDayJoin" type="text" data-toggle="datepicker" value="<%=selectuser.fristDayJoin%>">
                           </div>
 
                           <!-- คอลัม 2 -->
                           <div class="cell small-6 ">
-                            <label>วันที่ออก</label>
-                            <input type="text" style="margin:0px!important;border-radius:5px;" value="<%=selectuser.dayLeft%>">
+                            <label style="color:#767676">วันที่ออก</label>
+                            <input required name="mydayLeft" type="text" data-toggle="datepicker" value="<%=selectuser.dayLeft%>">
                           </div>
                         </div>
                       </div>
@@ -238,9 +255,9 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
-                            <label>ประเทศ</label>
-                            <select style="margin:0px!important;border-radius:5px;">
-                              <option value="--Select--" disabled>กรุณาเลือก</option>
+                            <label style="color:#767676">ประเทศ</label>
+                            <select name="myCountryID" required id="ME_ID_country">
+                              <option value="" disabled>กรุณาเลือก</option>
 
                               <% for(var i=0; i<data0.length; i++) {%>
                                 <option value=<%=data0[i].countryISOCode%> ><%=data0[i].countryName%></option>
@@ -258,9 +275,9 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
-                            <label>มหาวิทยาลัย</label>
-                            <select style="margin:0px!important;border-radius:5px;">
-                              <option value="--Select--" disabled>กรุณาเลือก</option>
+                            <label style="color:#767676">มหาวิทยาลัย</label>
+                            <select name="myUniversityID" required id="ME_ID_university">
+                              <option value="" disabled>กรุณาเลือก</option>
                               <% for(var i=0; i<data1.length; i++) {%>
                                 <option value=<%=data1[i].uniID%> ><%=data1[i].uniName%></option>
                                  <%if (data1[i].uniID==selectuser.university) { %>
@@ -277,9 +294,9 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
-                            <label>คณะ</label>
-                            <select style="margin:0px!important;border-radius:5px;">
-                              <option value="--Select--" disabled>กรุณาเลือก</option>
+                            <label style="color:#767676">คณะ</label>
+                            <select name="myFacultyID" id="ME_ID_faculty">
+                              <option value="" disabled>กรุณาเลือก</option>
                               <% for(var i=0; i<data2.length; i++) {%>
                                 <option value=<%=data2[i].facultyID%> ><%=data2[i].facultyName%></option>
                                  <%if (data2[i].facultyID==selectuser.faculty) { %>
@@ -296,9 +313,9 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
-                            <label>หน่วยงานหลัก</label>
-                            <select style="margin:0px!important;border-radius:5px;">
-                              <option value="--Select--" disabled>กรุณาเลือก</option>
+                            <label style="color:#767676">หน่วยงานหลัก</label>
+                            <select name="myDepartmentID"id="ME_ID_department">
+                              <option value="" disabled>กรุณาเลือก</option>
                               <% for(var i=0; i<data3.length; i++) {%>
                                 <option value=<%=data3[i].departmentID%> ><%=data3[i].departmentName%></option>
                                  <%if (data3[i].departmentID==selectuser.department) { %>
@@ -315,9 +332,9 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
-                            <label>หน่วยงานย่อย</label>
-                            <select style="margin:0px!important;border-radius:5px;">
-                              <option value="--Select--" disabled>กรุณาเลือก</option>
+                            <label style="color:#767676">หน่วยงานย่อย</label>
+                            <select name="mySubDepartmentID"id="ME_ID_subdepartment">
+                              <option value="" disabled>กรุณาเลือก</option>
                               <% for(var i=0; i<data4.length; i++) {%>
                                 <option value=<%=data4[i].Sub_Dpment_ID%> ><%=data4[i].Sub_Dpment_name%></option>
                                  <%if (data4[i].Sub_Dpment_ID==selectuser.subdepartment) { %>
@@ -338,11 +355,11 @@
               <div class=" small-2" data-sticky-container style="border-radius:5px;padding-left: 1em;">
                 <div class=" grid-y" data-sticky data-margin-top="20">
 
-                  <div class=" small-6" style="padding-bottom: 1em;">
-                    <input type="submit" value="ยืนยัน" class="button primary " id="" style="border-radius:2em;padding:1em;">
+                  <div class=" small-12" style="padding-bottom: 1em;">
+                    <input type="submit" value="ยืนยัน" class="button primary" id="" style="border-radius:2em;padding:1em;">
                   </div>
 
-                  <div class=" small-6"></div>
+
 
                 </div>
               </div>
@@ -361,8 +378,9 @@
 
 <footer>
   <% include ../partials/footer %>
+  <script src="js/module/me.js"></script>
   <script src="js/reset-password.js"></script>
-  <script src="js/personal-info.js"></script>
+
   <script src="js/regis.js"></script>
   <script src="js/signup.js"></script>
   <script src="js/foundation-datepicker.js"></script>

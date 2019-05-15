@@ -11,6 +11,9 @@ $(function() {
   var url = window.location.href;
   var currentLocation = window.location.pathname;
   var singupurl =  "/signup";
+  var user_url = "user";
+
+  var currentLocation3 = window.location.pathname.split('/')[1];
 
   // passes on every "a" tag
   $(".accordion  a").each(function() {
@@ -21,9 +24,14 @@ $(function() {
     }
   });
 
-  if(currentLocation == singupurl){
+  if(currentLocation == singupurl ){
     $("#newuseridnavi").closest("a").addClass("active2");
     $('#accordion').foundation('down', $("#newuseridnavi").closest(".sublevel-1"));
+  }
+
+  if(currentLocation3 == user_url){
+    $("#cerrentuseridnavi").closest("a").addClass("active2");
+    $('#accordion').foundation('down', $("#cerrentuseridnavi").closest(".sublevel-1"));
   }
 
 });

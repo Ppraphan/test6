@@ -62,33 +62,39 @@
               $('#id_beginYear').append('<option value="' + rows[0][i].grants_Years + '">' + rows[0][i].grants_Years + '</option>');
               $('#id_endYear').append('<option value="' + rows[0][i].grants_Years + '">' + rows[0][i].grants_Years + '</option>');
             };
+            var ctx = document.getElementById("myChart2").getContext("2d");
 
             var data = {
-              labels: allofyears,
+              labels: ["Chocolate", "Vanilla", "Strawberry","ภาควิชา 1","ภาควิชา 2","ภาควิชา 3"],
               datasets: [{
                 label: "ทุนภายนอก",
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255,99,132,1)',
-                borderWidth: 1,
-                data: numberOfGrants,
-              }]
+                backgroundColor: "#305f72",
+                data: [3, 7, 4,11,7,3]
+              }, {
+                label: "ทุนภายใน",
+                backgroundColor: "#f1d1b5",
+                data: [4, 3, 5,8,2,12]
+              }, ]
             };
 
-            var ctx = $("#myChart2").get(0).getContext("2d");
             var myBarChart = new Chart(ctx, {
-              type: "bar",
+              type: 'bar',
               data: data,
-
               options: {
+                barValueSpacing: 20,
                 scales: {
                   yAxes: [{
                     ticks: {
-                      beginAtZero: true
+                      min: 0,
                     }
                   }]
                 }
               }
             });
+
+
+
+
 
           }
         });

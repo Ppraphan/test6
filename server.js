@@ -16,7 +16,9 @@ var fs = require('fs');
 var bodyParser = require("body-parser");
 var url = require('url');
 var querystring = require('querystring');
-var env = require('dotenv').load()
+var busboy = require('connect-busboy');
+// var env = require('dotenv').load()
+var env = require('dotenv').config()
 var exphbs = require('express-handlebars');
 
 var options = {
@@ -27,21 +29,14 @@ var options = {
   database: 'project'
 };
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
+  limit: '150mb',
+  extended: false ,
+}));
 
 var sessionStore = new MySQLStore(options);
 
-// app.use(fileUpload());
-
-app.use(fileUpload({
-  limits: { fileSize:30000000 },
-}));
-
-// app.use(fileUpload({
-//   limits: {
-//     fieldSize: 20971520,
-//     abortOnLimit: true,
-//   },
-// }));
 
 app.use(express.static(__dirname + '/public'));
 
@@ -65,13 +60,22 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
-app.use(bodyParser.json());
 
 
-app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
-  limit: '150mb',
-  extended: true
+// app.use(fileUpload());
+
+app.use(fileUpload({
+  limits: { fileSize:30000000 },
 }));
+
+//...
+app.use(busboy());
+// app.use(fileUpload({
+//   limits: {
+//     fieldSize: 20971520,
+//     abortOnLimit: true,
+//   },
+// }));
 
 
 //Models

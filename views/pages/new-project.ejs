@@ -2,6 +2,28 @@
 <html lang="en">
 <link rel="stylesheet" href="css/research-project.css">
 
+<style>
+  p{
+  margin-bottom: 0rem!important;
+}
+.separator-left::after{
+    position: relative;
+    width: 3rem;
+    border-bottom: 0.125rem solid #1779ba;
+    margin: 0.3rem auto 0;
+    margin-left: 0;
+}
+.separator-left::after {
+    display: table;
+    content: ' ';
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;
+}
+</style>
 
 <head>
   <% include ../partials/head %>
@@ -45,7 +67,7 @@
                   <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
 
                     <div class="cell small-6" style="padding:1em 1em 1em 1em;">
-                      <label style="font-size:1.5em;">ทุนวิจัย</label>
+                      <h5 class="separator-left" style="font-size:1.5em; ">ทุนวิจัย</h5>
                     </div>
 
                     <div class="grid-y">
@@ -96,7 +118,7 @@
                   <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
 
                     <div class="cell small-6" style="padding:1em 1em 1em 1em;">
-                      <label style="font-size:1.5em;">ลักษณะโครงการ</label>
+                      <h5 class="separator-left" style="font-size:1.5em; ">ลักษณะโครงการ</h5>
                     </div>
 
                     <div class="grid-y">
@@ -173,7 +195,7 @@
                   <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
 
                     <div class="cell small-6" style="padding:1em 1em 1em 1em;">
-                      <label style="font-size:1.5em;">หน่วยงาน</label>
+                      <h5 class="separator-left" style="font-size:1.5em; ">หน่วยงาน</h5>
                     </div>
 
                     <div class="grid-y">
@@ -181,8 +203,8 @@
                       <div class="cell small-6" style="padding:0em 1em 1em 1em;">
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
-                          <div class="cell small-12 floated-label-wrapper">
-                            <label for="country">ประเทศ</label>
+                          <div class="cell small-12 ">
+                            <label for="country"style="color:#8a8a8a;">ประเทศ</label>
                             <select name="country" id="ID_PJ_ADD_country" placeholder="ประเทศ" style="margin:0px!important;border-radius:5px;">
                               <option disabled selected value>เลือก</option>
                               <% for (var i = 0; i < data1.length; i++){ %>
@@ -198,8 +220,8 @@
                       <div class="cell small-6" style="padding:0em 1em 1em 1em;">
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
-                          <div class="cell small-12 floated-label-wrapper">
-                            <label for="university">มหาวิทยาลัย</label>
+                          <div class="cell small-12 ">
+                            <label for="university"style="color:#8a8a8a;">มหาวิทยาลัย</label>
                             <select name="university" id="ID_PJ_ADD_Uni" placeholder="มหาวิทยาลัย"></select>
                           </div>
                         </div>
@@ -208,8 +230,8 @@
                       <div class="cell small-6" style="padding:0em 1em 1em 1em;">
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
-                          <div class="cell small-12 floated-label-wrapper">
-                            <label for="faculty">คณะ</label>
+                          <div class="cell small-12 ">
+                            <label for="faculty"style="color:#8a8a8a;">คณะ</label>
                             <select name="faculty" id="id_PJ_ADD_fac" placeholder="คณะ"></select>
                           </div>
                         </div>
@@ -218,8 +240,8 @@
                       <div class="cell small-6" style="padding:0em 1em 1em 1em;">
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
-                          <div class="cell small-12 floated-label-wrapper">
-                            <label for="department">หน่วยงานหลัก</label>
+                          <div class="cell small-12 ">
+                            <label for="department"style="color:#8a8a8a;">หน่วยงานหลัก</label>
                             <select name="department" id="id_PJ_ADD_dpment" placeholder="หน่วยงานหลัก"></select>
                           </div>
                         </div>
@@ -228,8 +250,8 @@
                       <div class="cell small-6" style="padding:0em 1em 1em 1em;">
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
-                          <div class="cell small-12 floated-label-wrapper">
-                            <label for="department">หน่วยงานย่อย</label>
+                          <div class="cell small-12 ">
+                            <label for="department"style="color:#8a8a8a;">หน่วยงานย่อย</label>
                             <select name="subdepartment" id="id_PJ_ADD_subdpment" placeholder="หน่วยงานย่อย"></select>
                           </div>
                         </div>
@@ -242,7 +264,7 @@
                   <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
 
                     <div class="cell small-6" style="padding:1em 1em 1em 1em;">
-                      <label style="font-size:1.5em;">ประเภทงานวิจัย</label>
+                      <h5 class="separator-left" style="font-size:1.5em; ">รายละเอียดโครงการ</h5>
                     </div>
 
                     <div class="grid-y">
@@ -250,8 +272,8 @@
                       <div class="cell small-12" style="padding:0em 1em 1em 1em;">
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
-                          <div class="cell small-12 floated-label-wrapper">
-                            <label for="id_PJ_ADD_ResearcType">ประเภทงานวิจัย</label>
+                          <div class="cell small-12 ">
+                            <label for="id_PJ_ADD_ResearcType"style="color:#8a8a8a;">ประเภทงานวิจัย</label>
                             <select name="name_PJ_ADD_ResearcType" id="id_PJ_ADD_ResearcType">
                               <% for (var i = 0; i < data2.length; i++){ %>
                               <option value="<%= data2[i].idresearchType %>">
@@ -263,23 +285,11 @@
                         </div>
                       </div>
 
-                    </div>
-                  </div>
-
-                  <!-- ROW กลุ่มข้อมูล -->
-                  <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
-
-                    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
-                      <label style="font-size:1.5em;">สาขาการวิจัย</label>
-                    </div>
-
-                    <div class="grid-y">
-
                       <div class="cell small-12" style="padding:0em 1em 1em 1em;">
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
-                          <div class="cell small-12 floated-label-wrapper">
-                            <label for="">ชื่อประมาณ</label>
+                          <div class="cell small-12 ">
+                            <label for=""style="color:#8a8a8a;">สาขาการวิจัย</label>
                             <select name="name_PJ_ADD_Researchbranch" id="id_PJ_ADD_Researchbranch">
                               <% for (var i = 0; i < data3.length; i++){ %>
                               <option value="<%= data3[i].researchbranchID %>">
@@ -291,23 +301,11 @@
                         </div>
                       </div>
 
-                    </div>
-                  </div>
-
-                  <!-- ROW กลุ่มข้อมูล -->
-                  <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
-
-                    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
-                      <label style="font-size:1.5em;">รูปแบบการวิจัย</label>
-                    </div>
-
-                    <div class="grid-y">
-
                       <div class="cell small-12" style="padding:0em 1em 1em 1em;">
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
-                          <div class="cell small-12 floated-label-wrapper">
-                            <label for="id_PJ_ADD_Researchform">รูปแบบการวิจัย</label>
+                          <div class="cell small-12 ">
+                            <label for="id_PJ_ADD_Researchform"style="color:#8a8a8a;">รูปแบบการวิจัย</label>
                             <select name="name_PJ_ADD_Researchform" id="id_PJ_ADD_Researchform">
                               <% for (var i = 0; i < data4.length; i++){ %>
                               <option value="<%= data4[i].ResearchFormID %>">
@@ -319,23 +317,11 @@
                         </div>
                       </div>
 
-                    </div>
-                  </div>
-
-                  <!-- ROW กลุ่มข้อมูล -->
-                  <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
-
-                    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
-                      <label style="font-size:1.5em;">ยุทศาสตร์</label>
-                    </div>
-
-                    <div class="grid-y">
-
                       <div class="cell small-12" style="padding:0em 1em 1em 1em;">
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
-                          <div class="cell small-12 floated-label-wrapper">
-                            <label for="id_PJ_ADD_Researchstrategic">ชื่อยุทศาสตร์</label>
+                          <div class="cell small-12 ">
+                            <label for="id_PJ_ADD_Researchstrategic"style="color:#8a8a8a;">ชื่อยุทศาสตร์</label>
                             <select name="name_PJ_ADD_Researchstrategic" id="id_PJ_ADD_Researchstrategic">
                               <% for (var i = 0; i < data5.length; i++){ %>
                               <option value="<%= data5[i].researchStrategicID %>">
@@ -352,32 +338,171 @@
 
                   <!-- ROW กลุ่มข้อมูล -->
                   <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
-
-                    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
-                      <label style="font-size:1.5em;">ประเภทงานวิจัย</label>
+                    <div class="grid-x grid-margin-x">
+                      <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                        <h5 class="separator-left" style="font-size:1.5em; ">วันที่แจ้งเตือนการส่งเอกสาร</h5>
+                        <p style="color:red">*กรุณากรอกข้อมูลให้ครบทุกช่อง ถ้าไม่มี กรุณาใส่ -</p>
+                      </div>
+                      <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                        <label for="">สถานะการดำเนินงาน</label>
+                        <select name="stateOfProJ" id="">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+                        </select>
+                      </div>
                     </div>
-
                     <div class="grid-y">
 
-                      <div class="cell small-12" style="padding:0em 1em 1em 1em;">
+                      <div class="cell small-12" style="padding:0em 1em 0em 1em;border-bottom:1px solid #cacaca;">
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
-                          <div class="cell small-12 floated-label-wrapper">
-                            <label for="">สถานะการดำเนินงาน</label>
-                            <select name="stateOfProJ" id="">
-                              <option value="1">1. ทำบันทึกขออนุมัติดำเนินโครงการฯ (ฟอร์ม 2)พร้อมแนบแผนการใช้จ่ายเงิน(วจ.1)(ฟอร์ม 1)</option>
-                              <option value="2">2. ทำบันทึกเบิกงวด 1 (ฟอร์ม 3)</option>
-                              <option value="3">3. การจัดซื้อวัสดุ (ฟอร์ม 4)</option>
-                              <option value="4">4. การจัดจ้าง (ฟอร์ม 5)</option>
-                              <option value="5">5. ใบสำคัญรับเงิน (ฟอร์ม 6)</option>
-                              <option value="6">6. ขอขยายเวลาดำเนินโครงการวิจัยฯ (ฟอร์ม 7)</option>
-                              <option value="7">7. ทำบันทึกส่งหลักฐานการใช้เงิน (ฟอร์ม  8)</option>
-                              <option value="8">8. ทำบันทึกเบิกเงินงวดที่ 2 (ฟอร์ม 9 )พร้อมแนบรายงานความก้าวหน้า(ฟอร์ม 10)</option>
-                              <option value="9">9. ทำบันทึกเบิกงวด 3  (ฟอร์ม 11)พร้อมส่งเล่มรายงานวิจัยฉบับสมบูรณ์ 6 เล่ม ซีดี 2 แผ่น</option>
-                              <option value="10">10. ทำบันทึกส่งเล่มรายงานวิจัย (ฟอร์ม 12) </option>
-                              <option value="11">11. ทำบันทึกส่งมอบครุภัณฑ์ (ถ้ามี) (ฟอร์ม 13)</option>
-                              <option value="12">12. ทำบันทึกปิดโครงการวิจัย (ฟอร์ม 14)พร้อมแนบ วจ.2 (ฟอร์ม  15)</option>
-                            </select>
+                          <div class="cell small-8">
+                            <p><span class="label warning">1.</span> ทำบันทึกขออนุมัติดำเนินโครงการฯ (ฟอร์ม 2)พร้อมแนบแผนการใช้จ่ายเงิน (วจ.1) (ฟอร์ม 1)</p>
+                          </div>
+                          <div class="cell small-4">
+                            <input required type="text" name="dateState1" data-toggle="datepicker" placeholder="วันที่"/>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-8">
+                            <p><span class="label warning">2.</span> ทำบันทึกเบิกงวด 1 (ฟอร์ม 3 )</p>
+                          </div>
+                          <div class="cell small-4">
+                            <input required type="text" name="dateState2" data-toggle="datepicker" placeholder="วันที่"/>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-8">
+                            <p><span class="label warning">3.</span> การจัดซื้อวัสดุ (ฟอร์ม 4)</p>
+                          </div>
+                          <div class="cell small-4">
+                            <input required type="text" name="dateState3" data-toggle="datepicker"placeholder="วันที่" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-8">
+                            <p><span class="label warning">4.</span> การจัดจ้าง (ฟอร์ม 5)</p>
+                          </div>
+                          <div class="cell small-4">
+                            <input required type="text" name="dateState4" data-toggle="datepicker"placeholder="วันที่" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-8">
+                            <p><span class="label warning">5.</span> ใบสำคัญรับเงิน (ฟอร์ม 6)</p>
+                          </div>
+                          <div class="cell small-4">
+                            <input required type="text" name="dateState5" data-toggle="datepicker"placeholder="วันที่" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-8">
+                            <p><span class="label warning">6.</span> ขอขยายเวลาดำเนินโครงการวิจัยฯ (ฟอร์ม 7)</p>
+                          </div>
+                          <div class="cell small-4">
+                            <input required type="text" name="dateState6" data-toggle="datepicker"placeholder="วันที่" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-8">
+                            <p><span class="label warning">7.</span> ทำบันทึกส่งหลักฐานการใช้เงิน (ฟอร์ม 8)</p>
+                          </div>
+                          <div class="cell small-4">
+                            <input required type="text" name="dateState7" data-toggle="datepicker"placeholder="วันที่" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-8">
+                            <p><span class="label warning">8.</span> ทำบันทึกเบิกเงินงวดที่ 2 (ฟอร์ม 9 )พร้อมแนบรายงานความก้าวหน้า(ฟอร์ม 10 )</p>
+                          </div>
+                          <div class="cell small-4">
+                            <input required type="text" name="dateState8" data-toggle="datepicker"placeholder="วันที่" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-8">
+                            <p><span class="label warning">9.</span> ทำบันทึกเบิกงวด 3 (ฟอร์ม 11)พร้อมส่งเล่มรายงานวิจัยฉบับสมบูรณ์ 6 เล่ม ซีดี 2 แผ่น</p>
+                          </div>
+                          <div class="cell small-4">
+                            <input required type="text" name="dateState9" data-toggle="datepicker" placeholder="วันที่"/>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-8">
+                            <p><span class="label warning">10.</span> ทำบันทึกส่งเล่มรายงานวิจัย (ฟอร์ม 12)</p>
+                          </div>
+                          <div class="cell small-4">
+                            <input required type="text" name="dateState10" data-toggle="datepicker"placeholder="วันที่" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-8">
+                            <p><span class="label warning">11.</span> ทำบันทึกส่งมอบครุภัณฑ์ (ถ้ามี) (ฟอร์ม 13)</p>
+                          </div>
+                          <div class="cell small-4">
+                            <input required type="text" name="dateState11" data-toggle="datepicker"placeholder="วันที่" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-8">
+                            <p><span class="label warning">12.</span> ทำบันทึกปิดโครงการวิจัย (ฟอร์ม 14)พร้อมแนบ วจ.2 (ฟอร์ม 15)</p>
+                          </div>
+                          <div class="cell small-4">
+                            <input required type="text" name="dateState12" data-toggle="datepicker"placeholder="วันที่" />
                           </div>
                         </div>
                       </div>
@@ -393,7 +518,7 @@
                 <div class=" grid-y" data-sticky data-margin-top="22">
 
                   <div class=" small-6" style="padding-bottom: 1em;">
-                    <input type="submit" value="ยืนยัน" class="button primary expanded"  style="border-radius:5px;padding:1em;">
+                    <input type="submit" value="ยืนยัน" class="button primary expanded" style="border-radius:5px;padding:1em;">
                   </div>
 
                   <div class=" small-6">
@@ -413,6 +538,7 @@
 
 <footer>
   <% include ../partials/footer %>
+  <script src="js/datatable/memberLDprojtable.js"></script>
   <script src="js/module/project.js"></script>
   <script src="js/regis.js"></script>
   <script src="js/signup.js"></script>

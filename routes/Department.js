@@ -262,17 +262,17 @@ module.exports = function(app) {
     var uniOldID = req.body.id_displayOldUniname_del;
 
     /*ลบหน่วยงานย่อย 	ตามไอดีมหาวิทยาลัย*/
-    var query = "DELETE FROM project.sub_dpment WHERE  Sub_Dpment_Parent in(SELECT departmentID FROM project.department WHERE facultyID in (SELECT departmentID FROM project.department WHERE facultyID in (SELECT facultyID FROM project.faculty WHERE facultyID in (SELECT facultyID FROM project.faculty WHERE uniID in (" + uniOldID + ")))));";
+    var query = "DELETE FROM project.sub_dpment WHERE Sub_Dpment_Parent in (SELECT departmentID FROM project.department WHERE facultyID in (SELECT facultyID FROM project.faculty WHERE uniID = " + uniOldID + "));";
     console.log(query);
     con.query(query, function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
-      var query2 = "DELETE FROM project.department WHERE facultyID in (SELECT facultyID FROM project.faculty WHERE facultyID in (SELECT facultyID FROM project.faculty WHERE uniID in (" + uniOldID + ")));";
+      var query2 = "DELETE FROM project.department WHERE departmentID in (SELECT departmentID FROM project.department WHERE facultyID in (SELECT facultyID FROM project.faculty WHERE uniID = " + uniOldID + "));";
       console.log(query2);
       con.query(query2, function(err, rows) {
         if (err)
           console.log("Error Selecting : %s ", err);
-        var query3 = "DELETE FROM project.faculty WHERE uniID in (SELECT facultyID FROM project.faculty WHERE uniID in (" + uniOldID + "));";
+        var query3 = "DELETE FROM project.faculty WHERE facultyID in (SELECT facultyID FROM project.faculty WHERE uniID = " + uniOldID + ");";
         console.log(query3);
         con.query(query3, function(err, rows) {
           if (err)

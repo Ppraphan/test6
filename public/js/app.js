@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 function reset() {
   var sgup = "/signup";
-  var currentLocation2 = window.location.pathname.split('?')[0];;
+  var currentLocation2 = window.location.pathname.split('?')[0];
 
   if (window.history.replaceState) {
     if (currentLocation2 == sgup) {

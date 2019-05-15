@@ -37,6 +37,7 @@ $(document).ready(function() {
 
 });
 
+/*ระบุปีของโครงการ*/
 $(document).ready(function() {
   $("#ID_projectYears").on('keyup', function() {
     if ($(this).val() <= 0 || $(this).val() >= 9) {
@@ -53,7 +54,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: ajaxURL + '/all-project/getmaingrantsnamefromyear/?budgetYear=' + budgetYear,
+      url: '/all-project/getmaingrantsnamefromyear/?budgetYear=' + budgetYear,
       dataType: 'json',
       success: function(rows) {
         $('#id_projectParentName').append('<option selected value="-">' + "เลือก" + '</option>');
@@ -67,14 +68,14 @@ $(document).ready(function() {
 });
 
 /*เลือกทุนวิจัยจากปีที่กำหนด-*/
-$(document).ready(function() { 
+$(document).ready(function() {
   $("#budgetYear").on('change', function() {
     var budgetYear = $('#budgetYear').val();
     $('#BudgetName').empty();
 
     $.ajax({
       type: 'GET',
-      url: ajaxURL + '/grants/getgrantsnamefromyear/?budgetYear=' + budgetYear,
+      url: '/grants/getgrantsnamefromyear/?budgetYear=' + budgetYear,
       dataType: 'json',
       success: function(rows) {
         $('#BudgetName').append('<option selected value="-">' + "เลือก" + '</option>');
@@ -84,69 +85,6 @@ $(document).ready(function() {
       }
     });
 
-  });
-});
-
-/*เพิ่มหัวหน้าโครงการ*/
-$(document).ready(function() {
-
-  var coulistLD = 0;
-  $("#addLDProject").on('click', function() {
-    if (coulistLD <= 9) {
-      var listLDproject = document.getElementsByClassName('LDproject');
-      const emailsearchUserLD = document.getElementById("searchUserLD").value;
-
-      if ($.trim($('#searchUserLD').val()) == '') {
-        document.getElementById("emptrySearchUserLD").classList.remove("hide");
-
-        document.getElementById("notFoundSearchUserLD").classList.add("hide");
-      } else {
-        document.getElementById("emptrySearchUserLD").classList.add("hide");
-
-        const aidLDIDProj = 'idLDIDProj';
-        const bidLDIDProj = coulistLD;
-        var cidLDIDProj = aidLDIDProj + bidLDIDProj;
-
-        const aidLDNameProj = 'idLDNameProj';
-        const bidLDNameProj = coulistLD;
-        var cidLDNameProj = aidLDNameProj + bidLDNameProj;
-
-        const aidLDLnameProj = 'idLDLnameProj';
-        const bidLDLnameProj = coulistLD;
-        var cidLDLnameProj = aidLDLnameProj + bidLDLnameProj;
-
-        /*ค้นหาชื่อนักวิจัย*/
-        $.ajax({
-          type: 'GET',
-          url: ajaxURL + '/getusername?emailsearchUserLD=' + emailsearchUserLD,
-          dataType: 'json',
-          success: function(rows) {
-            if (rows == '') {
-              document.getElementById("notFoundSearchUserLD").classList.remove("hide");
-            } else {
-              document.getElementById("notFoundSearchUserLD").classList.add("hide");
-              const id = rows[0].id;
-              const firstname = rows[0].firstname;
-              const lastname = rows[0].lastname;
-
-              document.getElementById(cidLDIDProj).value = id;
-              document.getElementById(cidLDNameProj).value = firstname;
-              document.getElementById(cidLDLnameProj).value = lastname;
-
-              listLDproject[coulistLD].classList.remove("hide");
-              coulistLD++;
-
-              document.getElementById("searchUserLD").value = "";
-            }
-
-          },
-          error: function() {
-            alert('failure');
-          }
-        });
-      }
-
-    }
   });
 });
 
@@ -181,7 +119,7 @@ $(document).ready(function() {
         /*ค้นหาชื่อนักวิจัย*/
         $.ajax({
           type: 'GET',
-          url: ajaxURL + '/getRSusername?emailsearchUserRS=' + emailsearchUserRS,
+          url: '/getRSusername?emailsearchUserRS=' + emailsearchUserRS,
           dataType: 'json',
           success: function(rows) {
             if (rows == '') {
@@ -219,21 +157,24 @@ $(document).ready(function() {
   /* โหลดรายชื่อมหาวิทยาลัยจากประเทศที่เลือก*/
   $('#ID_PJ_ADD_country').change(function() {
     countryValue = ID_PJ_ADD_country.options[ID_PJ_ADD_country.selectedIndex].value;
-    const countryData = countryValue;
+    var countryData = countryValue;
 
     $.ajax({
       type: 'GET',
-      url: ajaxURL + '/signup/getUniversityName/?countryData=' + countryData,
+      url: '/me/getUniversityName/?countryData=' + countryData,
       dataType: 'json',
-      success: function(rows) {
+      success: function(results) {
         $('#ID_PJ_ADD_Uni').empty();
-        $('#id_PJ_ADD_fac').append('<option selected="selected" value="-">' + "เลือก" + '</option>');
-        $('#id_PJ_ADD_dpment').append('<option selected="selected" value="-">' + "เลือก" + '</option>');
-        $('#id_PJ_ADD_subdpment').append('<option selected="selected" value="-">' + "เลือก" + '</option>');
 
-        $('#ID_PJ_ADD_Uni').append('<option value="-">' + "เลือก" + '</option>');
-        for (var i = 0; i < rows.length; i++) {
-          $('#ID_PJ_ADD_Uni').append('<option value="' + rows[i].uniID + '">' + rows[i].uniName + '</option>')
+        $('#id_PJ_ADD_fac').append('<option disabled="disabled" selected="selected" value="">' + "เลือก" + '</option>');
+        $('#id_PJ_ADD_dpment').append('<option disabled="disabled"selected="selected" value="">' + "เลือก" + '</option>');
+        $('#id_PJ_ADD_subdpment').append('<option disabled="disabled"selected="selected" value="">' + "เลือก" + '</option>');
+        // alert(data.data0[0].uniName);
+        $('#ID_PJ_ADD_Uni').append('<option value="" disabled="disabled">' + "กรุณาเลือกมหาวิทยาลัย" + '</option>');
+        for (var i = 0; i < results.length; i++) {
+          if (results[i].uniName != '-' && results[i].uniName != 'example') {
+            $('#ID_PJ_ADD_Uni').append('<option  value="' + results[i].uniID + '">' + results[i].uniName + '</option>');
+          }
         }
       }
     });
@@ -242,20 +183,24 @@ $(document).ready(function() {
   /* โหลดรายชื่อคณะจากมหาวิทยาลัยที่เลือก*/
   $('#ID_PJ_ADD_Uni').change(function() {
     universityValue = ID_PJ_ADD_Uni.options[ID_PJ_ADD_Uni.selectedIndex].value;
-    const universityData = universityValue;
+    var universityData = universityValue;
 
     $.ajax({
       type: 'GET',
-      url: ajaxURL + '/signup/getFacultyinUni/?universityData=' + universityData,
+      url: '/me/getFacultyinUni/?universityData=' + universityData,
       dataType: 'json',
-      success: function(rows) {
+      success: function(data) {
         $('#id_PJ_ADD_fac').empty();
-        $('#id_PJ_ADD_dpment').append('<option selected="selected" value="-">' + "เลือก" + '</option>');
-        $('#id_PJ_ADD_subdpment').append('<option selected="selected" value="-">' + "เลือก" + '</option>');
+        $('#id_PJ_ADD_dpment').empty();
+        $('#id_PJ_ADD_subdpment').empty();
 
-        $('#id_PJ_ADD_fac').append('<option selected="selected" hidden>' + "เลือก" + '</option>');
-        for (var i = 0; i < rows.length; i++) {
-          $('#id_PJ_ADD_fac').append('<option value="' + rows[i].facultyID + '">' + rows[i].facultyName + '</option>')
+        $('#id_PJ_ADD_fac').append('<option selected="selected" value="' + data.data1[0].facultyID + '" hidden>' + data.data1[0].facultyName + '</option>');
+        $('#id_PJ_ADD_dpment').append('<option selected="selected" value="' + data.data1[0].departmentID + '"hidden>' + data.data1[0].departmentName + '</option>');
+        $('#id_PJ_ADD_subdpment').append('<option selected="selected" value="' + data.data1[0].Sub_Dpment_Parent + '"hidden>' + data.data1[0].Sub_Dpment_name + '</option>');
+        for (var i = 0; i < data.data0.length; i++) {
+          if (data.data0[i].facultyName != '-' && data.data0[i].facultyName != 'example') {
+            $('#id_PJ_ADD_fac').append('<option value="' + data.data0[i].facultyID + '">' + data.data0[i].facultyName + '</option>');
+          }
         }
       }
     });
@@ -264,19 +209,22 @@ $(document).ready(function() {
   /* โหลดรายชื่อหน่วยงานหลักจากคณะที่เลือก*/
   $('#id_PJ_ADD_fac').change(function() {
     facultyValue = id_PJ_ADD_fac.options[id_PJ_ADD_fac.selectedIndex].value;
-    const facultyData = facultyValue;
+    var facultyData = facultyValue;
 
     $.ajax({
       type: 'GET',
-      url: ajaxURL + '/signup/getDpmentinFac/?facultyValue=' + facultyValue,
+      url: '/me/getDpmentinFac/?facultyValue=' + facultyValue,
       dataType: 'json',
-      success: function(rows) {
+      success: function(data) {
         $('#id_PJ_ADD_dpment').empty();
-        $('#id_PJ_ADD_subdpment').append('<option selected="selected" value="-">' + "เลือก" + '</option>');
+        $('#id_PJ_ADD_subdpment').empty();
 
-        $('#id_PJ_ADD_dpment').append('<option selected="selected" hidden>' + "เลือก" + '</option>');
-        for (var i = 0; i < rows.length; i++) {
-          $('#id_PJ_ADD_dpment').append('<option value="' + rows[i].departmentID + '">' + rows[i].departmentName + '</option>')
+        $('#id_PJ_ADD_dpment').append('<option selected="selected" value="' + data.data1[0].departmentID + '"hidden>' + data.data1[0].departmentName + '</option>');
+        $('#id_PJ_ADD_subdpment').append('<option selected="selected" value="' + data.data1[0].Sub_Dpment_Parent + '"hidden>' + data.data1[0].Sub_Dpment_name + '</option>');
+        for (var i = 0; i < data.data0.length; i++) {
+          if (data.data0[i].departmentName != '-' && data.data0[i].departmentName != 'example') {
+            $('#id_PJ_ADD_dpment').append('<option value="' + data.data0[i].departmentID + '">' + data.data0[i].departmentName + '</option>');
+          }
         }
       }
     });
@@ -289,14 +237,16 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'GET',
-      url: ajaxURL + '/signup/getSubinDpment/?departmentValue=' + departmentValue,
+      url: '/me/getSubinDpment/?departmentValue=' + departmentValue,
       dataType: 'json',
-      success: function(rows) {
+      success: function(data) {
         $('#id_PJ_ADD_subdpment').empty();
 
-        $('#id_PJ_ADD_subdpment').append('<option selected="selected" hidden>' + "เลือก" + '</option>');
-        for (var i = 0; i < rows.length; i++) {
-          $('#id_PJ_ADD_subdpment').append('<option value="' + rows[i].Sub_Dpment_ID + '">' + rows[i].Sub_Dpment_name + '</option>')
+        $('#id_PJ_ADD_subdpment').append('<option selected="selected" value="' + data.data1[0].Sub_Dpment_Parent + '"hidden>' + data.data1[0].Sub_Dpment_name + '</option>');
+        for (var i = 0; i < data.data0.length; i++) {
+          if (data.data0[i].Sub_Dpment_name != '-' && data.data0[i].Sub_Dpment_name != 'example') {
+            $('#id_PJ_ADD_subdpment').append('<option value="' + data.data0[i].Sub_Dpment_ID + '">' + data.data0[i].Sub_Dpment_name + '</option>');
+          }
         }
       }
     });

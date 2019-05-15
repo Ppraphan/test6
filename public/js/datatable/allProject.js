@@ -16,11 +16,6 @@ $(document).ready(function() {
         "width": "30px",
       },
       null,
-      null,
-      {
-        "width": "55px",
-        "orderable": false,
-      },
       {
         "width": "55px",
         "orderable": false,

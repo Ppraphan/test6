@@ -220,7 +220,7 @@
 
         <!-- ข้อมูลที่ทำงาน -->
         <div id="ME_Elm_WorkInfo"class="cell small-6 " style="padding:2rem  4em 2em 10em;display:none;">
-          <form id="" name="" enctype="multipart/form-data" method="post" action="">
+          <form id="" name="" enctype="multipart/form-data" method="post" action="/editmywork">
             <div class="grid-x grid-margin-x">
               <div class="cell small-2"></div>
               <div class="cell small-6 ">
@@ -243,13 +243,13 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-6 ">
                             <label style="color:#767676">วันที่เข้าทำงาน</label>
-                            <input required type="text" data-toggle="datepicker" value="<%=userinfo.fristDayJoin%>">
+                            <input required name="myfristDayJoin" type="text" data-toggle="datepicker" value="<%=userinfo.fristDayJoin%>">
                           </div>
 
                           <!-- คอลัม 2 -->
                           <div class="cell small-6 ">
                             <label style="color:#767676">วันที่ออก</label>
-                            <input required type="text" data-toggle="datepicker" value="<%=userinfo.dayLeft%>">
+                            <input required name="mydayLeft" type="text" data-toggle="datepicker" value="<%=userinfo.dayLeft%>">
                           </div>
                         </div>
                       </div>
@@ -259,7 +259,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
                             <label style="color:#767676">ประเทศ</label>
-                            <select required id="ME_ID_country">
+                            <select name="myCountryID" required id="ME_ID_country">
                               <option value="" disabled>กรุณาเลือก</option>
 
                               <% for(var i=0; i<data0.length; i++) {%>
@@ -279,7 +279,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
                             <label style="color:#767676">มหาวิทยาลัย</label>
-                            <select required id="ME_ID_university">
+                            <select name="myUniversityID" required id="ME_ID_university">
                               <option value="" disabled>กรุณาเลือก</option>
                               <% for(var i=0; i<data1.length; i++) {%>
                                 <option value=<%=data1[i].uniID%> ><%=data1[i].uniName%></option>
@@ -298,7 +298,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
                             <label style="color:#767676">คณะ</label>
-                            <select id="ME_ID_faculty">
+                            <select name="myFacultyID" id="ME_ID_faculty">
                               <option value="" disabled>กรุณาเลือก</option>
                               <% for(var i=0; i<data2.length; i++) {%>
                                 <option value=<%=data2[i].facultyID%> ><%=data2[i].facultyName%></option>
@@ -317,7 +317,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
                             <label style="color:#767676">หน่วยงานหลัก</label>
-                            <select id="ME_ID_department">
+                            <select name="myDepartmentID"id="ME_ID_department">
                               <option value="" disabled>กรุณาเลือก</option>
                               <% for(var i=0; i<data3.length; i++) {%>
                                 <option value=<%=data3[i].departmentID%> ><%=data3[i].departmentName%></option>
@@ -336,7 +336,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
                             <label style="color:#767676">หน่วยงานย่อย</label>
-                            <select id="ME_ID_subdepartment">
+                            <select name="mySubDepartmentID"id="ME_ID_subdepartment">
                               <option value="" disabled>กรุณาเลือก</option>
                               <% for(var i=0; i<data4.length; i++) {%>
                                 <option value=<%=data4[i].Sub_Dpment_ID%> ><%=data4[i].Sub_Dpment_name%></option>
@@ -443,7 +443,7 @@
   <% include ../partials/footer %>
   <script src="js/module/me.js"></script>
   <script src="js/reset-password.js"></script>
-  <script src="js/personal-info.js"></script>
+
   <script src="js/regis.js"></script>
   <script src="js/signup.js"></script>
   <script src="js/foundation-datepicker.js"></script>

@@ -22,10 +22,6 @@ $(document).ready(function() {
         "width": "55px",
         "orderable": false,
       },
-      {
-        "width": "55px",
-        "orderable": false,
-      },
     ]
   });
 

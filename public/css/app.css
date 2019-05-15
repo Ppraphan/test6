@@ -21,7 +21,6 @@ select{
 }
 input[type=submit]{
   margin: 0px !important;
-  border-radius: 2em;
 }
 
 .notGoneJustDisappear {
@@ -30,9 +29,12 @@ input[type=submit]{
 
 .button {
   margin: 0px !important;
-  border-radius: 2em;
+  border-radius:2.5rem!important;
 }
 
+.label-top-select{
+  color:#8a8a8a;
+}
 
 .fullw {
   height: 100vh;

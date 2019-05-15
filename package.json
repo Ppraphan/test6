@@ -13,6 +13,7 @@
     "body-parser": "^1.18.3",
     "busboy": "^0.3.1",
     "chart.js": "^2.7.3",
+    "connect-busboy": "0.0.2",
     "connect-flash": "^0.1.1",
     "connect-roles": "^3.1.2",
     "cookie-parser": "^1.4.3",
@@ -53,9 +54,5 @@
     "vue-data-tablee": "^0.12.1",
     "vue-data-tables": "^3.4.4",
     "vue-tables-2": "^1.4.70"
-  },
-  "devDependencies": {
-    "express": "^4.16.4",
-    "multer": "^1.4.1"
   }
 }

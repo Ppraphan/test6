@@ -42,10 +42,8 @@
         </div>
         <!-- คอลัม 3 -->
         <div class="cell small-3">
-          <span data-tooltip class="top" data-click-open="false" tabindex="2" title="สูงสุด 10 ท่าน">
-            <button type="button" class="hollow button small addLDProject" href="#" id="addLDProject"> เพิ่ม </button>
-          </span>
-
+          <button type="button" class="hollow button small" href="#" id="addRow">เพิ่ม</button>
+          <button type="button" class="hollow button small alert" href="#" id="removeRow">ลบ</button>
         </div>
 
 
@@ -65,7 +63,21 @@
         <div class="cell small-3"></div>
       </div>
     </div>
-    <div class="cell small-12 hide LDproject" id="elmLD0"style="padding:0em 1em 1em 1em;">
+
+    <div class="cell small-6" style="padding:0em 1em 0em 1em;">
+      <table id="memberLDProjTable" class=" hover unstriped " style="width:100%">
+        <thead>
+          <tr>
+            <th>อีเมล</th>
+            <th>ชื่อ</th>
+            <th>นามสกุล</th>
+            <th>สัดส่วนงานวิจัย</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+    <div class="cell small-12 hide LDproject" id="elmLD0" style="padding:0em 1em 1em 1em;">
 
       <div class="grid-x grid-margin-x" style="padding-top:1em">
         <!-- คอลัม 1 -->
@@ -73,7 +85,7 @@
           <input type="hidden" id="idLDIDProj0" name="nameLDIDProj0" placeholder="id" />
 
           <label for="nameIDReseacher">ชื่อ</label>
-          <input type="text" name="" id="idLDNameProj0" value="" placeholder="ชื่อ" readonly />
+          <input type="text" name="" value="" placeholder="ชื่อ" readonly />
         </div>
         <!-- คอลัม 2 -->
         <div class="cell small-3 floated-label-wrapper">
@@ -87,264 +99,13 @@
         </div>
         <!-- คอลัม 4 -->
         <div class="cell small-3 ">
-          <button type="button" class="hollow button small alert" id="delLD0"href="#" id=""> ลบ </button>
+          <button type="button" class="hollow button small alert" id="delLD0" href="#" id=""> ลบ </button>
         </div>
 
       </div>
 
     </div>
-    <div class="cell small-12 hide LDproject" style="padding:0em 1em 1em 1em;">
 
-      <div class="grid-x grid-margin-x" style="padding-top:1em">
-        <!-- คอลัม 1 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <input type="hidden" id="idLDIDProj1" name="nameLDIDProj1" placeholder="id" />
-
-          <label for="nameIDReseacher">ชื่อ</label>
-          <input type="text" name="nameIDReseacher" value="" id="idLDNameProj1" placeholder="ชื่อ" readonly />
-        </div>
-        <!-- คอลัม 2 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <label for="nameIDHuman">นามสกุล</label>
-          <input type="text" name="nameIDHuman" id="idLDLnameProj1" placeholder="นามสกุล" readonly />
-        </div>
-        <!-- คอลัม 3 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <label for="nameIDHuman">สัดส่วนงานวิจัย</label>
-          <input type="text" name="nameProportionLD1" placeholder="สัดส่วนงานวิจัย" />
-        </div>
-        <!-- คอลัม 4 -->
-        <div class="cell small-3 ">
-          <button type="button" class="hollow button small alert removeLDProject" href="#" id=""> ลบ </button>
-        </div>
-
-      </div>
-
-    </div>
-    <div class="cell small-12 hide LDproject" style="padding:0em 1em 1em 1em;">
-
-      <div class="grid-x grid-margin-x" style="padding-top:1em">
-        <!-- คอลัม 1 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <input type="hidden" id="idLDIDProj2" name="nameLDIDProj2" placeholder="id" />
-
-          <label for="nameIDReseacher">ชื่อ</label>
-          <input type="text" name="nameIDReseacher" id="idLDNameProj2" placeholder="ชื่อ" readonly />
-        </div>
-        <!-- คอลัม 2 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <label for="nameIDHuman">นามสกุล</label>
-          <input type="text" name="nameIDHuman" id="idLDLnameProj2" placeholder="นามสกุล" readonly />
-        </div>
-        <!-- คอลัม 3 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <label for="nameIDHuman">สัดส่วนงานวิจัย</label>
-          <input type="text" name="nameProportionLD2" placeholder="สัดส่วนงานวิจัย" />
-        </div>
-        <!-- คอลัม 4 -->
-        <div class="cell small-3 ">
-          <button type="button " class="hollow button small alert" href="#" id=""> ลบ </button>
-        </div>
-
-      </div>
-
-    </div>
-    <div class="cell small-12 hide LDproject" style="padding:0em 1em 1em 1em;">
-
-      <div class="grid-x grid-margin-x" style="padding-top:1em">
-        <!-- คอลัม 1 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <input type="hidden" id="idLDIDProj3" name="nameLDIDProj3" placeholder="id" />
-
-          <label for="nameIDReseacher">ชื่อ</label>
-          <input type="text" name="nameIDReseacher" id="idLDNameProj3" placeholder="ชื่อ" readonly />
-        </div>
-        <!-- คอลัม 2 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <label for="nameIDHuman">นามสกุล</label>
-          <input type="text" name="nameIDHuman" id="idLDLnameProj3" placeholder="นามสกุล" readonly />
-        </div>
-        <!-- คอลัม 3 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <label for="nameIDHuman">สัดส่วนงานวิจัย</label>
-          <input type="text" name="nameProportionLD3" placeholder="สัดส่วนงานวิจัย" />
-        </div>
-        <!-- คอลัม 4 -->
-        <div class="cell small-3 ">
-          <button type="button" class="hollow button small alert" href="#" id=""> ลบ </button>
-        </div>
-
-      </div>
-
-    </div>
-    <div class="cell small-12 hide LDproject" style="padding:0em 1em 1em 1em;">
-
-      <div class="grid-x grid-margin-x" style="padding-top:1em">
-        <!-- คอลัม 1 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <input type="hidden" id="idLDIDProj4" name="nameLDIDProj4" placeholder="id" />
-
-          <label for="nameIDReseacher">ชื่อ</label>
-          <input type="text" name="nameIDReseacher" id="idLDNameProj4" placeholder="ชื่อ" readonly />
-        </div>
-        <!-- คอลัม 2 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <label for="nameIDHuman">นามสกุล</label>
-          <input type="text" name="nameIDHuman" id="idLDLnameProj4" placeholder="นามสกุล" readonly />
-        </div>
-        <!-- คอลัม 3 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <label for="nameIDHuman">สัดส่วนงานวิจัย</label>
-          <input type="text" name="nameProportionLD4" placeholder="สัดส่วนงานวิจัย" />
-        </div>
-        <!-- คอลัม 4 -->
-        <div class="cell small-3 ">
-          <button type="button" class="hollow button small alert" href="#" id=""> ลบ </button>
-        </div>
-
-      </div>
-
-    </div>
-    <div class="cell small-12 hide LDproject" style="padding:0em 1em 1em 1em;">
-
-      <div class="grid-x grid-margin-x" style="padding-top:1em">
-        <!-- คอลัม 1 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <input type="hidden" id="idLDIDProj5" name="nameLDIDProj5" placeholder="id" />
-
-          <label for="nameIDReseacher">ชื่อ</label>
-          <input type="text" name="nameIDReseacher" id="idLDNameProj5" placeholder="ชื่อ" readonly />
-        </div>
-        <!-- คอลัม 2 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <label for="nameIDHuman">นามสกุล</label>
-          <input type="text" name="nameIDHuman" id="idLDLnameProj5" placeholder="นามสกุล" readonly />
-        </div>
-        <!-- คอลัม 3 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <label for="nameIDHuman">สัดส่วนงานวิจัย</label>
-          <input type="text" name="nameProportionLD5" placeholder="สัดส่วนงานวิจัย" />
-        </div>
-        <!-- คอลัม 4 -->
-        <div class="cell small-3 ">
-          <button type="button" class="hollow button small alert" href="#" id=""> ลบ </button>
-        </div>
-
-      </div>
-
-    </div>
-    <div class="cell small-12 hide LDproject" style="padding:0em 1em 1em 1em;">
-
-      <div class="grid-x grid-margin-x" style="padding-top:1em">
-        <!-- คอลัม 1 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <input type="hidden" id="idLDIDProj6" name="nameLDIDProj6" placeholder="id" />
-
-          <label for="nameIDReseacher">ชื่อ</label>
-          <input type="text" name="nameIDReseacher" id="idLDNameProj6" placeholder="ชื่อ" readonly />
-        </div>
-        <!-- คอลัม 2 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <label for="nameIDHuman">นามสกุล</label>
-          <input type="text" name="nameIDHuman" id="idLDLnameProj6" placeholder="นามสกุล" readonly />
-        </div>
-        <!-- คอลัม 3 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <label for="nameIDHuman">สัดส่วนงานวิจัย</label>
-          <input type="text" name="nameProportionLD6" placeholder="สัดส่วนงานวิจัย" />
-        </div>
-        <!-- คอลัม 4 -->
-        <div class="cell small-3 ">
-          <button type="button" class="hollow button small alert" href="#" id=""> ลบ </button>
-        </div>
-
-      </div>
-
-    </div>
-    <div class="cell small-12 hide LDproject" style="padding:0em 1em 1em 1em;">
-
-      <div class="grid-x grid-margin-x" style="padding-top:1em">
-        <!-- คอลัม 1 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <input type="hidden" id="idLDIDProj7" name="nameLDIDProj7" placeholder="id" />
-
-          <label for="nameIDReseacher">ชื่อ</label>
-          <input type="text" name="nameIDReseacher" id="idLDNameProj7" placeholder="ชื่อ" readonly />
-        </div>
-        <!-- คอลัม 2 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <label for="nameIDHuman">นามสกุล</label>
-          <input type="text" name="nameIDHuman" id="idLDLnameProj7" placeholder="นามสกุล" readonly />
-        </div>
-        <!-- คอลัม 3 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <label for="nameIDHuman">สัดส่วนงานวิจัย</label>
-          <input type="text" name="nameProportionLD7" placeholder="สัดส่วนงานวิจัย" />
-        </div>
-        <!-- คอลัม 4 -->
-        <div class="cell small-3 ">
-          <button type="button" class="hollow button small alert" href="#" id=""> ลบ </button>
-        </div>
-
-      </div>
-
-    </div>
-    <div class="cell small-12 hide LDproject" style="padding:0em 1em 1em 1em;">
-
-      <div class="grid-x grid-margin-x" style="padding-top:1em">
-        <!-- คอลัม 1 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <input type="hidden" id="idLDIDProj8" name="nameLDIDProj8" placeholder="id" />
-
-          <label for="nameIDReseacher">ชื่อ</label>
-          <input type="text" name="nameIDReseacher" id="idLDNameProj8" placeholder="ชื่อ" readonly />
-        </div>
-        <!-- คอลัม 2 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <label for="nameIDHuman">นามสกุล</label>
-          <input type="text" name="nameIDHuman" id="idLDLnameProj8" placeholder="นามสกุล" readonly />
-        </div>
-        <!-- คอลัม 3 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <label for="nameIDHuman">สัดส่วนงานวิจัย</label>
-          <input type="text" name="nameProportionLD8" placeholder="สัดส่วนงานวิจัย" />
-        </div>
-        <!-- คอลัม 4 -->
-        <div class="cell small-3 ">
-          <button type="button" class="hollow button small alert" href="#" id=""> ลบ </button>
-        </div>
-
-      </div>
-
-    </div>
-    <div class="cell small-12 hide LDproject" style="padding:0em 1em 1em 1em;">
-
-      <div class="grid-x grid-margin-x" style="padding-top:1em">
-        <!-- คอลัม 1 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <input type="hidden" id="idLDIDProj9" name="nameLDIDProj9" placeholder="id" />
-
-          <label for="nameIDReseacher">ชื่อ</label>
-          <input type="text" name="nameIDReseacher" id="idLDNameProj9" placeholder="ชื่อ" readonly />
-        </div>
-        <!-- คอลัม 2 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <label for="nameIDHuman">นามสกุล</label>
-          <input type="text" name="nameIDHuman" id="idLDLnameProj9" placeholder="นามสกุล" readonly />
-        </div>
-        <!-- คอลัม 3 -->
-        <div class="cell small-3 floated-label-wrapper">
-          <label for="nameIDHuman">สัดส่วนงานวิจัย</label>
-          <input type="text" name="nameProportionLD9" placeholder="สัดส่วนงานวิจัย" />
-        </div>
-        <!-- คอลัม 4 -->
-        <div class="cell small-3 ">
-          <button type="button" class="hollow button small alert" href="#" id=""> ลบ </button>
-        </div>
-
-      </div>
-
-    </div>
 
   </div>
 </div>
