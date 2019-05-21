@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="cell small-6" style="padding:0em 1em 0em 1em;">
-      <table id="memberRSProjTable" class=" hover unstriped " style="width:100%">
+      <table id="view-memberRSProjTable" class=" hover unstriped " style="width:100%">
         <thead>
           <tr>
             <th>อีเมล</th>
@@ -45,6 +45,22 @@
             <th>สัดส่วนงานวิจัย</th>
           </tr>
         </thead>
+        <tbody>
+          <% if(dataRS.length){
+            for(var i = 0;i < dataRS.length;i++) {%>
+              <tr>
+                <td><%=dataRS[i].email %></td>
+                <td><%=dataRS[i].academicPositions %><%=dataRS[i].firstname %></td>
+                <td><%=dataRS[i].lastname %></td>
+                <td><%=dataRS[i].proportion %></td>
+              </tr>
+          <% }
+            }else{ %>
+          <tr>
+            <td colspan="4">ไม่มี</td>
+          </tr>
+          <% } %>
+        </tbody>
       </table>
     </div>
 

@@ -115,60 +115,154 @@ module.exports = function(app) {
         }
       }
       if (projectSet == 0) {
-        projectMain = "-";
-        name_projectParentName = "-";
+        projectMain = "0";
+        name_projectParentName = "0";
       }
 
-      var sql1 = "INSERT INTO project.project(projectNameTH,projectNameEN,projectSet,projectMain,projectParent,projectYears,idGrant,projectAmount,countryISOCode,uniID,facultyID,departmentID,subDepartmentID,researchTypeID,researchBranchID,researchFormID,researchStrategicID,stateOfProJ,dateState1,dateState2,dateState3,dateState4,dateState5,dateState6,dateState7,dateState8,dateState9,dateState10,dateState11,dateState12)  VALUES ('" + nameProjectTH + "','" + nameProjectEN + "','" + projectSet + "','" + projectMain + "','" + name_projectParentName + "','" + projectYears + "','" + budgetName + "','" + projectAmount + "','" + country + "','" + university + "','" + faculty + "','" + department + "','" + subdepartment + "','" + name_PJ_ADD_ResearcType + "','" + name_PJ_ADD_Researchbranch + "','" + name_PJ_ADD_Researchform + "','" + name_PJ_ADD_Researchstrategic + "','" + stateOfProJ + "','" + dateState1 + "','" + dateState2 + "','" + dateState3 + "','" + dateState4 + "','" + dateState5 + "','" + dateState6 + "','" + dateState7 + "','" + dateState8 + "','" + dateState9 + "','" + dateState10 + "','" + dateState11 + "','" + dateState12 + "')";
-      console.log(sql1);
-      con.query(sql1);
+      function dogoodA() {
+        var sql1 = "INSERT INTO project.project(projectNameTH,projectNameEN,projectSet,projectMain,projectParent,projectYears,idGrant,projectAmount,countryISOCode,uniID,facultyID,departmentID,subDepartmentID,researchTypeID,researchBranchID,researchFormID,researchStrategicID,stateOfProJ,dateState1,dateState2,dateState3,dateState4,dateState5,dateState6,dateState7,dateState8,dateState9,dateState10,dateState11,dateState12)  VALUES ('" + nameProjectTH + "','" + nameProjectEN + "','" + projectSet + "','" + projectMain + "','" + name_projectParentName + "','" + projectYears + "','" + budgetName + "','" + projectAmount + "','" + country + "','" + university + "','" + faculty + "','" + department + "','" + subdepartment + "','" + name_PJ_ADD_ResearcType + "','" + name_PJ_ADD_Researchbranch + "','" + name_PJ_ADD_Researchform + "','" + name_PJ_ADD_Researchstrategic + "','" + stateOfProJ + "','" + dateState1 + "','" + dateState2 + "','" + dateState3 + "','" + dateState4 + "','" + dateState5 + "','" + dateState6 + "','" + dateState7 + "','" + dateState8 + "','" + dateState9 + "','" + dateState10 + "','" + dateState11 + "','" + dateState12 + "')";
+        console.log(sql1);
+        con.query(sql1);
+      }
 
       /*การเพิ่มหัวหน้าโครงการในโครงการใหม่*/
-      var people = [];
-      var listProportionLD = [];
-      for (i = 0; i <= 9; i++) {
-        people[i] = req.body['nameLDIDProj' + i];
-        listProportionLD[i] = req.body['nameProportionLD' + i];
-        console.log(people[i]);
-        if (people[i] != '') {
-          if (listProportionLD[i] == '') {
-            listProportionLD[i] = "-";
-            var sql2 = "INSERT INTO project.LDProject (idUser_LD, idproject, proportion) VALUES ('" + people[i] + "','" + newProjID + "','" + listProportionLD[i] + "');";
+      function dogoodB() {
+        var people = [];
+        var listProportionLD = [];
 
-            con.query(sql2);
+        for (var i = 0; i <= 9; i++) {
+          people[i] = req.body['nameLDIDProj' + i];
+          listProportionLD[i] = req.body['nameProportionLD' + i];
+
+          console.log("people[i] " + people);
+
+          if (people[i] != '' && people[i] != undefined) {
+
+            if (listProportionLD[i] == '') {
+              var nowpeopleLD = people[i];
+
+              var sql2 = "INSERT INTO project.LDProject (idUser_LD, idproject, proportion) VALUES ('" + nowpeopleLD + "','" + newProjID + "','-');";
+              console.log(sql2);
+              con.query(sql2);
+            } else {
+              var nowpeopleLD = people[i];
+              var nowlistLD = listProportionLD[i];
+
+              var sql22 = "INSERT INTO project.LDProject (idUser_LD, idproject, proportion) VALUES ('" + nowpeopleLD + "','" + newProjID + "','" + nowlistLD + "');";
+              console.log(sql22);
+              con.query(sql22);
+            }
+
+          } else {
+            console.log("req.body['nameLDIDProj' + i] = NULL");
           }
-        } else {
-          console.log("insertLDIDProj " + i + people[i] + " NOT Doing")
+
         }
-      };
+      }
+
 
       /*การเพิ่มนักวิจัยโครงการในโครงการใหม่*/
-      var peopleRS = [];
-      var listProportionRS = [];
-      for (j = 0; j <= 9; j++) {
-        peopleRS[j] = req.body['nameRSIDProj' + j];
-        listProportionRS[j] = req.body['nameProportionRS' + j];
+      function dogoodC() {
+        var peopleRS = [];
+        var listProportionRS = [];
+        var j;
+        for (j = 0; j <= 9; j++) {
+          peopleRS[j] = req.body['nameRSIDProj' + j];
+          listProportionRS[j] = req.body['nameProportionRS' + j];
 
-        console.log(peopleRS[j]);
-        if (peopleRS[j] != '') {
-          if (listProportionRS[j] == '') {
-            listProportionRS[j] = "-";
-            var sql3 = "INSERT INTO project.RSProject (idUser_RS, idproject, proportion) VALUES ('" + peopleRS[j] + "','" + newProjID + "','" + listProportionRS[j] + "')";
+          console.log("peopleRS[] " + peopleRS);
+          console.log("listProportionRS[] " + listProportionRS);
+          if (peopleRS[j] != '' && peopleRS[j] != undefined) {
+            if (listProportionRS[j] == '') {
+              var nowpeople = peopleRS[j];
 
-            con.query(sql3);
+              var sql3 = "INSERT INTO project.RSProject (idUser_RS, idproject, proportion) VALUES ('" + nowpeople + "','" + newProjID + "','-')";
+
+              con.query(sql3);
+            } else {
+              var nowpeople = peopleRS[j];
+              var nowlistRS = listProportionRS[j];
+              var sql32 = "INSERT INTO project.RSProject (idUser_RS, idproject, proportion) VALUES ('" + nowpeople + "','" + newProjID + "','" + nowlistRS + "')";
+
+              con.query(sql32);
+            }
+          } else {
+            console.log("peopleRS[J] = " + peopleRS);
           }
-        } else {
-          console.log("insertRSIDProj " + i + peopleRS[i] + " NOT Doing")
-        }
-      };
+        };
+      }
 
-      var mses = encodeURIComponent('เพิ่มโครงการใหม่สำเร็จ');
-      res.redirect('/all-project?valid=' + mses);
 
+      async function dogood() {
+        await dogoodA();
+        await dogoodB();
+        await dogoodC();
+
+        var mses = encodeURIComponent('เพิ่มโครงการใหม่สำเร็จ');
+        res.redirect('/all-project?valid=' + mses);
+      }
+
+
+      dogood();
 
     });
 
   });
+
+  /*ดูรายละเอียดโครงการ*/
+  app.get('/view-project/:id', function(req, res) {
+    var userinfo = req.user;
+    var mses = req.query.valid;
+
+    var projID = req.params.id;
+
+    var sql0 = "SELECT * FROM project.project where idproject ='" + projID + "';";
+    con.query(sql0, function(err, rows) {
+      console.log(rows);
+
+      var sql1 = "SELECT * FROM project.project where idproject ='" + projID + "';SELECT email,academicPositions,firstname,lastname,proportion,projectNameTH FROM project.users,project.project,project.LDProject where project.LDProject.idproject = project.project.idproject  and project.LDProject.idUser_LD = project.users.id and project.LDProject.idproject = '" + projID + "';SELECT email,academicPositions,firstname,lastname,proportion,projectNameTH FROM project.users,project.project,project.RSProject where project.RSProject.idproject = project.project.idproject  and project.RSProject.idUser_RS = project.users.id and project.RSProject.idproject = '" + projID + "';SELECT * FROM project.country;SELECT * FROM project.university WHERE countryISOCode= '" + rows[0].countryISOCode + "'and uniName != 'example'order by uniName;SELECT * FROM project.faculty WHERE uniID= '" + rows[0].uniID + "'and facultyName != '-'order by facultyName;SELECT * FROM project.department WHERE facultyID= '" + rows[0].facultyID + "'order by departmentName;SELECT * FROM project.sub_dpment WHERE Sub_Dpment_Parent= '" + rows[0].subDepartmentID + "'order by Sub_Dpment_name;SELECT * FROM project.tresearchtype;SELECT * FROM project.researchbranch;SELECT * FROM project.researchform;SELECT * FROM project.researchstrategic;SELECT * FROM project.grants;SELECT * FROM project.project,project.grants where project.project.idGrant = project.grants.idGrants and project.project.idproject='" + rows[0].projectParent + "'";
+
+
+      con.query(sql1, function(err, rows1) {
+        if (err) console.log("Error Selecting : %s ", err);
+
+        console.log(rows1[0][0]);
+        console.log(rows1[1]);
+
+        res.render('pages/view-project', {
+          userinfo: userinfo,
+          messages: mses,
+
+          dataProJ: rows1[0][0],
+          dataLD: rows1[1],
+          dataRS: rows1[2],
+          dataCountry: rows1[3],
+          dataUni: rows1[4],
+          dataFac: rows1[5],
+          dataDPMent: rows1[6],
+          dataSubDPMent: rows1[7],
+
+          dataRshtype: rows1[8],
+          dataRshbranch: rows1[9],
+          dataRshForm: rows1[10],
+          dataRshStrategic: rows1[11],
+
+          dataRshGrants: rows1[12],
+          dataRshProjParent: rows1[13],
+        });
+      });
+
+    });
+
+  });
+
+
+
+
+
+
+
+
 
   /*ขอรายชื่อหัวหน้าโครงการ*/
   app.get('/getusername', function(req, res) {
@@ -199,7 +293,7 @@ module.exports = function(app) {
     var userinfo = req.user;
     var mses = req.query.valid;
 
-    var sql = "SELECT idproject,projectNameTH,departmentName,stateOfProJ,grants_Years FROM project.project,project.department,project.grants WHERE project.project.idGrant = project.grants.idGrants AND  project.project.departmentID = project.department.departmentID";
+    var sql = "SELECT idproject,projectNameTH,stateOfProJ,grants_Years FROM project.project,project.grants WHERE project.project.idGrant = project.grants.idGrants";
 
     con.query(sql, function(err, rows) {
 

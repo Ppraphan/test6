@@ -1,0 +1,47 @@
+<div class="cell small-6" id="id_elm_newPort" style="padding:2.5rem;display:block;">
+  <h3>เพิ่มผลงานของฉัน</h3>
+  <p style="color:red;">*กรุณากรอกข้อมูลให้ครบทุกช่อง ถ้าไม่มีกรุณาใส่ขีด - </p>
+
+  <form class="" name="" ref='uploadForm' encType="multipart/form-data" action="/my-portforio" method="post" id="id_newPortForm">
+    <div class="grid-x grid-padding-x">
+      <div class="small-3 cell">
+        <label class="text-right middle"><b>ชื่อใหม่</b></label>
+      </div>
+      <div class="small-9 cell field">
+        <input required type="text" name="portName" placeholder="ชื่อผลงานใหม่" id="RTIDINPUTNewResearchType">
+      </div>
+
+      <div class="small-3 cell">
+        <label class="text-right middle"><b>เกี่ยวกับ</b></label>
+      </div>
+      <div class="small-9 cell field">
+        <textarea required type="" name="portAbout" id="" style="min-width: 526px;min-height: 136px;padding-top:0.5rem;"></textarea>
+      </div>
+
+      <div class="small-3 cell">
+        <label class="text-right middle"><b>ประเภทผลงาน</b></label>
+      </div>
+      <div class="small-9 cell field">
+        <select name="portType" required>
+          <option value="1">ผลงานการเผยแพร่ทางวิชาการ</option>
+          <option value="2">ทรัพย์สินทางปัญญา</option>
+          <option value="3">รางวัลจากการประกวดงานวิจัย </option>
+          <option value="4">สิ่งประดิษฐ์</option>
+          <option value="5">ใบรับรอง</option>
+        </select>
+      </div>
+
+      <div class="small-3 cell">
+        <label class="text-right middle"><b>ไฟล์ผลงาน</b></label>
+      </div>
+      <div class="small-9 cell ">
+        <input type="file" style="padding-top:0.5rem;" name="portFile">
+      </div>
+
+    </div>
+    <div class="actions">
+      <input type="submit" value="เพิ่ม" class="button" id="id_confirmNewPortForm" disabled="disabled">
+    </div>
+  </form>
+
+</div>

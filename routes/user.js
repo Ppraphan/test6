@@ -150,7 +150,7 @@ module.exports = function(app) {
         if (startup_image == null) {
           console.log(err);
         } else {
-          console.log('../userprofile/' + req.user.id + imageNameWithoutspace + "\t" + "uploaded");
+          console.log('./public/userprofile/' + req.user.id + imageNameWithoutspace + "\t" + "uploaded");
         }
       });
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <link rel="stylesheet" href="css/portforio.css">
+<style>.dataTables_length{display: none}.dataTables_filter{display: none}</style>
 
 <head>
   <% include ../partials/head %>
@@ -41,7 +42,7 @@
       <div class="cell small-2"></div>
       <div class="cell small-10" style="padding-top:50px">
         <h1>Our Researcher</h1>
-        <input id="" type="search" name="" placeholder="ค้นหาข้อมูล" class="animated-search-form-portforio form-control">
+        <input id="txtourResearcher" type="search" name="" placeholder="ค้นหาข้อมูล" class="animated-search-form-portforio form-control">
       </div>
 
     </div>
@@ -51,34 +52,27 @@
         <div class="grid-x">
           <div class="cell medium-4" style="padding-top:50px;background:#FAFAFA;">
             <div class="grid-y button-group round" style="padding:0em 1em 0em 1em">
-
               <p style="font-size: 24px;font-weight: bold;"><i class="fas fa-filter"></i> Refine result</p>
-
-              <select>
-                <option value="husker">คณะ</option>
-                <option value="starbuck">Starbuck</option>
-                <option value="hotdog">Hot Dog</option>
-                <option value="apollo">Apollo</option>
+              <label for="selectFac">Faculty</label>
+              <select id="selectFac">
+                <option selected="selected" hidden>เลือก</option>
+                <% for (var i = 0; i < data2.length; i++){ %>
+                <option value="<%= data2[i].facultyName %>">
+                  <%=data2[i].facultyName %>
+                </option>
+                <% } %>
               </select><br>
 
-              <select>
-                <option value="husker">หน่วยงานหลัก</option>
-                <option value="starbuck">Starbuck</option>
-                <option value="hotdog">Hot Dog</option>
-                <option value="apollo">Apollo</option>
+              <label for="selectacademicPos">Academic Positions</label>
+              <select id="selectacademicPos">
+                <option selected="selected" hidden>เลือก</option>
+                <% for (var i = 0; i < data3.length; i++){ %>
+                <option value="<%= data3[i].academicPositions %>">
+                  <%=data3[i].academicPositions %>
+                </option>
+                <% } %>
               </select><br>
 
-              <select>
-                <option value="husker">หน่วยงานย่อย</option>
-                <option value="starbuck">Starbuck</option>
-                <option value="hotdog">Hot Dog</option>
-                <option value="apollo">Apollo</option>
-              </select><br>
-
-              <!-- <button class="button hollow filter-simple-button is-active" data-filter="all">All</button><br>
-              <button class="button hollow filter-simple-button" data-filter="space">Space</button><br>
-              <button class="button hollow filter-simple-button" data-filter="animals">Animals</button><br>
-              <button class="button hollow filter-simple-button" data-filter="nature">Nature</button> -->
 
             </div>
           </div>
@@ -86,54 +80,85 @@
 
             <section class="filter-simple">
 
-
               <div class="grid-x small-up-2 medium-up-2 large-up-3">
-                <% for(var i=0; i<data.length; i++) {%>
+                <table id="ourResearcher" class="unstriped">
+                  <tbody>
+                    <% if(data.length){
+                      for(var i = 0;i < data.length;i++) {%>
+                    <tr>
+                      <td>
+                        <div class="small-4 column column-block" align="center">
+                          <img src="./userprofile/<%=data[i].profilePic%>" alt="" class="researcher-img" />
+                          <p class="researcher-text">
+                            <%=data[i].academicPositions%>&nbsp;
+                            <%=data[i].firstname%>&nbsp;&nbsp;
+                            <%=data[i].lastname%>
+                          </p>
 
-                <div class="small-4 column column-block filter-simple-item space" align="center">
-                  <img src="./userprofile/<%=data[i].profilePic%>" alt="" class="researcher-img" />
-                  <p class="researcher-text">
-                    <%=data[i].academicPositions%>&nbsp;
-                    <%=data[i].firstname%>&nbsp;&nbsp;
-                    <%=data[i].lastname%>
-                  </p>
+                          <% for(var j=0; j<data1.length; j++) {%>
+                          <%if (data1[j].facultyID==data[i].faculty) { %>
+                          <p class="dpment-text" style="line-height:1rem;">
+                            <%=data1[j].facultyName%>
+                          </p>
+                          <% } %>
+                          <% } %>
 
-                  <% for(var j=0; j<data1.length; j++) {%>
-                    <%if (data1[j].facultyID==data[i].faculty) { %>
-                    <p class="dpment-text">
-                      <%=data1[j].facultyName%>
-                    </p>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="small-4 column column-block" align="center">
+                          <img src="./userprofile/<%=data[i].profilePic%>" alt="" class="researcher-img" />
+                          <p class="researcher-text">
+                            <%=data[i].academicPositions%>&nbsp;
+                            <%=data[i].firstname%>&nbsp;&nbsp;
+                            <%=data[i].lastname%>
+                          </p>
+
+                          <% for(var j=0; j<data1.length; j++) {%>
+                          <%if (data1[j].facultyID==data[i].faculty) { %>
+                          <p class="dpment-text" style="line-height:1rem;">
+                            <%=data1[j].facultyName%>
+                          </p>
+                          <% } %>
+                          <% } %>
+
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="small-4 column column-block" align="center">
+                          <img src="./userprofile/<%=data[i].profilePic%>" alt="" class="researcher-img" />
+                          <p class="researcher-text">
+                            <%=data[i].academicPositions%>&nbsp;
+                            <%=data[i].firstname%>&nbsp;&nbsp;
+                            <%=data[i].lastname%>
+                          </p>
+
+                          <% for(var j=0; j<data1.length; j++) {%>
+                          <%if (data1[j].facultyID==data[i].faculty) { %>
+                          <p class="dpment-text" style="line-height:1rem;">
+                            <%=data1[j].facultyName%>
+                          </p>
+                          <% } %>
+                          <% } %>
+
+                        </div>
+                      </td>
+
+                    </tr>
+
+                    <% }
+  		                }else{ %>
+                    <tr>
+                      <td colspan="3">No user</td>
+                    </tr>
                     <% } %>
-                  <% } %>
-
-
-                </div>
-                <% } %>
+                  </tbody>
+                </table>
 
               </div>
             </section>
-
-            <div style="padding:2em 0em 2em 0em;">
-              <ul class="pagination text-center" role="navigation" aria-label="Pagination" data-page="6" data-total="16">
-                <li class="pagination-previous disabled">Previous <span class="show-for-sr">page</span></li>
-                <li class="current"><span class="show-for-sr">You're on page</span> 1</li>
-                <li><a href="#" aria-label="Page 2">2</a></li>
-                <li><a href="#" aria-label="Page 3">3</a></li>
-                <li><a href="#" aria-label="Page 4">4</a></li>
-                <li class="ellipsis" aria-hidden="true"></li>
-                <li><a href="#" aria-label="Page 12">12</a></li>
-                <li><a href="#" aria-label="Page 13">13</a></li>
-                <li class="pagination-next"><a href="#" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
-              </ul>
-
-
-            </div>
-
-
-
-
-
-
           </div>
         </div>
       </div>
@@ -196,6 +221,7 @@
   </div>
   <% include ../partials/footer %>
   <script src="js/portforio.js"></script>
+  <script src="js/datatable/portforio.js"></script>
 
 </footer>
 

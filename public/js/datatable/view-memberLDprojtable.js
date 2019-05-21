@@ -6,22 +6,24 @@ $(document).ready(function() {
   var currentID;
 
   /*init ตาราง*/
-  var t = $('#memberLDProjTable').DataTable({
+  var t = $('#view-memberLDProjTable').DataTable({
+    "searching": false,
     "paging": false,
     "ordering": false,
     "info": false,
-    "searching": false,
-    "columns": [
-      null,
-      null,
-      null,
-      {
-        "width": "7rem",
-      },
-    ],
+
+    "columnDefs": [{
+      "targets": '_all',
+      "searchable": false,
+
+    }, {
+      "width": "7rem",
+      "targets": 3
+    }]
+
   });
 
-  $('#memberLDProjTable tbody').on('click', 'tr', function() {
+  $('#view-memberLDProjTable tbody').on('click', 'tr', function() {
     if ($(this).hasClass('selected')) {
       $(this).removeClass('selected');
     } else {
@@ -31,24 +33,24 @@ $(document).ready(function() {
   });
 
   $('#removeRow').click(function() {
-      function returnstack() {
-        if (invertstack.length != 0) {
+    function returnstack() {
+      if (invertstack.length != 0) {
 
-          var del = $('.selected td input[type=hidden]').attr('id');
-          del = del.substr(del.length - 1);
-          alert(del);
-          for (var i = 0; i < invertstack.length; i++) {
-            if (invertstack[i] == del) {
-              invertstack.splice(i, 1);
-              coulistLD.push(del);
-            }
+        var del = $('.selected td input[type=hidden]').attr('id');
+        del = del.substr(del.length - 1);
+        alert(del);
+        for (var i = 0; i < invertstack.length; i++) {
+          if (invertstack[i] == del) {
+            invertstack.splice(i, 1);
+            coulistLD.push(del);
           }
-          t.row('.selected').remove().draw(false);
-        } else {
-          alert("กรุณาเลือกรายการ");
         }
+        t.row('.selected').remove().draw(false);
+      } else {
+        alert("กรุณาเลือกรายการ");
       }
-      returnstack();
+    }
+    returnstack();
 
 
   });

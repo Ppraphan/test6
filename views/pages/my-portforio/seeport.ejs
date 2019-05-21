@@ -1,0 +1,58 @@
+<div class="cell small-6" id="seePort" style="padding:2.5rem;display:none;">
+
+  <div class="grid-x " style="padding-bottom:2rem;">
+    <div class="cell small-6">
+      <h3>ผลงานของฉัน</h3>
+    </div>
+    <div class="cell small-6">
+    </div>
+  </div>
+
+
+  <form class="" name="" ref='uploadForm' encType="multipart/form-data" action="/my-portforio/update" method="post" id="id_editPortForm">
+    <div class="grid-x grid-padding-x">
+      <div class="small-3 cell">
+        <label class="text-right middle"><b>ชื่อใหม่</b></label>
+      </div>
+      <div class="small-9 cell field">
+        <input type="hidden" name="portID" id="portID">
+        <input required readonly type="text" name="portName" id="portTitle"placeholder="ชื่อผลงานใหม่" >
+      </div>
+
+      <div class="small-3 cell">
+        <label class="text-right middle"><b>เกี่ยวกับ</b></label>
+      </div>
+      <div class="small-9 cell field">
+        <textarea required readonly type="" name="portAbout" id="portAbout" style="min-width: 526px;min-height: 136px;padding-top:0.5rem;"></textarea>
+      </div>
+
+      <div class="small-3 cell">
+        <label class="text-right middle"><b>ประเภทผลงาน</b></label>
+      </div>
+      <div class="small-9 cell field">
+        <select name="portType" id="portType" required disabled>
+          <option value="1">ผลงานการเผยแพร่ทางวิชาการ</option>
+          <option value="2">ทรัพย์สินทางปัญญา</option>
+          <option value="3">รางวัลจากการประกวดงานวิจัย </option>
+          <option value="4">สิ่งประดิษฐ์</option>
+          <option value="5">ใบรับรอง</option>
+        </select>
+      </div>
+
+      <div class="small-3 cell">
+        <label class="text-right middle"><b>ไฟล์ผลงาน</b></label>
+      </div>
+      <div class="small-9 cell ">
+        <a id="aPortLink"></a>
+        <input type="file" style="padding-top:0.5rem;" name="portFile" id="edit_portFile" readonly>
+      </div>
+
+    </div>
+    <div class="actions">
+      <a  class="button warning" id="editthisport" >แก้ไข</a>
+      <input type="submit"  class="button primary" value="ยืนยัน"id="comfirmThisport" style="display:none;width:5rem;"/>
+      <input type="reset" value="ยกเลิก" class="button alert" id="cancelSeePort"style="width:5rem;" />
+    </div>
+  </form>
+
+</div>

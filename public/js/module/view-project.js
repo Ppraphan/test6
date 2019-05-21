@@ -9,7 +9,7 @@ document.getElementById("BudgetAllocated").onblur = function() {
 
 /*การเลือกโครงการชุด*/
 $(document).ready(function() {
-  $("input[name=projectSet]").on('change', function() {
+  $("input[name=projectSet]").on('change load', function() {
     var projectSetVal = $('input[name=projectSet]:checked').val();
 
     if (projectSetVal == 1) {
@@ -24,7 +24,7 @@ $(document).ready(function() {
 
 /*การเลือกโครงการชุด*/
 $(document).ready(function() {
-  $("input[name=projectMain]").on('change', function() {
+  $("input[name=projectMain]").on('change load', function() {
     var pprojectMainVal = $('input[name=projectMain]:checked').val();
 
     if (pprojectMainVal == 1) {

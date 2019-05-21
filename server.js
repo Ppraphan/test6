@@ -29,6 +29,8 @@ var options = {
   database: 'project'
 };
 
+app.use(express.static(__dirname + '/public'));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
   limit: '150mb',
@@ -36,9 +38,6 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
 }));
 
 var sessionStore = new MySQLStore(options);
-
-
-app.use(express.static(__dirname + '/public'));
 
 //---- set the view engine to ejs
 app.set('view engine', 'ejs', 'vue');
@@ -115,7 +114,6 @@ require('./routes/forms.js')(app, session);
 //กลุ่มฟังก์ชันผลงาน
 require('./routes/portforio.js')(app, session);
 require('./routes/my-portforio.js')(app, session);
-require('./routes/portforio-setting.js')(app, session);
 
 //กลุ่มฟังก์ชันรายงาน
 require('./routes/report.js')(app, session);

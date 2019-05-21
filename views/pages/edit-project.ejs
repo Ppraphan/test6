@@ -1,29 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="css/research-project.css">
-
-<style>
-  p{
-  margin-bottom: 0rem!important;
-}
-.separator-left::after{
-    position: relative;
-    width: 3rem;
-    border-bottom: 0.125rem solid #1779ba;
-    margin: 0.3rem auto 0;
-    margin-left: 0;
-}
-.separator-left::after {
-    display: table;
-    content: ' ';
-    -webkit-flex-basis: 0;
-    -ms-flex-preferred-size: 0;
-    flex-basis: 0;
-    -webkit-order: 1;
-    -ms-flex-order: 1;
-    order: 1;
-}
-</style>
+<link rel="stylesheet" href="css/editProject.css">
 
 <head>
   <% include ../partials/head %>
@@ -60,8 +37,142 @@
 
                 <div class="grid-y grid-margin-y">
 
-                  <% include ../pages/project/memberLD %>
-                  <% include ../pages/project/memberRS %>
+                  <!-- ROW กลุ่มข้อมูล -->
+                  <div class="cell small-6" style="padding:0em 0em 1em 0em;background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
+
+                    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                      <label style="font-size:1.5em;">ข้อมูลทั่วไป</label>
+                      <p style="color:red;">กรุณากรอกข้อมูลให้ครบทุกช่อง ก่อนกดยืนยัน หากไม่มีข้อมูลให้ใส่ - </p>
+                    </div>
+
+                    <div class="grid-y">
+
+                      <div class="cell small-6" style="padding:0em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-12 floated-label-wrapper">
+                            <label for="NAME_nameProjectTH">ชื่อโครงการ(ไทย)</label>
+                            <input type="text" name="NAME_nameProjectTH" id="ID_nameProjectTH" placeholder="ชื่อโครงการ(ไทย)" required>
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-12 floated-label-wrapper">
+                            <label for="NAME_nameProjectEN">ชื่อโครงการ(อังกฤษ)</label>
+                            <input type="text" name="NAME_nameProjectEN" id="ID_nameProjectEN" placeholder="ชื่อโครงการ(อังกฤษ)" required>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="cell small-6" style="padding:1em 1em 0em 1em;">
+
+                        <div class="grid-x grid-margin-x" style="padding-top:1em">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-3">
+                            <label style="font-size:1.25em;">หัวหน้าโครงการวิจัย</label>
+                          </div>
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-6">
+                            <input type="text" name="searchUserLD" id="searchUserLD" placeholder="กรุณาใส่อีเมลนักวิจัย เพื่อค้นหาและเพิ่ม" />
+                          </div>
+                          <!-- คอลัม 3 -->
+                          <div class="cell small-3">
+                            <button type="button" class="hollow button small" href="#" id="addRow">เพิ่ม</button>
+                            <button type="button" class="hollow button small alert" href="#" id="removeRow">ลบ</button>
+                          </div>
+
+
+                        </div>
+                      </div>
+                      <div class="cell small-6" style="padding:0em 1em 0em 1em;">
+
+                        <div class="grid-x grid-margin-x" style="padding-top:1em">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-3"></div>
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-6">
+                            <span class="label alert hide" id="notFoundSearchUserLD"><i class="fi-x-circle"></i>ไม่พบ</span>
+                            <span class="label alert hide" id="emptrySearchUserLD"><i class="fi-x-circle"></i>กรุณากรอกข้อมูลก่อนค้นหา</span>
+                          </div>
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-3"></div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:0em 1em 0em 1em;">
+                        <table id="memberLDProjTable" class=" hover unstriped " style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>อีเมล</th>
+                              <th>ชื่อ</th>
+                              <th>นามสกุล</th>
+                              <th>สัดส่วนงานวิจัย</th>
+                            </tr>
+                          </thead>
+                        </table>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <!-- ROW กลุ่มข้อมูล -->
+                  <div class="cell small-6" style="padding:0em 0em 1em 0em;background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
+                    <div class="grid-y">
+
+                      <div class="cell small-6" style="padding:1em 1em 0em 1em;">
+
+                        <div class="grid-x grid-margin-x" style="padding-top:1em">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-3">
+                            <label style="font-size:1.25em;">ผู้ร่วมวิจัย</label>
+                          </div>
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-6">
+                            <input type="text" name="searchUserRS" id="searchUserRS" placeholder="กรุณาใส่อีเมลนักวิจัย เพื่อค้นหาและเพิ่ม" />
+                          </div>
+                          <!-- คอลัม 3 -->
+                          <div class="cell small-3">
+                            <button type="button" class="hollow button small" href="#" id="addRow2">เพิ่ม</button>
+                            <button type="button" class="hollow button small alert" href="#" id="removeRow2">ลบ</button>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="cell small-6" style="padding:0em 1em 0em 1em;">
+
+                        <div class="grid-x grid-margin-x" style="padding-top:1em">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-3"></div>
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-6">
+                            <span class="label alert hide" id="notFoundsearchUserRS"><i class="fi-x-circle"></i>ไม่พบ</span>
+                            <span class="label alert hide" id="emptrysearchUserRS"><i class="fi-x-circle"></i>กรุณากรอกข้อมูลก่อนค้นหา</span>
+                          </div>
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-3"></div>
+                        </div>
+                      </div>
+                      <div class="cell small-6" style="padding:0em 1em 0em 1em;">
+                        <table id="memberRSProjTable" class=" hover unstriped " style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>อีเมล</th>
+                              <th>ชื่อ</th>
+                              <th>นามสกุล</th>
+                              <th>สัดส่วนงานวิจัย</th>
+                            </tr>
+                          </thead>
+                        </table>
+                      </div>
+
+
+                    </div>
+                  </div>
+
 
                   <!-- ROW กลุ่มข้อมูล -->
                   <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
@@ -203,7 +314,7 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
-                            <label for="country"style="color:#8a8a8a;">ประเทศ</label>
+                            <label for="country" style="color:#8a8a8a;">ประเทศ</label>
                             <select name="country" id="ID_PJ_ADD_country" placeholder="ประเทศ" style="margin:0px!important;border-radius:5px;">
                               <option disabled selected value>เลือก</option>
                               <% for (var i = 0; i < data1.length; i++){ %>
@@ -220,7 +331,7 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
-                            <label for="university"style="color:#8a8a8a;">มหาวิทยาลัย</label>
+                            <label for="university" style="color:#8a8a8a;">มหาวิทยาลัย</label>
                             <select name="university" id="ID_PJ_ADD_Uni" placeholder="มหาวิทยาลัย"></select>
                           </div>
                         </div>
@@ -230,7 +341,7 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
-                            <label for="faculty"style="color:#8a8a8a;">คณะ</label>
+                            <label for="faculty" style="color:#8a8a8a;">คณะ</label>
                             <select name="faculty" id="id_PJ_ADD_fac" placeholder="คณะ"></select>
                           </div>
                         </div>
@@ -240,7 +351,7 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
-                            <label for="department"style="color:#8a8a8a;">หน่วยงานหลัก</label>
+                            <label for="department" style="color:#8a8a8a;">หน่วยงานหลัก</label>
                             <select name="department" id="id_PJ_ADD_dpment" placeholder="หน่วยงานหลัก"></select>
                           </div>
                         </div>
@@ -250,7 +361,7 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
-                            <label for="department"style="color:#8a8a8a;">หน่วยงานย่อย</label>
+                            <label for="department" style="color:#8a8a8a;">หน่วยงานย่อย</label>
                             <select name="subdepartment" id="id_PJ_ADD_subdpment" placeholder="หน่วยงานย่อย"></select>
                           </div>
                         </div>
@@ -272,7 +383,7 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
-                            <label for="id_PJ_ADD_ResearcType"style="color:#8a8a8a;">ประเภทงานวิจัย</label>
+                            <label for="id_PJ_ADD_ResearcType" style="color:#8a8a8a;">ประเภทงานวิจัย</label>
                             <select name="name_PJ_ADD_ResearcType" id="id_PJ_ADD_ResearcType">
                               <% for (var i = 0; i < data2.length; i++){ %>
                               <option value="<%= data2[i].idresearchType %>">
@@ -288,7 +399,7 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
-                            <label for=""style="color:#8a8a8a;">สาขาการวิจัย</label>
+                            <label for="" style="color:#8a8a8a;">สาขาการวิจัย</label>
                             <select name="name_PJ_ADD_Researchbranch" id="id_PJ_ADD_Researchbranch">
                               <% for (var i = 0; i < data3.length; i++){ %>
                               <option value="<%= data3[i].researchbranchID %>">
@@ -304,7 +415,7 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
-                            <label for="id_PJ_ADD_Researchform"style="color:#8a8a8a;">รูปแบบการวิจัย</label>
+                            <label for="id_PJ_ADD_Researchform" style="color:#8a8a8a;">รูปแบบการวิจัย</label>
                             <select name="name_PJ_ADD_Researchform" id="id_PJ_ADD_Researchform">
                               <% for (var i = 0; i < data4.length; i++){ %>
                               <option value="<%= data4[i].ResearchFormID %>">
@@ -320,7 +431,7 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
-                            <label for="id_PJ_ADD_Researchstrategic"style="color:#8a8a8a;">ชื่อยุทศาสตร์</label>
+                            <label for="id_PJ_ADD_Researchstrategic" style="color:#8a8a8a;">ชื่อยุทศาสตร์</label>
                             <select name="name_PJ_ADD_Researchstrategic" id="id_PJ_ADD_Researchstrategic">
                               <% for (var i = 0; i < data5.length; i++){ %>
                               <option value="<%= data5[i].researchStrategicID %>">
@@ -369,7 +480,7 @@
                             <p><span class="label warning">1.</span> ทำบันทึกขออนุมัติดำเนินโครงการฯ (ฟอร์ม 2)พร้อมแนบแผนการใช้จ่ายเงิน (วจ.1) (ฟอร์ม 1)</p>
                           </div>
                           <div class="cell small-4 fieldProJ">
-                            <input required type="text" name="dateState1" data-toggle="datepicker" placeholder="วันที่"autocomplete="off"/>
+                            <input required type="text" name="dateState1" data-toggle="datepicker" placeholder="วันที่" autocomplete="off" />
                           </div>
                         </div>
                       </div>
@@ -381,7 +492,7 @@
                             <p><span class="label warning">2.</span> ทำบันทึกเบิกงวด 1 (ฟอร์ม 3 )</p>
                           </div>
                           <div class="cell small-4 fieldProJ">
-                            <input required type="text" name="dateState2" data-toggle="datepicker" placeholder="วันที่"autocomplete="off"/>
+                            <input required type="text" name="dateState2" data-toggle="datepicker" placeholder="วันที่" autocomplete="off" />
                           </div>
                         </div>
                       </div>
@@ -393,7 +504,7 @@
                             <p><span class="label warning">3.</span> การจัดซื้อวัสดุ (ฟอร์ม 4)</p>
                           </div>
                           <div class="cell small-4 fieldProJ">
-                            <input required type="text" name="dateState3" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
+                            <input required type="text" name="dateState3" data-toggle="datepicker" placeholder="วันที่" autocomplete="off" />
                           </div>
                         </div>
                       </div>
@@ -405,7 +516,7 @@
                             <p><span class="label warning">4.</span> การจัดจ้าง (ฟอร์ม 5)</p>
                           </div>
                           <div class="cell small-4 fieldProJ">
-                            <input required type="text" name="dateState4" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
+                            <input required type="text" name="dateState4" data-toggle="datepicker" placeholder="วันที่" autocomplete="off" />
                           </div>
                         </div>
                       </div>
@@ -417,7 +528,7 @@
                             <p><span class="label warning">5.</span> ใบสำคัญรับเงิน (ฟอร์ม 6)</p>
                           </div>
                           <div class="cell small-4 fieldProJ">
-                            <input required type="text" name="dateState5" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
+                            <input required type="text" name="dateState5" data-toggle="datepicker" placeholder="วันที่" autocomplete="off" />
                           </div>
                         </div>
                       </div>
@@ -429,7 +540,7 @@
                             <p><span class="label warning">6.</span> ขอขยายเวลาดำเนินโครงการวิจัยฯ (ฟอร์ม 7)</p>
                           </div>
                           <div class="cell small-4 fieldProJ">
-                            <input required type="text" name="dateState6" data-toggle="datepicker"placeholder="วันที่"autocomplete="off" />
+                            <input required type="text" name="dateState6" data-toggle="datepicker" placeholder="วันที่" autocomplete="off" />
                           </div>
                         </div>
                       </div>
@@ -441,7 +552,7 @@
                             <p><span class="label warning">7.</span> ทำบันทึกส่งหลักฐานการใช้เงิน (ฟอร์ม 8)</p>
                           </div>
                           <div class="cell small-4 fieldProJ">
-                            <input required type="text" name="dateState7" data-toggle="datepicker"placeholder="วันที่"autocomplete="off" />
+                            <input required type="text" name="dateState7" data-toggle="datepicker" placeholder="วันที่" autocomplete="off" />
                           </div>
                         </div>
                       </div>
@@ -453,7 +564,7 @@
                             <p><span class="label warning">8.</span> ทำบันทึกเบิกเงินงวดที่ 2 (ฟอร์ม 9 )พร้อมแนบรายงานความก้าวหน้า(ฟอร์ม 10 )</p>
                           </div>
                           <div class="cell small-4 fieldProJ">
-                            <input required type="text" name="dateState8" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
+                            <input required type="text" name="dateState8" data-toggle="datepicker" placeholder="วันที่" autocomplete="off" />
                           </div>
                         </div>
                       </div>
@@ -465,7 +576,7 @@
                             <p><span class="label warning">9.</span> ทำบันทึกเบิกงวด 3 (ฟอร์ม 11)พร้อมส่งเล่มรายงานวิจัยฉบับสมบูรณ์ 6 เล่ม ซีดี 2 แผ่น</p>
                           </div>
                           <div class="cell small-4 fieldProJ">
-                            <input required type="text" name="dateState9" data-toggle="datepicker" placeholder="วันที่" autocomplete="off"/>
+                            <input required type="text" name="dateState9" data-toggle="datepicker" placeholder="วันที่" autocomplete="off" />
                           </div>
                         </div>
                       </div>
@@ -477,7 +588,7 @@
                             <p><span class="label warning">10.</span> ทำบันทึกส่งเล่มรายงานวิจัย (ฟอร์ม 12)</p>
                           </div>
                           <div class="cell small-4 fieldProJ">
-                            <input required type="text" name="dateState10" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
+                            <input required type="text" name="dateState10" data-toggle="datepicker" placeholder="วันที่" autocomplete="off" />
                           </div>
                         </div>
                       </div>
@@ -489,7 +600,7 @@
                             <p><span class="label warning">11.</span> ทำบันทึกส่งมอบครุภัณฑ์ (ถ้ามี) (ฟอร์ม 13)</p>
                           </div>
                           <div class="cell small-4 fieldProJ">
-                            <input required type="text" name="dateState11" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
+                            <input required type="text" name="dateState11" data-toggle="datepicker" placeholder="วันที่" autocomplete="off" />
                           </div>
                         </div>
                       </div>
@@ -501,7 +612,7 @@
                             <p><span class="label warning">12.</span> ทำบันทึกปิดโครงการวิจัย (ฟอร์ม 14)พร้อมแนบ วจ.2 (ฟอร์ม 15)</p>
                           </div>
                           <div class="cell small-4 fieldProJ">
-                            <input required type="text" name="dateState12" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
+                            <input required type="text" name="dateState12" data-toggle="datepicker" placeholder="วันที่" autocomplete="off" />
                           </div>
                         </div>
                       </div>
@@ -537,9 +648,6 @@
 
 <footer>
   <% include ../partials/footer %>
-  <script src="js/datatable/memberLDprojtable.js"></script>
-  <script src="js/datatable/memberRSprojtable.js"></script>
-  <script src="js/module/project.js"></script>
 
 
 </footer>

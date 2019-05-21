@@ -41,6 +41,8 @@
     $('#id_dataTypeofResearch').change(function() {
       var allofyears = [];
       var numberOfGrants = [];
+      var allofyears2 = [];
+      var numberOfGrants2 = [];
       var dataTypeof = document.getElementById("id_dataTypeofResearch").value;
 
       if (dataTypeof == "numberOfResearchGrants") {
@@ -54,26 +56,33 @@
             $('#id_beginYear').append('<option selected value="-">' + "เลือก" + '</option>');
             $('#id_endYear').append('<option selected value="-">' + "เลือก" + '</option>');
             for (var i = 0; i < rows[0].length; i++) {
-
               allofyears.push(rows[0][i].grants_Years);
-              numberOfGrants.push(rows[1][i].count);
 
-
-              $('#id_beginYear').append('<option value="' + rows[0][i].grants_Years + '">' + rows[0][i].grants_Years + '</option>');
-              $('#id_endYear').append('<option value="' + rows[0][i].grants_Years + '">' + rows[0][i].grants_Years + '</option>');
+              // $('#id_beginYear').append('<option value="' + rows[0][i].grants_Years + '">' + rows[0][i].grants_Years + '</option>');
+              // $('#id_endYear').append('<option value="' + rows[0][i].grants_Years + '">' + rows[0][i].grants_Years + '</option>');
             };
+            for (var i = 0; i < rows[1].length; i++) {
+              numberOfGrants.push(rows[1][i].c);
+              };
+              for (var i = 0; i < rows[2].length; i++) {
+                allofyears2.push(rows[2][i].grants_Years);
+                };
+
+                for (var i = 0; i < rows[3].length; i++) {
+                  numberOfGrants2.push(rows[3][i].c);
+                  };
             var ctx = document.getElementById("myChart2").getContext("2d");
 
             var data = {
-              labels: ["Chocolate", "Vanilla", "Strawberry","ภาควิชา 1","ภาควิชา 2","ภาควิชา 3"],
+              labels: allofyears,
               datasets: [{
-                label: "ทุนภายนอก",
-                backgroundColor: "#305f72",
-                data: [3, 7, 4,11,7,3]
-              }, {
                 label: "ทุนภายใน",
+                backgroundColor: "#305f72",
+                data: numberOfGrants
+              }, {
+                label: "ทุนภายนอก",
                 backgroundColor: "#f1d1b5",
-                data: [4, 3, 5,8,2,12]
+                data: numberOfGrants2
               }, ]
             };
 

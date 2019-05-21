@@ -5,7 +5,10 @@ input[type=text]{
   margin:0px 0px 0px 0px!important;
   border-radius:5px!important;
 }
-
+input[type=file]{
+  margin:0px 0px 0px 0px!important;
+  border-radius:5px!important;
+}
 input[type=number]{
   margin:0px 0px 0px 0px!important;
   border-radius:5px!important;
@@ -22,6 +25,7 @@ select{
 input[type=submit]{
   margin: 0px !important;
 }
+
 
 .notGoneJustDisappear {
   display: none;

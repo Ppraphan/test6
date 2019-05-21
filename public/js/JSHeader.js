@@ -12,6 +12,7 @@ $(function() {
   var currentLocation = window.location.pathname;
   var singupurl =  "/signup";
   var user_url = "user";
+  var viewproj_url = "view-project";
 
   var currentLocation3 = window.location.pathname.split('/')[1];
 
@@ -32,6 +33,11 @@ $(function() {
   if(currentLocation3 == user_url){
     $("#cerrentuseridnavi").closest("a").addClass("active2");
     $('#accordion').foundation('down', $("#cerrentuseridnavi").closest(".sublevel-1"));
+  }
+
+  if(currentLocation3 == viewproj_url){
+    $("#viewsprojidnavi").closest("a").addClass("active2");
+    $('#accordion').foundation('down', $("#viewsprojidnavi").closest(".sublevel-1"));
   }
 
 });

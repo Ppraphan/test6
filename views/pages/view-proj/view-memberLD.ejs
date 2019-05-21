@@ -13,7 +13,7 @@
         <!-- คอลัม 1 -->
         <div class="cell small-12 floated-label-wrapper">
           <label for="NAME_nameProjectTH">ชื่อโครงการ(ไทย)</label>
-          <input type="text" name="NAME_nameProjectTH" id="ID_nameProjectTH" placeholder="ชื่อโครงการ(ไทย)" required>
+          <input type="text" value="<%=dataProJ.projectNameTH %>"name="NAME_nameProjectTH" id="ID_nameProjectTH" placeholder="ชื่อโครงการ(ไทย)" required>
         </div>
 
       </div>
@@ -24,7 +24,7 @@
         <!-- คอลัม 1 -->
         <div class="cell small-12 floated-label-wrapper">
           <label for="NAME_nameProjectEN">ชื่อโครงการ(อังกฤษ)</label>
-          <input type="text" name="NAME_nameProjectEN" id="ID_nameProjectEN" placeholder="ชื่อโครงการ(อังกฤษ)" required>
+          <input type="text" value="<%=dataProJ.projectNameEN %>"name="NAME_nameProjectEN" id="ID_nameProjectEN" placeholder="ชื่อโครงการ(อังกฤษ)" required>
         </div>
 
       </div>
@@ -65,7 +65,7 @@
     </div>
 
     <div class="cell small-6" style="padding:0em 1em 0em 1em;">
-      <table id="memberLDProjTable" class=" hover unstriped " style="width:100%">
+      <table id="view-memberLDProjTable" class=" hover unstriped " style="width:100%">
         <thead>
           <tr>
             <th>อีเมล</th>
@@ -74,6 +74,23 @@
             <th>สัดส่วนงานวิจัย</th>
           </tr>
         </thead>
+        <tbody>
+          <% if(dataLD.length){
+            for(var i = 0;i < dataLD.length;i++) {%>
+          <tr>
+            <td><%=dataLD[i].email %></td>
+            <td><%=dataLD[i].academicPositions %><%=dataLD[i].firstname %></td>
+            <td><%=dataLD[i].lastname %></td>
+            <td><%=dataLD[i].proportion %></td>
+          </tr>
+
+          <% }
+            }else{ %>
+          <tr>
+            <td colspan="4">ไม่มี</td>
+          </tr>
+          <% } %>
+        </tbody>
       </table>
     </div>
 
