@@ -1,143 +1,186 @@
-<div class="cell small-12" style="padding:0em 1em 0em 1em;border-bottom:1px solid #cacaca;">
+<!-- ROW กลุ่มข้อมูล -->
+<div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
   <div class="grid-x grid-margin-x">
-    <!-- คอลัม 1 -->
-    <div class="cell small-8">
-      <p><span class="label warning">1.</span> ทำบันทึกขออนุมัติดำเนินโครงการฯ (ฟอร์ม 2)พร้อมแนบแผนการใช้จ่ายเงิน (วจ.1) (ฟอร์ม 1)</p>
+    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+      <h5 class="separator-left" style="font-size:1.5em; ">วันที่แจ้งเตือนการส่งเอกสาร</h5>
+      <p style="color:red">*กรุณากรอกข้อมูลให้ครบทุกช่อง ถ้าไม่มี กรุณาใส่ -</p>
     </div>
-    <div class="cell small-4 fieldProJ">
-      <input required type="text" value="<%=dataProJ.dateState1 %>" name="dateState1" data-toggle="datepicker" placeholder="วันที่"autocomplete="off"/>
+    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+      <label for="">สถานะการดำเนินงาน</label>
+      <select disabled name="stateOfProJ" id="">
+        <% if (dataProJ.stateOfProJ == "1") { %><option value="1">1</option><% } %>
+        <% if (dataProJ.stateOfProJ == "2") { %><option value="2">2</option><% } %>
+        <% if (dataProJ.stateOfProJ == "3") { %><option value="3">3</option><% } %>
+        <% if (dataProJ.stateOfProJ == "4") { %><option value="4">4</option><% } %>
+        <% if (dataProJ.stateOfProJ == "5") { %><option value="5">5</option><% } %>
+        <% if (dataProJ.stateOfProJ == "6") { %><option value="6">6</option><% } %>
+        <% if (dataProJ.stateOfProJ == "7") { %><option value="7">7</option><% } %>
+        <% if (dataProJ.stateOfProJ == "8") { %><option value="8">8</option><% } %>
+        <% if (dataProJ.stateOfProJ == "9") { %><option value="9">9</option><% } %>
+        <% if (dataProJ.stateOfProJ == "10") { %><option value="10">10</option><% } %>
+        <% if (dataProJ.stateOfProJ == "11") { %><option value="11">11</option><% } %>
+        <% if (dataProJ.stateOfProJ == "12") { %><option value="12">12</option><% } %>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+      </select>
+
+
     </div>
   </div>
-</div>
+  <div class="grid-y">
+    <div class="cell small-12" style="padding:0em 1em 0em 1em;border-bottom:1px solid #cacaca;">
+      <div class="grid-x grid-margin-x">
+        <!-- คอลัม 1 -->
+        <div class="cell small-8">
+          <p><span class="label warning">1.</span> ทำบันทึกขออนุมัติดำเนินโครงการฯ (ฟอร์ม 2)พร้อมแนบแผนการใช้จ่ายเงิน (วจ.1) (ฟอร์ม 1)</p>
+        </div>
+        <div class="cell small-4 fieldProJ">
+          <input disabled required type="text" value="<%=dataProJ.dateState1 %>" name="dateState1" data-toggle="datepicker" placeholder="วันที่"autocomplete="off"/>
+        </div>
+      </div>
+    </div>
 
-<div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
-  <div class="grid-x grid-margin-x">
-    <!-- คอลัม 1 -->
-    <div class="cell small-8">
-      <p><span class="label warning">2.</span> ทำบันทึกเบิกงวด 1 (ฟอร์ม 3 )</p>
+    <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+      <div class="grid-x grid-margin-x">
+        <!-- คอลัม 1 -->
+        <div class="cell small-8">
+          <p><span class="label warning">2.</span> ทำบันทึกเบิกงวด 1 (ฟอร์ม 3 )</p>
+        </div>
+        <div class="cell small-4 fieldProJ">
+          <input disabled required type="text" value="<%=dataProJ.dateState2 %>"name="dateState2" data-toggle="datepicker" placeholder="วันที่"autocomplete="off"/>
+        </div>
+      </div>
     </div>
-    <div class="cell small-4 fieldProJ">
-      <input required type="text" value="<%=dataProJ.dateState2 %>"name="dateState2" data-toggle="datepicker" placeholder="วันที่"autocomplete="off"/>
-    </div>
-  </div>
-</div>
 
-<div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
-  <div class="grid-x grid-margin-x">
-    <!-- คอลัม 1 -->
-    <div class="cell small-8">
-      <p><span class="label warning">3.</span> การจัดซื้อวัสดุ (ฟอร์ม 4)</p>
+    <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+      <div class="grid-x grid-margin-x">
+        <!-- คอลัม 1 -->
+        <div class="cell small-8">
+          <p><span class="label warning">3.</span> การจัดซื้อวัสดุ (ฟอร์ม 4)</p>
+        </div>
+        <div class="cell small-4 fieldProJ">
+          <input disabled required type="text" value="<%=dataProJ.dateState3 %>"name="dateState3" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
+        </div>
+      </div>
     </div>
-    <div class="cell small-4 fieldProJ">
-      <input required type="text" value="<%=dataProJ.dateState3 %>"name="dateState3" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
-    </div>
-  </div>
-</div>
 
-<div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
-  <div class="grid-x grid-margin-x">
-    <!-- คอลัม 1 -->
-    <div class="cell small-8">
-      <p><span class="label warning">4.</span> การจัดจ้าง (ฟอร์ม 5)</p>
+    <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+      <div class="grid-x grid-margin-x">
+        <!-- คอลัม 1 -->
+        <div class="cell small-8">
+          <p><span class="label warning">4.</span> การจัดจ้าง (ฟอร์ม 5)</p>
+        </div>
+        <div class="cell small-4 fieldProJ">
+          <input disabled required type="text" value="<%=dataProJ.dateState4 %>"name="dateState4" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
+        </div>
+      </div>
     </div>
-    <div class="cell small-4 fieldProJ">
-      <input required type="text" value="<%=dataProJ.dateState4 %>"name="dateState4" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
-    </div>
-  </div>
-</div>
 
-<div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
-  <div class="grid-x grid-margin-x">
-    <!-- คอลัม 1 -->
-    <div class="cell small-8">
-      <p><span class="label warning">5.</span> ใบสำคัญรับเงิน (ฟอร์ม 6)</p>
+    <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+      <div class="grid-x grid-margin-x">
+        <!-- คอลัม 1 -->
+        <div class="cell small-8">
+          <p><span class="label warning">5.</span> ใบสำคัญรับเงิน (ฟอร์ม 6)</p>
+        </div>
+        <div class="cell small-4 fieldProJ">
+          <input disabled required type="text"value="<%=dataProJ.dateState5 %>" name="dateState5" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
+        </div>
+      </div>
     </div>
-    <div class="cell small-4 fieldProJ">
-      <input required type="text"value="<%=dataProJ.dateState5 %>" name="dateState5" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
-    </div>
-  </div>
-</div>
 
-<div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
-  <div class="grid-x grid-margin-x">
-    <!-- คอลัม 1 -->
-    <div class="cell small-8">
-      <p><span class="label warning">6.</span> ขอขยายเวลาดำเนินโครงการวิจัยฯ (ฟอร์ม 7)</p>
+    <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+      <div class="grid-x grid-margin-x">
+        <!-- คอลัม 1 -->
+        <div class="cell small-8">
+          <p><span class="label warning">6.</span> ขอขยายเวลาดำเนินโครงการวิจัยฯ (ฟอร์ม 7)</p>
+        </div>
+        <div class="cell small-4 fieldProJ">
+          <input disabled required type="text"value="<%=dataProJ.dateState6 %>" name="dateState6" data-toggle="datepicker"placeholder="วันที่"autocomplete="off" />
+        </div>
+      </div>
     </div>
-    <div class="cell small-4 fieldProJ">
-      <input required type="text"value="<%=dataProJ.dateState6 %>" name="dateState6" data-toggle="datepicker"placeholder="วันที่"autocomplete="off" />
-    </div>
-  </div>
-</div>
 
-<div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
-  <div class="grid-x grid-margin-x">
-    <!-- คอลัม 1 -->
-    <div class="cell small-8">
-      <p><span class="label warning">7.</span> ทำบันทึกส่งหลักฐานการใช้เงิน (ฟอร์ม 8)</p>
+    <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+      <div class="grid-x grid-margin-x">
+        <!-- คอลัม 1 -->
+        <div class="cell small-8">
+          <p><span class="label warning">7.</span> ทำบันทึกส่งหลักฐานการใช้เงิน (ฟอร์ม 8)</p>
+        </div>
+        <div class="cell small-4 fieldProJ">
+          <input disabled required type="text"value="<%=dataProJ.dateState7 %>" name="dateState7" data-toggle="datepicker"placeholder="วันที่"autocomplete="off" />
+        </div>
+      </div>
     </div>
-    <div class="cell small-4 fieldProJ">
-      <input required type="text"value="<%=dataProJ.dateState7 %>" name="dateState7" data-toggle="datepicker"placeholder="วันที่"autocomplete="off" />
-    </div>
-  </div>
-</div>
 
-<div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
-  <div class="grid-x grid-margin-x">
-    <!-- คอลัม 1 -->
-    <div class="cell small-8">
-      <p><span class="label warning">8.</span> ทำบันทึกเบิกเงินงวดที่ 2 (ฟอร์ม 9 )พร้อมแนบรายงานความก้าวหน้า(ฟอร์ม 10 )</p>
+    <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+      <div class="grid-x grid-margin-x">
+        <!-- คอลัม 1 -->
+        <div class="cell small-8">
+          <p><span class="label warning">8.</span> ทำบันทึกเบิกเงินงวดที่ 2 (ฟอร์ม 9 )พร้อมแนบรายงานความก้าวหน้า(ฟอร์ม 10 )</p>
+        </div>
+        <div class="cell small-4 fieldProJ">
+          <input disabled required type="text"value="<%=dataProJ.dateState8 %>" name="dateState8" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
+        </div>
+      </div>
     </div>
-    <div class="cell small-4 fieldProJ">
-      <input required type="text"value="<%=dataProJ.dateState8 %>" name="dateState8" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
-    </div>
-  </div>
-</div>
 
-<div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
-  <div class="grid-x grid-margin-x">
-    <!-- คอลัม 1 -->
-    <div class="cell small-8">
-      <p><span class="label warning">9.</span> ทำบันทึกเบิกงวด 3 (ฟอร์ม 11)พร้อมส่งเล่มรายงานวิจัยฉบับสมบูรณ์ 6 เล่ม ซีดี 2 แผ่น</p>
+    <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+      <div class="grid-x grid-margin-x">
+        <!-- คอลัม 1 -->
+        <div class="cell small-8">
+          <p><span class="label warning">9.</span> ทำบันทึกเบิกงวด 3 (ฟอร์ม 11)พร้อมส่งเล่มรายงานวิจัยฉบับสมบูรณ์ 6 เล่ม ซีดี 2 แผ่น</p>
+        </div>
+        <div class="cell small-4 fieldProJ">
+          <input  disabled required type="text"value="<%=dataProJ.dateState9 %>" name="dateState9" data-toggle="datepicker" placeholder="วันที่" autocomplete="off"/>
+        </div>
+      </div>
     </div>
-    <div class="cell small-4 fieldProJ">
-      <input required type="text"value="<%=dataProJ.dateState9 %>" name="dateState9" data-toggle="datepicker" placeholder="วันที่" autocomplete="off"/>
-    </div>
-  </div>
-</div>
 
-<div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
-  <div class="grid-x grid-margin-x">
-    <!-- คอลัม 1 -->
-    <div class="cell small-8">
-      <p><span class="label warning">10.</span> ทำบันทึกส่งเล่มรายงานวิจัย (ฟอร์ม 12)</p>
+    <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+      <div class="grid-x grid-margin-x">
+        <!-- คอลัม 1 -->
+        <div class="cell small-8">
+          <p><span class="label warning">10.</span> ทำบันทึกส่งเล่มรายงานวิจัย (ฟอร์ม 12)</p>
+        </div>
+        <div class="cell small-4 fieldProJ">
+          <input disabled required type="text" value="<%=dataProJ.dateState10 %>"name="dateState10" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
+        </div>
+      </div>
     </div>
-    <div class="cell small-4 fieldProJ">
-      <input required type="text" value="<%=dataProJ.dateState10 %>"name="dateState10" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
-    </div>
-  </div>
-</div>
 
-<div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
-  <div class="grid-x grid-margin-x">
-    <!-- คอลัม 1 -->
-    <div class="cell small-8">
-      <p><span class="label warning">11.</span> ทำบันทึกส่งมอบครุภัณฑ์ (ถ้ามี) (ฟอร์ม 13)</p>
+    <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;border-bottom:1px solid #cacaca;">
+      <div class="grid-x grid-margin-x">
+        <!-- คอลัม 1 -->
+        <div class="cell small-8">
+          <p><span class="label warning">11.</span> ทำบันทึกส่งมอบครุภัณฑ์ (ถ้ามี) (ฟอร์ม 13)</p>
+        </div>
+        <div class="cell small-4 fieldProJ">
+          <input disabled required type="text"value="<%=dataProJ.dateState11 %>" name="dateState11" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
+        </div>
+      </div>
     </div>
-    <div class="cell small-4 fieldProJ">
-      <input required type="text"value="<%=dataProJ.dateState11 %>" name="dateState11" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
-    </div>
-  </div>
-</div>
 
-<div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;">
-  <div class="grid-x grid-margin-x">
-    <!-- คอลัม 1 -->
-    <div class="cell small-8">
-      <p><span class="label warning">12.</span> ทำบันทึกปิดโครงการวิจัย (ฟอร์ม 14)พร้อมแนบ วจ.2 (ฟอร์ม 15)</p>
+    <div class="cell small-12" style="padding:0.5em 1em 0.5em 1em;">
+      <div class="grid-x grid-margin-x">
+        <!-- คอลัม 1 -->
+        <div class="cell small-8">
+          <p><span class="label warning">12.</span> ทำบันทึกปิดโครงการวิจัย (ฟอร์ม 14)พร้อมแนบ วจ.2 (ฟอร์ม 15)</p>
+        </div>
+        <div class="cell small-4 fieldProJ">
+          <input disabled required type="text"value="<%=dataProJ.dateState12 %>" name="dateState12" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
+        </div>
+      </div>
     </div>
-    <div class="cell small-4 fieldProJ">
-      <input required type="text"value="<%=dataProJ.dateState12 %>" name="dateState12" data-toggle="datepicker"placeholder="วันที่" autocomplete="off"/>
-    </div>
+
   </div>
 </div>

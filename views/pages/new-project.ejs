@@ -1,29 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="css/research-project.css">
-
-<style>
-  p{
-  margin-bottom: 0rem!important;
-}
-.separator-left::after{
-    position: relative;
-    width: 3rem;
-    border-bottom: 0.125rem solid #1779ba;
-    margin: 0.3rem auto 0;
-    margin-left: 0;
-}
-.separator-left::after {
-    display: table;
-    content: ' ';
-    -webkit-flex-basis: 0;
-    -ms-flex-preferred-size: 0;
-    flex-basis: 0;
-    -webkit-order: 1;
-    -ms-flex-order: 1;
-    order: 1;
-}
-</style>
+<link rel="stylesheet" href="css/new-project.css">
 
 <head>
   <% include ../partials/head %>
@@ -45,73 +22,42 @@
                 <p style="color:#707070;">รหัสโครงการวิจัย :
                   <%=data6%>
                 </p>
-                <input type="hidden" name="idofproject" value="<%=data6%>" id="ID_idproject" required>
+
               </div>
               <div class=" small-2"></div>
             </div>
           </div>
         </div>
 
+        <div class="cell small-6 full" align="center" style="padding:2em;">
+          <div class="grid-x">
+            <div class=" small-2"></div>
+            <div class=" small-6">
+              <ol class="progress-indicator">
+                <li class="is-current" data-step="1">
+                  <span>เพิ่มรายละเอียดโครงการวิจัย</span>
+                </li>
+                <li class="" data-step="2">
+                  <span>เพิ่มรายชื่อหัวหน้าโครงการ</span>
+                </li>
+                <li class="" data-step="3">
+                  <span>เพิ่มรายชื่อผู้ร่วมวิจัย</span>
+                </li>
+              </ol>
+            </div>
+            <div class=" small-4"></div>
+          </div>
+        </div>
+
         <div class="cell small-6" style="padding:2rem;">
           <form onload="document.id_formNewProJ.reset();" id="id_formNewProJ" name="id_formNewProJ" enctype="multipart/form-data" method="post" action="/new-project">
+            <input type="hidden" name="idofproject" value="<%=data6%>" id="ID_idproject" required>
             <div class="grid-x">
               <div class="cell small-2"></div>
               <div class="cell small-6">
 
                 <div class="grid-y grid-margin-y">
 
-                  <% include ../pages/project/memberLD %>
-                  <% include ../pages/project/memberRS %>
-
-                  <!-- ROW กลุ่มข้อมูล -->
-                  <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
-
-                    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
-                      <h5 class="separator-left" style="font-size:1.5em; ">ทุนวิจัย</h5>
-                    </div>
-
-                    <div class="grid-y">
-
-                      <div class="cell small-12" style="padding:0em 1em 1em 1em;">
-                        <div class="grid-x grid-margin-x">
-                          <!-- คอลัม 1 -->
-                          <div class="cell small-3 floated-label-wrapper">
-                            <label for="budgetYear">ปีงบประมาณ</label>
-                            <select name="NAME_budgetYear" id="budgetYear" placeholder="ปีงบประมาณ">
-                              <option selected="selected" value="-">ไม่มี</option>
-                              <% for (var i = 0; i < data0.length; i++){ %>
-                              <option value="<%= data0[i].grants_Years %>">
-                                <%=data0[i].grants_Years %>
-                              </option>
-                              <% } %>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="cell small-12" style="padding:0em 1em 1em 1em;">
-                        <div class="grid-x grid-margin-x">
-                          <!-- คอลัม 1 -->
-                          <div class="cell small-12 floated-label-wrapper">
-                            <label for="BudgetName">ชื่องบประมาณ</label>
-                            <select name="BudgetName" id="BudgetName" placeholder="ชื่องบประมาณ"></select>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="cell small-6" style="padding:0em 1em 1em 1em;">
-                        <div class="grid-x grid-margin-x">
-                          <!-- คอลัม 1 -->
-                          <div class="cell small-7 floated-label-wrapper fieldProJ">
-                            <label for="BudgetAllocated">งบประมาณที่ได้รับการจัดสรร</label>
-                            <input type="text" name="amountBudget" id="BudgetAllocated" placeholder="งบประมาณที่ได้รับการจัดสรร" required />
-                          </div>
-
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
 
                   <!-- ROW กลุ่มข้อมูล -->
                   <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
@@ -121,8 +67,29 @@
                     </div>
 
                     <div class="grid-y">
+                      <div class="cell small-6" style="padding:0em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-12 floated-label-wrapper">
+                            <label for="NAME_nameProjectTH">ชื่อโครงการ(ไทย)</label>
+                            <input type="text" name="NAME_nameProjectTH" id="ID_nameProjectTH" placeholder="ชื่อโครงการ(ไทย)" required>
+                          </div>
 
-                      <div class="cell small-6" id="projectSetElmID" style="padding:0em 1em 1em 1em;">
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-12 floated-label-wrapper">
+                            <label for="NAME_nameProjectEN">ชื่อโครงการ(อังกฤษ)</label>
+                            <input type="text" name="NAME_nameProjectEN" id="ID_nameProjectEN" placeholder="ชื่อโครงการ(อังกฤษ)" required>
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" id="projectSetElmID" style="padding:1em 1em 1em 1em;">
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-3 fieldProJ">
@@ -168,7 +135,6 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-3 " id="" style="padding:1em 0em 1em 0em">
                             <select name="name_projectParentYear" id="id_projectParentYear">
-                              <option selected="selected" value="-">ไม่มี</option>
                               <% for (var i = 0; i < data7.length; i++){ %>
                               <option value="<%= data7[i].grants_Years %>">
                                 <%=data7[i].grants_Years %>
@@ -187,6 +153,58 @@
 
                     </div>
                   </div>
+
+                  <!-- ROW กลุ่มข้อมูล -->
+                  <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
+
+                    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                      <h5 class="separator-left" style="font-size:1.5em; ">ทุนวิจัย</h5>
+                    </div>
+
+                    <div class="grid-y">
+
+                      <div class="cell small-12" style="padding:0em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-3 floated-label-wrapper">
+                            <label for="budgetYear">ปีงบประมาณ</label>
+                            <select name="NAME_budgetYear" id="budgetYear" placeholder="ปีงบประมาณ">
+                              <option disabled selected="selected" value="">กรุณาเลือก</option>
+                              <% for (var i = 0; i < data0.length; i++){ %>
+                              <option value="<%= data0[i].grants_Years %>">
+                                <%=data0[i].grants_Years %>
+                              </option>
+                              <% } %>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-12" style="padding:0em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-12 floated-label-wrapper">
+                            <label for="BudgetName">ชื่องบประมาณ</label>
+                            <select name="BudgetName" id="BudgetName" placeholder="ชื่องบประมาณ"></select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:0em 1em 1em 1em;">
+                        <div class="grid-x grid-margin-x">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-7 floated-label-wrapper fieldProJ">
+                            <label for="BudgetAllocated">งบประมาณที่ได้รับการจัดสรร</label>
+                            <input type="text" name="amountBudget" id="BudgetAllocated" placeholder="งบประมาณที่ได้รับการจัดสรร" required />
+                          </div>
+
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+
 
 
 

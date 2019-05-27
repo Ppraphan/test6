@@ -13,6 +13,7 @@ $(function() {
   var singupurl =  "/signup";
   var user_url = "user";
   var viewproj_url = "view-project";
+  var viewmyproj_url = "viewmy-project";
 
   var currentLocation3 = window.location.pathname.split('/')[1];
 
@@ -39,5 +40,8 @@ $(function() {
     $("#viewsprojidnavi").closest("a").addClass("active2");
     $('#accordion').foundation('down', $("#viewsprojidnavi").closest(".sublevel-1"));
   }
-
+  if(currentLocation3 == viewmyproj_url){
+    $("#viewsmyprojidnavi").closest("a").addClass("active2");
+    $('#accordion').foundation('down', $("#viewsmyprojidnavi").closest(".sublevel-1"));
+  }
 });

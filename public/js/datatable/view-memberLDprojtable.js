@@ -106,7 +106,7 @@ $(document).ready(function() {
                   '<p id="idLDEmailProj' + currentID + '" ></p>',
                   '<p id="idLDNameProj' + currentID + '" ></p>',
                   '<p id="idLDLnameProj' + currentID + '" ></p>',
-                  '<input type="hidden" id="idLDIDProj' + currentID + '" name="nameLDIDProj' + currentID + '" value=""/><input type="text" id="nameProportionLD' + currentID + '" name="nameProportionLD' + currentID + '" placeholder="สัดส่วนงานวิจัย" autocomplete="off"/>',
+                  '<input type="hidden" id="idLDIDProj' + currentID + '" name="nameLDIDProj' + currentID + '" value=""/><input  type="text" id="nameProportionLD' + currentID + '" name="nameProportionLD' + currentID + '" placeholder="สัดส่วนงานวิจัย" autocomplete="off"/>',
                 ]).draw(false);
               }
 

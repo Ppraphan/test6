@@ -52,7 +52,6 @@
     "uuid": "^3.1.0",
     "v2-table": "^3.0.3",
     "vue": "^2.5.17",
-    "vue-data-tablee": "^0.12.1",
     "vue-data-tables": "^3.4.4",
     "vue-tables-2": "^1.4.70"
   }

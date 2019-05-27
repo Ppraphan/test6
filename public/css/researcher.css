@@ -1,0 +1,327 @@
+
+.pic-profile{
+  border-radius: 50%;
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+.bgportforio {
+  background: linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, .5)), url("../picture/pexels-photo-256112.jpg");
+  width: 100%;
+  height: 12.5rem;
+}
+
+.dpment-text {
+  color: #8D8C8D;
+  line-height: 0.25em;
+}
+
+.researcher-text {
+  padding-top: 1em;
+  line-height: 1.5em;
+}
+
+.researcher-img {
+  object-fit: cover;
+  display: inline-block;
+ position: relative;
+ width: 200px;
+ height: 200px;
+ overflow: hidden;
+ border-radius: 50%;;
+}
+
+.animated-search-form-portforio[type=search] {
+  width: 70%;
+  border: 0.125rem solid #e6e6e6;
+  box-shadow: 0 0 3.125rem rgba(0, 0, 0, 0.18);
+  border-radius: 0.5em;
+  background-image: url("//image.ibb.co/i7NbrQ/search_icon_15.png");
+  background-position: 0.625rem 0.625rem;
+  background-repeat: no-repeat;
+  padding: 0.75rem 1.25rem 0.75rem 2rem;
+  transition: width 0.4s ease-in-out;
+}
+
+.topbar-responsive {
+  background: #020304;
+  padding: 1rem 1.5rem;
+}
+
+.topbar-responsive .topbar-responsive-logo {
+  color: #fefefe;
+  vertical-align: middle;
+}
+
+.topbar-responsive .menu {
+  background: #020304;
+}
+
+.topbar-responsive .menu li:last-of-type {
+  margin-right: 0;
+}
+
+.topbar-responsive .menu a {
+  color: #fefefe;
+  transition: color 0.15s ease-in;
+}
+
+.topbar-responsive .menu a:hover {
+  color: #c6d1d8;
+}
+
+.topbar-responsive .menu .topbar-responsive-button {
+  color: #fefefe;
+  border-color: #fefefe;
+  border-radius: 5000px;
+  transition: color 0.15s ease-in, border-color 0.15s ease-in;
+}
+
+.topbar-responsive .menu .topbar-responsive-button:hover {
+  color: #c6d1d8;
+  border-color: #c6d1d8;
+}
+
+.marketing-site-footer {
+  background: #300000;
+  color: #8aa0ae;
+  padding: 1em 0em 0em 0em;
+}
+
+.marketing-site-footer .marketing-site-footer-menu-social a {
+  color: #fefefe;
+}
+
+.marketing-site-footer .column-block {
+  margin: 30px;
+}
+
+.marketing-site-footer>.row {
+  margin: 1rem;
+}
+
+.marketing-site-footer-name {
+  color: #fefefe;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.marketing-site-footer-title {
+  color: #fefefe;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.marketing-site-footer-block {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.marketing-site-footer-block .fa {
+  font-size: 2rem;
+  color: #020304;
+}
+
+.marketing-site-footer-block p {
+  margin-left: 1rem;
+  line-height: 1.125rem;
+}
+
+.marketing-site-footer-bottom {
+  background: #020304;
+  padding: 1em 1em 0em 1em;
+}
+
+.marketing-site-footer-bottom p,
+.marketing-site-footer-bottom .menu {
+  margin-bottom: 0;
+}
+
+.marketing-site-footer-bottom .marketing-site-footer-bottom-links {
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.marketing-site-footer-bottom .marketing-site-footer-bottom-links a {
+  color: #8aa0ae;
+}
+
+.filter-simple .button-group {
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.filter-simple .filter-simple-button.hollow.is-active, .filter-simple .filter-simple-button.hollow:focus, .filter-simple .filter-simple-button.hollow:active {
+  background-color: #1779ba;
+  color: #fefefe;
+}
+
+.button-group.round :first-child {
+  border-radius: 5000px 0 0 5000px;
+}
+
+.button-group.round :last-child {
+  border-radius: 0 5000px 5000px 0;
+}
+
+.column-block {
+  padding: 1em 1em 1em 1em
+}
+
+.column-block:hover {
+  border: solid 1px rgba(0, 0, 0, 0.18);
+  border-radius: 0.5em;
+  box-shadow: 0.3rem 0.8rem 2.5rem rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+
+}
+.image-hover-wrapper {
+  padding: 1rem 1rem 1rem 1rem;
+    width: 150px;
+    margin-top: 100px;
+}
+.image-hover-wrapper .avatar-edit input {
+  display: none;
+}
+
+.image-hover-wrapper a {
+  display: inline-block;
+  letter-spacing: normal;
+  line-height: initial;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.image-hover-wrapper a .imagePreview {
+  float: left;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size:contain;
+
+  vertical-align: middle;
+  width: 200px;
+  height:200px;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+
+.image-hover-wrapper a .fa {
+  font-size: 24px;
+}
+
+@media screen and (max-width: 39.9375em) {
+  .pagination:after {
+    display: inline-block;
+    content: attr(data-page) " of " attr(data-total);
+    position: relative;
+    text-align: center;
+    width: 80px;
+    right: 80px;
+  }
+  .pagination-next {
+    position: relative;
+    left: 80px;
+  }
+}
+
+
+.about-the-author .separator-left {
+  text-align: left;
+}
+
+.about-the-author .separator-left::before, .about-the-author .separator-left::after {
+  display: table;
+  content: ' ';
+  -webkit-flex-basis: 0;
+      -ms-flex-preferred-size: 0;
+          flex-basis: 0;
+  -webkit-order: 1;
+      -ms-flex-order: 1;
+          order: 1;
+}
+
+.about-the-author .separator-left::after {
+  clear: both;
+}
+
+.about-the-author .separator-left::after {
+  position: relative;
+  width: 8rem;
+  border-bottom: 0.125rem solid #1779ba;
+  margin: 0.3rem auto 0;
+  margin-left: 0;
+}
+
+.md-tabs {
+  background-color: #FAFAFA;
+}
+
+.md-tabs > .mobile-nav-bar {
+  background-color: #FAFAFA;
+  margin-bottom: 15px;
+}
+
+.md-tabs > .mobile-nav-bar .title-bar-text {
+  font-size: 26px;
+}
+
+.md-tabs > .mobile-nav-bar a {
+  color: #767676;
+}
+
+.md-tabs > .tabs {
+  margin: 0;
+  border: 0;
+  background: #FAFAFA;
+  list-style-type: none;
+  display: table;
+  width: 100%;
+}
+
+.md-tabs > .tabs > .tabs-title {
+  display: table-cell;
+  width: calc(100% / 3) ;
+  text-align: center;
+  display: inline-block;
+}
+
+.md-tabs > .tabs > .tabs-title.is-active > a {
+  color: #1779ba;
+  background-color: transparent;
+  outline: none;
+}
+
+.md-tabs > .tabs > .tabs-title.is-active:nth-of-type(1) ~ .slide {
+  left: calc((100% / 3) * 0);
+}
+
+.md-tabs > .tabs > .tabs-title.is-active:nth-of-type(2) ~ .slide {
+  left: calc((100% / 3) * 1);
+}
+.md-tabs > .tabs > .tabs-title.is-active:nth-of-type(3) ~ .slide {
+  left: calc((100% / 3) * 2);
+}
+
+.md-tabs > .tabs > .tabs-title > a {
+  color: #767676;
+  font-size: 16px;
+}
+
+.md-tabs > .tabs > .tabs-title > a:hover, .md-tabs > .tabs > .tabs-title > a:focus {
+  background: transparent;
+}
+
+.slide {
+  background: #1779ba;
+  width: calc(100% / 3);
+  height: 4px;
+  position: relative;
+  left: 0;
+  top: 52px;
+  transition: left 0.3s ease-out;
+}

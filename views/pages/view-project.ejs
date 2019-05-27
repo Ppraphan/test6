@@ -20,10 +20,10 @@
               <div class=" small-2"></div>
               <div class="small-8 fieldProJ">
                 <h1>ข้อมูลโครงการวิจัย</h1>
-                <p style="color:#707070;">รหัสโครงการวิจัย :
+                <p style="color:#707070;" >รหัสโครงการวิจัย :
                   <%=dataProJ.idproject%>
                 </p>
-                <input type="hidden" name="idofproject" value="<%=dataProJ.idproject%>" id="ID_idproject" required>
+
               </div>
               <div class=" small-2"></div>
             </div>
@@ -31,7 +31,8 @@
         </div>
 
         <div class="cell small-6" style="padding:2rem;">
-          <form onload="document.id_formNewProJ.reset();" id="id_formNewProJ" name="id_formNewProJ" enctype="multipart/form-data" method="post" action="">
+          <form onload="document.id_formEditProJ.reset();" id="id_formEditProJ" name="id_formEditProJ" enctype="multipart/form-data" method="post" action="/update-project">
+            <input  type="hidden" name="idofproject" value="<%=dataProJ.idproject%>" id="ID_idproject" required>
             <div class="grid-x">
               <div class="cell small-2"></div>
               <div class="cell small-6">
@@ -55,12 +56,15 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-3 floated-label-wrapper">
                             <label for="budgetYear">ปีงบประมาณ</label>
-                            <select name="NAME_budgetYear" id="budgetYear" placeholder="ปีงบประมาณ">
+                            <select disabled name="NAME_budgetYear" id="budgetYear" placeholder="ปีงบประมาณ">
                               <% for(var i=0; i<dataRshGrants.length; i++) {%>
-                                <option value=<%=dataRshGrants[i].idresearchType%> ><%=dataRshGrants[i].grants_Years%></option>
-                                 <%if (dataRshGrants[i].idresearchType==dataProJ.idGrant) { %>
-                                   <option value=<%=dataRshGrants[i].idresearchType%> selected ><%=dataRshGrants[i].grants_Years%></option>
+                                 <%if (dataRshGrants[i].idGrants==dataProJ.idGrant) { %>
+                                   <option value=<%=dataRshGrants[i].idGrants%> selected ><%=dataRshGrants[i].grants_Years%></option>
                                   <% } %>
+                              <% } %>
+
+                              <% for(var i=0; i<dataRshGrantsYears.length; i++) {%>
+                                <option value=<%=dataRshGrantsYears[i].grants_Years%> ><%=dataRshGrantsYears[i].grants_Years%></option>
                               <% } %>
                             </select>
                           </div>
@@ -72,11 +76,11 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 floated-label-wrapper">
                             <label for="BudgetName">ชื่องบประมาณ</label>
-                            <select name="BudgetName" id="BudgetName" placeholder="ชื่องบประมาณ">
+                            <select disabled name="BudgetName" id="BudgetName" placeholder="ชื่องบประมาณ">
                               <% for(var i=0; i<dataRshGrants.length; i++) {%>
-                                <option value=<%=dataRshGrants[i].idresearchType%> ><%=dataRshGrants[i].grants_Name%></option>
-                                 <%if (dataRshGrants[i].idresearchType==dataProJ.idGrant) { %>
-                                   <option value=<%=dataRshGrants[i].idresearchType%> selected ><%=dataRshGrants[i].grants_Name%></option>
+                                <option value=<%=dataRshGrants[i].idGrants%> ><%=dataRshGrants[i].grants_Name%></option>
+                                 <%if (dataRshGrants[i].idGrants==dataProJ.idGrant) { %>
+                                   <option value=<%=dataRshGrants[i].idGrants%> selected ><%=dataRshGrants[i].grants_Name%></option>
                                   <% } %>
                               <% } %>
                             </select>
@@ -89,7 +93,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-7 floated-label-wrapper fieldProJ">
                             <label for="BudgetAllocated">งบประมาณที่ได้รับการจัดสรร</label>
-                            <input type="text" value="<%=dataProJ.projectAmount%>"name="amountBudget" id="BudgetAllocated" placeholder="งบประมาณที่ได้รับการจัดสรร" required />
+                            <input disabled type="text" value="<%=dataProJ.projectAmount%>"name="amountBudget" id="BudgetAllocated" placeholder="งบประมาณที่ได้รับการจัดสรร" required />
                           </div>
 
                         </div>
@@ -111,76 +115,73 @@
                         <div class="grid-x grid-margin-x">
                           <!-- คอลัม 1 -->
                           <div class="cell small-3 fieldProJ">
-                            <input type="radio" name="projectSet" value="1" id="projectSet_1" <% if(dataProJ.projectSet==1){ %> checked="checked" <% } %>/>
+
+                            <input disabled type="radio" name="projectSet" value="1" id="projectSet_1" <% if(dataProJ.projectSet==1){ %> checked="checked" <% } %>/>
                             <label class="" for="projectSet_1">โครงการชุด</label>
                           </div>
 
                           <!-- คอลัม 2 -->
                           <div class="cell small-3 ">
 
-                            <input type="radio" name="projectSet" value="0" id="projectSet_0" <%if(dataProJ.projectSet==0){%><%="checked"%><%}%>/>
+                            <input disabled type="radio" name="projectSet" value="0" id="projectSet_0" <%if(dataProJ.projectSet==0){%><%="checked"%><%}%>/>
                             <label class="" for="projectSet_0">โครงการเดี่ยว</label>
                           </div>
 
                           <!-- คอลัม 3 -->
-                          <div class="cell small-3 floated-label-wrapper fieldProJ">
-                            <label for="">ปีที่</label>
-                            <input type="number"value="<%=dataProJ.projectYears %>" min="1" max="8" name="projectYears" id="ID_projectYears" placeholder="ปีที่" required />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="cell small-6 " id="projectMainElmID" style="padding:0em 1em 1em 1em;">
-                        <div class="grid-x grid-margin-x">
-                          <!-- คอลัม 1 -->
                           <div class="cell small-3 ">
-                            <input type="radio" name="projectMain" value="1" id="projectMain_1"<%if(dataProJ.projectMain==1){%><%="checked"%><%}%>/>
-                            <label class=" " for="projectMain_1">โครงการหลัก</label>
+                            <label for="ID_projectYears">ปีที่</label>
+                            <input disabled type="number"value="<%=dataProJ.projectYears %>" min="1" max="8" name="projectYears" id="ID_projectYears" placeholder="ปีที่" required />
                           </div>
-                          <!-- คอลัม 2 -->
-                          <div class="cell small-3 ">
-                            <input type="radio" name="projectMain" value="-" id="projectMain_0"<%if(dataProJ.projectMain==0){%><%="checked"%><%}%>/>
-                            <label class=" " for="projectMain_0">โครงการย่อย</label>
-                          </div>
-
-
                         </div>
                       </div>
 
-                      <div class="cell small-6 " id="id_projectParentElm" style="padding:0em 1em 1em 1em;">
-                        <p style="color:#717272">กรุณาเลือกโครงการหลัก ของโครงการย่อยนี้</p>
-                        <div class="grid-x grid-margin-x">
-                          <!-- คอลัม 1 -->
-                          <div class="cell small-3 " id="" style="padding:1em 0em 1em 0em">
-                            <select name="name_projectParentYear" id="id_projectParentYear">
-                              <% for(var i=0; i<dataRshProjParent.length; i++) {%>
-                                <option value=<%=dataRshProjParent[i].idresearchType%> ><%=dataRshProjParent[i].grants_Years%></option>
-                                 <%if (dataRshProjParent[i].idGrants==dataProJ.idGrant) { %>
-                                   <option value=<%=dataRshProjParent[i].idresearchType%> selected ><%=dataRshProjParent[i].grants_Years%></option>
-                                  <% } %>
-                              <% } %>
-                            </select>
-                          </div>
-                          <!-- คอลัม 2 -->
-                          <div class="cell small-9 floated-label-wrapper " id="" style="padding:1em 0em 1em 0em">
-                            <label for=""></label>
-                            <select name="name_projectParentName" id="id_projectParentName">
-                              <% for(var i=0; i<dataRshProjParent.length; i++) {%>
-                                <option value=<%=dataRshProjParent[i].idresearchType%> ><%=dataRshProjParent[i].projectNameTH%></option>
-                                 <%if (dataRshProjParent[i].idGrants==dataProJ.idGrant) { %>
-                                   <option value=<%=dataRshProjParent[i].idresearchType%> selected ><%=dataRshProjParent[i].projectNameTH%></option>
-                                  <% } %>
-                              <% } %>
-                            </select>
-                          </div>
+                        <div class="cell small-6 " id="projectMainElmID" style="padding:0em 1em 1em 1em;">
+                          <div class="grid-x grid-margin-x">
+                            <!-- คอลัม 1 -->
+                            <div class="cell small-3 ">
+                              <input disabled type="radio" name="projectMain" value="1" id="projectMain_1"<%if(dataProJ.projectMain==1){%><%="checked"%><%}%>/>
+                              <label class=" " for="projectMain_1">โครงการหลัก</label>
+                            </div>
+                            <!-- คอลัม 2 -->
+                            <div class="cell small-3 ">
+                              <input disabled type="radio" name="projectMain" value="0" id="projectMain_0"<%if(dataProJ.projectMain==0){%><%="checked"%><%}%>/>
+                              <label class=" " for="projectMain_0">โครงการย่อย</label>
+                            </div>
 
+                          </div>
                         </div>
-                      </div>
+
+                        <div class="cell small-6 " id="id_projectParentElm" style="padding:0em 1em 1em 1em;">
+                          <p style="color:#717272">กรุณาเลือกโครงการหลัก ของโครงการย่อยนี้</p>
+                          <div class="grid-x grid-margin-x">
+                            <!-- คอลัม 1 -->
+                            <div class="cell small-3 " id="" style="padding:1em 0em 1em 0em">
+                              <select disabled name="name_projectParentYear" id="id_projectParentYear">
+                                <% for(var i=0; i<dataRshProjParent.length; i++) {%>
+                                  <option value=<%=dataRshProjParent[i].idGrants%> ><%=dataRshProjParent[i].grants_Years%></option>
+                                   <%if (dataRshProjParent[i].idGrants==dataProJ.idGrant) { %>
+                                     <option value=<%=dataRshProjParent[i].idGrants%> selected ><%=dataRshProjParent[i].grants_Years%></option>
+                                    <% } %>
+                                <% } %>
+                              </select>
+                            </div>
+                            <!-- คอลัม 2 -->
+                            <div class="cell small-9 floated-label-wrapper " id="" style="padding:1em 0em 1em 0em">
+                              <label for=""></label>
+                              <select disabled name="name_projectParentName" id="id_projectParentName">
+                                <% for(var i=0; i<dataRshProjParent.length; i++) {%>
+                                  <option value=<%=dataRshProjParent[i].idproject%> ><%=dataRshProjParent[i].projectNameTH%></option>
+                                   <%if (dataRshProjParent[i].projectParent==dataProJ.projectParent) { %>
+                                     <option value=<%=dataRshProjParent[i].idproject%> selected ><%=dataRshProjParent[i].projectNameTH%></option>
+                                    <% } %>
+                                <% } %>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
 
                     </div>
                   </div>
-
-
 
                   <!-- ROW กลุ่มข้อมูล -->
                   <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
@@ -196,7 +197,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
                             <label for="country"style="color:#8a8a8a;">ประเทศ</label>
-                            <select name="country" id="ID_PJ_ADD_country" placeholder="ประเทศ">
+                            <select disabled name="country" id="ID_PJ_ADD_country" placeholder="ประเทศ">
                               <option disabled selected value>เลือก</option>
                               <% for(var i=0; i<dataCountry.length; i++) {%>
                                 <option value=<%=dataCountry[i].countryISOCode%> ><%=dataCountry[i].countryName%></option>
@@ -214,7 +215,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
                             <label for="university"style="color:#8a8a8a;">มหาวิทยาลัย</label>
-                            <select name="university" id="ID_PJ_ADD_Uni" placeholder="มหาวิทยาลัย">
+                            <select disabled name="university" id="ID_PJ_ADD_Uni" placeholder="มหาวิทยาลัย">
                             <% for(var i=0; i<dataUni.length; i++) {%>
                               <option value=<%=dataUni[i].uniID%> ><%=dataUni[i].uniName%></option>
                                <%if (dataUni[i].uniID==dataProJ.uniID) { %>
@@ -231,7 +232,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
                             <label for="faculty"style="color:#8a8a8a;">คณะ</label>
-                            <select name="faculty" id="id_PJ_ADD_fac" placeholder="คณะ">
+                            <select disabled name="faculty" id="id_PJ_ADD_fac" placeholder="คณะ">
                               <% for(var i=0; i<dataFac.length; i++) {%>
                                 <option value=<%=dataFac[i].facultyID%> ><%=dataFac[i].facultyName%></option>
                                  <%if (dataFac[i].facultyID==dataProJ.facultyID) { %>
@@ -248,7 +249,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
                             <label for="department"style="color:#8a8a8a;">หน่วยงานหลัก</label>
-                            <select name="department" id="id_PJ_ADD_dpment" placeholder="หน่วยงานหลัก">
+                            <select disabled name="department" id="id_PJ_ADD_dpment" placeholder="หน่วยงานหลัก">
                               <% for(var i=0; i<dataDPMent.length; i++) {%>
                                 <option value=<%=dataDPMent[i].departmentID%> ><%=dataDPMent[i].departmentName%></option>
                                  <%if (dataDPMent[i].departmentID==dataProJ.departmentID) { %>
@@ -265,7 +266,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
                             <label for="department"style="color:#8a8a8a;">หน่วยงานย่อย</label>
-                            <select name="subdepartment" id="id_PJ_ADD_subdpment" placeholder="หน่วยงานย่อย">
+                            <select disabled name="subdepartment" id="id_PJ_ADD_subdpment" placeholder="หน่วยงานย่อย">
                             <% for(var i=0; i<dataSubDPMent.length; i++) {%>
                               <option value=<%=dataSubDPMent[i].Sub_Dpment_ID%> ><%=dataSubDPMent[i].Sub_Dpment_name%></option>
                                <%if (dataSubDPMent[i].Sub_Dpment_ID==dataProJ.subDepartmentID) { %>
@@ -294,7 +295,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
                             <label for="id_PJ_ADD_ResearcType"style="color:#8a8a8a;">ประเภทงานวิจัย</label>
-                            <select name="name_PJ_ADD_ResearcType" id="id_PJ_ADD_ResearcType">
+                            <select disabled name="name_PJ_ADD_ResearcType" id="id_PJ_ADD_ResearcType">
                               <% for(var i=0; i<dataRshtype.length; i++) {%>
                                 <option value=<%=dataRshtype[i].idresearchType%> ><%=dataRshtype[i].Name_researchType%></option>
                                  <%if (dataRshtype[i].idresearchType==dataProJ.researchTypeID) { %>
@@ -311,7 +312,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
                             <label for=""style="color:#8a8a8a;">สาขาการวิจัย</label>
-                            <select name="name_PJ_ADD_Researchbranch" id="id_PJ_ADD_Researchbranch">
+                            <select disabled name="name_PJ_ADD_Researchbranch" id="id_PJ_ADD_Researchbranch">
                               <option value="" disabled>กรุณาเลือก</option>
                               <% for(var i=0; i<dataRshbranch.length; i++) {%>
                                 <option value=<%=dataRshbranch[i].researchbranchID%> ><%=dataRshbranch[i].researchbranchName%></option>
@@ -329,7 +330,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
                             <label for="id_PJ_ADD_Researchform"style="color:#8a8a8a;">รูปแบบการวิจัย</label>
-                            <select name="name_PJ_ADD_Researchform" id="id_PJ_ADD_Researchform">
+                            <select disabled name="name_PJ_ADD_Researchform" id="id_PJ_ADD_Researchform">
                               <% for(var i=0; i<dataRshForm.length; i++) {%>
                                 <option value=<%=dataRshForm[i].ResearchFormID%> ><%=dataRshForm[i].ResearchFormName%></option>
                                  <%if (dataRshForm[i].ResearchFormID==dataProJ.researchFormID) { %>
@@ -346,7 +347,7 @@
                           <!-- คอลัม 1 -->
                           <div class="cell small-12 ">
                             <label for="id_PJ_ADD_Researchstrategic"style="color:#8a8a8a;">ชื่อยุทศาสตร์</label>
-                            <select name="name_PJ_ADD_Researchstrategic" id="id_PJ_ADD_Researchstrategic">
+                            <select disabled name="name_PJ_ADD_Researchstrategic" id="id_PJ_ADD_Researchstrategic">
                               <% for(var i=0; i<dataRshStrategic.length; i++) {%>
                                 <option value=<%=dataRshStrategic[i].researchStrategicID%> ><%=dataRshStrategic[i].rsearchStrategicName%></option>
                                  <%if (dataRshStrategic[i].researchStrategicID==dataProJ.researchStrategicID) { %>
@@ -361,35 +362,8 @@
                     </div>
                   </div>
 
-                  <!-- ROW กลุ่มข้อมูล -->
-                  <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
-                    <div class="grid-x grid-margin-x">
-                      <div class="cell small-6" style="padding:1em 1em 1em 1em;">
-                        <h5 class="separator-left" style="font-size:1.5em; ">วันที่แจ้งเตือนการส่งเอกสาร</h5>
-                        <p style="color:red">*กรุณากรอกข้อมูลให้ครบทุกช่อง ถ้าไม่มี กรุณาใส่ -</p>
-                      </div>
-                      <div class="cell small-6" style="padding:1em 1em 1em 1em;">
-                        <label for="">สถานะการดำเนินงาน</label>
-                        <select name="stateOfProJ" id="">
-                          <% if (dataProJ.stateOfProJ == "1") { %><option value="1">1</option><% } %>
-                          <% if (dataProJ.stateOfProJ == "2") { %><option value="2">2</option><% } %>
-                          <% if (dataProJ.stateOfProJ == "3") { %><option value="3">3</option><% } %>
-                          <% if (dataProJ.stateOfProJ == "4") { %><option value="4">4</option><% } %>
-                          <% if (dataProJ.stateOfProJ == "5") { %><option value="5">5</option><% } %>
-                          <% if (dataProJ.stateOfProJ == "6") { %><option value="6">6</option><% } %>
-                          <% if (dataProJ.stateOfProJ == "7") { %><option value="7">7</option><% } %>
-                          <% if (dataProJ.stateOfProJ == "8") { %><option value="8">8</option><% } %>
-                          <% if (dataProJ.stateOfProJ == "9") { %><option value="9">9</option><% } %>
-                          <% if (dataProJ.stateOfProJ == "10") { %><option value="10">10</option><% } %>
-                          <% if (dataProJ.stateOfProJ == "11") { %><option value="11">11</option><% } %>
-                          <% if (dataProJ.stateOfProJ == "12") { %><option value="12">12</option><% } %>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="grid-y">
-                      <% include ../pages/view-proj/view-datestate %>
-                    </div>
-                  </div>
+                  <!-- ROW กลุ่มข้อมูล สถานะของโครงการ -->
+                  <% include ../pages/view-proj/view-datestate %>
 
                 </div>
 
@@ -399,7 +373,8 @@
                 <div class=" grid-y" data-sticky data-margin-top="22">
 
                   <div class=" small-6" style="padding-bottom: 1em;">
-                    <input disabled type="submit" value="ยืนยัน" class="button primary expanded" id="id_confirmNewProJ" style="border-radius:5px;padding:1em;">
+                    <a  class="button warning expanded" id="id_editProJ" style="border-radius:5px;padding:1em;">แก้ไขข้อมูล</a>
+                    <input disabled type="submit" value="ยืนยัน" class="button primary expanded hide" id="id_confirmNewProJ" style="border-radius:5px;padding:1em;">
                   </div>
 
                   <div class=" small-6">
@@ -407,6 +382,7 @@
                   </div>
                 </div>
               </div>
+
             </div>
 
           </form>

@@ -12,10 +12,9 @@ module.exports = function(app) {
 
   /*เปิดหน้าผลงานของฉัน*/
   app.get('/my-portforio', function(req, res) {
-
     var userinfo = req.user;
     var mses = req.query.valid;
-    var query = con.query('SELECT * FROM project.portfolio', function(err, rows) {
+    var query = con.query('SELECT * FROM project.portfolio WHERE userID = "'+req.user.id+'"', function(err, rows) {
       if (err)
         console.log("Error Selecting : %s ", err);
       res.render('pages/my-portforio', {
@@ -41,8 +40,11 @@ module.exports = function(app) {
     con.query(sql, function(err, fields) {
       if (err) throw err;
       var filePath = './portforioDoc/' + fields[0].documentFile;
-      console.log(filePath);
-      fs.unlinkSync(filePath);
+      if(fields[0].documentFile!='-'){
+        console.log(filePath);
+        fs.unlinkSync(filePath);
+      }
+
     });
 
     var query2 = "DELETE FROM project.portfolio WHERE idportfolio='" + id + "'";
@@ -53,6 +55,8 @@ module.exports = function(app) {
     });
     var mses = encodeURIComponent('ลบ  เรียบร้อยแล้ว');
     res.redirect('/my-portforio?valid=' + mses);
+
+
   });
 
   /*เพิ่มผลงานของฉันใหม่*/
@@ -93,17 +97,8 @@ module.exports = function(app) {
           console.log("Insert Complete...");
         });
 
-        var query = con.query('SELECT * FROM project.portfolio', function(err, rows) {
-          if (err)
-            console.log("Error Selecting : %s ", err);
-
-          res.render('pages/my-portforio', {
-            userinfo: userinfo,
-            messages: mses,
-
-            data: rows,
-          });
-        });
+        var mses = encodeURIComponent('เพิ่ม  เรียบร้อยแล้ว');
+        res.redirect('/my-portforio?valid=' + mses);
       } else {
         var mses = encodeURIComponent('ไฟล์มีขนาดใหญ่เกินกว่า 30 MB');
 
@@ -112,17 +107,9 @@ module.exports = function(app) {
     } else {
       sql1 = "Insert into project.portfolio(userID,title,about,documentFile,categoryID) values('" + userid + "','" + portName + "','" + portAbout + "','-','" + portType + "')";
       con.query(sql1);
-      var query = con.query('SELECT * FROM project.portfolio', function(err, rows) {
-        if (err)
-          console.log("Error Selecting : %s ", err);
 
-        res.render('pages/my-portforio', {
-          userinfo: userinfo,
-          messages: mses,
-
-          data: rows,
-        });
-      });
+      var mses = encodeURIComponent('เพิ่ม  เรียบร้อยแล้ว');
+      res.redirect('/my-portforio?valid=' + mses);
 
     }
 

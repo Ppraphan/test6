@@ -131,11 +131,24 @@ module.exports = function(app) {
 
 
     if (startup_image == null) {
-      let sql = "UPDATE project.users SET profilePic = 'default-profile.jpg' WHERE id = '" + req.user.id + "' "
-      con.query(sql, function(err, result) {
-        if (err) throw err;
-        console.log("Insert Complete...");
-        mses = "startup_image == null"
+      var sql = "UPDATE project.users SET email ='" + myEmail +
+        "',userPermission ='" + myRole +
+        "',nameIDHuman='" + myHumanID +
+        "',birthday='" + myBirthDay +
+        "',prefix='" + myPrefix +
+        "',academicPositions='" + myAcademicPositions +
+        "',firstname='" + myFName +
+        "',lastname='" + myLName +
+        "',engFirstName='" + myEN_FName +
+        "',engLastName='" + myEN_LName +
+        "',nationality='" + myNationality +
+        "',telNumber='" + myTel +
+        "' WHERE id ='" + req.user.id + "' ";
+
+      var query = con.query(sql, function(err, rows) {
+        if (err)
+          console.log("Error Selecting : %s ", err);
+        mses = "อัพเดทข้อมูลเรียบร้อย"
         res.redirect('/me?valid=' + mses);
       });
 

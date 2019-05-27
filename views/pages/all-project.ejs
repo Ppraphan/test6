@@ -96,7 +96,7 @@
                       <a class="small button primary showme" href="/view-project/<%= data0[i].idproject%>">ดู</a>
                     </td>
                     <td>
-                      <a class="small button alert showme">ลบ</a>
+                      <a class="small button alert showme" onclick="return confirm('คุณต้องการที่จะ ลบ <%= data0[i].projectNameTH %> หรือไม่');" href="/deleteproject/<%= data0[i].idproject%>">ลบ</a>
                     </td>
                   </tr>
                   <% }

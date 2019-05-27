@@ -41,8 +41,6 @@
                           <th>ปีงบประมาณ</th>
                           <th>ชื่อโครงการ</th>
                           <th></th>
-                          <th></th>
-                          <th></th>
                         </tr>
                       </thead>
 
@@ -57,13 +55,7 @@
                             <%=data0[i].projectNameTH%>
                           </td>
                           <td>
-                            <a class="small button primary showme" href="">ดู</a>
-                          </td>
-                          <td>
-                            <a class="small button warning showme" href="#">แก้ไข</a>
-                          </td>
-                          <td>
-                            <a class="small button alert showme">ลบ</a>
+                            <a class="small button primary showme" href="/viewmy-project/<%=data0[i].idproject%>">ดู</a>
                           </td>
                         </tr>
                         <% }
@@ -79,8 +71,6 @@
                         <tr>
                           <th>ปีงบประมาณ</th>
                           <th>ชื่อโครงการ</th>
-                          <th></th>
-                          <th></th>
                           <th></th>
                         </tr>
                       </tfoot>
@@ -100,8 +90,6 @@
                           <th>ปีงบประมาณ</th>
                           <th>ชื่อโครงการ</th>
                           <th></th>
-                          <th></th>
-                          <th></th>
                         </tr>
                       </thead>
 
@@ -116,14 +104,8 @@
                             <%=data1[i].projectNameTH%>
                           </td>
                           <td style="width:55px">
-                            <a class="small button primary showme" href="">ดู</a>
+                            <a class="small button primary showme" href="/viewmy-project/<%=data1[i].idproject%>">ดู</a>
                           </td >
-                          <td style="width:55px">
-                            <a class="small button warning showme" href="#">แก้ไข</a>
-                          </td>
-                          <td style="width:55px">
-                            <a class="small button alert showme">ลบ</a>
-                          </td>
                         </tr>
                         <% }
                         }else{ %>
@@ -138,8 +120,6 @@
                         <tr>
                           <th>ปีงบประมาณ</th>
                           <th>ชื่อโครงการ</th>
-                          <th></th>
-                          <th></th>
                           <th></th>
                         </tr>
                       </tfoot>
@@ -163,10 +143,10 @@
 </body>
 
 <footer>
-
+  <% include ../partials/footer %>
   <script src="js/datatable/myProject.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <% include ../partials/footer %>
+
 </footer>
 
 </html>

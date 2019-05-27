@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<base href="/">
+<link rel="stylesheet" href="css/researcher.css">
+
+
+<style>.dataTables_length{display: none}.dataTables_filter{display: none}</style>
+
+<head>
+  <% include ../partials/head %>
+</head>
+<div class="grid-y" >
+  <div data-sticky-container>
+    <nav class="top-bar topbar-responsive" data-sticky data-options="marginTop:0;" style="background:#020304;width:100%" data-top-anchor="1">
+      <div class="top-bar-title">
+        <span data-responsive-toggle="topbar-responsive" data-hide-for="medium">
+          <button class="menu-icon" type="button" data-toggle></button>
+        </span>
+        <a class="topbar-responsive-logo" href="#"><strong>Research Database System</strong></a>
+      </div>
+      <div id="topbar-responsive" class="topbar-responsive-links">
+        <div class="top-bar-right">
+          <ul class="menu simple vertical medium-horizontal">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Publication Clinic</a></li>
+            <li><a href="#">Research Unit</a></li>
+            <li><a href="#">Journal</a></li>
+            <li><a href="#">Contact</a></li>
+            <li>
+              <div class="">
+                <img class="pic-profile" src="./userprofile/<%=userinfo.profilePic%>">
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<body class="grid-y" >
+
+  <!-- ส่วนหัว -->
+  <div class="grid-x bgportforio" style="height: 20vh">
+    <div class="cell small-2"></div>
+    <div class="cell small-10">
+      <div class="image-hover-wrapper">
+        <div class="avatar-preview">
+          <a href="#">
+            <div id="profileimage2" class="imagePreview" style="background-image: url(./userprofile/<%=selectuser.profilePic%>);"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- แถว ที่สอง -->
+  <div class="grid-x">
+    <div class="cell medium-2" style="background:#FAFAFA;"></div>
+    <div class="cell medium-7">
+      <div class="grid-x">
+        <div class="cell medium-3">
+
+        </div>
+        <div class="cell medium-8 about-the-author" style="padding:2rem;">
+          <h1 class="separator-left" style="font-size:30px;">
+            <%=selectuser.academicPositions%>
+            <%=selectuser.firstname%>
+            <%=selectuser.lastname%>
+          </h1>
+          <p><b>อาจารย์ประจำ</b>
+            <% for(var i=0; i<data4.length; i++) {%>
+            <%if (data4[i].Sub_Dpment_ID==selectuser.subdepartment) { %>
+            <%=data4[i].Sub_Dpment_name%>
+            <% } %>
+            <% } %>
+
+            <% for(var i=0; i<data3.length; i++) {%>
+            <%if (data3[i].departmentID==selectuser.department) { %>
+            <%=data3[i].departmentName%>
+            <% } %>
+            <% } %>
+
+            <% for(var i=0; i<data2.length; i++) {%>
+            <%if (data2[i].facultyID==selectuser.faculty) { %>
+            <%=data2[i].facultyName%>
+            <% } %>
+            <% } %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="cell medium-3" style="background:#FAFAFA;"></div>
+  </div>
+
+
+  <!-- แถว ที่สาม -->
+  <div class="grid-x" style="min-height: 70vh;background:#EFEFEF;">
+
+    <div class="cell medium-12" >
+      <div class="md-tabs">
+
+        <ul class="tabs" data-responsive-accordion-tabs="tabs small-accordion medium-tabs large-tabs" id="collapsing-tabs" data-allow-all-closed="true" data-multi-expand="true">
+          <li class="tabs-title is-active"><a href="#panel1c" aria-selected="true">โครงการที่ฉันเป็นหัวหน้าโครงการ</a></li>
+          <li class="tabs-title"><a href="#panel2c">โครงการที่ฉันเป็นผู้ร่วมวิจัย</a></li>
+          <li class="tabs-title"><a href="#panel3c">ผลงานอื่น ๆ ของฉัน</a></li>
+          <div class="slide"></div>
+        </ul>
+
+        <div class="tabs-content" data-tabs-content="collapsing-tabs">
+          <div class="grid-x tabs-panel is-active" id="panel1c" style="background:#EFEFEF">
+            <div class="cell small-6 "></div>
+
+            <div class="cell small-6 " style="display:block;">
+              <table id="myProjectTable" class="hover unstriped myProjectTable">
+                <thead>
+                  <tr>
+                    <th>ปีงบประมาณ</th>
+                    <th>ชื่อโครงการ</th>
+                    <th></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% if(dataLDProj.length){
+                          for(var i = 0;i < dataLDProj.length;i++) { %>
+                  <tr class="showhim ">
+                    <td>
+                      <%=dataLDProj[i].grants_Years%>
+                    </td>
+                    <td>
+                      <%=dataLDProj[i].projectNameTH%>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <% }
+                        }else{ %>
+                  <tr>
+                    <td colspan="3">ไม่มีข้อมูล</td>
+                  </tr>
+
+                  <% } %>
+                </tbody>
+
+                <tfoot>
+                  <tr>
+                    <th>ปีงบประมาณ</th>
+                    <th>ชื่อโครงการ</th>
+                    <th></th>
+                  </tr>
+                </tfoot>
+              </table>
+
+            </div>
+
+
+          </div>
+          <div class="grid-x tabs-panel" id="panel2c" style="background:#EFEFEF">
+            <div class="cell small-6 "></div>
+
+            <div class="cell small-6 " style="display:block;">
+
+              <table class="hover unstriped myProjectTable h2c" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>ปีงบประมาณ</th>
+                    <th>ชื่อโครงการ</th>
+                    <th></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% if(dataRSProj.length){
+                          for(var i = 0;i < dataRSProj.length;i++) { %>
+                  <tr class="showhim ">
+                    <td style="width:55px">
+                      <%=dataRSProj[i].grants_Years%>
+                    </td>
+                    <td>
+                      <%=dataRSProj[i].projectNameTH%>
+                    </td>
+                    <td style="width:55px">
+                    </td>
+                  </tr>
+                  <% }
+                        }else{ %>
+                  <tr>
+                    <td colspan="3">ไม่มีข้อมูล</td>
+                  </tr>
+
+                  <% } %>
+                </tbody>
+
+                <tfoot>
+                  <tr>
+                    <th>ปีงบประมาณ</th>
+                    <th>ชื่อโครงการ</th>
+                    <th></th>
+                  </tr>
+                </tfoot>
+              </table>
+
+            </div>
+
+
+          </div>
+          <div class="grid-x tabs-panel" id="panel3c" style="background:#EFEFEF">
+            <div class="cell small-6 "></div>
+            <div class="cell small-6 ">
+              <table id="myPortforioTable" class="hover unstriped  " style="width:100%">
+
+                <thead>
+                  <tr>
+                    <th>ลำดับ</th>
+                    <th>ชื่องาน</th>
+                    <th>ประเภทผลงาน</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% if(dataPortforio.length){
+                          for(var i = 0;i < dataPortforio.length;i++) { %>
+                  <tr class="showhim ">
+                    <td></td>
+                    <td><%=dataPortforio[i].title%></td>
+                    <td>
+                      <% if (dataPortforio[i].categoryID == "1") { %>
+                      ผลงานการเผยแพร่ทางวิชาการ
+                      <% } %>
+                      <% if (dataPortforio[i].categoryID == "2") { %>
+                      ทรัพย์สินทางปัญญา
+                      <% } %>
+                      <% if (dataPortforio[i].categoryID == "3") { %>
+                      รางวัลจากการประกวดงานวิจัย
+                      <% } %>
+                      <% if (dataPortforio[i].categoryID == "4") { %>
+                      สิ่งประดิษฐ์
+                      <% } %>
+                      <% if (dataPortforio[i].categoryID == "5") { %>
+                      ใบรับรอง
+                      <% } %>
+                    </td>
+                    <td>
+                      <a class="small button warning showme" id="RTIDEDNAMEResearchType" onclick="seeMyPort('<%=dataPortforio[i].idportfolio%>')">ดู</a>
+                    </td>
+                    <td>
+                    </td>
+
+                  </tr>
+                  <% }
+                        }else{ %>
+                  <tr>
+                    <td colspan="5">No user</td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+</body>
+
+<footer class="marketing-site-footer">
+
+  <div class="grid-x " style="padding:1em">
+    <div class="medium-4 columns">
+      <h4 class="marketing-site-footer-name">Insutitute of Research and Delopmant RMUTT</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita dolorem accusantium architecto id quidem, itaque nesciunt quam ducimus atque.</p>
+      <ul class="menu marketing-site-footer-menu-social simple">
+        <li><a href="#"><i class="fa fa-youtube-square" aria-hidden="true"></i></a></li>
+        <li><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
+      </ul>
+    </div>
+    <div class="medium-4 columns">
+      <h4 class="marketing-site-footer-title">Contact Info</h4>
+      <div class="marketing-site-footer-block">
+        <i class="fa fa-map-marker" style="color:#FFF" aria-hidden="true"></i>
+        <p>เลขที่ 39 หมู่ที่ 1 ถ.รังสิต-นครนายก ต.คลองหก อ.ธัญบุรี จ.ปทุมธานี 12110</p>
+      </div>
+      <div class="marketing-site-footer-block">
+        <i style="color:#FFF" class="fa fa-phone" aria-hidden="true"></i>
+        <p>(+66) 0-2549-4682</p>
+      </div>
+      <div class="marketing-site-footer-block">
+        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+        <p>yetirules@fakeemail.com</p>
+      </div>
+    </div>
+    <div class="medium-4 columns">
+      <h4 class="marketing-site-footer-title">Facebook</h4>
+      <div class="grid-x  small-up-3">
+
+      </div>
+    </div>
+  </div>
+
+  <div class="marketing-site-footer-bottom">
+    <div class="row large-unstack align-middle">
+      <div class="column">
+        <p> Copyright 2019 &copy; Faculty of Engineering RMUTT </p>
+      </div>
+      <div class="column">
+        <ul class="menu marketing-site-footer-bottom-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Publication Clinic</a></li>
+          <li><a href="#">Research Unit</a></li>
+          <li><a href="#">Journal</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <% include ../partials/footer %>
+  <script src="js/portforio.js"></script>
+
+  <script src="js/datatable/portforio.js"></script>
+  <script src="js/datatable/my-portforio.js"></script>
+  <script src="js/datatable/researcher-Table.js"></script>
+
+</footer>
+
+</html>

@@ -165,6 +165,9 @@ $(document).ready(function() {
       dataType: 'json',
       success: function(results) {
         $('#ID_PJ_ADD_Uni').empty();
+        $('#id_PJ_ADD_fac').empty();
+        $('#id_PJ_ADD_dpment').empty();
+        $('#id_PJ_ADD_subdpment').empty();
 
         $('#id_PJ_ADD_fac').append('<option disabled="disabled" selected="selected" value="">' + "เลือก" + '</option>');
         $('#id_PJ_ADD_dpment').append('<option disabled="disabled"selected="selected" value="">' + "เลือก" + '</option>');

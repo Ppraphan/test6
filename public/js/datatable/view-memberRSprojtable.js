@@ -107,7 +107,7 @@ $(document).ready(function() {
                   '<p id="idRSEmailProj' + r_currentID + '" ></p>',
                   '<p id="idRSNameProj' + r_currentID + '" ></p>',
                   '<p id="idRSLnameProj' + r_currentID + '" ></p>',
-                  '<input type="hidden" id="idRSIDProj' + r_currentID + '" name="nameRSIDProj' + r_currentID + '" value=""/><input type="text" id="nameProportionRS' + r_currentID + '" name="nameProportionRS' + r_currentID + '" placeholder="สัดส่วนงานวิจัย"autocomplete="off" />',
+                  '<input type="hidden" id="idRSIDProj' + r_currentID + '" name="nameRSIDProj' + r_currentID + '" value=""/><input  type="text" id="nameProportionRS' + r_currentID + '" name="nameProportionRS' + r_currentID + '" placeholder="สัดส่วนงานวิจัย"autocomplete="off" />',
                 ]).draw(false);
               }
 

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <link rel="stylesheet" href="css/portforio.css">
+
 <style>.dataTables_length{display: none}.dataTables_filter{display: none}</style>
 
 <head>
@@ -84,9 +86,14 @@
                 <table id="ourResearcher" class="unstriped">
                   <tbody>
                     <% if(data.length){
-                      for(var i = 0;i < data.length;i++) {%>
+                      for(var i = 0;i < data.length;i++) {
+                        var a;
+                        var b;
+                        var c;
+                        %>
                     <tr>
-                      <td>
+                      <td >
+                      <a href="/researcher/<%=data[i].id%>">
                         <div class="small-4 column column-block" align="center">
                           <img src="./userprofile/<%=data[i].profilePic%>" alt="" class="researcher-img" />
                           <p class="researcher-text">
@@ -107,6 +114,7 @@
                       </td>
 
                       <td>
+                      <a href="/researcher/<%=data[i].id%>">
                         <div class="small-4 column column-block" align="center">
                           <img src="./userprofile/<%=data[i].profilePic%>" alt="" class="researcher-img" />
                           <p class="researcher-text">
@@ -127,6 +135,7 @@
                       </td>
 
                       <td>
+                      <a href="/researcher/<%=data[i].id%>">
                         <div class="small-4 column column-block" align="center">
                           <img src="./userprofile/<%=data[i].profilePic%>" alt="" class="researcher-img" />
                           <p class="researcher-text">

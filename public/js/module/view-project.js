@@ -9,22 +9,23 @@ document.getElementById("BudgetAllocated").onblur = function() {
 
 /*การเลือกโครงการชุด*/
 $(document).ready(function() {
-  $("input[name=projectSet]").on('change load', function() {
+  $("input[name=projectSet]").on('change ', function() {
     var projectSetVal = $('input[name=projectSet]:checked').val();
 
     if (projectSetVal == 1) {
       document.getElementById("projectMainElmID").classList.remove("hide");
     } else {
       document.getElementById("projectMainElmID").classList.add("hide");
+      document.getElementById("id_projectParentElm").classList.add("hide");
     }
 
   });
 
 });
 
-/*การเลือกโครงการชุด*/
+/*การเลือกโครงการหลัก*/
 $(document).ready(function() {
-  $("input[name=projectMain]").on('change load', function() {
+  $("input[name=projectMain]").on('change ', function() {
     var pprojectMainVal = $('input[name=projectMain]:checked').val();
 
     if (pprojectMainVal == 1) {
@@ -151,7 +152,7 @@ $(document).ready(function() {
   });
 });
 
-/* โหลดรายชื่อหน่วยงานต่าง ๆ*/
+/*โหลดรายชื่อหน่วยงานต่าง ๆ*/
 $(document).ready(function() {
 
   /* โหลดรายชื่อมหาวิทยาลัยจากประเทศที่เลือก*/
@@ -271,4 +272,19 @@ $(document).ready(function() {
             $('#id_confirmNewProJ').removeAttr('disabled');
         }
     });
+});
+
+/*แก้ไขข้อมูลโครงการ*/
+$(document).ready(function() {
+      $('#id_editProJ').click(function() {
+
+        document.getElementById("id_confirmNewProJ").classList.remove("hide");
+        document.getElementById("id_editProJ").classList.add("hide");
+
+        $("#id_formEditProJ :input").prop("disabled", false);
+        $("#id_formEditProJ :select").prop("disabled", false);
+        $("#id_formEditProJ :radio").prop("disabled", false);
+
+
+      });
 });
