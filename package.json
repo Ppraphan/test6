@@ -42,7 +42,7 @@
     "node-datetime": "^2.1.2",
     "nodemailer": "^6.1.1",
     "noty": "^3.2.0-beta",
-    "npm": "^6.4.1",
+    "npm": "^6.13.4",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "req-flash": "0.0.3",
