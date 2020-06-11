@@ -22,10 +22,10 @@ var env = require('dotenv').config()
 var exphbs = require('express-handlebars');
 
 var options = {
-  host: '35.220.198.55',
+  host: '127.0.0.1',
   port: 3306,
   user: 'root',
-  password: 'itmyfinalproject',
+  password: 'Happy555$',
   database: 'project'
 };
 
